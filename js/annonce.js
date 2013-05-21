@@ -20,12 +20,11 @@ function postuler() {
 	}
 	
 }
-
-$(document).ready(function(){
+function showAnnonce(id_annonce) {
 	/* populate annonce */
-	id_annonce = getURLParameter('id_annonce');
-	
-	
+	$.mobile.changePage('#annonce');
+
+
 	$.ajax({
 		url:'http://bo.v2.batiactuemploi.com/scripts/interface-mobile.php'
 		,data: {
@@ -36,11 +35,11 @@ $(document).ready(function(){
 		,dataType:'jsonp'
 	}).done(function(annonce) {
 		
-		$('#titre').html(annonce.libelle);		
-		$('#description').html(annonce.description);		
+		$('#annonce #titre').html(annonce.libelle);		
+		$('#annonce #description').html(annonce.description);		
 
-		$('#email').val( $.jStorage.get('email') );
+		$('#annonce #email').val( $.jStorage.get('email') );
 
 	});
 	
-}) ;
+}

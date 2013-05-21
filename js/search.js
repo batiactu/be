@@ -1,6 +1,8 @@
 function launchSearch() {
-	var mot = $('#mot-clef').val();
-	var zonegeo = $('#zone-geo').val();
+	$.mobile.changePage('#recherche');
+	
+	var mot = $('#accueil #mot-clef').val();
+	var zonegeo = $('#accueil #zone-geo').val();
 
 	$('#resultat-recherche').html('<li>Recherche en cours...</li>');
 	$('#resultat-recherche').show();
@@ -23,7 +25,7 @@ function launchSearch() {
      			
      			annonce = annonces[i];
      			
-     			ligne = '<li><a data-ajax="false" href="annonce.html?id_annonce='+annonce.origine+'">';
+     			ligne = '<li><a href="javascript:showAnnonce('+annonce.origine+')">';
      			if(annonce.logo_recruteur!='') ligne+= '<img src="http://www.batiactuemploi.com/images/recruteur/recruteur_sscadre/'+annonce.logo_recruteur+'" />';
      			ligne += '<h2>'+annonce.libelle+' <span style="font-weight: normal">de '+annonce.lib_recruteur+'</span></h2>';
 				ligne += '</a></li>';
@@ -33,6 +35,9 @@ function launchSearch() {
      		}
      		
      	$('#resultat-recherche').listview('refresh');
+     	
+     	
+     	
 	});
 
 	return false;
