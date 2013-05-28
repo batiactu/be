@@ -1,44 +1,48 @@
+function initSearch() {
+	
+	$.ajax({
+		url:'http://bo.v2.batiactuemploi.com/scripts/interface-mobile.php'
+		,data: {
+			jsonp : 1
+			,get:'fonction'
+		}
+		,dataType:'jsonp'
+	}).done(function(fonctions) {
+		
+		$('#zone-geo').html('');
+		
+		for(i in fonctions) {
+     			
+     			fonction = fonctions[i];
+     			
+     			ligne += '<option value="'+i+'">'+fonction+'</option>';
+     			
+     			$('#zone-geo').append(ligne);
+     			
+     		}
+
+	});
+	
+}
+
 function launchSearch() {
 	$.mobile.changePage('#recherche');
 	
 	var mot = $('#accueil #mot-clef').val();
 	var zonegeo = $('#accueil #zone-geo').val();
 
-	$('#resultat-recherche').html('<li>Recherche en cours...</li>');
-	$('#resultat-recherche').show();
-//	$('#resultat-recherche').listview('refresh');
-	
-	$.ajax({
+	$('#resultat-recherche').completeListItem({
 		url:'http://bo.v2.batiactuemploi.com/scripts/interface-mobile.php'
-		,data: {
-			jsonp : 1
+		,data:{
+			jsonp:1
 			,get:'search'
 			,mot:mot
 			,zonegeo:zonegeo
 		}
-		,dataType:'jsonp'
-	}).done(function(annonces) {
-		
-		$('#resultat-recherche').html('');
-		
-		for(i in annonces) {
-     			
-     			annonce = annonces[i];
-     			
-     			ligne = '<li><a href="javascript:showAnnonce('+annonce.origine+')">';
-     			if(annonce.logo_recruteur!='') ligne+= '<img src="http://www.batiactuemploi.com/images/recruteur/recruteur_sscadre/'+annonce.logo_recruteur+'" />';
-     			ligne += '<h2>'+annonce.libelle+' <span style="font-weight: normal">de '+annonce.lib_recruteur+'</span></h2>';
-				ligne += '</a></li>';
-     			
-     			$('#resultat-recherche').append(ligne);
-     			
-     		}
-     		
-     	$('#resultat-recherche').listview('refresh');
-     	
-     	
-     	
 	});
-
+	
 	return false;
 }
+$(document).ready(function() {
+		initSearch();
+});

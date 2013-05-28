@@ -8,6 +8,7 @@
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQWPWT2V_AQAtuFcQYZY3hDZtugpazXIU&sensor=true"></script>
 <!-- <script type="text/javascript" src="js/geolocalisation.js"></script> desac -->
+<script type="text/javascript" src="js/jquery.item.js"></script>
 <script type="text/javascript" src="js/search.js"></script>
 <script type="text/javascript" src="js/annonce.js"></script>
 <script type="text/javascript" src="js/jstorage.js"></script>
@@ -73,7 +74,14 @@
 
 	<div data-role="content">
 		
-		<ul id="resultat-recherche" style="display:none; margin-bottom:30px;" data-role="listview"></ul>
+		<ul id="resultat-recherche" style="display:none; margin-bottom:30px;" data-role="listview">
+			
+			<li id="item-recherche-blank"><a href="javascript:showAnnonce(item_origine)">
+     			<img src="http://www.batiactuemploi.com/images/recruteur/recruteur_sscadre/item_logo_recruteur" />
+     			<h2>item_libelle <span style="font-weight: normal">de item_lib_recruteur</span></h2>
+			</a></li>
+			
+		</ul>
 		
 	</div>
 	
@@ -128,9 +136,9 @@
 	<div data-role="content">
         <div data-role="fieldcontain">
         	
-        	<h1 id="titre"></h1>
+        	<h1 id="item_libelle"></h1>
         	
-        	<p id="description"></p>
+        	<p id="item_description"></p>
         	
 		    <input type="text" value="" placeholder="Votre email" id="email" />
 		    <input type="button" value="Postuler" onclick="postuler();" />

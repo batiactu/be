@@ -24,22 +24,15 @@ function showAnnonce(id_annonce) {
 	/* populate annonce */
 	$.mobile.changePage('#annonce');
 
-
-	$.ajax({
+	$('#annonce').getItem({
 		url:'http://bo.v2.batiactuemploi.com/scripts/interface-mobile.php'
 		,data: {
 			jsonp : 1
 			,get:'annonce'
 			,id_annonce:id_annonce
 		}
-		,dataType:'jsonp'
-	}).done(function(annonce) {
-		
-		$('#annonce #titre').html(annonce.libelle);		
-		$('#annonce #description').html(annonce.description);		
-
-		$('#annonce #email').val( $.jStorage.get('email') );
-
 	});
+	
+	$('#annonce #email').val( $.jStorage.get('email') );
 	
 }
