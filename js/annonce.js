@@ -1,8 +1,3 @@
-function getURLParameter(name) {
-    return decodeURI(
-        (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
-    );
-}
 function postuler() {
 	
 	email = $('#email').val();
@@ -14,7 +9,7 @@ function postuler() {
 		
 		$.jStorage.set('email', email);
 		
-		id_annonce = getURLParameter('id_annonce');
+		id_annonce = $('#annonce #id_annonce').val();
 		alert("Vous avez postuler pour l'offre "+id_annonce+" !");
 		
 	}
@@ -33,6 +28,7 @@ function showAnnonce(id_annonce) {
 		}
 	});
 	
+	$('#annonce #id_annonce').val( id_annonce );
 	$('#annonce #email').val( $.jStorage.get('email') );
 	
 }

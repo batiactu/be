@@ -75,12 +75,13 @@
 	<div data-role="content">
 		
 		<ul id="resultat-recherche" style="display:none; margin-bottom:30px;" data-role="listview">
-			
+		</ul>
+		
+		<ul style="display:none">
 			<li id="item-recherche-blank"><a href="javascript:showAnnonce(item_origine)">
      			<img src="http://www.batiactuemploi.com/images/recruteur/recruteur_sscadre/item_logo_recruteur" />
      			<h2>item_libelle <span style="font-weight: normal">de item_lib_recruteur</span></h2>
 			</a></li>
-			
 		</ul>
 		
 	</div>
@@ -143,6 +144,7 @@
 		    <input type="text" value="" placeholder="Votre email" id="email" />
 		    <input type="button" value="Postuler" onclick="postuler();" />
 		    
+		    <input type="hidden" value="" id="id_annonce">
 		    
 		</div>
 		
