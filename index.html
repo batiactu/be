@@ -13,7 +13,7 @@
 <script type="text/javascript" src="js/annonce.js"></script>
 <script type="text/javascript" src="js/jstorage.js"></script>
 
-<script src="phonegap.js"></script><!-- ADD For PhoneGap Function -->
+<script src="phonegap.js"></script><!-- PhoneGap en a besoin derrière pour pouvoir utiliser ses fonctions natives -->
 
 </head>
     
@@ -133,7 +133,22 @@
 	</div>
 </div>   
         
+<div id="contact" data-role="page" >
 
+	<div data-role="content">
+		page de contact parce qu'il y a toujours une page de contact.
+	</div>
+	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
+		<div data-role="navbar">
+	        <ul>
+	            <li><a href="#accueil" data-icon="home">Accueil</a></li>
+	            <li><a href="#recherche-detail" data-icon="search">Recherche</a></li>
+	            <li><a href="#actu" class="ui-btn-active ui-state-persist" data-icon="grid">Actualité</a></li>
+	        </ul>
+	    </div><!-- /navbar -->
+	</div>
+</div>   
+        
         
 <div id="annonce" data-role="page" >
 
