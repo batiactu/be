@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns       = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "org.capinfopro.mobileemploi"
+        versionCode = "1"
+        version     = "1.3.0">
+ 
+    <name>Emploi Mobile</name>
+ 
+    <description>
+        Batiactu Emploi : 1er site de référence des annonces emploi du BTP
+    </description>
+ 
+    <author href="http://www.capinfopro.com" email="webmaster@capinfopro.com">
+        Alexis Algoud
+    </author>
+	<plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
+
+</widget>
