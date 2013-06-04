@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns       = "http://www.w3.org/ns/widgets"
-        xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "org.capinfopro.mobileemploi"
-        versionCode = "1"
-        version     = "1.3.0">
+        versionCode = "1">
  
     <name>Emploi Mobile</name>
  
@@ -12,8 +10,21 @@
     </description>
  
     <author href="http://www.capinfopro.com" email="webmaster@capinfopro.com">
-        Alexis Algoud
+        Capinfopro
     </author>
-	<plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
+	
+	<preference name="orientation" value="default" />
+    <preference name="target-device" value="universal" />
+    
+	<gap:splash src="images/splash.png" gap:platform="android" gap:density="ldpi" />
+    <gap:splash src="images/splash.png" gap:platform="android" gap:density="mdpi" />
+    <gap:splash src="images/splash.png" gap:platform="android" gap:density="hdpi" />
+    <gap:splash src="images/splash.png" gap:platform="android" gap:density="xhdpi" />
+    <gap:splash src="images/splash.png" gap:platform="blackberry" />
+    <gap:splash src="images/splash.png" gap:platform="ios" width="320" height="480" />
+    <gap:splash src="images/splash.png" gap:platform="ios" width="640" height="960" />
+    <gap:splash src="images/splash.png" gap:platform="ios" width="768" height="1024" />
+    <gap:splash src="images/splash.png" gap:platform="ios" width="1024" height="768" />
+    <gap:splash src="images/splash.png" gap:platform="winphone" />
 
 </widget>
