@@ -2,7 +2,9 @@
 <html>
 <head>
 <title>Emploi Mobile</title>
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" /> 
+<link rel="stylesheet" href="css/test.min.css" />
+
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
 
@@ -20,9 +22,28 @@
 <body>
         
 <div id="accueil" data-role="page" >
+	
+	
+	
+	
+	
 	<div data-role="header">
+	    <a href="#autre-sites" data-icon="bars" class="ui-btn-right">Sites</a>
 	    <h1>Batiactu Emploi</h1>
+	    
 	</div>
+	
+	<div data-role="panel" id="autre-sites" data-position="right">
+   
+	   		<a href="http://www.batiactu.com/" data-role="button" target="_blank">Actualité</a>
+	   		
+	   		<a href="http://formations.batiactu.com/" data-role="button" target="_blank">Formations</a>
+	   		
+	   		<a href="http://produits.batiactu.com/" data-role="button" target="_blank">Produithèque</a>
+	   		
+	   
+	</div><!-- /panel -->
+	
 	<div data-role="content">
         <div data-role="fieldcontain">
         	
@@ -40,6 +61,7 @@
 		    
 		</div>
 		
+		
     </div>		
 	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
 	    <div data-role="navbar">
@@ -50,9 +72,10 @@
 	        </ul>
 	    </div><!-- /navbar -->
 	</div><!-- /footer -->
+	
+	
 </div>
 
-        
 <div id="recherche" data-role="page" data-add-back-btn="true">
 	<div data-role="header">
 	    <h1>Résultat de recherche</h1>
