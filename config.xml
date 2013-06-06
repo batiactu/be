@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns       = "http://www.w3.org/ns/widgets"
         id          = "org.capinfopro.mobileemploi"
-        versionCode = "1">
+        versionCode = "1"
+	version	    = "0.0.8">
  
     <name>Emploi Mobile</name>
  
@@ -13,10 +14,13 @@
         Capinfopro
     </author>
 	
-	<preference name="orientation" value="default" />
+
+
+    <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
-    
-	<gap:splash src="images/splash.png" gap:platform="android" gap:density="ldpi" />
+   
+
+    <gap:splash src="images/splash.png" gap:platform="android" gap:density="ldpi" />
     <gap:splash src="images/splash.png" gap:platform="android" gap:density="mdpi" />
     <gap:splash src="images/splash.png" gap:platform="android" gap:density="hdpi" />
     <gap:splash src="images/splash.png" gap:platform="android" gap:density="xhdpi" />
@@ -26,5 +30,9 @@
     <gap:splash src="images/splash.png" gap:platform="ios" width="768" height="1024" />
     <gap:splash src="images/splash.png" gap:platform="ios" width="1024" height="768" />
     <gap:splash src="images/splash.png" gap:platform="winphone" />
+
+
+    <preference name="phonegap-version" value="2.7.0" />
+
 
 </widget>
