@@ -81,7 +81,7 @@
 			 	
 			 		for (k in row) {
 			 			
-			 			myItem.find('#item_'+k).html(row[k]);
+			 			myItem.find('.item_'+k).html(row[k]);
 			 				
 			 		}
 			 		
