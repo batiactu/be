@@ -18,10 +18,12 @@
     <gap:splash src="images/splash.png" gap:platform="android" gap:density="hdpi" />
     <gap:splash src="images/splash.png" gap:platform="android" gap:density="xhdpi" />
     <gap:splash src="images/splash.png" gap:platform="blackberry" />
+-->
     <gap:splash src="images/splash.png" gap:platform="ios" width="320" height="480" />
     <gap:splash src="images/splash.png" gap:platform="ios" width="640" height="960" />
     <gap:splash src="images/splash.png" gap:platform="ios" width="768" height="1024" />
     <gap:splash src="images/splash.png" gap:platform="ios" width="1024" height="768" />
+<!--
     <gap:splash src="images/splash.png" gap:platform="winphone" />
 -->
 
