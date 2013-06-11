@@ -3,28 +3,35 @@
         id          = "org.capinfopro.mobileemploi"
         versionCode = "1">
  
+ 
+ 
     <name>Emploi Mobile</name>
- 
-    <description>
-        Batiactu Emploi : 1er site de référence des annonces emploi du BTP
-    </description>
- 
-    <author href="http://www.capinfopro.com" email="webmaster@capinfopro.com">
-        Capinfopro
-    </author>
-	
-	<preference name="orientation" value="default" />
+    <description>Batiactu Emploi : 1er site de référence des annonces emploi du BTP</description>
+    <author href="http://www.capinfopro.com" email="webmaster@capinfopro.com">Capinfopro</author>
+<!--
+    <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
-    
-	<gap:splash src="images/splash.png" gap:platform="android" gap:density="ldpi" />
+-->   
+
+<!--
+    <gap:splash src="images/splash.png" gap:platform="android" gap:density="ldpi" />
+
     <gap:splash src="images/splash.png" gap:platform="android" gap:density="mdpi" />
     <gap:splash src="images/splash.png" gap:platform="android" gap:density="hdpi" />
     <gap:splash src="images/splash.png" gap:platform="android" gap:density="xhdpi" />
     <gap:splash src="images/splash.png" gap:platform="blackberry" />
+
     <gap:splash src="images/splash.png" gap:platform="ios" width="320" height="480" />
     <gap:splash src="images/splash.png" gap:platform="ios" width="640" height="960" />
     <gap:splash src="images/splash.png" gap:platform="ios" width="768" height="1024" />
     <gap:splash src="images/splash.png" gap:platform="ios" width="1024" height="768" />
+
     <gap:splash src="images/splash.png" gap:platform="winphone" />
+
+    <gap:splash src="images/splash.png" gap:platform="winphone" />
+-->
+
+    <preference name="phonegap-version" value="2.7.0" />
+
 
 </widget>
