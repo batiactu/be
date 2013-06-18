@@ -243,7 +243,7 @@
 		</ul>
 		
 		<ul style="display:none">
-			<li id="item-actu-blank"><a href="javascript:showArticle(item_id)">
+			<li id="item-actu-blank"><a href="javascript:showArticle('item_link')">
      			<img src="item_image#" />
      			<h2>item_title</h2><p>item_description</p>
 			</a></li>
@@ -305,6 +305,37 @@
 	            <li><a href="#accueil" data-icon="home">Accueil</a></li>
 	            <li><a href="#recherche-detail" class="ui-btn-active ui-state-persist" data-icon="search">Recherche</a></li>
 	            <li><a href="#actu" data-icon="grid">Actualité</a></li>
+	        </ul>
+	    </div><!-- /navbar -->
+	</div>
+
+</div>
+
+
+        
+<div id="article" data-role="page"  data-add-back-btn="true">
+	<div data-role="header">
+	    <h1>Article : <span class="item_titre"></span></h1>
+	</div>
+	<div data-role="content">
+        <div data-role="fieldcontain">
+        	
+        	<h1 class="item_titre"></h1>
+        	
+        	<p class="item_chapeau"></p>
+        	
+		    
+		    
+		</div>
+		
+    </div>		
+    
+    <div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
+		<div data-role="navbar">
+	        <ul>
+	            <li><a href="#accueil" data-icon="home">Accueil</a></li>
+	            <li><a href="#recherche-detail" data-icon="search">Recherche</a></li>
+	            <li><a href="#actu" data-icon="grid" class="ui-btn-active ui-state-persist">Actualité</a></li>
 	        </ul>
 	    </div><!-- /navbar -->
 	</div>
