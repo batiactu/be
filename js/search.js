@@ -241,8 +241,8 @@ function launchSearch(advanceMode) {
 	$('#resultat-recherche').completeListItem({
 		url:'http://bo.v2.batiactuemploi.com/scripts/interface-mobile.php'
 		,data:{
-			jsonp:1
-			,get:'search'
+			get:'search'
+			,jsonp:1
 			,mot:mot
 			,zonegeo:zonegeo
 			,fonction:fonction

@@ -3,7 +3,7 @@
         
         //This is where you write your plugin's name
         completeListItem: function(options) {
-           
+          
             var defaults = {
                listItem:'#item-recherche-blank'
                 ,url:'fill-url-source'
@@ -16,43 +16,98 @@
 			 
 			 $(options.listItem).hide();
 			 var blank = $(options.listItem).clone();
-			
-			 $.mobile.loading( 'show' );
+			 
+			 if(options.noLoading==null) $.mobile.loading( 'show' );
 			 
 			 //myList.hide();
+	
+			 if(options.dataType==null) options.dataType='jsonp';
 	
 			 $.ajax({
 			 	url : options.url
 			 	,data : options.data
-			 	,dataType:'jsonp'
+			 	,dataType:options.dataType
 			 	
 			 }).done(function(data) {
 			 	myList.html('');
-			 
-			 	$.each(data,function(i, row) {
-			 		
-			 		var newItem = blank.clone();
-			 		newItem.removeAttr('id');
-			 		
-			 		ligne = newItem.html();
-			 		
-			 		for (k in row) {
-			 			var myRegexp= new RegExp("item_"+k+"","gi");
-			 			
-			 			ligne = ligne.replace(myRegexp, row[k]);
-			 				
-			 		}
-			 		
-			 		newItem.html(ligne);
-			 		newItem.show();
-			 		myList.append(newItem);
-			 		
-			 	});
+
+				/*var ligne = '';			 
+			 	for(x in data) {
+			 		ligne+=x+'='+data[x]+"\n";
+			 	}
+			 	alert(ligne);
+			 	*/
+				
+				/*
+				 * A revoir
+				 */
+			    if(options.dataType=='xml') {
+			    	xml = data;
+			    	data=new Array;
+			    	$('item',xml).each(function(i) {
+							var newItem = blank.clone();
+					 		newItem.removeAttr('id');
+					 		ligne = newItem.html();
+					
+							$('*',this).each(function(i, o) {
+									
+								
+									k= o.tagName;
+									v = $(o).text();
+									if(k=='enclosure') {
+										v = $(o).attr('url');
+										k='image';	
+									}
+									
+						 			var myRegexp= new RegExp("item_"+k+"","gi");
+						 			
+						 			ligne = ligne.replace(myRegexp, v);
+						 				
+							});
+					
+						
+					 		
+					 		
+					 		
+					 		newItem.html(ligne);
+					 		newItem.show();
+					 		myList.append(newItem);
+					 		
+					});	
+			    	
+			    	//data = $.parseHTML(data.html());
+			    }
+			 	else {
+			 		$.each(data,function(i, row) {
+			 	
+				 		var newItem = blank.clone();
+				 		newItem.removeAttr('id');
+				 		
+				 		ligne = newItem.html();
+				 		
+				 		for (k in row) {
+				 			//alert(k);
+				 			var myRegexp= new RegExp("item_"+k+"","gi");
+				 			
+				 			ligne = ligne.replace(myRegexp, row[k]);
+				 				
+				 		}
+				 		
+				 		newItem.html(ligne);
+				 		newItem.show();
+				 		myList.append(newItem);
+				 		
+				 	});
+			 	}
+			 	
+			 	
+			 	
+			 	
 			 	
 			 	
 			 	myList.show();
 			 	myList.listview('refresh');
-			 	$.mobile.loading( 'hide' );
+			 	if(options.noLoading==null) $.mobile.loading( 'hide' );
 			 });
 			 
 	            
