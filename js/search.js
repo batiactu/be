@@ -250,6 +250,7 @@ function launchSearch(advanceMode) {
 			,contrat:contrat
 		}
 	});
+
 	
 	return false;
 }
