@@ -61,7 +61,7 @@
         	
         	
         	<label for="mot-clef" >Mot-clef</label>
-			<input name="mot-clef" id="mot-clef" placeholder="Mot-clef"  type="text" onchange="$('#recherche-detail-mot-clef').val(this.value)">
+			<input name="mot-clef" id="mot-clef" placeholder="Saisissez votre recherche..."  type="text" onchange="$('#recherche-detail-mot-clef').val(this.value)">
 			
 		    <label for="zone-geo">Zone Géographique:</label>
 		    <select name="zone-geo" id="zone-geo" data-native-menu="false">
@@ -74,7 +74,8 @@
 		</div>
 		
 		
-    </div>		
+    </div>	
+	
 	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
 	    <div data-role="navbar">
 	        <ul>
@@ -83,7 +84,7 @@
 	            <li><a href="#actu" data-icon="grid">Actualités</a></li>
 		    <li><a href="#offre" data-icon="check">Mes offres</a></li>
 	        </ul>
-	    </div><!-- /navbar -->
+	    </div> <!--/navbar -->
 	</div><!-- /footer -->
 	
 	
@@ -123,13 +124,20 @@
 	<div data-role="header">
 	    <h1>Métiers</h1>
 	</div>
+
+
+
 	<div data-role="content">
 		<div data-role="fieldcontain">
-			<fieldset data-role="controlgroup" id="recherche-detail-fonction">
-					<label><input class="checkFonction" type="checkbox" value="item_value" id="TFonction_item_index"> item_label</label>
+			
+			<fieldset data-role="controlgroup" id="recherche-detail-fonction" data-autodividers="true">
+					<label><input class="checkFonction" type="checkbox" value="item_value" id="TFonction_item_index"> 						item_label</label>
 			</fieldset>
 		</div>
 	</div>
+
+
+
 	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
 		<div data-role="navbar">
 	        <ul>
@@ -253,14 +261,20 @@
 	</div>
 </div>   
 
-<!-- Ajouter par jj le 21/06/2013 pour montrer la fonction swipe -->
+<!-- Ajouter par jj le 21/06/2013 les recherches perso -->
 <div id="offre" data-role="page" >
 	<div data-role="header">
 	<a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a>
-	    <h1>Mes offres</h1>
+	    <h1>Mes recherches</h1>
 	</div>
-	<div data-role="content">
-		<p> Test </p>
+	<div data-role="content" data-theme=b>
+		<p> Recherches personnalisées </p>
+		<ul data-role=listview>
+		<li><a href=#> Agents immobiliers </a> <span class=ui-li-count>2 offres</span> </li>
+		<li><a href=#> Architectes </a> <span class=ui-li-count>5 offres</span></li>
+		<li><a href=#> Conducteurs d'engins </a><span class=ui-li-count>14 offres</span> </li>
+		<li><a href=#> Ingénieurs en génis civil </a> <span class=ui-li-count>1 offre</span></li>
+		</ul>
 	</div>
 	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
 		<div data-role="navbar">
@@ -393,6 +407,28 @@
 	initSearch();
 	initActu();
 </script>
+
+<script>
+ $( "#offre" ).bind( "click", function() {
+
+	//suppression par long clique
+	$("li").bind ("taphold", function (event)
+	{
+		$(this).remove();
+	});
+
+	//suppression par glisse vers la droite
+	$("li").bind ("swiperight", function (event)
+	{
+		$(this).remove();
+	});
+
+});
+
+
+</script>
+
+
 </body>
 
 </html>
