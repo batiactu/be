@@ -51,35 +51,37 @@
 	   		
 	   		<a href="http://formations.batiactu.com/" data-role="button" target="_blank">Formations</a>
 	   		
-	   		<a href="http://produits.batiactu.com/" data-role="button" target="_blank">Produithèque</a>
-	   		
+	   		<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" target="_blank"><img src="http://a3.mzstatic.com/us/r1000/120/Purple/1d/64/b1/mzi.thppjjiq.175x175-75.jpg" width="57px" height="57px"></a>
+
+
+			<a href="javascript:window.open('http://produits.batiactu.com/','_blank','location=yes');" data-role="button" target="_blank">Produithèque</a>
 	   
 	</div><!-- /panel -->
 	
 	<div data-role="content">
-        <div data-role="fieldcontain">
+        	<div data-role="fieldcontain">
         	
         	
-        	<label for="mot-clef" >Mot-clef</label>
+        		<label for="mot-clef" >Mot-clef</label>
 			<input name="mot-clef" id="mot-clef" placeholder="Saisissez votre recherche..."  type="text" onchange="$('#recherche-detail-mot-clef').val(this.value)">
 			
-		    <label for="zone-geo">Zone Géographique:</label>
-		    <select name="zone-geo" id="zone-geo" data-native-menu="false">
-		    	<!-- populate by ajax -->
-		    	<option value="item_value">item_label</option>
-		    </select>
-		    <input data-theme=a type="button" value="Rechercher" onclick="launchSearch();" />
-		    
+			    <label for="zone-geo">Zone Géographique:</label>
+			    <select name="zone-geo" id="zone-geo" data-native-menu="false">
+			    	<!-- populate by ajax -->
+			    	<option value="item_value">item_label</option>
+			    </select>
+			    <input data-theme=a type="button" value="Rechercher" onclick="launchSearch();" />
+			    
 		    
 		</div>
 		
 		
-    </div>	
+    	</div>	
 	
 	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
 	    <div data-role="navbar">
 	        <ul>
-	            <!--<li><a href="#accueil" class="ui-btn-active ui-state-persist" data-icon="home">Accueil</a></li>-->	            
+	            
 	            <li><a href="#recherche-detail" data-icon="search">Recherche</a></li>
 	            <li><a href="#actu" data-icon="grid">Actualités</a></li>
 		    <li><a href="#offre" data-icon="check">Mes offres</a></li>
@@ -89,6 +91,33 @@
 	
 	
 </div>
+
+
+
+
+
+
+
+
+
+
+<!-- ================================================================================================= -->
+
+
+<!-- Gallerie d'image de batiactu -->
+<div id="galleryimg" data-role="page" >
+	<!--<div data-role="header">
+	<a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a>
+	    <h1>Gallerie</h1>
+	</div> -->
+	<div data-role="content" data-theme=b>
+		<p> <img onclick="javascript:changeLink();" id="image2" src="demo/0.jpg" width=30% height310% />
+		</p>
+	</div>
+</div>  
+
+
+<!-- ================================================================================================= -->
 
 <div id="recherche" data-role="page" data-add-back-btn="true" data-back-btn-text="Précédent">
 	<div data-role="header" data-position="fixed">
@@ -120,12 +149,13 @@
 	</div>
 </div>   
 
+
+<!-- ================================================================================================= -->
+
 <div id="recherche-detail-page-fonction" data-role="page"  data-add-back-btn="true" data-back-btn-text="Précédent">
 	<div data-role="header">
 	    <h1>Métiers</h1>
 	</div>
-
-
 
 	<div data-role="content">
 		<div data-role="fieldcontain">
@@ -150,6 +180,7 @@
 	</div>
 </div>
         
+<!-- ================================================================================================= -->
         
 <div id="recherche-detail-page-zonegeo" data-role="page"  data-add-back-btn="true" data-back-btn-text="Précédent">
 	<div data-role="header">
@@ -261,7 +292,7 @@
 	</div>
 </div>   
 
-<!-- Ajouter par jj le 21/06/2013 les recherches perso -->
+<!-- ============================================= Les recherches personnalisées =================================== -->
 <div id="offre" data-role="page" >
 	<div data-role="header">
 	<a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a>
@@ -275,7 +306,10 @@
 		<li><a href=#> Conducteurs d'engins </a><span class=ui-li-count>14 offres</span> </li>
 		<li><a href=#> Ingénieurs en génis civil </a> <span class=ui-li-count>1 offre</span></li>
 		</ul>
+		<br/>
+		<a href="#galleryimg" data-role=button data-icon="grid" data-theme=a> Maquettes </a>
 	</div>
+
 	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
 		<div data-role="navbar">
 	        <ul>
@@ -286,9 +320,11 @@
 	        </ul>
 	    </div><!-- /navbar -->
 	</div>
-</div>   
+
+</div>
 
 
+<!-- ============================================= La page ACTU  =================================== -->
 
 <div id="actu" data-role="page" >
 	<div data-role="header">
@@ -318,24 +354,7 @@
 	</div>
 </div>   
         
-<div id="contact" data-role="page" >
-	<div data-role="header">
-	    <h1>Contact</h1>
-	</div>
-	<div data-role="content">
-		page de contact parce qu'il y a toujours une page de contact.
-	</div>
-	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
-		<div data-role="navbar">
-	        <ul>
-	            <!--<li><a href="#accueil" data-icon="home">Accueil</a></li>-->
-	            <li><a href="#recherche-detail" data-icon="search">Recherche</a></li>
-	            <li><a href="#actu" class="ui-btn-active ui-state-persist" data-icon="grid">Actualité</a></li>
-	            <li><a href="#offre" data-icon="check">Mes offres</a></li>
-	        </ul>
-	    </div><!-- /navbar -->
-	</div>
-</div>   
+
         
         
 <div id="annonce" data-role="page"  data-add-back-btn="true" data-back-btn-text="Précédent">
@@ -403,27 +422,49 @@
 
 </div>
 
-<script language="javascript">
-	initSearch();
-	initActu();
-</script>
+ 
 
 <script>
- $( "#offre" ).bind( "click", function() {
+var i = 1;
+function changeLink(){
+/*alert('trest ' + this);*/
+	if (i == 30){
+		i = 0;
+	}
+	$("#image2").attr("src","demo/" + i + ".jpg");
+	i = i +1;
+}
+</script>
 
-	//suppression par long clique
-	$("li").bind ("taphold", function (event)
-	{
-		$(this).remove();
+
+
+
+<script language="javascript">
+
+$(document).ready(function() {
+	$( "#actu" ).bind( "click", function() {
+		initActu();
 	});
 
-	//suppression par glisse vers la droite
-	$("li").bind ("swiperight", function (event)
-	{
-		$(this).remove();
+
+	 $( "#offre" ).bind( "click", function() {
+		//suppression par glisse vers la droite
+		$("li").bind ("swiperight", function (event)
+		{
+			$(this).remove();
+		});
 	});
+
 
 });
+
+
+$(document).ready(function() {
+	initSearch();
+});
+
+	
+
 
 
 </script>
