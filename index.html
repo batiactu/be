@@ -4,7 +4,7 @@
 <title>Emploi Mobile</title>
 <meta name=viewport content="user-scalable=no,width=device-width" /> <!-- A tester -->
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" /> 
-<link rel="apple-touch-icon" href="batiactuEmploi57x57.jpg" />
+<link rel="apple-touch-icon" href="images/icon.png" />
 <link rel="apple-touch-startup-image" href="images/splash.png" />
 
 <!-- 
@@ -32,29 +32,47 @@
     
 <body>
         
+<!-- Accueil -->
+
 <div id="accueil" data-role="page" data-theme=b >
-	
-	
-	
-	
 	
 	<div data-role="header" data-theme=b>	    
 	    <a href="#accueil" data-role=button data-icon=home data-iconpos=notext>Sites</a>
-	    <a href="#autre-sites" data-icon="bars" class="ui-btn-right">Sites</a>
+	    <a href="#autre-sites" data-icon="bars" class="ui-btn-right">&nbsp;</a>
 	    <h1>Batiactu Emploi</h1>
 	    
 	</div>
 	
-	<div data-role="panel" id="autre-sites" data-position="right">
+	<div data-role="panel" id="autre-sites" data-position="right" data-theme="b">
+		<!--<ul data-role="listview" data-theme="a" data-iconpos="left">
+			<li data-icon="home" > <a href="#"> Accueil </a> </li>
+			<li> <a href="#">Nouvelle recherche</a> </li>
+			<li> <a href="#"> Mes recherches</a> </li>
+		</ul> -->
+		<a href="#" data-role="button" data-icon="bars" data-iconpos="notext" data-theme="a" data-inline="true">My button</a>
+		<div data-role=controlgroup>
+			<a href="#" data-role="button" data-theme="a" data-icon="home" data-corners="false"> Accueil </a>
+			<a href="#" data-role="button" data-theme="a" data-icon="search" data-corners="false"> Nouvelle recherche </a>
+			<a href="#" data-role="button" data-theme="a" data-icon="grid" data-corners="false"> Mes recherches </a>
+			<a href="#" data-role="button" data-theme="a" data-icon="alert" data-corners="false"> Créez une alerte e-mail</a>
+			<a href="#" data-role="button" data-theme="a" data-icon="star" data-corners="false">Recrutement</a>
+			<a href="#" data-role="button" data-theme="a" data-icon="gear" data-corners="false">Mentions légales</a>
+			<a href="javascript:window.open('http://mobile.batiactu.com/','_blank','location=yes');" data-role="button" data-theme="a" data-icon="gear" data-corners="false">BatiActu</a>
+			<a href="#" data-role="button" data-theme="a" data-icon="arrow-r" data-corners="false">Version web classique</a>
+			<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" data-theme="a" 
+			   data-icon="arrow-r" data-corners="false">Application batiactu</a>	
+		</div>
+
+			
    
-	   		<a href="http://www.batiactu.com/" data-role="button" target="_blank">Actualités</a>
+	   		<!--  <a href="http://www.batiactu.com/" data-role="button" target="_blank">Actualités</a>
 	   		
 	   		<a href="http://formations.batiactu.com/" data-role="button" target="_blank">Formations</a>
 	   		
 	   		<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" target="_blank"><img src="http://a3.mzstatic.com/us/r1000/120/Purple/1d/64/b1/mzi.thppjjiq.175x175-75.jpg" width="57px" height="57px"></a>
 
 
-			<a href="javascript:window.open('http://produits.batiactu.com/','_blank','location=yes');" data-role="button" target="_blank">Produithèque</a>
+			<a href="javascript:window.open('http://produits.batiactu.com/','_blank','location=yes');" data-role="button" target="_blank">Produithèque</a> -->
 	   
 	</div><!-- /panel -->
 	
@@ -63,7 +81,8 @@
         	
         	
         		<label for="mot-clef" >Mot-clef</label>
-			<input name="mot-clef" id="mot-clef" placeholder="Saisissez votre recherche..."  type="text" onchange="$('#recherche-detail-mot-clef').val(this.value)">
+			<input name="mot-clef" id="mot-clef" placeholder="Saisissez votre recherche..."  type="text" 
+			onchange="$('#recherche-detail-mot-clef').val(this.value)">
 			
 			    <label for="zone-geo">Zone Géographique:</label>
 			    <select name="zone-geo" id="zone-geo" data-native-menu="false">
@@ -77,28 +96,28 @@
 		
 		
     	</div>	
+
+	<!-- Injection dynamique html pour le footer pour le centraliser 	
+	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed" id="idFooter">
+
+	</div>-->
+
+
+	<!-- ancien footer en dur -->
 	
 	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
 	    <div data-role="navbar">
-	        <ul>
-	            
-	            <li><a href="#recherche-detail" data-icon="search">Recherche</a></li>
-	            <li><a href="#actu" data-icon="grid">Actualités</a></li>
+		<ul>
+		    
+		    <li><a href="#recherche-detail" data-icon="search">Recherche</a></li>
+		    <li><a href="#actu" data-icon="grid">Actualités</a></li>
 		    <li><a href="#offre" data-icon="check">Mes offres</a></li>
-	        </ul>
-	    </div> <!--/navbar -->
-	</div><!-- /footer -->
+		</ul>
+	    </div> 
+	</div> 
 	
 	
 </div>
-
-
-
-
-
-
-
-
 
 
 <!-- ================================================================================================= -->
@@ -110,12 +129,18 @@
 	<a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a>
 	    <h1>Gallerie</h1>
 	</div> -->
-	<div data-role="content" data-theme=b style="padding:0px;margin:0px;"><img onclick="javascript:changeLink();" id="image2" src="demo/0.jpg" width="100%" height="100%" /></div>
+	<div data-role="content" data-theme=b style="padding:0px;margin:0px;"><img id="imageMaquette" src="demo/0.jpg" width="100%" height="100%" />
+
+	<!-- onclick="javascript:changeLink();"  -->
+
+	</div>
 </div>  
 
 
 <!-- ================================================================================================= -->
 
+
+<!-- Recherche -->
 <div id="recherche" data-role="page" data-add-back-btn="true" data-back-btn-text="Précédent">
 	<div data-role="header" data-position="fixed">
 	    <h1>Résultats</h1>
@@ -137,18 +162,18 @@
 	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
 		<div data-role="navbar">
 	        <ul>
-	            <!--<li><a href="#accueil" data-icon="home">Accueil</a></li>-->
 	            <li><a href="#recherche-detail" class="ui-btn-active ui-state-persist" data-icon="search">Recherche</a></li>
 	            <li><a href="#actu" data-icon="grid">Actualités</a></li>
 	            <li><a href="#offre" data-icon="check">Mes offres </a></li>
 	        </ul>
-	    </div><!-- /navbar -->
+	    </div>
 	</div>
 </div>   
 
 
 <!-- ================================================================================================= -->
 
+<!-- Recherche détaillé fonction -->
 <div id="recherche-detail-page-fonction" data-role="page"  data-add-back-btn="true" data-back-btn-text="Précédent">
 	<div data-role="header">
 	    <h1>Métiers</h1>
@@ -178,6 +203,8 @@
 </div>
         
 <!-- ================================================================================================= -->
+
+<!-- Recherche détaillé zone géographique -->
         
 <div id="recherche-detail-page-zonegeo" data-role="page"  data-add-back-btn="true" data-back-btn-text="Précédent">
 	<div data-role="header">
@@ -200,6 +227,8 @@
 	</div>
 </div>        
         
+
+<!-- Recherche détaillé type contrat -->
         
 <div id="recherche-detail-page-contrat" data-role="page"  data-add-back-btn="true" data-back-btn-text="Précédent">
 	<div data-role="header">
@@ -223,6 +252,8 @@
 	</div>
 </div>        
       
+
+<!-- Recherche détaillé expérience -->
         
 <div id="recherche-detail-page-experience" data-role="page" data-add-back-btn="true" data-back-btn-text="Précédent">
 	<div data-role="header">
@@ -245,6 +276,8 @@
 	</div>
 </div>        
   
+
+<!-- Recherche détaillé détail -->
         
 <div id="recherche-detail" data-role="page" >
 	<div data-role="header">
@@ -290,6 +323,7 @@
 </div>   
 
 <!-- ============================================= Les recherches personnalisées =================================== -->
+
 <div id="offre" data-role="page" >
 	<div data-role="header">
 	<a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a>
@@ -353,6 +387,7 @@
         
 
         
+<!-- Annonce -->
         
 <div id="annonce" data-role="page"  data-add-back-btn="true" data-back-btn-text="Précédent">
 	<div data-role="header">
@@ -388,7 +423,7 @@
 </div>
 
 
-        
+<!-- Article -->        
 <div id="article" data-role="page"  data-add-back-btn="true" data-back-btn-text="Précédent">
 	<div data-role="header">
 	    <h1>Article : <span class="item_titre"></span></h1>
@@ -419,31 +454,57 @@
 
 </div>
 
- 
+
+<!-- Partie script javascript --------------------------------------------------------->
 
 <script>
-var i = 1;
+var i = 0;
 function changeLink(){
-/*alert('trest ' + this);*/
-	if (i == 30){
+
+	//Cas du précédent quand on est sur l'image 0 on retourne sur la dernière		
+	if (i ==0) {
+		i = 29;
+	}
+
+	//Cas du suivant sur la dernière image on revient sur la première
+	if (i == 29){
 		i = 0;
 	}
-	$("#image2").attr("src","demo/" + i + ".jpg");
-	i = i +1;
+	$("#imageMaquette").attr("src","demo/" + i + ".jpg");
 }
+
+$(document).ready(function(){
+	$("#imageMaquette").bind("click", function (event)
+	{
+		i = i + 1;
+		changeLink();
+	});
+});
+
+$(document).ready(function(){
+	$("#imageMaquette").bind("taphold", function (event)
+	{
+		i = i - 1;
+		changeLink();
+	});
+});
+
+
+
+
+
 </script>
 
 
 
 
 <script language="javascript">
-
 $(document).ready(function() {
 	$( "#actu" ).bind( "click", function() {
 		initActu();
 	});
 
-
+// Fonction pour supprimer les recherches perso par swippe (glissement)
 	 $( "#offre" ).bind( "click", function() {
 		//suppression par glisse vers la droite
 		$("li").bind ("swiperight", function (event)
@@ -454,6 +515,41 @@ $(document).ready(function() {
 
 
 });
+
+// avoir pour ajouter en dynamique le footer
+/*
+$(document).ready(function() 
+{
+	var sHtml = "";
+	sHtml = '<div data-role="navbar">' + 
+		'<ul>' + 		    
+		    '<li><a href="#recherche-detail" data-icon="search">Recherche</a></li>' +
+		    '<li><a href="#actu" data-icon="grid">Actualités</a></li>' +
+		    '<li><a href="#offre" data-icon="check">Mes offres</a></li>' +
+		'</ul>' +
+	    '</div>'; 
+
+
+
+
+
+
+	$("#idFooter").html(sHtml);*/
+	
+
+
+/*
+	//$("div:jqmData(role=footer)").append(sHtml)
+var html ="";
+html += "<p> Pied de page dynamique dsdsd </p>";
+//$("#idFooter").html(html);
+$("div:jqmData(role=footer)").append(html)
+
+
+
+});*/
+
+
 
 
 $(document).ready(function() {
