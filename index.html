@@ -1,9 +1,16 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Emploi Mobile</title>
+<title>[Batiactu] Emploi</title>
 <meta name=viewport content="user-scalable=no,width=device-width" /> <!-- A tester -->
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" /> 
+
+<link rel="stylesheet" href="css/jquery.mobile-1.3.1.css" /> 
+
+<link rel="stylesheet" href="roller/themes/emploi.css" /> 
+
+<link rel="stylesheet" href="css/add.css" /> 
+
+
 <link rel="apple-touch-icon" href="images/icon.png" />
 <link rel="apple-touch-startup-image" href="images/splash.png" />
 
@@ -38,69 +45,64 @@
 	
 	<div data-role="header" data-theme=b>	    
 	    <a href="#accueil" data-role=button data-icon=home data-iconpos=notext>Sites</a>
-	    <a href="#autre-sites" data-icon="bars" class="ui-btn-right">&nbsp;</a>
-	    <h1>Batiactu Emploi</h1>
+	    <a href="#menu" data-icon="bars" class="ui-btn-right">Menu</a>
+	    <h1 style="text-align:left;margin-left:70px;"><span style="color:#EF760E;font-size:19px">[</span> batiactu <span style="color:#EF760E;font-size:19px">]</span> <sub>Emploi</sub></h1>
 	    
 	</div>
 	
-	<div data-role="panel" id="autre-sites" data-position="right" data-theme="b">
+	<div data-role="panel" id="menu" class="ui-state-persist" data-position="right" data-theme="b">
 		<!--<ul data-role="listview" data-theme="a" data-iconpos="left">
 			<li data-icon="home" > <a href="#"> Accueil </a> </li>
 			<li> <a href="#">Nouvelle recherche</a> </li>
 			<li> <a href="#"> Mes recherches</a> </li>
-		</ul> -->
-		<a href="#" data-role="button" data-icon="bars" data-iconpos="notext" data-theme="a" data-inline="true">My button</a>
+		</ul> <a href="#accueil" data-role="button" data-icon="bars" data-iconpos="notext" data-theme="c" data-inline="true">My button</a>
+		-->
+		
 		<div data-role=controlgroup>
-			<a href="#" data-role="button" data-theme="a" data-icon="home" data-corners="false"> Accueil </a>
-			<a href="#" data-role="button" data-theme="a" data-icon="search" data-corners="false"> Nouvelle recherche </a>
-			<a href="#" data-role="button" data-theme="a" data-icon="grid" data-corners="false"> Mes recherches </a>
-			<a href="#" data-role="button" data-theme="a" data-icon="alert" data-corners="false"> Créez une alerte e-mail</a>
-			<a href="#" data-role="button" data-theme="a" data-icon="star" data-corners="false">Recrutement</a>
-			<a href="#" data-role="button" data-theme="a" data-icon="gear" data-corners="false">Mentions légales</a>
-			<a href="javascript:window.open('http://mobile.batiactu.com/','_blank','location=yes');" data-role="button" data-theme="a" data-icon="gear" data-corners="false">BatiActu</a>
-			<a href="#" data-role="button" data-theme="a" data-icon="arrow-r" data-corners="false">Version web classique</a>
-			<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" data-theme="a" 
-			   data-icon="arrow-r" data-corners="false">Application batiactu</a>	
+			<a href="#accueil" data-role="button" data-theme="a" data-icon="home" data-corners="false"> Accueil </a>
+			<a href="#recherche-detail" data-role="button" data-theme="b" data-icon="search" data-corners="false"> Nouvelle recherche </a>
+			<!-- <a href="#" data-role="button" data-theme="c" data-icon="grid" data-corners="false"> Mes recherches </a>-->
+			<a href="#" data-role="button" data-theme="e" data-icon="alert" data-corners="false"> Créez une alerte e-mail</a>
+			<a href="#recrutement" data-role="button" data-theme="c" data-icon="star" data-corners="false">Recrutement</a>
+			<a href="#mentions-legales" data-role="button" data-theme="c" data-icon="gear" data-corners="false">Mentions légales</a>
+			<a href="javascript:window.open('http://mobile.batiactu.com/','_blank','location=yes');" data-role="button" data-theme="c" data-icon="gear" data-corners="false">BatiActu</a>
+			<a href="#" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a>
+			<!--<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" data-theme="a" 
+			   data-icon="arrow-r" data-corners="false">Application batiactu</a>	-->
 		</div>
-
-			
-   
+			<center>
+			<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-theme="a" 
+			   data-corners="false"><img src="http://a3.mzstatic.com/us/r1000/120/Purple/1d/64/b1/mzi.thppjjiq.175x175-75.jpg" 
+			   width="57px" height="57px"></a>
+			   
+			&nbsp; <a href="https://itunes.apple.com/fr/app/maison-a-part/id397104131" data-theme="a" 
+			   data-corners="false"><img src="images/map.jpg" 
+			   width="57px" height="57px"></a></center>
+			   
 	   		<!--  <a href="http://www.batiactu.com/" data-role="button" target="_blank">Actualités</a>
-	   		
 	   		<a href="http://formations.batiactu.com/" data-role="button" target="_blank">Formations</a>
-	   		
 	   		<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" target="_blank"><img src="http://a3.mzstatic.com/us/r1000/120/Purple/1d/64/b1/mzi.thppjjiq.175x175-75.jpg" width="57px" height="57px"></a>
-
-
 			<a href="javascript:window.open('http://produits.batiactu.com/','_blank','location=yes');" data-role="button" target="_blank">Produithèque</a> -->
 	   
 	</div><!-- /panel -->
 	
 	<div data-role="content">
         	<div data-role="fieldcontain">
-        	
-        	
-        		<label for="mot-clef" >Mot-clef</label>
-			<input name="mot-clef" id="mot-clef" placeholder="Saisissez votre recherche..."  type="text" 
-			onchange="$('#recherche-detail-mot-clef').val(this.value)">
-			
-			    <label for="zone-geo">Zone Géographique:</label>
+				<label for="mot-clef" >Recherche par Mot-clef :</label>
+				<input name="mot-clef" id="mot-clef" placeholder="Saisissez votre recherche..."  type="text" 
+					onchange="$('#recherche-detail-mot-clef').val(this.value)">
+			    <label for="zone-geo">Localisation :</label>
 			    <select name="zone-geo" id="zone-geo" data-native-menu="false">
 			    	<!-- populate by ajax -->
 			    	<option value="item_value">item_label</option>
 			    </select>
 			    <input data-theme=a type="button" value="Rechercher" onclick="launchSearch();" />
-			    
-		    
-		</div>
-		
-		
+			</div>
     	</div>	
-
 	<!-- Injection dynamique html pour le footer pour le centraliser 	
 	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed" id="idFooter">
-
-	</div>-->
+	</div>
+	-->
 
 
 	<!-- ancien footer en dur -->
@@ -111,7 +113,7 @@
 		    
 		    <li><a href="#recherche-detail" data-icon="search">Recherche</a></li>
 		    <li><a href="#actu" data-icon="grid">Actualités</a></li>
-		    <li><a href="#offre" data-icon="check">Mes offres</a></li>
+		    <li><a href="#offre" data-icon="check">Mes alertes</a></li>
 		</ul>
 	    </div> 
 	</div> 
@@ -121,6 +123,15 @@
 
 
 <!-- ================================================================================================= -->
+
+
+
+
+
+
+
+
+
 
 
 <!-- Gallerie d'image de batiactu -->
@@ -140,36 +151,64 @@
 <!-- ================================================================================================= -->
 
 
+<!-- recrutement -->
+<div id="recrutement" data-role="page" data-add-back-btn="true" data-back-btn-text="Accueil">
+	<div data-role="header" data-position="fixed">
+	    <h1>Recrutement</h1>
+	</div>
+	<div data-role="content">
+		<h2>Recrutez avec Batiactu Emploi</h2>
+		<p>
+			<ul>
+			<li>Publiez vos offres d'emploi pour une visibilité aupres de la première audience du BTP.</li>
+			<li>Une CVthèque 100% BTP, couvrant tous les métiers du secteur</li>
+			</ul>
+		</p>
+		<p data-theme=e>
+		<h2>Contactez un conseiller</h2>
+		</p>
+	</div>
+</div>   
+
+<!-- recrutement -->
+<div id="mentions-legales" data-role="page" data-add-back-btn="true" data-back-btn-text="Accueil">
+	<div data-role="header" data-position="fixed">
+	    <h1>Mentions Légales</h1>
+	</div>
+	<div data-role="content">
+		
+		
+		
+	</div>
+</div>   
+
+
+
 <!-- Recherche -->
 <div id="recherche" data-role="page" data-add-back-btn="true" data-back-btn-text="Précédent">
 	<div data-role="header" data-position="fixed">
 	    <h1>Résultats</h1>
 	</div>
 	<div data-role="content">
-		
 		<ul id="resultat-recherche" style="display:none; margin-bottom:30px;" data-role="listview">
 		</ul>
-		
 		<ul style="display:none">
 			<li id="item-recherche-blank"><a href="javascript:showAnnonce(item_origine)">
      			<img src="http://www.batiactuemploi.com/images/recruteur/recruteur_sscadre/item_logo_recruteur" />
      			<h2>item_libelle <span style="font-weight: normal">de item_lib_recruteur</span></h2>
 			</a></li>
 		</ul>
-		
 	</div>
-	
 	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
 		<div data-role="navbar">
 	        <ul>
 	            <li><a href="#recherche-detail" class="ui-btn-active ui-state-persist" data-icon="search">Recherche</a></li>
 	            <li><a href="#actu" data-icon="grid">Actualités</a></li>
-	            <li><a href="#offre" data-icon="check">Mes offres </a></li>
+	            <li><a href="#offre" data-icon="check">Mes alertes </a></li>
 	        </ul>
 	    </div>
 	</div>
 </div>   
-
 
 <!-- ================================================================================================= -->
 
@@ -196,7 +235,7 @@
 	            <!--<li><a href="#accueil" data-icon="home">Accueil</a></li>-->
 	            <li><a href="#recherche-detail" class="ui-btn-active ui-state-persist" data-icon="search">Recherche</a></li>
 	            <li><a href="#actu" data-icon="grid">Actualités</a></li>
-	            <li><a href="#offre" data-icon="check">Mes offres</a></li>
+	            <li><a href="#offre" data-icon="check">Mes alertes</a></li>
 	        </ul>
 	    </div><!-- /navbar -->
 	</div>
@@ -221,7 +260,7 @@
 	            <!--<li><a href="#accueil" data-icon="home">Accueil</a></li>-->
 	            <li><a href="#recherche-detail" class="ui-btn-active ui-state-persist" data-icon="search">Recherche</a></li>
 	            <li><a href="#actu" data-icon="grid">Actualités</a></li>
-	            <li><a href="#offre" data-icon="check">Mes offres</a></li>
+	            <li><a href="#offre" data-icon="check">Mes alertes</a></li>
 	        </ul>
 	    </div><!-- /navbar -->
 	</div>
@@ -246,7 +285,7 @@
 	            <!--<li><a href="#accueil" data-icon="home">Accueil</a></li>-->
 	            <li><a href="#recherche-detail" class="ui-btn-active ui-state-persist" data-icon="search">Recherche</a></li>
 	            <li><a href="#actu" data-icon="grid">Actualités</a></li>
-	            <li><a href="#offre" data-icon="check">Mes offres</a></li>
+	            <li><a href="#offre" data-icon="check">Mes alertes</a></li>
 	        </ul>
 	    </div><!-- /navbar -->
 	</div>
@@ -270,7 +309,7 @@
 	            <!--<li><a href="#accueil" data-icon="home">Accueil</a></li>-->
 	            <li><a href="#recherche-detail" class="ui-btn-active ui-state-persist" data-icon="search">Recherche</a></li>
 	            <li><a href="#actu" data-icon="grid">Actualités</a></li>
-	            <li><a href="#offre" data-icon="check">Mes offres</a></li>
+	            <li><a href="#offre" data-icon="check">Mes alertes</a></li>
 	        </ul>
 	    </div><!-- /navbar -->
 	</div>
@@ -316,7 +355,7 @@
 	            <!--<li><a href="#accueil" data-icon="home">Accueil</a></li>-->
 	            <li><a href="#recherche-detail" class="ui-btn-active ui-state-persist" data-icon="search">Recherche</a></li>
 	            <li><a href="#actu" data-icon="grid">Actualités</a></li>
-	            <li><a href="#offre" data-icon="check">Mes offres</a></li>
+	            <li><a href="#offre" data-icon="check">Mes alertes</a></li>
 	        </ul>
 	    </div><!-- /navbar -->
 	</div>
@@ -324,21 +363,36 @@
 
 <!-- ============================================= Les recherches personnalisées =================================== -->
 
-<div id="offre" data-role="page" >
-	<div data-role="header">
+<div id="offre" data-role="page" data-theme=e>
+	<div data-role="header" data-theme=e>
 	<a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a>
-	    <h1>Mes recherches</h1>
+	    <h1>Mes alertes</h1>
 	</div>
-	<div data-role="content" data-theme=b>
-		<p> Recherches personnalisées </p>
-		<ul data-role=listview>
-		<li><a href=#> Agents immobiliers </a> <span class=ui-li-count>2 offres</span> </li>
-		<li><a href=#> Architectes </a> <span class=ui-li-count>5 offres</span></li>
-		<li><a href=#> Conducteurs d'engins </a><span class=ui-li-count>14 offres</span> </li>
-		<li><a href=#> Ingénieurs en génis civil </a> <span class=ui-li-count>1 offre</span></li>
-		</ul>
+	<div data-role="content" data-theme=e>
+		<p> Alertes enregitrées</p>
+		
+			<ul data-role="listview" data-split-icon="gear" data-split-theme="d">
+				<li><a href="index.html"><h3>Agents immobiliers</h3>
+					<p>Localisation : </p>
+					<span class=ui-li-count>2 offres</span>
+					</a><a href="#delete" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
+				</li>		
+				<li><a href=#> Agents immobiliers </a> <span class=ui-li-count>2 offres</span> </li>
+				<li><a href=#> Architectes </a> <span class=ui-li-count>5 offres</span></li>
+				<li><a href=#> Conducteurs d'engins </a><span class=ui-li-count>14 offres</span> </li>
+				<li><a href=#> Ingénieurs en génis civil </a> <span class=ui-li-count>1 offre</span></li>
+				
+			</ul>
 		<br/>
-		<a href="#galleryimg" data-role=button data-icon="grid" data-theme=a> Maquettes </a>
+		<a href="#galleryimg" data-role=button data-icon="grid" data-theme=a> Maquettes Loubna</a>
+		
+		<div data-role="popup" id="delete" data-theme="d" data-overlay-theme="b" class="ui-content" style="max-width:340px;">
+			<h3>Effacer l'alerte</h3>
+			<p>Etes vous sur de vouloir supprimer cette Alerte?</p>
+			<a href="index.html" data-role="button" data-rel="back" data-theme="b" data-icon="check" data-inline="true" data-mini="true">Supprimer</a>
+			<a href="index.html" data-role="button" data-rel="back" data-inline="true" data-mini="true">Annuler</a>	
+		</div>		
+		
 	</div>
 
 	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
@@ -347,7 +401,7 @@
 	            <!--<li><a href="#accueil" data-icon="home">Accueil</a></li>-->
 	            <li><a href="#recherche-detail" data-icon="search">Recherche</a></li>
 	            <li><a href="#actu"  data-icon="grid">Actualités</a></li>
-	            <li><a href="#offre" class="ui-btn-active ui-state-persist" data-icon="check">Mes offres</a></li>
+	            <li><a href="#offre" data-theme=e class="ui-btn-active ui-state-persist" data-icon="check">Mes alertes</a></li>
 	        </ul>
 	    </div><!-- /navbar -->
 	</div>
@@ -357,12 +411,13 @@
 
 <!-- ============================================= La page ACTU  =================================== -->
 
-<div id="actu" data-role="page" >
+<div id="actu" data-role="page" data-theme=c>
 	<div data-role="header">
-	<a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a>
-	    <h1>Actualités</h1>
+		<a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a>
+		<a href="#menu" data-icon="bars" class="ui-btn-right">Menu</a>
+		<h1>Actualités</h1>
 	</div>
-	<div data-role="content">
+	<div data-role="content" data-theme=c>
 		<ul id="list-actu" style="display:none; margin-bottom:30px;" data-role="listview">
 		</ul>
 		
@@ -372,6 +427,10 @@
      			<h2>item_title</h2><p>item_description</p>
 			</a></li>
 		</ul>
+		<br><center><img src="images/loading.gif" width="25%" /></center>
+		
+		
+		
 	</div>
 	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
 		<div data-role="navbar">
@@ -379,7 +438,7 @@
 	            <!--<li><a href="#accueil" data-icon="home">Accueil</a></li>-->
 	            <li><a href="#recherche-detail" data-icon="search">Recherche</a></li>
 	            <li><a href="#actu" class="ui-btn-active ui-state-persist" data-icon="grid">Actualités</a></li>
-	            <li><a href="#offre" data-icon="check">Mes offres</a></li>
+	            <li><a href="#offre" data-icon="check">Mes alertes</a></li>
 	        </ul>
 	    </div><!-- /navbar -->
 	</div>
@@ -391,7 +450,8 @@
         
 <div id="annonce" data-role="page"  data-add-back-btn="true" data-back-btn-text="Précédent">
 	<div data-role="header">
-	    <h1>Annonce : <span class="item_libelle"></span></h1>
+	    <a href="#menu" data-icon="bars" class="ui-btn-right">Menu</a>
+		<h1>Annonce : <span class="item_libelle"></span></h1>
 	</div>
 	<div data-role="content">
         <div data-role="fieldcontain">
@@ -415,7 +475,7 @@
 	            <!--<li><a href="#accueil" data-icon="home">Accueil</a></li>-->
 	            <li><a href="#recherche-detail" class="ui-btn-active ui-state-persist" data-icon="search">Recherche</a></li>
 	            <li><a href="#actu" data-icon="grid">Actualités</a></li>
-	            <li><a href="#offre" data-icon="check">Mes offres</a></li>
+	            <li><a href="#offre" data-icon="check">Mes alertes</a></li>
 	        </ul>
 	    </div><!-- /navbar -->
 	</div>
@@ -426,7 +486,8 @@
 <!-- Article -->        
 <div id="article" data-role="page"  data-add-back-btn="true" data-back-btn-text="Précédent">
 	<div data-role="header">
-	    <h1>Article : <span class="item_titre"></span></h1>
+	    <a href="#menu" data-icon="bars" class="ui-btn-right" >Menu</a>
+		<h1>Article <!-- <span class="item_titre"> --></span></h1>
 	</div>
 	<div data-role="content">
         <div data-role="fieldcontain">
@@ -447,7 +508,7 @@
 	            <!--<li><a href="#accueil" data-icon="home">Accueil</a></li>-->
 	            <li><a href="#recherche-detail" data-icon="search">Recherche</a></li>
 	            <li><a href="#actu" data-icon="grid" class="ui-btn-active ui-state-persist">Actualités</a></li>
-	            <li><a href="#offre" data-icon="check">Mes offres</a></li>
+	            <li><a href="#offre" data-icon="check">Mes alertes</a></li>
 	        </ul>
 	    </div><!-- /navbar -->
 	</div>
@@ -491,14 +552,6 @@ $(document).ready(function(){
 
 
 
-
-
-</script>
-
-
-
-
-<script language="javascript">
 $(document).ready(function() {
 	$( "#actu" ).bind( "click", function() {
 		initActu();
@@ -525,7 +578,7 @@ $(document).ready(function()
 		'<ul>' + 		    
 		    '<li><a href="#recherche-detail" data-icon="search">Recherche</a></li>' +
 		    '<li><a href="#actu" data-icon="grid">Actualités</a></li>' +
-		    '<li><a href="#offre" data-icon="check">Mes offres</a></li>' +
+		    '<li><a href="#offre" data-icon="check">Mes alertes</a></li>' +
 		'</ul>' +
 	    '</div>'; 
 
