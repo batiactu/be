@@ -5,7 +5,7 @@
         completeListItem: function(options) {
           
             var defaults = {
-               listItem:'#item-recherche-blank'
+               template:'#recherche-resultat-tpl'
                 ,url:'fill-url-source'
                 ,data:{  }
             }
@@ -13,9 +13,7 @@
             var options = $.extend(defaults, options);
             
 			 var myList = $(this);
-			 
-			 $(options.listItem).hide();
-			 var blank = $(options.listItem).clone();
+			 var template = Handlebars.compile($(options.template).html());
 			 
 			 if(options.noLoading==null) $.mobile.loading( 'show' );
 			 
@@ -31,13 +29,8 @@
 			 }).done(function(data) {
 			 	myList.html('');
 
-				/*var ligne = '';			 
-			 	for(x in data) {
-			 		ligne+=x+'='+data[x]+"\n";
-			 	}
-			 	alert(ligne);
-			 	*/
-				
+
+				var Tab=new Array;
 				/*
 				 * A revoir
 				 */
@@ -80,30 +73,21 @@
 			 	else {
 			 		$.each(data,function(i, row) {
 			 	
-				 		var newItem = blank.clone();
-				 		newItem.removeAttr('id');
-				 		
-				 		ligne = newItem.html();
+				 		var item = new Array;
 				 		
 				 		for (k in row) {
 				 			//alert(k);
-				 			var myRegexp= new RegExp("item_"+k+"","gi");
+				 			item["item_"+k] = row[k];
 				 			
-				 			ligne = ligne.replace(myRegexp, row[k]);
-				 				
 				 		}
 				 		
-				 		newItem.html(ligne);
-				 		newItem.show();
-				 		myList.append(newItem);
+				 		Tab.push(item);
 				 		
 				 	});
+				 	
 			 	}
 			 	
-			 	
-			 	
-			 	
-			 	
+			 	myList.html(template(Tab));
 			 	
 			 	myList.show();
 			 	myList.listview('refresh');
@@ -124,6 +108,7 @@
             var options = $.extend(defaults, options);
        
 			var myItem = $(this);
+			var template = Handlebars.compile(myItem.html()); 
 			 
 			 $.mobile.loading( 'show' );
 			 
@@ -131,18 +116,23 @@
 			 	url : options.url
 			 	,data : options.data
 			 	,dataType:'jsonp'
-			 	
-			 }).done(function(row) {
-			 	
+			 	,async : false
+			 	,success:function(row) {
+			 		var item = new Array;
 			 		for (k in row) {
 			 			
-			 			myItem.find('.item_'+k).html(row[k]);
+			 			item[k] = row[k];
 			 				
 			 		}
 			 		
-					$.mobile.loading( 'hide' );
+			 		myItem.html(template(item));
+				
+			 		$.mobile.changePage('#annonce');
+			 	}
 			 	
 			 });
+			 
+			 $.mobile.loading( 'hide' );
 	       
     }
     

@@ -210,12 +210,7 @@
 	<div data-role="content">
 		<ul id="resultat-recherche" style="display:none; margin-bottom:30px;" data-role="listview">
 		</ul>
-		<ul style="display:none">
-			<li id="item-recherche-blank"><a href="javascript:showAnnonce(item_origine)">
-     			<img src="http://www.batiactuemploi.com/images/recruteur/recruteur_sscadre/item_logo_recruteur" />
-     			<h2>item_libelle <span style="font-weight: normal">de item_lib_recruteur</span></h2>
-			</a></li>
-		</ul>
+		
 	</div>
 	
 </div>   
@@ -377,7 +372,7 @@
 		<!-- <a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos=notext>Menu</a> -->
 		<h1>Actualités</h1>
 	</div>
-	<div data-role="content" data-theme=c>
+	<div data-role="content" data-theme="c">
 		<ul id="list-actu" style="display:none; margin-bottom:30px;" data-role="listview">
 		</ul>
 		
@@ -402,14 +397,39 @@
 <div id="annonce" data-role="page" data-add-back-btn="true" data-back-btn-text="Précédent">
 	<div data-role="header">
 	    <!-- <a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos=notext>Menu</a> -->
-		<h1>Annonce : <span class="item_libelle"></span></h1>
+		<h1>Annonce : {{libelle}}</h1>
 	</div>
 	<div data-role="content">
         <div data-role="fieldcontain">
-        	
-        	<h1 class="item_libelle"></h1>
-        	
-        	<p class="item_description"></p>
+        	<div class="entete">
+	        	<table border="0" width="100%">
+	        		<tr>
+	        			<td colspan="2"><h1>{{libelle}}</h1></td>	
+	        		</tr>
+	        		<tr>
+	        			<td><span class="gris">Entreprise : </span>{{societe}}</td>
+	        			<td rowspan="4" align="right"><img src="http://www.batiactuemploi.com/images/recruteur/recruteur_sscadre/{{image_recruteur}}" class="logo-recruteur" /></td>
+	        		</tr>
+        			<tr>
+        				<td><span class="gris">Lieu(x) : </span>{{lieux}}</td>
+        			</tr>
+        			<tr>
+        				<td><span class="gris">Type : </span>{{contrat}}</td>
+        			</tr>
+        			<tr>
+        				<td><span class="gris">Rémunération : </span>{{remuneration}}</td>
+        			</tr>
+        			<tr>
+	        			<td class="blue">{{date_publication}}</td>
+	        			<td class="blue" align="right">Réf. {{reference}}</td>
+	        			
+	        		</tr>
+        			
+        		</table>
+        	</div>
+        	<div class="centre">
+        	<p class="description">{{{description}}}</p>
+        	</div>
         	
 		    <input type="text" value="" placeholder="Votre email" id="email" />
 		    <input type="button" value="Postuler" onclick="postuler();" />
@@ -458,7 +478,7 @@
 					 image = $xml.find( "image" ).text();	
 					 url = $xml.find( "url" ).text();	
 					 
-					 document.write('<a href="'+url+'"><img src="'+image+'" /></a>');
+					 document.write('<a href="'+url+'"><img src="'+image+'" target="_blank" /></a>');
 	    		}
 	    	</script>
 	    </div>
@@ -527,6 +547,16 @@ $(document).ready(function()
 {{/.}}
 </script>
 
+<script id="recherche-resultat-tpl" type="text/x-handlebars-template">
+		{{#.}}
+			<li>
+				<a href="javascript:showAnnonce({{item_origine}})">
+     				<img src="http://www.batiactuemploi.com/images/recruteur/recruteur_sscadre/{{item_logo_recruteur}}" />
+     				<h2>{{item_libelle}} <span style="font-weight: normal">de {{item_lib_recruteur}}</span></h2>
+				</a>
+			</li>
+		{{/.}}
+</script>
 
 <!-- /template handlebar -->
 

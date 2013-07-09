@@ -17,8 +17,7 @@ function postuler() {
 }
 function showAnnonce(id_annonce) {
 	/* populate annonce */
-	$.mobile.changePage('#annonce');
-
+	
 	$('#annonce').getItem({
 		url:'http://bo.v2.batiactuemploi.com/scripts/interface-mobile.php'
 		,data: {
