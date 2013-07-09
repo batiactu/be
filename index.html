@@ -32,6 +32,7 @@
 <script type="text/javascript" src="js/annonce.js"></script>
 <script type="text/javascript" src="js/actu.js"></script>
 <script type="text/javascript" src="js/jstorage.js"></script>
+<script type="text/javascript" src="js/handlebars.js"></script>
 
 <script src="phonegap.js"></script><!-- PhoneGap en a besoin derrière pour pouvoir utiliser ses fonctions natives -->
 
@@ -41,9 +42,9 @@
         
 <!-- Accueil -->
 
-<div id="accueil" data-role="page" data-theme=b >
+<div id="accueil" data-role="page" data-theme="b" >
 	
-	<div data-role="header" data-theme=b>	    
+	<div data-role="header" data-theme="b">	    
 	    <a href="#accueil" data-role=button data-icon=home data-iconpos=notext>Sites</a>
 	    <a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos=notext>Menu</a>
 	    <h1 style="text-align:left;margin-left:70px;"><span style="color:#EF760E;font-size:19px">[</span> batiactu <span style="color:#EF760E;font-size:19px">]</span> <sub>Emploi</sub></h1>
@@ -87,46 +88,21 @@
 	</div><!-- /panel -->
 	
 	<div data-role="content">
-        	<div data-role="fieldcontain">
-				<label for="mot-clef" >Recherche par Mot-clef :</label>
-				<input name="mot-clef" id="mot-clef" placeholder="Saisissez votre recherche..."  type="text" 
-					onchange="$('#recherche-detail-mot-clef').val(this.value)">
-			    <label for="zone-geo">Localisation :</label>
-			    <select name="zone-geo" id="zone-geo" data-native-menu="false">
-			    	<!-- populate by ajax -->
-			    	<option value="item_value">item_label</option>
-			    </select>
-			    <input data-theme=a type="button" value="Rechercher" onclick="launchSearch();" />
-			</div>
-    	</div>	
-	<!-- Injection dynamique html pour le footer pour le centraliser 	
-	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed" id="idFooter">
-	</div>
-	-->
-
-
-	<!-- ancien footer en dur -->
-	
-	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
-	    <div data-role="navbar">
-		<ul>
-		    
-		    <li><a href="#recherche-detail" data-icon="search">Recherche</a></li>
-		    <li><a href="#actu" data-icon="grid">Actualités</a></li>
-		    <li><a href="#offre" data-icon="check">Mes alertes</a></li>
-		</ul>
-	    </div> 
-	</div> 
+    
+    	<p align="center">
+    		Batiactu Emploi, 1er site d'offre d'emploi dans le BTP, la construction et l'immobilier<br />
+    		<strong>Plus de 2200 offres d'emploi disponibles !</strong>
+    		
+    		<a href="#recherche-detail" data-role="button">Lancer une recherche</a>
+    	</p>
+        	
+    </div>	
 	
 	
 </div>
 
 
 <!-- ================================================================================================= -->
-
-
-
-
 
 
 
@@ -166,8 +142,8 @@
 			
 		</div>
 		<h2>Contactez un conseiller</h2>
-			<a data-theme=b href="tel:0153684029" data-role="button">Téléphone : 01 53 68 40 29</a>
-			<a data-theme=b href="mailto:emploi@capinfopro.com?subject=demande%20batiactu%20emploi%20mobile&body=demande%20de%20contact" data-role="button">emploi@capinfopro.com</a>
+			<a data-theme="b" href="tel:0153684029" data-role="button">Téléphone : 01 53 68 40 29</a>
+			<a data-theme="a" href="mailto:emploi@capinfopro.com?subject=demande%20batiactu%20emploi%20mobile&body=demande%20de%20contact" data-role="button">emploi@capinfopro.com</a>
 	</div>
 </div>   
 
@@ -229,6 +205,11 @@ Tel : 01 40 61 20 00.<br>
 
 <!-- ================================================================================================= -->
 
+<script id="recherche-detail-tpl" type="text/x-handlebars-template">
+{{#.}}
+<label><input class="checkFonction" type="checkbox" value="{{item_value}}" id="TFonction_{{item_index}}"> {{item_label}}</label>
+{{/.}}
+</script>
 <!-- Recherche détaillé fonction -->
 <div id="recherche-detail-page-fonction" data-role="page"  data-add-back-btn="true" data-back-btn-text="Précédent">
 	<div data-role="header">
@@ -237,25 +218,11 @@ Tel : 01 40 61 20 00.<br>
 
 	<div data-role="content">
 		<div data-role="fieldcontain">
-			
 			<fieldset data-role="controlgroup" id="recherche-detail-fonction" data-autodividers="true">
-					<label><input class="checkFonction" type="checkbox" value="item_value" id="TFonction_item_index"> 						item_label</label>
 			</fieldset>
 		</div>
 	</div>
 
-
-
-	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
-		<div data-role="navbar">
-	        <ul>
-	            <!--<li><a href="#accueil" data-icon="home">Accueil</a></li>-->
-	            <li><a href="#recherche-detail" class="ui-btn-active ui-state-persist" data-icon="search">Recherche</a></li>
-	            <li><a href="#actu" data-icon="grid">Actualités</a></li>
-	            <li><a href="#offre" data-icon="check">Mes alertes</a></li>
-	        </ul>
-	    </div><!-- /navbar -->
-	</div>
 </div>
         
 <!-- ================================================================================================= -->
@@ -268,19 +235,9 @@ Tel : 01 40 61 20 00.<br>
 	</div>
 	<div data-role="content">
 		<fieldset data-role="controlgroup" id="recherche-detail-zonegeo" >
-				<label><input type="checkbox"  class="checkZonegeo" value="item_value" id="TZoneGeo_item_index"> item_label</label>
 		</fieldset>
 	</div>
-	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
-		<div data-role="navbar">
-	        <ul>
-	            <!--<li><a href="#accueil" data-icon="home">Accueil</a></li>-->
-	            <li><a href="#recherche-detail" class="ui-btn-active ui-state-persist" data-icon="search">Recherche</a></li>
-	            <li><a href="#actu" data-icon="grid">Actualités</a></li>
-	            <li><a href="#offre" data-icon="check">Mes alertes</a></li>
-	        </ul>
-	    </div><!-- /navbar -->
-	</div>
+	
 </div>        
         
 
@@ -296,16 +253,7 @@ Tel : 01 40 61 20 00.<br>
 		</fieldset>
 		
 	</div>
-	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
-		<div data-role="navbar">
-	        <ul>
-	            <!--<li><a href="#accueil" data-icon="home">Accueil</a></li>-->
-	            <li><a href="#recherche-detail" class="ui-btn-active ui-state-persist" data-icon="search">Recherche</a></li>
-	            <li><a href="#actu" data-icon="grid">Actualités</a></li>
-	            <li><a href="#offre" data-icon="check">Mes alertes</a></li>
-	        </ul>
-	    </div><!-- /navbar -->
-	</div>
+	
 </div>        
       
 
@@ -320,16 +268,7 @@ Tel : 01 40 61 20 00.<br>
 				<label><input type="checkbox" class="checkExperience" value="item_value" id="TExperience_item_index"> item_label</label>
 		</fieldset>
 	</div>
-	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
-		<div data-role="navbar">
-	        <ul>
-	            <!--<li><a href="#accueil" data-icon="home">Accueil</a></li>-->
-	            <li><a href="#recherche-detail" class="ui-btn-active ui-state-persist" data-icon="search">Recherche</a></li>
-	            <li><a href="#actu" data-icon="grid">Actualités</a></li>
-	            <li><a href="#offre" data-icon="check">Mes alertes</a></li>
-	        </ul>
-	    </div><!-- /navbar -->
-	</div>
+	
 </div>        
   
 
@@ -357,25 +296,15 @@ Tel : 01 40 61 20 00.<br>
 				<a href="#recherche-detail-page-experience">Expérience</a>
 			</li>
 			<li>
-				<input name="mot-clef" id="recherche-detail-mot-clef" placeholder="Mot-clef" value="" type="text" onchange="$('#mot-clef').val(this.value)">
+				<input name="mot-clef" id="recherche-detail-mot-clef" placeholder="Mot-clef" value="" type="text">
 			</li>
 			<li>
-				<input type="button" value="Rechercher" onclick="launchSearch(true);" />
+				<input type="button" value="Lancer une recherche" onclick="launchSearch(true);" />
 			</li>
 		</ul>
 		 
 	</div>
 	
-	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
-		<div data-role="navbar">
-	        <ul>
-	            <!--<li><a href="#accueil" data-icon="home">Accueil</a></li>-->
-	            <li><a href="#recherche-detail" class="ui-btn-active ui-state-persist" data-icon="search">Recherche</a></li>
-	            <li><a href="#actu" data-icon="grid">Actualités</a></li>
-	            <li><a href="#offre" data-icon="check">Mes alertes</a></li>
-	        </ul>
-	    </div><!-- /navbar -->
-	</div>
 </div>   
 
 <!-- ============================================= Les recherches personnalisées =================================== -->
@@ -412,16 +341,7 @@ Tel : 01 40 61 20 00.<br>
 		
 	</div>
 
-	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
-		<div data-role="navbar">
-	        <ul>
-	            <!--<li><a href="#accueil" data-icon="home">Accueil</a></li>-->
-	            <li><a href="#recherche-detail" data-icon="search">Recherche</a></li>
-	            <li><a href="#actu"  data-icon="grid">Actualités</a></li>
-	            <li><a href="#offre" data-theme=e class="ui-btn-active ui-state-persist" data-icon="check">Mes alertes</a></li>
-	        </ul>
-	    </div><!-- /navbar -->
-	</div>
+	
 
 </div>
 
@@ -449,16 +369,7 @@ Tel : 01 40 61 20 00.<br>
 		
 		
 	</div>
-	<div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
-		<div data-role="navbar">
-	        <ul>
-	            <!--<li><a href="#accueil" data-icon="home">Accueil</a></li>-->
-	            <li><a href="#recherche-detail" data-icon="search">Recherche</a></li>
-	            <li><a href="#actu" class="ui-btn-active ui-state-persist" data-icon="grid">Actualités</a></li>
-	            <li><a href="#offre" data-icon="check">Mes alertes</a></li>
-	        </ul>
-	    </div><!-- /navbar -->
-	</div>
+	
 </div>   
         
 
@@ -486,16 +397,7 @@ Tel : 01 40 61 20 00.<br>
 		
     </div>		
     
-    <div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
-		<div data-role="navbar">
-	        <ul>
-	            <!--<li><a href="#accueil" data-icon="home">Accueil</a></li>-->
-	            <li><a href="#recherche-detail" class="ui-btn-active ui-state-persist" data-icon="search">Recherche</a></li>
-	            <li><a href="#actu" data-icon="grid">Actualités</a></li>
-	            <li><a href="#offre" data-icon="check">Mes alertes</a></li>
-	        </ul>
-	    </div><!-- /navbar -->
-	</div>
+    
 
 </div>
 
@@ -519,16 +421,7 @@ Tel : 01 40 61 20 00.<br>
 		
     </div>		
     
-    <div data-role="footer" style="overflow:hidden;" data-id="footer1" class="ui-state-persist" data-position="fixed">
-		<div data-role="navbar">
-	        <ul>
-	            <!--<li><a href="#accueil" data-icon="home">Accueil</a></li>-->
-	            <li><a href="#recherche-detail" data-icon="search">Recherche</a></li>
-	            <li><a href="#actu" data-icon="grid" class="ui-btn-active ui-state-persist">Actualités</a></li>
-	            <li><a href="#offre" data-icon="check">Mes alertes</a></li>
-	        </ul>
-	    </div><!-- /navbar -->
-	</div>
+    
 
 </div>
 
@@ -536,38 +429,6 @@ Tel : 01 40 61 20 00.<br>
 <!-- Partie script javascript --------------------------------------------------------->
 
 <script>
-var i = 0;
-function changeLink(){
-
-	//Cas du précédent quand on est sur l'image 0 on retourne sur la dernière		
-	if (i ==0) {
-		i = 29;
-	}
-
-	//Cas du suivant sur la dernière image on revient sur la première
-	if (i == 29){
-		i = 0;
-	}
-	$("#imageMaquette").attr("src","demo/" + i + ".jpg");
-}
-
-$(document).ready(function(){
-	$("#imageMaquette").bind("click", function (event)
-	{
-		i = i + 1;
-		changeLink();
-	});
-});
-
-$(document).ready(function(){
-	$("#imageMaquette").bind("taphold", function (event)
-	{
-		i = i - 1;
-		changeLink();
-	});
-});
-
-
 
 $(document).ready(function() {
 	$( "#actu" ).bind( "click", function() {
@@ -583,7 +444,7 @@ $(document).ready(function() {
 		});
 	});
 
-
+	initSearch();
 });
 
 // avoir pour ajouter en dynamique le footer
@@ -606,29 +467,6 @@ $(document).ready(function()
 
 	$("#idFooter").html(sHtml);*/
 	
-
-
-/*
-	//$("div:jqmData(role=footer)").append(sHtml)
-var html ="";
-html += "<p> Pied de page dynamique dsdsd </p>";
-//$("#idFooter").html(html);
-$("div:jqmData(role=footer)").append(html)
-
-
-
-});*/
-
-
-
-
-$(document).ready(function() {
-	initSearch();
-});
-
-	
-
-
 
 </script>
 

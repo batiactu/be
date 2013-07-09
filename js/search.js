@@ -9,63 +9,28 @@ function initSearch() {
 		,dataType:'jsonp'
 		,ajax:false
 	}).done(function(data) {
-		
 		/*
-		 * Init zone geo accueil
+		 * Init zone geo détail
 		 */
-		var template = $('#zone-geo').html();
-		$('#zone-geo').html('');
+		var template = Handlebars.compile($('#recherche-detail-tpl').html());
+		var Tab = new Array;
 		
-		ligne = template;
-		var myRegexp= new RegExp("item_value","gi");
-	 	ligne = ligne.replace(myRegexp, '');
-		var myRegexp= new RegExp("item_label","gi");
-	 	ligne = ligne.replace(myRegexp, 'France entière');
-		
-		$('#zone-geo').append(ligne);
-		
-		
-		for(code in data) {
-     			
-     			label = data[code];
-     			
-     			ligne = template;
-     			
-     			var myRegexp= new RegExp("item_value","gi");
-			 	ligne = ligne.replace(myRegexp, code);
-     			var myRegexp= new RegExp("item_label","gi");
-			 	ligne = ligne.replace(myRegexp, label);
-     			
-     			$('#zone-geo').append(ligne);
-     			
-     		}
-
-		$('#zone-geo').selectmenu( "refresh" );
-
-		/*
-		 * Init zone geo accueil
-		 */
-		var template = $('#recherche-detail-zonegeo').html();
-		$('#recherche-detail-zonegeo').html('');
 		var k=0;
 		for(code in data) {
      			
      			label = data[code];
      			
-     			ligne = template;
-     			
-     			var myRegexp= new RegExp("item_value","gi");
-			 	ligne = ligne.replace(myRegexp, code);
-     			var myRegexp= new RegExp("item_label","gi");
-			 	ligne = ligne.replace(myRegexp, label);
-     			var myRegexp= new RegExp("item_index","gi");
-			 	ligne = ligne.replace(myRegexp, k);
+     			Tab.push({
+     					'item_value': code
+     					,'item_label':label
+     					,'item_index':k
+     				});
+     				
      			
      			
-     			$('#recherche-detail-zonegeo').append(ligne);
      		k++;		
      	}
-
+		$('#recherche-detail-zonegeo').html(template(Tab));
 		//$('#recherche-detail-zonegeo').checkboxradio( "refresh" );
 
 	});
@@ -80,9 +45,8 @@ function initSearch() {
 		,dataType:'jsonp'
 	}).done(function(data) {
 		
-		
-		var template = $('#recherche-detail-fonction').html();
-		$('#recherche-detail-fonction').html('');
+		var template = Handlebars.compile($('#recherche-detail-tpl').html());
+		var Tab = new Array;
 		var k=0;
 		for(parent in data) {
      			
@@ -92,22 +56,19 @@ function initSearch() {
      				
 	     			label = data[parent]["fonction"][fonction];
 	     			
-	     			ligne = template;
-	     			
-	     			var myRegexp= new RegExp("item_value","gi");
-				 	ligne = ligne.replace(myRegexp, fonction);
-	     			var myRegexp= new RegExp("item_label","gi");
-				 	ligne = ligne.replace(myRegexp, label);
-	     			var myRegexp= new RegExp("item_index","gi");
-				 	ligne = ligne.replace(myRegexp, k);
+     				Tab.push({
+     					'item_value': fonction
+     					,'item_label':label
+     					,'item_index':k
+     				});
      				
-	     			$('#recherche-detail-fonction').append(ligne);
+	         		k++;		
      			}
      			
-     			
-     			
-     		k++;		
      	}
+
+ 		$('#recherche-detail-fonction').html(template(Tab));
+		//$('#recherche-detail-fonction input[type=checkbox]').checkboxradio(  );
 
 		//$('#recherche-detail-zonegeo').checkboxradio( "refresh" );
 
@@ -121,30 +82,25 @@ function initSearch() {
 		,dataType:'jsonp'
 	}).done(function(data) {
 		
-		//$('#recherche-detail-contrat').checkboxradio( "disable" );
-		var template = $('#recherche-detail-contrat').html();
-		$('#recherche-detail-contrat').html('');
-		//$('#recherche-detail-contrat').checkboxradio( "enable" );
+		var template = Handlebars.compile($('#recherche-detail-tpl').html());
+		var Tab = new Array;
+		
 		var k=0;
 		for(code in data) {
      			
      			label = data[code];
      			
-     			ligne = template;
-     			
-     			var myRegexp= new RegExp("item_value","gi");
-			 	ligne = ligne.replace(myRegexp, code);
-     			var myRegexp= new RegExp("item_label","gi");
-			 	ligne = ligne.replace(myRegexp, label);
-     			var myRegexp= new RegExp("item_index","gi");
-			 	ligne = ligne.replace(myRegexp, k);
+     			Tab.push({
+     					'item_value': code
+     					,'item_label':label
+     					,'item_index':k
+     				});
+     				
      			
      			
-     			$('#recherche-detail-contrat').append(ligne);
      		k++;		
      	}
-
-		//$('#recherche-detail-zonegeo').checkboxradio( "refresh" );
+		$('#recherche-detail-contrat').html(template(Tab));
 
 	});
 
@@ -157,29 +113,25 @@ function initSearch() {
 		,dataType:'jsonp'
 	}).done(function(data) {
 		
+		var template = Handlebars.compile($('#recherche-detail-tpl').html());
+		var Tab = new Array;
 		
-		var template = $('#recherche-detail-experience').html();
-		$('#recherche-detail-experience').html('');
 		var k=0;
 		for(code in data) {
      			
      			label = data[code];
      			
-     			ligne = template;
-     			
-     			var myRegexp= new RegExp("item_value","gi");
-			 	ligne = ligne.replace(myRegexp, code);
-     			var myRegexp= new RegExp("item_label","gi");
-			 	ligne = ligne.replace(myRegexp, label);
-     			var myRegexp= new RegExp("item_index","gi");
-			 	ligne = ligne.replace(myRegexp, k);
+     			Tab.push({
+     					'item_value': code
+     					,'item_label':label
+     					,'item_index':k
+     				});
+     				
      			
      			
-     			$('#recherche-detail-experience').append(ligne);
      		k++;		
      	}
-
-		//$('#recherche-detail-zonegeo').checkboxradio( "refresh" );
+		$('#recherche-detail-experience').html(template(Tab));
 
 	});
 }
