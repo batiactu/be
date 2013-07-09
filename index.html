@@ -205,11 +205,6 @@ Tel : 01 40 61 20 00.<br>
 
 <!-- ================================================================================================= -->
 
-<script id="recherche-detail-tpl" type="text/x-handlebars-template">
-{{#.}}
-<label><input class="checkFonction" type="checkbox" value="{{item_value}}" id="TFonction_{{item_index}}"> {{item_label}}</label>
-{{/.}}
-</script>
 <!-- Recherche détaillé fonction -->
 <div id="recherche-detail-page-fonction" data-role="page"  data-add-back-btn="true" data-back-btn-text="Précédent">
 	<div data-role="header">
@@ -282,18 +277,30 @@ Tel : 01 40 61 20 00.<br>
 	<div data-role="content">
 		<ul data-role="listview">
 			<li>
-				<a href="#recherche-detail-page-fonction">Fonction</a>
+				<a href="#recherche-detail-page-fonction">
+					Fonction
+					<p class="ui-li-desc" id="selected-detail-page-fonction"></p>	
+				</a>
 			</li>
 			<li>
-				<a href="#recherche-detail-page-zonegeo">Localisation</a>
-			</li>
-			<li>
+				<a href="#recherche-detail-page-zonegeo">
+					Localisation
+					<p class="ui-li-desc" id="selected-detail-page-zonegeo"></p>	
+				</a>
 				
-				<a href="#recherche-detail-page-contrat">Type de contrat</a>
 			</li>
 			<li>
+				<a href="#recherche-detail-page-contrat">
+					Type de contrat
+					<p class="ui-li-desc" id="selected-detail-page-contrat"></p>	
+				</a>
+			</li>
+			<li>
+				<a href="#recherche-detail-page-experience">
+					Expérience
+					<p class="ui-li-desc" id="selected-detail-page-experience"></p>	
+				</a>
 				
-				<a href="#recherche-detail-page-experience">Expérience</a>
 			</li>
 			<li>
 				<input name="mot-clef" id="recherche-detail-mot-clef" placeholder="Mot-clef" value="" type="text">
@@ -469,6 +476,16 @@ $(document).ready(function()
 	
 
 </script>
+
+<!-- template handlebar -->
+<script id="recherche-detail-tpl" type="text/x-handlebars-template">
+{{#.}}
+	<label><input class="checkFonction" type="checkbox" value="{{item_value}}" id="TFonction_{{item_index}}"> {{item_label}}</label>
+{{/.}}
+</script>
+
+
+<!-- /template handlebar -->
 
 
 </body>
