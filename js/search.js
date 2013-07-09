@@ -143,7 +143,7 @@ function launchSearch(advanceMode) {
 	
 	$.mobile.changePage('#recherche');
 	
-	var mot = $('#accueil #mot-clef').val();
+	var mot = $('#recherche-detail-mot-clef').val();
 	
 
 	var fonction = '';
