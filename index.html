@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="css/jquery.mobile-1.3.1.css" /> 
 
 <link rel="stylesheet" href="roller/themes/emploi.css" /> 
-
+<link rel="stylesheet" href="css/jqm-doc.css" /> 
 <link rel="stylesheet" href="css/add.css" /> 
 
 
@@ -20,7 +20,7 @@
 
 <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="js/jquery.mobile-1.3.1.min.js"></script>
-
+<script type="text/javascript" src="js/jqm-doc.js"></script>
 <!--
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQWPWT2V_AQAtuFcQYZY3hDZtugpazXIU&sensor=true"></script>
 -->
@@ -44,7 +44,7 @@
 <div id="accueil" data-role="page" data-theme=b >
 	
 	<div data-role="header" data-theme=b>	    
-	    <a href="#accueil" data-role=button data-icon=home data-iconpos=notext>Sites</a>
+	    <a href="#accueil" data-role=button data-icon=home data-iconpos=notext >Accueil</a>
 	    <a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos=notext>Menu</a>
 	    <h1 style="text-align:left;margin-left:70px;"><span style="color:#EF760E;font-size:19px">[</span> batiactu <span style="color:#EF760E;font-size:19px">]</span> <sub>Emploi</sub></h1>
 	    
@@ -137,7 +137,7 @@
 <!-- Gallerie d'image de batiactu -->
 <div id="galleryimg" data-role="page" style="padding:0px;">
 	<div data-role="header">
-	<a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a>
+	<a href=#accueil data-role=button data-icon=home data-iconpos=notext data-direction="reverse" data-transition="fade"></a>
 	    <h1>Gallerie</h1>
 	</div>
 	<div data-role="content" data-theme=b style="padding:0px;margin:0px;"><img id="imageMaquette" src="demo/0.jpg" width="100%" height="100%" />
@@ -154,8 +154,8 @@
 <!-- recrutement -->
 <div id="recrutement" data-role="page" data-add-back-btn="true" data-back-btn-text="Accueil">
 	<div data-role="header" data-position="fixed">
-	    <a href="#accueil" data-role=button data-icon=home data-iconpos=notext>Sites</a>
-	    <a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos=notext>Menu</a>	
+	    <a href="#accueil" data-role=button data-icon=home data-iconpos=notext data-direction="reverse">Accueil</a>
+	    <!--<a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos=notext>Menu</a>	-->
 	    <h1>Recrutement</h1>
 	</div>
 	<div data-role="content">
@@ -172,30 +172,51 @@
 </div>   
 
 <!-- recrutement -->
-<div id="mentions-legales" data-role="page" data-add-back-btn="true" data-back-btn-text="Accueil">
+<div id="mentions-legales" class="type-interior" data-role="page" data-add-back-btn="true" data-back-btn-text="Accueil">
 	<div data-role="header" data-position="fixed">
+	    <a href="#accueil" data-role=button data-icon=home data-iconpos=notext data-direction="reverse">Accueil</a>
 	    <h1>Mentions Légales</h1>
 	</div>
 	<div data-role="content">
-		
-<h4 style="margin:.5em 0">Batiactu est un site édité par</h4>
-<div class="ui-body ui-body-b">
-Cap Information Professionnelle SAS, au capital de 37 000 euros, dont le siège est situé au :<br> 
-<ul>
-<li>202 rue de la Croix Nivert </li>
-<li>75015 Paris</li>
-<li>Fax: +33 1 48 56 67 51</li>
-</ul>
-immatriculée au RCS de Paris sous le numéro 449 204 320.<br>
-</div>
-<br>
-Le site web est hébergé par Ecritel, 51 rue Le Peletier 75009 Paris,<br>
-Tel : 01 40 61 20 00.<br>
-<br>
-<small>Vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données qui vous concernent 
-(art. 34 de la loi "Informatique et Libertés"). Pour l'exercer, adressez vous à Cap Information Professionnelle - 
-202 rue de la Croix Nivert 75015 Paris ou écrivez à batiactu@capinfopro.com.</small>		
-		
+		<div class="content-primary">
+			<h4 style="margin:.5em 0">Batiactu est un site édité par</h4>
+			<div class="ui-body ui-body-b">
+			Cap Information Professionnelle SAS, au capital de 37 000 euros, dont le siège est situé au :<br> 
+			<br>202 rue de la Croix Nivert 
+			<br>75015 Paris
+			<br>Fax: +33 1 48 56 67 51
+			<br>
+			immatriculée au RCS de Paris sous le numéro 449 204 320.<br>
+			</div>
+			<br>
+			Le site web est hébergé par Ecritel, 51 rue Le Peletier 75009 Paris,<br>
+			Tel : 01 40 61 20 00.<br>
+			<br>
+			<small>Vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données qui vous concernent 
+			(art. 34 de la loi "Informatique et Libertés"). Pour l'exercer, adressez vous à Cap Information Professionnelle - 
+			202 rue de la Croix Nivert 75015 Paris ou écrivez à batiactu@capinfopro.com.</small>		
+		</div>
+		<div class="content-secondary">
+			<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
+			
+				<h3>Menu</h3>
+				
+				<ul data-role="listview" data-theme="c" data-dividertheme="d">
+				
+					<li data-role="list-divider">Menu</li>
+					<li><a href="#accueil" data-theme="a" data-icon="home" data-corners="false"> Accueil </a></li>
+					<li><a href="#recherche-detail" data-theme="b" data-icon="search" data-corners="false"> Nouvelle recherche </a></li>
+					<!-- <a href="#" data-theme="c" data-icon="grid" data-corners="false"> Mes recherches </a>--></li>
+					<li><a href="#offre" data-theme="e" data-icon="alert" data-corners="false"> Créez une alerte e-mail</a></li>
+					<li><a href="#recrutement" data-theme="c" data-icon="star" data-corners="false">Recrutement</a></li>
+					<li data-theme="a"><a href="#mentions-legales" data-theme="c" data-icon="gear" data-corners="false">Mentions légales</a></li>
+					<li><a href="javascript:window.open('http://mobile.batiactu.com/','_blank','location=yes');" data-theme="c" data-icon="gear" data-corners="false">BatiActu</a></li>
+					<li><a href="#" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a></li>
+	
+				</ul>
+			</div>
+			
+		</div>
 	</div>
 </div>   
 
@@ -385,9 +406,7 @@ Tel : 01 40 61 20 00.<br>
 	<a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a>
 	    <h1>Mes alertes</h1>
 	</div>
-	<div data-role="content" data-theme=e>
-		<p> Alertes enregitrées</p>
-		
+	<div data-role="content" data-theme=d>
 			<ul data-role="listview" data-split-icon="gear" data-split-theme="d">
 				<li><a href="index.html"><h3>Agents immobiliers</h3>
 					<p>Localisation : </p>
@@ -428,10 +447,10 @@ Tel : 01 40 61 20 00.<br>
 
 <!-- ============================================= La page ACTU  =================================== -->
 
-<div id="actu" data-role="page" data-theme=c>
+<div id="actu" data-role="page" data-theme=c  data-add-back-btn="true" data-back-btn-text="Précédent">
 	<div data-role="header">
-		<a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a>
-		<a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos=notext>Menu</a>
+		<!-- <a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a> -->
+		<!-- <a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos=notext>Menu</a> -->
 		<h1>Actualités</h1>
 	</div>
 	<div data-role="content" data-theme=c>
@@ -465,9 +484,9 @@ Tel : 01 40 61 20 00.<br>
         
 <!-- Annonce -->
         
-<div id="annonce" data-role="page"  data-add-back-btn="true" data-back-btn-text="Précédent">
+<div id="annonce" data-role="page" data-add-back-btn="true" data-back-btn-text="Précédent">
 	<div data-role="header">
-	    <a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos=notext>Menu</a>
+	    <!-- <a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos=notext>Menu</a> -->
 		<h1>Annonce : <span class="item_libelle"></span></h1>
 	</div>
 	<div data-role="content">
