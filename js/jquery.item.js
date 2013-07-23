@@ -7,7 +7,7 @@
             var defaults = {
                template:'#recherche-resultat-tpl'
                 ,url:'fill-url-source'
-                ,data:{  }
+                ,data:{  }                
             }
                 
             var options = $.extend(defaults, options);
@@ -37,12 +37,13 @@
 			    if(options.dataType=='xml') {
 			    	xml = data;
 			    	data=new Array;
+			    	
 			    	$('item',xml).each(function(i) {
 							var newItem = blank.clone();
 					 		newItem.removeAttr('id');
 					 		ligne = newItem.html();
 					
-							$('*',this).each(function(i, o) {
+							$('*',this).each(function(j, o) {
 									
 								
 									k= o.tagName;
@@ -71,15 +72,19 @@
 			    	//data = $.parseHTML(data.html());
 			    }
 			 	else {
+			 		nb = data.length;			 		
 			 		$.each(data,function(i, row) {
-			 	
+			 	        var prevP = i>0?data[i-1]['origine']:null;
+			 	        var nextP = i<nb-1?data[i+1]['origine']:null;
 				 		var item = new Array;
 				 		
+						search_list_id.push((data[i]['origine']).toString());
+						
 				 		for (k in row) {
-				 			//alert(k);
-				 			item["item_"+k] = row[k];
-				 			
+				 			item["item_"+k] = row[k];				 			
 				 		}
+				 		item["item_previous"]=prevP;
+				 		item["item_next"]=nextP;
 				 		
 				 		Tab.push(item);
 				 		
@@ -92,6 +97,7 @@
 			 	myList.show();
 			 	myList.listview('refresh');
 			 	if(options.noLoading==null) $.mobile.loading( 'hide' );
+			 	
 			 });
 			 
 	            
@@ -101,39 +107,52 @@
     ,getItem: function(options) {
            
             var defaults = {
-                url:'fill-url-source'
+                template:'#annonce-detail-tpl'
+                ,itemtarget:'#annonce'
+				,url:'fill-url-source'
                 ,data:{  }
             }
                 
-            var options = $.extend(defaults, options);
-       
+            var options = $.extend(defaults, options);            
 			var myItem = $(this);
-			var template = Handlebars.compile(myItem.html()); 
-			 
-			 $.mobile.loading( 'show' );
-			 
-			 $.ajax({
+			var myItemId = myItem.attr('id');
+			var template = Handlebars.compile($(options.template).html()); 
+            //var templatefooter = Handlebars.compile($('#nav-annonce-detail-tpl').html());
+            Handlebars.registerPartial("nav", $("#nav-annonce-detail-tpl").html());
+
+			$.mobile.loading( 'show' );
+
+			$.ajax({
 			 	url : options.url
 			 	,data : options.data
 			 	,dataType:'jsonp'
 			 	,async : false
 			 	,success:function(row) {
-			 		var item = new Array;
-			 		for (k in row) {
-			 			
-			 			item[k] = row[k];
-			 				
-			 		}
-			 		
-			 		myItem.html(template(item));
-				
-			 		$.mobile.changePage('#annonce');
+			 		//var annonce = new Array();
+			 		//for (k in row) {
+			 		//nb = Object.keys(row).length;
+			 		//for (k=0; k<nb; k++) {
+			 		//	annonce[k] = row[k];	
+			 		//}
+                    
+                    row['nav']=[{'PREVIOUS':row['PREVIOUS'],'NEXT':row['NEXT']}];
+                    $(options.itemtarget+' :jqmData(role=footer)').remove();
+                    $(options.itemtarget+' :jqmData(role=content)').remove();
+                    $(options.itemtarget).append(template(row)).trigger('create');
+                    _refresh_datas();
+                    
+                    
+					$.mobile.loading( 'hide' );	
+													        
 			 	}
-			 	
+			 	,error:function() {
+			 		$.mobile.loading( 'hide' );
+			 	}
 			 });
-			 
-			 $.mobile.loading( 'hide' );
-	       
+			 $(options.template).page();
+
+			 return this;
+
     }
     
     
