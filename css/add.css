@@ -75,3 +75,25 @@ h1 {
 
 #resultat-recherche li h2{
 }
+
+.notifications-wrapper {
+  position: fixed;
+  z-index: 2;
+  height: 0;
+  overflow: visible;
+  left: 0;
+  right: 0;
+  top: 45px; }
+
+.notifications {
+  width: 320px;
+  margin: 0 auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
+  .notifications > p {
+    /*height: 32px;
+    line-height: 32px;*/
+    background: #e2eaf2;
+    color: #626a72;
+    text-align: center;
+    margin: 0;
+    border-top: 1px solid #c5d5e5; }

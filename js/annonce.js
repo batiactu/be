@@ -9,11 +9,39 @@ function postuler() {
 		
 				
 		id_annonce = $('#annonce #id_annonce').val();
-		alert("Vous avez postuler pour l'offre "+id_annonce+" !");
+		//alert("Vous avez postuler pour l'offre "+id_annonce+" !");
 		//SaveEmail();
 		//$.jStorage.flush();
 		$.jStorage.set('email', email);
-		$.jStorage.reInit();		
+		$.jStorage.reInit();
+		notify('envoi en cours... patientez...');
+		$.mobile.loading( 'show' );
+		$.ajax({
+			 	url:DIRSCRIPTS+'interface-mobile.php'
+				,data: {
+					jsonp : 1
+					,put:'candidate-annonce'
+					,id:id_annonce
+					,email:email
+				}
+				,dataType:'jsonp'
+			 	,async : true
+			 	,success:function(rep) {
+
+					$.mobile.loading( 'hide' );	
+					if(rep=="OK"){
+					    var msg = 'Cette annonce a bien été envoyée à '+email;					    
+					}else{
+						var msg = 'Une erreur est survenue!';					
+					}				
+									        
+					notify(msg);
+			 	}
+			 	,error:function() {
+			 		$.mobile.loading( 'hide' );
+			 	}
+			 });
+		$('#annonce').page();	 
 	}
 	
 }
@@ -52,41 +80,23 @@ function showAnnonce(urlObj, options) {
     
     var $header = $page.children( ":jqmData(role=header)" );
 
-	$header.find( "h1" ).html( 'D&eacute;tails annonce '+id_annonce );
+	$header.find( "h1" ).text( 'Détails annonce '+id_annonce );
 	
 	$page.page();
 	
-	//$header.after(retour);
-	//$page.page();
-
 	options.dataUrl = urlObj.href;
-	
-	//options.allowSamePageTransition = true;
-	
-	//options.reloadPage = true;
-	
+
     $.mobile.changePage( $page, options );
-    
-    
-	
-	
+
 }
 
 function _refresh_datas(){ 
 	var email = $.jStorage.get('email');
-	if(!email){
+	/*if(!email){
 		// if not - load the data from the server
 	 	email = load_data_from_server();
 	 	// and save it
 		$.jStorage.set("email",email);
-	}
+	}*/
 	$('#annonce #email').val( email );
-}
-
-function reset_annonce(){
-	/*if($('#annonce')){
-		$('#annonce').remove();		
-	}
-	$('body').append('<div id="annonce" data-role="page" data-add-back-btn="true" data-back-btn-text="Précédent"></div>');
-	*/
 }

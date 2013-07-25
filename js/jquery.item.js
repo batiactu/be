@@ -2,8 +2,8 @@
     $.fn.extend({
         
         //This is where you write your plugin's name
-        completeListItem: function(options) {
-          
+        completeListItem: function(options) {            
+			notify('Chargement...');
             var defaults = {
                template:'#recherche-resultat-tpl'
                 ,url:'fill-url-source'
@@ -26,8 +26,10 @@
 			 	,data : options.data
 			 	,dataType:options.dataType
 			 	
-			 }).done(function(data) {
-			 	myList.html('');
+			 }).done(function(dataSearch) {
+			 	data = dataSearch['TResults'];
+				nbTotal = dataSearch['nb'];
+				myList.html('');
 
 
 				var Tab=new Array;
@@ -68,7 +70,6 @@
 					 		myList.append(newItem);
 					 		
 					});	
-			    	
 			    	//data = $.parseHTML(data.html());
 			    }
 			 	else {
@@ -93,14 +94,37 @@
 			 	}
 			 	
 			 	myList.html(template(Tab));
-			 	
+			 				 	
+                var $header = $('#recherche').children( ":jqmData(role=header)" );
+                current_nb_annonce = nbTotal;
+				switch(nbTotal){
+					case 0:
+						res = 'Aucun résultat';
+					break;
+					case 1:
+						res = '1 résultat';
+					break;
+					case Limit_Annonce:
+						res = 'les '+nbTotal+' premiers résultats';
+					break;
+					default:
+						res = nbTotal+' résultats';										
+				}
+				
+				$header.find( "h1" ).text(res);
+				
+					            
+
 			 	myList.show();
 			 	myList.listview('refresh');
-			 	if(options.noLoading==null) $.mobile.loading( 'hide' );
+			 	//myList.page();
+			 	//myList.trigger('pagecreate');
+			 	if(options.noLoading==null){remove_notify(); $.mobile.loading( 'hide' )};
 			 	
-			 });
+			 	$.waypoints();
+	    		$.waypoints('refresh');
 			 
-	            
+	        });    
 	       
     }
     

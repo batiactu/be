@@ -1,6 +1,17 @@
-var DIRSCRIPTS = 'http://bo.v2.batiactuemploi.com/scripts/';
-//var DIRSCRIPTS = 'http://local.back2012.batiactuemploi.com/scripts/';
+//var DIRSCRIPTS = 'http://bo.v2.batiactuemploi.com/scripts/';
+var DIRSCRIPTS = 'http://local.back2012.batiactuemploi.com/scripts/';
 
+var Limit_Annonce = 200;
+var nb_results_by_page = 30;
+
+var current_zonegeo = new Array;
+var current_fonction = new Array;
+var current_metier = new Array;
+var current_experience = new Array;
+var current_contrat = new Array;
+
+var current_nb_annonce = 0;
+	
 function uncheck_cac(type,el){
 	$('.check'+type).each(function(){
 		if(this.id!=el.attr('id')){
@@ -11,7 +22,20 @@ function uncheck_cac(type,el){
 	if(el.prop('checked')) $('#selected-detail-page-'+type).html((el.parent().find('label').text()));
 	else $('#selected-detail-page-'+type).html('');
 }
-
+function reset_search(){
+	var current_zonegeo = new Array;
+	var current_fonction = new Array;
+	var current_metier = new Array;
+	var current_experience = new Array;
+	var current_contrat = new Array;
+	
+	var current_nb_annonce = 0;
+	
+	$('[id^=selected-detail-page-]').text('');
+	$('[id=recherche-detail-mot-clef]').val('');
+	
+	$.mobile.changePage('#recherche-detail');
+}
 function initSearch() {
 	
 	$.ajax({
@@ -24,7 +48,7 @@ function initSearch() {
 		,ajax:false
 	}).done(function(data) {
 		/*
-		 * Init zone geo d�tail
+		 * Init zone geo détail
 		 */
 		var template = Handlebars.compile($('#recherche-detail-tpl').html());
 		var Tab = new Array;
@@ -46,7 +70,7 @@ function initSearch() {
      		k++;		
      	}
 		$('#recherche-detail-zonegeo').html(template(Tab));
-
+        
 
 	});
 
@@ -172,8 +196,6 @@ function launchSearch(advanceMode) {
 	if(advanceMode==null)advanceMode=false;
 	
 	
-	$.mobile.changePage('#recherche');
-	
 	var mot = $('#recherche-detail-mot-clef').val();
 	
 
@@ -184,52 +206,43 @@ function launchSearch(advanceMode) {
 	var zonegeo = '';
 	
 	if(advanceMode) {
-		$('.checkcontrat').each(function(i) {
-			
-			if($(this).is(':checked')) {
-				if(contrat!='')contrat+='|';
-				contrat+=$(this).val();
-			}
-		});	
-			
-		$('.checkfonction').each(function(i) {
-			
-			if($(this).is(':checked')) {
-				if(fonction!='')fonction+='|';
-				fonction+=$(this).val();
-			}
+	
+		
+		$.each(current_zonegeo,function(i) {
+			if(zonegeo!='')zonegeo+='|';
+			zonegeo+=this;
 		});	
 		
-		$('.checkmetier').each(function(i) {
-			
-			if($(this).is(':checked')) {
-				if(metier!='')metier+='|';
-				metier+=$(this).val();
-			}
-		});
-			
-		$('.checkexperience').each(function(i) {
-			
-			if($(this).is(':checked')) {
-				if(experience!='')experience+='|';
-				experience+=$(this).val();
-			}
-		});	
-			
-		$('.checkzonegeo').each(function(i) {
-			
-			if($(this).is(':checked')) {
-				if(zonegeo!='')zonegeo+='|';
-				zonegeo+=$(this).val();
-			}
-		});	
-			
+		$.each(current_fonction,function(i) {
+			if(fonction!='')fonction+='|';
+			fonction+=this;
+		});			
 			
 	}
 	else {
 		var zonegeo = $('#accueil #zone-geo').val();
 	}
-
+	
+	
+	var currentlength = parseInt($('#recherche #next').attr('data-next'));
+	var nextlength = currentlength + nb_results_by_page;
+	if(currentlength > Limit_Annonce){
+		$('#recherche #next').attr('data-next',currentlength);	
+		nextlength = Limit_Annonce;
+	}else if(currentlength > current_nb_annonce){
+		$('#recherche #next').attr('data-next',currentlength);	
+		nextlength = current_nb_annonce;
+	}else{
+	    $('#recherche #next').attr('data-next',nextlength);	
+	}	
+		
+	
+	$('#resultat-recherche').html('');
+	var $header = $('#recherche').children( ":jqmData(role=header)" );		
+	$header.find( "h1" ).text('');
+	$('#resultat-recherche').show();
+	//$('#recherche #next').attr('data-next',0);
+				
 	$('#resultat-recherche').completeListItem({
 		url:DIRSCRIPTS+'interface-mobile.php'
 		,data:{
@@ -241,10 +254,82 @@ function launchSearch(advanceMode) {
 			,metier:metier
 			,experience:experience
 			,contrat:contrat
+			,length:nextlength
 		}
-	});
-
-	
+	});			
+			 	
+			 
+			 
 	return false;
 }
+function execute_search(urlObj, options){
+    var pageSelector = urlObj.hash.replace( /\?.*$/, "" );
 
+    var $page = $( pageSelector );
+
+   	launchSearch(1);
+   
+	$page.page();
+
+	options.dataUrl = urlObj.href;
+	
+    $.mobile.changePage( $page, options );
+    
+}
+function go_url_recherche(t){
+	//l'url est créée dynamiquement
+	newurl = '#recherche' + '?zone=' + current_zonegeo.join('-')+'&fct='+  current_fonction.join('-');
+	$.mobile.changePage( newurl);
+    
+	return true; 
+}
+function save_current_criteres(){
+	
+	current_zonegeo = new Array;
+	$('.checkzonegeo').each(function(i) {
+			
+			if($(this).is(':checked')) {
+				//if(zonegeo!='')zonegeo+='|';
+				//zonegeo+=$(this).val();
+				current_zonegeo.push($(this).val());
+			}
+		});	
+	
+	current_fonction = new Array;	
+	$('.checkfonction').each(function(i) {
+			
+			if($(this).is(':checked')) {
+				//if(fonction!='')fonction+='|';
+				//fonction+=$(this).val();
+				current_fonction.push($(this).val());
+			}
+		});	
+	
+	//$('.checkcontrat').each(function(i) {
+		
+	//	if($(this).is(':checked')) {
+	//		if(contrat!='')contrat+='|';
+	//		contrat+=$(this).val();
+	//	}
+	//});	
+		
+	
+	
+	//$('.checkmetier').each(function(i) {
+		
+	//	if($(this).is(':checked')) {
+	//		if(metier!='')metier+='|';
+	//		metier+=$(this).val();
+	//	}
+	//});
+		
+	//$('.checkexperience').each(function(i) {
+		
+	//	if($(this).is(':checked')) {
+	//		if(experience!='')experience+='|';
+	//		experience+=$(this).val();
+	//	}
+	//});	
+			
+	return false;		
+}

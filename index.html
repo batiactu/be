@@ -1,47 +1,49 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>[Batiactu] Emploi</title>
-<meta name=viewport content="user-scalable=no,width=device-width" /> <!-- A tester -->
+	<meta charset="utf-8">
+	<meta name=viewport content="user-scalable=no,width=device-width, initial-scale=1" /> <!-- A tester -->
+	<title>[Batiactu] Emploi</title>
+	
+	<link rel="stylesheet" href="css/jquery.mobile-1.3.1.css" /> 
+	
+	<link rel="stylesheet" href="roller/themes/emploi.css" /> 
+	<link rel="stylesheet" href="css/jqm-doc.css" /> 
+	<link rel="stylesheet" href="css/add.css" /> 
+	
+	
+	<link rel="apple-touch-icon" href="images/icon.png" />
+	<link rel="apple-touch-startup-image" href="images/splash.png" />
 
-<link rel="stylesheet" href="css/jquery.mobile-1.3.1.css" /> 
-
-<link rel="stylesheet" href="roller/themes/emploi.css" /> 
-<link rel="stylesheet" href="css/jqm-doc.css" /> 
-<link rel="stylesheet" href="css/add.css" /> 
-
-
-<link rel="apple-touch-icon" href="images/icon.png" />
-<link rel="apple-touch-startup-image" href="images/splash.png" />
-
-<!-- 
-<link rel="stylesheet" href="css/test.min.css" />
--->
-
-<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="js/jquery.mobile-1.3.1.min.js"></script>
-<script type="text/javascript" src="js/jqm-doc.js"></script>
-<!--
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQWPWT2V_AQAtuFcQYZY3hDZtugpazXIU&sensor=true"></script>
--->
-<!-- 
-	<script type="text/javascript" src="js/geolocalisation.js"></script> desac 
--->
-<!--<script type="text/javascript" src="js/storage/memory-store.js"></script>-->
-<!--<script type="text/javascript" src="js/sql.js"></script>-->
-
-<script type="text/javascript" src="js/jquery.item.js"></script>
-<script type="text/javascript" src="js/search.js"></script>
-<script type="text/javascript" src="js/annonce.js"></script>
-<script type="text/javascript" src="js/actu.js"></script>
-<script type="text/javascript" src="js/jstorage.js"></script>
-
-<script type="text/javascript" src="js/handlebars.js"></script>
-
-<script type="text/javascript" src="http://www.capinfoproreport.com/cap_pub/scripts/rotate2-js?e=B_IP_HOME,TOP_IP&support=B.IP"></script>
-
-
-<script src="phonegap.js"></script><!-- PhoneGap en a besoin derriËre pour pouvoir utiliser ses fonctions natives -->
+	<!-- 
+	<link rel="stylesheet" href="css/test.min.css" />
+	-->
+	
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mobile-1.3.1.min.js"></script>
+	<script type="text/javascript" src="js/jqm-doc.js"></script>
+	<!--
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQWPWT2V_AQAtuFcQYZY3hDZtugpazXIU&sensor=true"></script>
+	-->
+	<!-- 
+		<script type="text/javascript" src="js/geolocalisation.js"></script> desac 
+	-->
+	<!--<script type="text/javascript" src="js/storage/memory-store.js"></script>-->
+	<!--<script type="text/javascript" src="js/sql.js"></script>-->
+	
+	<script type="text/javascript" src="js/jquery.item.js"></script>
+	<script type="text/javascript" src="js/search.js"></script>
+	<script type="text/javascript" src="js/annonce.js"></script>
+	<script type="text/javascript" src="js/actu.js"></script>
+	<script type="text/javascript" src="js/jstorage.js"></script>
+	<script type="text/javascript" src="js/waypoints.min.js"></script>
+	<script type="text/javascript" src="js/waypoints-infinite.min.js"></script>
+	<script type="text/javascript" src="js/handlebars.js"></script>
+	
+	<script type="text/javascript" src="http://www.capinfoproreport.com/cap_pub/scripts/rotate2-js?e=B_IP_HOME,TOP_IP&support=B.IP"></script>
+	
+	
+	<script src="phonegap.js"></script><!-- PhoneGap en a besoin derri√®re pour pouvoir utiliser ses fonctions natives -->
 
 </head>
     
@@ -72,9 +74,9 @@
 			<a href="#accueil" data-role="button" data-theme="a" data-icon="home" data-corners="false"> Accueil </a>
 			<a href="#recherche-detail" data-role="button" data-theme="b" data-icon="search" data-corners="false"> Nouvelle recherche </a>
 			<!-- <a href="#" data-role="button" data-theme="c" data-icon="grid" data-corners="false"> Mes recherches </a>-->
-			<a href="#offre" data-role="button" data-theme="e" data-icon="alert" data-corners="false"> CrÈez une alerte e-mail</a>
+			<a href="#offre" data-role="button" data-theme="e" data-icon="alert" data-corners="false"> Cr√©ez une alerte e-mail</a>
 			<a href="#recrutement" data-role="button" data-theme="c" data-icon="star" data-corners="false">Recrutement</a>
-			<a href="#mentions-legales" data-role="button" data-theme="c" data-icon="gear" data-corners="false">Mentions lÈgales</a>
+			<a href="#mentions-legales" data-role="button" data-theme="c" data-icon="gear" data-corners="false">Mentions l√©gales</a>
 			<a href="javascript:window.open('http://mobile.batiactu.com/','_blank','location=yes');" data-role="button" data-theme="c" data-icon="gear" data-corners="false">BatiActu</a>
 			<a href="#" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a>
 			<!--<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" data-theme="a" 
@@ -89,10 +91,10 @@
 			   data-corners="false"><img src="images/map.jpg" 
 			   width="57px" height="57px"></a></center>
 			   
-	   		<!--  <a href="http://www.batiactu.com/" data-role="button" target="_blank">ActualitÈs</a>
+	   		<!--  <a href="http://www.batiactu.com/" data-role="button" target="_blank">Actualit√©s</a>
 	   		<a href="http://formations.batiactu.com/" data-role="button" target="_blank">Formations</a>
 	   		<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" target="_blank"><img src="http://a3.mzstatic.com/us/r1000/120/Purple/1d/64/b1/mzi.thppjjiq.175x175-75.jpg" width="57px" height="57px"></a>
-			<a href="javascript:window.open('http://produits.batiactu.com/','_blank','location=yes');" data-role="button" target="_blank">ProduithËque</a> -->
+			<a href="javascript:window.open('http://produits.batiactu.com/','_blank','location=yes');" data-role="button" target="_blank">Produith√®que</a> -->
 	   
 	</div><!-- /panel -->
 	
@@ -145,12 +147,12 @@
 	<div data-role="content">
 		<h4 style="margin:.5em 0">Recrutez avec <code>Batiactu Emploi</code></h4>
 		<div class="ui-body ui-body-b">
-			Publiez vos offres d'emploi pour une visibilitÈ aupres de la premiËre audience du BTP.
-			<br>Une CVthËque 100% BTP, couvrant tous les mÈtiers du secteur
+			Publiez vos offres d'emploi pour une visibilit√© aupres de la premi√®re audience du BTP.
+			<br>Une CVth√®que 100% BTP, couvrant tous les m√©tiers du secteur
 			
 		</div>
 		<h2>Contactez un conseiller</h2>
-			<a data-theme="b" href="tel:0153684029" data-role="button">TÈlÈphone : 01 53 68 40 29</a>
+			<a data-theme="b" href="tel:0153684029" data-role="button">T√©l√©phone : 01 53 68 40 29</a>
 			<a data-theme="a" href="mailto:emploi@capinfopro.com?subject=demande%20batiactu%20emploi%20mobile&body=demande%20de%20contact" data-role="button">emploi@capinfopro.com</a>
 	</div>
 </div>   
@@ -159,26 +161,26 @@
 <div id="mentions-legales" class="type-interior" data-role="page" data-add-back-btn="true" data-back-btn-text="Accueil">
 	<div data-role="header" data-position="fixed">
 	    <a href="#accueil" data-role=button data-icon=home data-iconpos=notext data-direction="reverse">Accueil</a>
-	    <h1>Mentions LÈgales</h1>
+	    <h1>Mentions L√©gales</h1>
 	</div>
 	<div data-role="content">
 		<div class="content-primary">
-			<h4 style="margin:.5em 0">Batiactu est un site ÈditÈ par</h4>
+			<h4 style="margin:.5em 0">Batiactu est un site √©dit√© par</h4>
 			<div class="ui-body ui-body-b">
-			Cap Information Professionnelle SAS, au capital de 37 000 euros, dont le siËge est situÈ au :<br> 
+			Cap Information Professionnelle SAS, au capital de 37 000 euros, dont le si√®ge est situ√© au :<br> 
 			<br>202 rue de la Croix Nivert 
 			<br>75015 Paris
 			<br>Fax: +33 1 48 56 67 51
 			<br>
-			immatriculÈe au RCS de Paris sous le numÈro 449 204 320.<br>
+			immatricul√©e au RCS de Paris sous le num√©ro 449 204 320.<br>
 			</div>
 			<br>
-			Le site web est hÈbergÈ par Ecritel, 51 rue Le Peletier 75009 Paris,<br>
+			Le site web est h√©berg√© par Ecritel, 51 rue Le Peletier 75009 Paris,<br>
 			Tel : 01 40 61 20 00.<br>
 			<br>
-			<small>Vous disposez d'un droit d'accËs, de modification, de rectification et de suppression des donnÈes qui vous concernent 
-			(art. 34 de la loi "Informatique et LibertÈs"). Pour l'exercer, adressez vous ‡ Cap Information Professionnelle - 
-			202 rue de la Croix Nivert 75015 Paris ou Ècrivez ‡ batiactu@capinfopro.com.</small>		
+			<small>Vous disposez d'un droit d'acc√®s, de modification, de rectification et de suppression des donn√©es qui vous concernent 
+			(art. 34 de la loi "Informatique et Libert√©s"). Pour l'exercer, adressez vous √† Cap Information Professionnelle - 
+			202 rue de la Croix Nivert 75015 Paris ou √©crivez √† batiactu@capinfopro.com.</small>		
 		</div>
 		<div class="content-secondary">
 			<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
@@ -191,9 +193,9 @@
 					<li><a href="#accueil" data-theme="a" data-icon="home" data-corners="false"> Accueil </a></li>
 					<li><a href="#recherche-detail" data-theme="b" data-icon="search" data-corners="false"> Nouvelle recherche </a></li>
 					<!-- <a href="#" data-theme="c" data-icon="grid" data-corners="false"> Mes recherches </a>--></li>
-					<li><a href="#offre" data-theme="e" data-icon="alert" data-corners="false"> CrÈez une alerte e-mail</a></li>
+					<li><a href="#offre" data-theme="e" data-icon="alert" data-corners="false"> Cr√©ez une alerte e-mail</a></li>
 					<li><a href="#recrutement" data-theme="c" data-icon="star" data-corners="false">Recrutement</a></li>
-					<li data-theme="a"><a href="#mentions-legales" data-theme="c" data-icon="gear" data-corners="false">Mentions lÈgales</a></li>
+					<li data-theme="a"><a href="#mentions-legales" data-theme="c" data-icon="gear" data-corners="false">Mentions l√©gales</a></li>
 					<li><a href="javascript:window.open('http://mobile.batiactu.com/','_blank','location=yes');" data-theme="c" data-icon="gear" data-corners="false">BatiActu</a></li>
 					<li><a href="#" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a></li>
 	
@@ -207,22 +209,33 @@
 
 
 <!-- Recherche -->
-<div id="recherche" data-role="page" data-add-back-btn="true" data-back-btn-text="PrÈcÈdent">
+<div id="recherche" data-role="page" data-add-back-btn="true" data-back-btn-text="Pr√©c√©dent">
 	<div data-role="header" data-position="fixed">
-	    <h1>RÈsultats</h1>
+	    <h1>R√©sultats</h1>
 	</div>
-	<div data-role="content">
-		<ul id="resultat-recherche" style="display:none; margin-bottom:30px;" data-role="listview">
-		</ul>
-		
+	<div class="notifications-wrapper">
+      <div class="notifications"></div>
+    </div>
+	<div data-role="content" class="content">
+		<ul id="resultat-recherche" style="display:none;" data-role="listview">
+		</ul>			
 	</div>
+	<div id="more">
+		<p>
+			<a id="next" data-inline="true" data-theme="b" data-role="button" data-next="0" class="infinite-more-link" data-mini="true">Plus de r√©sultats...</a>
+			</p>
+		<p>	
+			<a onClick="alert('en cours... :)');" id="Save_search" data-inline="true" data-theme="b" data-role="button" data-mini="true">Sauvegardez cette recherche</a>
+			<a onClick="reset_search();" id="new_search" data-inline="true" data-theme="b" data-role="button" data-next="0"data-mini="true">Nouvelle recherche</a>
+		</p>
+	</div>	
 	
 </div>   
 
 <!-- ================================================================================================= -->
 
-<!-- Recherche dÈtaillÈ fonction -->
-<div id="recherche-detail-page-fonction" data-role="page"  data-add-back-btn="true" data-back-btn-text="PrÈcÈdent">
+<!-- Recherche d√©taill√© fonction -->
+<div id="recherche-detail-page-fonction" data-role="page"  data-add-back-btn="true" data-back-btn-text="Pr√©c√©dent">
 	<div data-role="header">
 	    <h1>Fonctions</h1>
 	</div>
@@ -237,11 +250,11 @@
         
 <!-- ================================================================================================= -->
 
-<!-- Recherche dÈtaillÈ zone gÈographique -->
+<!-- Recherche d√©taill√© zone g√©ographique -->
         
-<div id="recherche-detail-page-zonegeo" data-role="page"  data-add-back-btn="true" data-back-btn-text="PrÈcÈdent">
+<div id="recherche-detail-page-zonegeo" data-role="page"  data-add-back-btn="true" data-back-btn-text="Pr√©c√©dent">
 	<div data-role="header">
-	    <h1>RÈgions</h1>
+	    <h1>R√©gions</h1>
 	</div>
 	<div data-role="content">
 		<fieldset data-role="controlgroup" id="recherche-detail-zonegeo" >
@@ -251,9 +264,9 @@
 </div>        
         
 
-<!-- Recherche dÈtaillÈ type contrat -->
+<!-- Recherche d√©taill√© type contrat -->
         
-<div id="recherche-detail-page-contrat" data-role="page"  data-add-back-btn="true" data-back-btn-text="PrÈcÈdent">
+<div id="recherche-detail-page-contrat" data-role="page"  data-add-back-btn="true" data-back-btn-text="Pr√©c√©dent">
 	<div data-role="header">
 	    <h1>Contrats</h1>
 	</div>
@@ -267,11 +280,11 @@
 </div>        
       
 
-<!-- Recherche dÈtaillÈ expÈrience -->
+<!-- Recherche d√©taill√© exp√©rience -->
         
-<div id="recherche-detail-page-experience" data-role="page" data-add-back-btn="true" data-back-btn-text="PrÈcÈdent">
+<div id="recherche-detail-page-experience" data-role="page" data-add-back-btn="true" data-back-btn-text="Pr√©c√©dent">
 	<div data-role="header">
-	    <h1>ExpÈriences</h1>
+	    <h1>Exp√©riences</h1>
 	</div>
 	<div data-role="content">
 		<fieldset data-role="controlgroup" id="recherche-detail-experience">
@@ -282,7 +295,7 @@
 </div>        
   
 
-<!-- Recherche dÈtaillÈ dÈtail -->
+<!-- Recherche d√©taill√© d√©tail -->
         
 <div id="recherche-detail" data-role="page" >
 	<div data-role="header">
@@ -313,7 +326,7 @@
 			</li>
 			<li data-mini="true">
 				<a href="#recherche-detail-page-experience">
-					ExpÈrience
+					Exp√©rience
 					<p class="ui-li-desc" id="selected-detail-page-experience"></p>	
 				</a>
 				
@@ -322,7 +335,8 @@
 				<input data-mini="true" name="mot-clef" id="recherche-detail-mot-clef" placeholder="Mot-clef" value="" type="text">
 			</li>
 			<li data-mini="true" style="text-align:center;">
-				<input data-inline="true" data-mini="true" data-theme="b" type="button" value="Lancer une recherche" onclick="launchSearch(true);" />
+				<!--<input data-inline="true" data-mini="true" data-theme="b" type="button" value="Lancer une recherche" onclick="$.mobile.changePage('#recherche');" />-->
+				 <p><a id="link_search" onClick="save_current_criteres();go_url_recherche();" data-role="button" data-theme="b" data-inline="true">Lancer une recherche</a></p>				 
 			</li>
 		</ul>
 		 
@@ -330,7 +344,7 @@
 	
 </div>   
 
-<!-- ============================================= Les recherches personnalisÈes =================================== -->
+<!-- ============================================= Les recherches personnalis√©es =================================== -->
 
 <div id="offre" data-role="page" data-theme=e>
 	<div data-role="header" data-theme=e>
@@ -347,10 +361,10 @@
 				<li><a href=#> Agents immobiliers </a> <span class=ui-li-count>2 offres</span> </li>
 				<li><a href=#> Architectes </a> <span class=ui-li-count>5 offres</span></li>
 				<li><a href=#> Conducteurs d'engins </a><span class=ui-li-count>14 offres</span> </li>
-				<li><a href=#> IngÈnieurs en gÈnis civil </a> <span class=ui-li-count>1 offre</span></li>
+				<li><a href=#> Ing√©nieurs en g√©nis civil </a> <span class=ui-li-count>1 offre</span></li>
 				
 			</ul>
-		<br/>
+		<br />
 		<a href="#galleryimg" data-role=button data-icon="grid" data-theme=a> Maquettes Loubna</a>
 		
 		<div data-role="popup" id="delete" data-theme="d" data-overlay-theme="b" class="ui-content" style="max-width:340px;">
@@ -369,11 +383,11 @@
 
 <!-- ============================================= La page ACTU  =================================== -->
 
-<div id="actu" data-role="page" data-theme=c  data-add-back-btn="true" data-back-btn-text="PrÈcÈdent">
+<div id="actu" data-role="page" data-theme=c  data-add-back-btn="true" data-back-btn-text="Pr√©c√©dent">
 	<div data-role="header">
 		<!-- <a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a> -->
 		<!-- <a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos=notext>Menu</a> -->
-		<h1>ActualitÈs</h1>
+		<h1>Actualit√©s</h1>
 	</div>
 	<div data-role="content" data-theme="c">
 		<ul id="list-actu" style="display:none; margin-bottom:30px;" data-role="listview">
@@ -395,7 +409,7 @@
         
 
 <!-- Article -->        
-<div id="article" data-role="page"  data-add-back-btn="true" data-back-btn-text="PrÈcÈdent">
+<div id="article" data-role="page"  data-add-back-btn="true" data-back-btn-text="Pr√©c√©dent">
 	<div data-role="header">
 	    <a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos=notext>Menu</a>
 		<h1>Article <!-- <span class="item_titre"> --></span></h1>
@@ -434,10 +448,13 @@
 	</div>    
 </div>  
 
-<div id="annonce" data-role="page" data-add-back-btn="true" data-back-btn-text="PrÈcÈdent">
+<div id="annonce" data-role="page" data-add-back-btn="true" data-back-btn-text="Pr√©c√©dent">
 	<div data-role="header">
-		<h1>DÈtails de l'offre</h1>
+		<h1>D√©tails de l'offre</h1>
 	</div>
+	<div class="notifications-wrapper">
+      <div class="notifications"></div>
+    </div>
 	<div data-role="content">
 	</div>
 	<div id="nav-annonce" data-role="footer" style="overflow:hidden;" data-id="footer2" class="ui-state-persist" data-position="fixed">
@@ -445,7 +462,8 @@
 </div>    
 <!-- Partie script javascript --------------------------------------------------------->
 
-<script>
+<script type="text/javascript">
+
 
 $('#actu').on('pageinit', function(){
 
@@ -467,12 +485,91 @@ $('#offre').on('pageinit', function(){
 
 $('#recherche-detail').on('pageinit', function(){
 	initSearch();
+}); 
+$('#recherche-detail').on('pageshow', function(){
+	$('#recherche #next').attr('data-next',0)
+	save_current_criteres();
+	//updateurl($('#recherche-detail link_search'));
+});
+$('#recherche').on('pagebeforeshow', function(){
+	$('#recherche .content').waypoint('destroy');
+	
+	$('#recherche #next').unbind();
+	$('#recherche #next').bind('click', function(e){
+        current = parseInt($('#recherche #next').attr('data-next'));
+		if(current<=current_nb_annonce){			
+			e.preventDefault();
+	
+	        launchSearch(1);
+			
+			$('#resultat-recherche').listview('refresh');
+			$('#recherche .content').waypoint('disable');	
+			$('#recherche .content').waypoint('enable');
+			$('#recherche').trigger('pagecreate');
+		}
+		current = parseInt($('#recherche #next').attr('data-next'));
+		
+		
+		if((current+nb_results_by_page)<=current_nb_annonce){		
+			$('#recherche #next').show();
+			//$('#recherche #next').data('disabled',false); 
+			$('#recherche #next').removeClass('ui-disabled');
+ 			
+		}else{
+			$('#recherche #next').hide();	
+			//$('#recherche #next').data('disabled',true);  
+			$('#recherche #next').addClass('ui-disabled');
+			
+		}
+			
+	});
 });
 
-$('#recherche').on('pageshow', function(){
-	//reset_annonce();
-});
+$('#recherche').on('pageshow', function(){	
+	
+	
+	current = parseInt($('#recherche #next').attr('data-next'));
+	if(current_nb_annonce >= current){		
+		$('#recherche .content').waypoint(function(direction) {
+			
+			if (direction === 'down'){
+				$('#recherche #next').trigger('click');				
+			}
+		}, { offset: 'bottom-in-view' } );
+    }
+    
+    
+	if((current+nb_results_by_page)<=current_nb_annonce){		
+		$('#recherche #next').show();
+		//$('#recherche #next').data('disabled',false); 
+		$('#recherche #next').removeClass('ui-disabled');
+		
+	}else{
+		$('#recherche #next').hide();	
+		//$('#recherche #next').data('disabled',true);  
+		$('#recherche #next').addClass('ui-disabled');
+		
+	}
+		
+ 
+});  
 
+var notify = function(message) {
+      var $message = $('<p style="display:none;">' + message + '</p>');
+
+      $('.notifications').append($message);
+      $message.slideDown(300, function() {
+        window.setTimeout(function() {
+          $message.slideUp(300, function() {
+            $message.remove();
+          });
+        }, 2000);
+      });
+    };
+var remove_notify = function(message) {
+      $('.notifications p').remove();
+    };
+    
 $('#recherche-detail').on('pageshow', function(){
 	$('.check_cac').off('click').on('click', function() {
 		uncheck_cac($(this).attr('cac_type'),$(this));
@@ -480,25 +577,39 @@ $('#recherche-detail').on('pageshow', function(){
     }); 
 });
 $(document).bind( "pagebeforechange", function( e, data ) {
+	var u = $.mobile.path.parseUrl( data.toPage );
+	
 	// We only want to handle changePage() calls where the caller is
 	// asking us to load a page by URL.
 	if ( typeof data.toPage === "string" ) {
+			re = /^#recherche\?/;
+		if ( u.hash.search(re) !== -1 ) {		
+			// We're being asked to display the items for a specific annonce.
+			// Call our internal method that builds the content for the annonce
+			// on the fly based on our in-memory annonce data structure.			
+			execute_search( u, data.options );
+    
+			// Make sure to tell changePage() we've handled this call so it doesn't
+			// have to do anything.
+			e.preventDefault();
+		}
+	
 		// We are being asked to load a page by URL, but we only
 		// want to handle URLs that request the data for a specific
-		// category.
+		// annonce.
 		var u = $.mobile.path.parseUrl( data.toPage ),
 			re = /^#annonce/;
 		if ( u.hash.search(re) !== -1 ) {
-			// We're being asked to display the items for a specific category.
-			// Call our internal method that builds the content for the category
-			// on the fly based on our in-memory category data structure.
+			// We're being asked to display the items for a specific annonce.
+			// Call our internal method that builds the content for the annonce
+			// on the fly based on our in-memory annonce data structure.
 			showAnnonce( u, data.options );
 
 			// Make sure to tell changePage() we've handled this call so it doesn't
 			// have to do anything.
 			e.preventDefault();
 		}
-	}
+	} 
 });
 
 /*$('#annonce').on('pagecreate', function(){
@@ -527,7 +638,7 @@ $(document).ready(function()
 	sHtml = '<div data-role="navbar">' + 
 		'<ul>' + 		    
 		    '<li><a href="#recherche-detail" data-icon="search">Recherche</a></li>' +
-		    '<li><a href="#actu" data-icon="grid">ActualitÈs</a></li>' +
+		    '<li><a href="#actu" data-icon="grid">Actualit√©s</a></li>' +
 		    '<li><a href="#offre" data-icon="check">Mes alertes</a></li>' +
 		'</ul>' +
 	    '</div>'; 
@@ -588,12 +699,12 @@ $(document).ready(function()
         			{{/if}}
         			{{#if REMUNERATION}}
         			<tr>
-        				<td class="black" colspan="2"><span class="grey">RÈmunÈration : </span>{{{REMUNERATION}}}</td>
+        				<td class="black" colspan="2"><span class="grey">R√©mun√©ration : </span>{{{REMUNERATION}}}</td>
         			</tr>
         			{{/if}}
         			<tr>
 	        			<td class="blue padtop10">{{DT_DEBVALID}}</td>
-	        			<td class="blue padtop10" align="right">RÈf. {{REFERENCE}}</td>
+	        			<td class="blue padtop10" align="right">R√©f. {{REFERENCE}}</td>
 	        			
 	        		</tr>
         		</table>
@@ -628,7 +739,7 @@ $(document).ready(function()
 
 <script id="recherche-resultat-tpl" type="text/x-handlebars-template">
 		{{#.}}
-			<li>
+			<li class="infinite-item">
 				<!--<a href="javascript:showAnnonce({{item_origine}})">-->
 				<a href="#annonce?id={{item_origine}}">
      				<div id="div_img"><p>{{{item_image_to_show}}}</p></div>
