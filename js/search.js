@@ -33,7 +33,11 @@ function reset_search(){
 	
 	$('[id^=selected-detail-page-]').text('');
 	$('[id=recherche-detail-mot-clef]').val('');
-	
+	$('.check_cac').each(function(){
+		$(this).prop('checked', false);		
+		$(this).checkboxradio().checkboxradio("refresh");
+	});
+
 	$.mobile.changePage('#recherche-detail');
 }
 function initSearch() {
@@ -237,11 +241,20 @@ function launchSearch(advanceMode) {
 	}	
 		
 	
-	$('#resultat-recherche').html('');
+	//$('#resultat-recherche').html('');
 	var $header = $('#recherche').children( ":jqmData(role=header)" );		
 	$header.find( "h1" ).text('');
 	$('#resultat-recherche').show();
 	//$('#recherche #next').attr('data-next',0);
+	
+	
+	var template = Handlebars.compile($("#nav-recherche-tpl").html());		 	
+	$('#nav-recherche').remove();
+	Tab=new Array;
+	Tab['nav']=[{'SAVE':'Sauvegarder','NEW':'Nouvelle recherche'}];
+	TabComplete=new Array;
+	TabComplete.push(Tab);
+	$('#recherche').append(template(TabComplete));	
 				
 	$('#resultat-recherche').completeListItem({
 		url:DIRSCRIPTS+'interface-mobile.php'
@@ -256,9 +269,9 @@ function launchSearch(advanceMode) {
 			,contrat:contrat
 			,length:nextlength
 		}
-	});			
-			 	
-			 
+	});	
+		
+		 
 			 
 	return false;
 }

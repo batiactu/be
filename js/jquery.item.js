@@ -14,7 +14,7 @@
             
 			 var myList = $(this);
 			 var template = Handlebars.compile($(options.template).html());
-			 
+			  
 			 if(options.noLoading==null) $.mobile.loading( 'show' );
 			 
 			 //myList.hide();
@@ -160,8 +160,8 @@
 			 		//}
                     
                     row['nav']=[{'PREVIOUS':row['PREVIOUS'],'NEXT':row['NEXT']}];
-                    $(options.itemtarget+' :jqmData(role=footer)').remove();
-                    $(options.itemtarget+' :jqmData(role=content)').remove();
+                    //$(options.itemtarget+' :jqmData(role=footer)').remove();
+                    //$(options.itemtarget+' :jqmData(role=content)').remove();
                     $(options.itemtarget).append(template(row)).trigger('create');
                     _refresh_datas();
                     

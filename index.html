@@ -101,9 +101,10 @@
 	<div data-role="content">
     	<p align="center">
     		Batiactu Emploi, 1er site d'offre d'emploi dans le BTP, la construction et l'immobilier<br />
-    		<strong>Plus de 2200 offres d'emploi disponibles !</strong>
-    		
-    		<a href="#recherche-detail" data-role="button">Lancer une recherche</a>
+    		<strong>Plus de 2200 offres d'emploi disponibles !</strong>    		
+    	</p>
+    	<p align="center">
+    	<a href="#recherche-detail" data-role="button" data-inline="true" data-mini="true">Effectuer une recherche</a>
     	</p>
         	
     </div>	
@@ -209,7 +210,7 @@
 
 
 <!-- Recherche -->
-<div id="recherche" data-role="page" data-add-back-btn="true" data-back-btn-text="Précédent">
+<div id="recherche" data-role="page" data-add-back-btn="true" data-back-btn-text="Retour">
 	<div data-role="header" data-position="fixed">
 	    <h1>Résultats</h1>
 	</div>
@@ -221,21 +222,17 @@
 		</ul>			
 	</div>
 	<div id="more">
-		<p>
+		<p align="center">
 			<a id="next" data-inline="true" data-theme="b" data-role="button" data-next="0" class="infinite-more-link" data-mini="true">Plus de résultats...</a>
-			</p>
-		<p>	
-			<a onClick="alert('en cours... :)');" id="Save_search" data-inline="true" data-theme="b" data-role="button" data-mini="true">Sauvegardez cette recherche</a>
-			<a onClick="reset_search();" id="new_search" data-inline="true" data-theme="b" data-role="button" data-next="0"data-mini="true">Nouvelle recherche</a>
 		</p>
+		
 	</div>	
-	
 </div>   
 
 <!-- ================================================================================================= -->
 
 <!-- Recherche détaillé fonction -->
-<div id="recherche-detail-page-fonction" data-role="page"  data-add-back-btn="true" data-back-btn-text="Précédent">
+<div id="recherche-detail-page-fonction" data-role="page"  data-add-back-btn="true" data-back-btn-text="Retour">
 	<div data-role="header">
 	    <h1>Fonctions</h1>
 	</div>
@@ -252,7 +249,7 @@
 
 <!-- Recherche détaillé zone géographique -->
         
-<div id="recherche-detail-page-zonegeo" data-role="page"  data-add-back-btn="true" data-back-btn-text="Précédent">
+<div id="recherche-detail-page-zonegeo" data-role="page"  data-add-back-btn="true" data-back-btn-text="Retour">
 	<div data-role="header">
 	    <h1>Régions</h1>
 	</div>
@@ -266,7 +263,7 @@
 
 <!-- Recherche détaillé type contrat -->
         
-<div id="recherche-detail-page-contrat" data-role="page"  data-add-back-btn="true" data-back-btn-text="Précédent">
+<div id="recherche-detail-page-contrat" data-role="page"  data-add-back-btn="true" data-back-btn-text="Retour">
 	<div data-role="header">
 	    <h1>Contrats</h1>
 	</div>
@@ -282,7 +279,7 @@
 
 <!-- Recherche détaillé expérience -->
         
-<div id="recherche-detail-page-experience" data-role="page" data-add-back-btn="true" data-back-btn-text="Précédent">
+<div id="recherche-detail-page-experience" data-role="page" data-add-back-btn="true" data-back-btn-text="Retour">
 	<div data-role="header">
 	    <h1>Expériences</h1>
 	</div>
@@ -335,8 +332,7 @@
 				<input data-mini="true" name="mot-clef" id="recherche-detail-mot-clef" placeholder="Mot-clef" value="" type="text">
 			</li>
 			<li data-mini="true" style="text-align:center;">
-				<!--<input data-inline="true" data-mini="true" data-theme="b" type="button" value="Lancer une recherche" onclick="$.mobile.changePage('#recherche');" />-->
-				 <p><a id="link_search" onClick="save_current_criteres();go_url_recherche();" data-role="button" data-theme="b" data-inline="true">Lancer une recherche</a></p>				 
+				<p><a id="link_search" onClick="save_current_criteres();go_url_recherche();" data-role="button" data-theme="b" data-mini="true" data-inline="true">Lancer une recherche</a></p>				 
 			</li>
 		</ul>
 		 
@@ -383,7 +379,7 @@
 
 <!-- ============================================= La page ACTU  =================================== -->
 
-<div id="actu" data-role="page" data-theme=c  data-add-back-btn="true" data-back-btn-text="Précédent">
+<div id="actu" data-role="page" data-theme=c  data-add-back-btn="true" data-back-btn-text="Retour">
 	<div data-role="header">
 		<!-- <a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a> -->
 		<!-- <a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos=notext>Menu</a> -->
@@ -409,7 +405,7 @@
         
 
 <!-- Article -->        
-<div id="article" data-role="page"  data-add-back-btn="true" data-back-btn-text="Précédent">
+<div id="article" data-role="page"  data-add-back-btn="true" data-back-btn-text="Retour">
 	<div data-role="header">
 	    <a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos=notext>Menu</a>
 		<h1>Article <!-- <span class="item_titre"> --></span></h1>
@@ -448,7 +444,7 @@
 	</div>    
 </div>  
 
-<div id="annonce" data-role="page" data-add-back-btn="true" data-back-btn-text="Précédent">
+<div id="annonce" data-role="page" data-add-back-btn="true" data-back-btn-text="Retour">
 	<div data-role="header">
 		<h1>Détails de l'offre</h1>
 	</div>
@@ -654,6 +650,24 @@ $(document).ready(function()
 </script>
 
 <!-- template handlebar -->
+<script id="nav-recherche-tpl" type="text/x-handlebars-template">
+{{#.}}    
+	<div id="nav-recherche" data-role="footer" style="overflow:hidden;" data-id="footer2" class="ui-state-persist" data-position="fixed">
+		<div align="center">
+		  	{{#each nav}}
+			{{#if SAVE}}
+			<a style="float:left;" onClick="alert('en cours... :)');" id="Save_search" data-role="button" data-theme="b" data-inline="true">{{SAVE}}</a>	
+			{{/if}}
+			<!--<a href="javascript:postuler();" data-role="button" data-theme="b" data-inline="true">Nouvelle recherche</a>-->
+		  	{{#if NEW}}
+			<a style="float:right;" onClick="reset_search();" data-role="button" data-theme="b" data-inline="true">{{NEW}}</a>
+			{{/if}}	
+			{{/each}}
+		  </div>
+	</div>    
+{{/.}}
+</script>  
+
 <script id="nav-annonce-detail-tpl" type="text/x-handlebars-template">
 {{#.}}    
 	<div id="nav-annonce" data-role="footer" style="overflow:hidden;" data-id="footer2" class="ui-state-persist" data-position="fixed">
@@ -743,7 +757,8 @@ $(document).ready(function()
 				<!--<a href="javascript:showAnnonce({{item_origine}})">-->
 				<a href="#annonce?id={{item_origine}}">
      				<div id="div_img"><p>{{{item_image_to_show}}}</p></div>
-     				<h2>{{item_libelle}} <span style="font-weight: normal">de {{item_lib_recruteur}}</span></h2>
+     				<h2>{{item_libelle}}</h2>
+     				<span class="resultat_lib_recruteur">{{item_lib_recruteur}}</span>
 				</a>
 			</li>
 		{{/.}}
