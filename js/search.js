@@ -1,5 +1,5 @@
-//var DIRSCRIPTS = 'http://bo.v2.batiactuemploi.com/scripts/';
-var DIRSCRIPTS = 'http://local.back2012.batiactuemploi.com/scripts/';
+var DIRSCRIPTS = 'http://bo.v2.batiactuemploi.com/scripts/';
+//var DIRSCRIPTS = 'http://local.back2012.batiactuemploi.com/scripts/';
 
 var Limit_Annonce = 200;
 var nb_results_by_page = 30;
