@@ -112,8 +112,7 @@
 				}
 				
 				$header.find( "h1" ).text(res);
-				
-					            
+								
 
 			 	myList.show();
 			 	myList.listview('refresh');
@@ -124,6 +123,8 @@
 			 	$.waypoints();
 	    		$.waypoints('refresh');
 			 
+			 	
+	
 	        });    
 	       
     }
@@ -142,7 +143,7 @@
 			var myItemId = myItem.attr('id');
 			var template = Handlebars.compile($(options.template).html()); 
             //var templatefooter = Handlebars.compile($('#nav-annonce-detail-tpl').html());
-            Handlebars.registerPartial("nav", $("#nav-annonce-detail-tpl").html());
+            //Handlebars.registerPartial("nav", $("#nav-annonce-detail-tpl").html());
 
 			$.mobile.loading( 'show' );
 
@@ -159,12 +160,21 @@
 			 		//	annonce[k] = row[k];	
 			 		//}
                     
-                    row['nav']=[{'PREVIOUS':row['PREVIOUS'],'NEXT':row['NEXT']}];
-                    //$(options.itemtarget+' :jqmData(role=footer)').remove();
-                    //$(options.itemtarget+' :jqmData(role=content)').remove();
-                    $(options.itemtarget).append(template(row)).trigger('create');
+                    //row['nav']=[{'PREVIOUS':row['PREVIOUS'],'NEXT':row['NEXT']}];
+                    $(options.itemtarget+' :jqmData(role=footer)').remove();
+                    $(options.itemtarget+' :jqmData(role=content)').remove();
+                    $(options.itemtarget).append(template(row));//.trigger('create');
                     _refresh_datas();
                     
+                    $('#annonce #nav-annonce').remove();
+					var template2 = Handlebars.compile($("#nav-annonce-detail-tpl").html());		 		
+					Tab=new Array;
+					Tab['nav']=[{'PREVIOUS':prevP,'NEXT':nextP}];
+					TabComplete=new Array;
+					TabComplete.push(Tab);	 
+					$('#annonce').append(template2(TabComplete)).page().trigger('create');
+	
+                    //$(options.itemtarget).page();
                     
 					$.mobile.loading( 'hide' );	
 													        
@@ -173,9 +183,11 @@
 			 		$.mobile.loading( 'hide' );
 			 	}
 			 });
-			 $(options.template).page();
 
-			 return this;
+			$(options.itemtarget).trigger('create');
+            //$(options.itemtarget).page();             
+
+			return this;
 
     }
     

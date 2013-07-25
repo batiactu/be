@@ -1,3 +1,5 @@
+var prevP=0,nextP=0;
+
 function postuler() {
 	
 	email = $('#email').val();
@@ -36,12 +38,16 @@ function postuler() {
 					}				
 									        
 					notify(msg);
+					$('#annonce').trigger('pagebeforecreate');
+					$('#annonce').trigger('pagecreate');
+					$('#annonce').page();	 
 			 	}
 			 	,error:function() {
 			 		$.mobile.loading( 'hide' );
 			 	}
 			 });
-		$('#annonce').page();	 
+		//$('#annonce').page();
+        //$('#annonce').trigger('pagebeforecreate').trigger('pagecreate').page();	 
 	}
 	
 }
@@ -55,8 +61,8 @@ function showAnnonce(urlObj, options) {
 	var nb = search_list_id.length;
 	
 	var current_ind = search_list_id.indexOf(id_annonce.toString());
-	var prevP = current_ind>0?search_list_id[current_ind-1]:null;
-	var nextP = current_ind<nb-1?search_list_id[current_ind+1]:null;
+	prevP = current_ind>0?search_list_id[current_ind-1]:null;
+	nextP = current_ind<nb-1?search_list_id[current_ind+1]:null;
 	
 	
 	// The pages we use to display our content are already in
@@ -76,18 +82,18 @@ function showAnnonce(urlObj, options) {
 			,NEXT:nextP
 		}
 	});
-    $page.page();
-    
+	
     var $header = $page.children( ":jqmData(role=header)" );
 
 	$header.find( "h1" ).text( 'Détails annonce '+id_annonce );
 	
 	$page.page();
-	
+            
 	options.dataUrl = urlObj.href;
 
     $.mobile.changePage( $page, options );
-
+	
+	$page.page().trigger('pagecreate');	
 }
 
 function _refresh_datas(){ 

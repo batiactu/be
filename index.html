@@ -453,7 +453,7 @@
     </div>
 	<div data-role="content">
 	</div>
-	<div id="nav-annonce" data-role="footer" style="overflow:hidden;" data-id="footer2" class="ui-state-persist" data-position="fixed">
+	<div id="nav-annonce" data-role="footer" style="overflow:hidden;" data-id="footer3" class="ui-state-persist" data-position="fixed">
 	</div>   	
 </div>    
 <!-- Partie script javascript --------------------------------------------------------->
@@ -482,12 +482,30 @@ $('#offre').on('pageinit', function(){
 $('#recherche-detail').on('pageinit', function(){
 	initSearch();
 }); 
+$('#recherche-detail').on('pagecreate', function(){
+
+});
 $('#recherche-detail').on('pageshow', function(){
-	$('#recherche #next').attr('data-next',0)
+	$('#recherche #next').attr('data-next',0);
 	save_current_criteres();
-	//updateurl($('#recherche-detail link_search'));
+});
+$('#recherche').on('pagecreate', function(){
+	$('#nav-recherche').remove();
+	var template2 = Handlebars.compile($("#nav-recherche-tpl").html());		 		
+	Tab=new Array;
+	Tab['nav']=[{'SAVE':'Sauvegarder','NEW':'Nouvelle recherche'}];
+	TabComplete=new Array;
+	TabComplete.push(Tab);	 
+	$('#recherche').append(template2(TabComplete)).trigger('create');  
+});
+$('#annonce').on('pagecreate', function(){
+	
+	//var $footer =$('#nav-annonce');
+	//alert($footer.html());
+    //$footer.navbar();  
 });
 $('#recherche').on('pagebeforeshow', function(){
+	
 	$('#recherche .content').waypoint('destroy');
 	
 	$('#recherche #next').unbind();
@@ -519,6 +537,9 @@ $('#recherche').on('pagebeforeshow', function(){
 		}
 			
 	});
+	
+	
+	
 });
 
 $('#recherche').on('pageshow', function(){	
@@ -578,7 +599,7 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 	// We only want to handle changePage() calls where the caller is
 	// asking us to load a page by URL.
 	if ( typeof data.toPage === "string" ) {
-			re = /^#recherche\?/;
+		var re = /^#recherche\?/;
 		if ( u.hash.search(re) !== -1 ) {		
 			// We're being asked to display the items for a specific annonce.
 			// Call our internal method that builds the content for the annonce
@@ -593,14 +614,13 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 		// We are being asked to load a page by URL, but we only
 		// want to handle URLs that request the data for a specific
 		// annonce.
-		var u = $.mobile.path.parseUrl( data.toPage ),
-			re = /^#annonce/;
+		var re = /^#annonce/;
 		if ( u.hash.search(re) !== -1 ) {
 			// We're being asked to display the items for a specific annonce.
 			// Call our internal method that builds the content for the annonce
 			// on the fly based on our in-memory annonce data structure.
 			showAnnonce( u, data.options );
-
+            $('#annonce').trigger('pagecreate');	
 			// Make sure to tell changePage() we've handled this call so it doesn't
 			// have to do anything.
 			e.preventDefault();
@@ -617,7 +637,7 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 $('#accueil').on('pagebeforecreate', function(){
 
 	//var footer = $('#template-page div[data-role="footer"]');
-	//$('div[id!="annonce"][data-role="page"]').append(footer);
+	//$('div[id!="annonce"][id!="recherche"][data-role="page"]').append(footer);
 	
 });
 $(document).ready(function() 
@@ -652,7 +672,7 @@ $(document).ready(function()
 <!-- template handlebar -->
 <script id="nav-recherche-tpl" type="text/x-handlebars-template">
 {{#.}}    
-	<div id="nav-recherche" data-role="footer" style="overflow:hidden;" data-id="footer2" class="ui-state-persist" data-position="fixed">
+	<div id="nav-recherche" data-role="footer" style="overflow:hidden;" data-id="footer2" data-position="fixed">
 		<div align="center">
 		  	{{#each nav}}
 			{{#if SAVE}}
@@ -670,7 +690,7 @@ $(document).ready(function()
 
 <script id="nav-annonce-detail-tpl" type="text/x-handlebars-template">
 {{#.}}    
-	<div id="nav-annonce" data-role="footer" style="overflow:hidden;" data-id="footer2" class="ui-state-persist" data-position="fixed">
+	<div id="nav-annonce" data-role="footer" style="overflow:hidden;" data-id="footer3" data-position="fixed">
 		<div align="center">
 		  	{{#each nav}}
 			{{#if PREVIOUS}}
@@ -737,14 +757,16 @@ $(document).ready(function()
 		
 		
     </div>
-	{{#if nav.length}}
-      {{> nav}}
-    {{/if}}
+	
 		
 {{/.}}
 </script> 
 
-   
+<!--
+	{{#if nav.length}}
+      {{> nav}}
+    {{/if}}
+-->   
 <script id="recherche-detail-tpl" type="text/x-handlebars-template">
 {{#.}}
 	<label><input data-mini="true" cac_type="{{type}}" class="check{{type}} check_cac" type="checkbox" value="{{item_value}}" id="T{{item_libelle}}_{{item_index}}"> {{item_label}}</label>

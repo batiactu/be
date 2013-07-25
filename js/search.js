@@ -246,15 +246,7 @@ function launchSearch(advanceMode) {
 	$header.find( "h1" ).text('');
 	$('#resultat-recherche').show();
 	//$('#recherche #next').attr('data-next',0);
-	
-	
-	var template = Handlebars.compile($("#nav-recherche-tpl").html());		 	
-	$('#nav-recherche').remove();
-	Tab=new Array;
-	Tab['nav']=[{'SAVE':'Sauvegarder','NEW':'Nouvelle recherche'}];
-	TabComplete=new Array;
-	TabComplete.push(Tab);
-	$('#recherche').append(template(TabComplete));	
+		
 				
 	$('#resultat-recherche').completeListItem({
 		url:DIRSCRIPTS+'interface-mobile.php'
@@ -270,9 +262,7 @@ function launchSearch(advanceMode) {
 			,length:nextlength
 		}
 	});	
-		
-		 
-			 
+				 
 	return false;
 }
 function execute_search(urlObj, options){
@@ -288,12 +278,14 @@ function execute_search(urlObj, options){
 	
     $.mobile.changePage( $page, options );
     
+    
+	
 }
 function go_url_recherche(t){
 	//l'url est créée dynamiquement
 	newurl = '#recherche' + '?zone=' + current_zonegeo.join('-')+'&fct='+  current_fonction.join('-');
 	$.mobile.changePage( newurl);
-    
+       	
 	return true; 
 }
 function save_current_criteres(){
