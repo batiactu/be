@@ -56,10 +56,9 @@
 <div id="accueil" data-role="page" data-theme="b" >
 	
 	<div data-role="header" data-theme="b">	    
-	    <a href="#accueil" data-role=button data-icon=home data-iconpos="notext">Accueil</a>
+	    <!--<a href="#accueil" data-role=button data-icon=home data-iconpos="notext">Accueil</a>-->
+	    <h1 style="margin:5px auto auto auto;width:200px;position:relative;font-size:32px;text-align:center !important;"><div style="position:relative;height:90px;"><span style="color:#FFF;font-size:46px !important">[</span> batiactu <span style="color:#FFF;font-size:46px !important">]</span><div style="right:32px;bottom:15px;position:absolute;font-size:22px;color:blue;">Emploi</div></div></h1>
 	    <a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos="notext">Menu</a>
-	    <h1 style="text-align:left;margin-left:70px;"><span style="color:#EF760E;font-size:19px">[</span> batiactu <span style="color:#EF760E;font-size:19px">]</span> <sub>Emploi</sub></h1>
-	    
 	</div>
 	
 	<div data-role="panel" id="menu" class="ui-state-persist" data-position="right" data-theme="b">
@@ -72,13 +71,13 @@
 		
 		<div data-role=controlgroup>
 			<a href="#accueil" data-role="button" data-theme="a" data-icon="home" data-corners="false"> Accueil </a>
-			<a href="#recherche-detail" data-role="button" data-theme="b" data-icon="search" data-corners="false"> Nouvelle recherche </a>
-			<!-- <a href="#" data-role="button" data-theme="c" data-icon="grid" data-corners="false"> Mes recherches </a>-->
-			<a href="#offre" data-role="button" data-theme="e" data-icon="alert" data-corners="false"> Créez une alerte e-mail</a>
+			<a onClick="reset_search();" data-role="button" data-theme="c" data-icon="search" data-corners="false">Nouvelle recherche</a>
+			<a href="#mes-recherches" data-role="button" data-theme="c" data-icon="grid" data-corners="false"> Mes recherches </a>
+			<!--<a href="#offre" data-role="button" data-theme="e" data-icon="alert" data-corners="false"> Créez une alerte e-mail</a>-->
 			<a href="#recrutement" data-role="button" data-theme="c" data-icon="star" data-corners="false">Recrutement</a>
 			<a href="#mentions-legales" data-role="button" data-theme="c" data-icon="gear" data-corners="false">Mentions légales</a>
-			<a href="javascript:window.open('http://mobile.batiactu.com/','_blank','location=yes');" data-role="button" data-theme="c" data-icon="gear" data-corners="false">BatiActu</a>
-			<a href="#" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a>
+			<a href="#" onclick="javascript:window.open('http://mobile.batiactu.com/','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="gear" data-corners="false">BatiActu</a>
+			<a href="#" onclick="javascript:window.open('http://www.batiactuemploi.com/','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a>
 			<!--<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" data-theme="a" 
 			   data-icon="arrow-r" data-corners="false">Application batiactu</a>	-->
 		</div>
@@ -104,7 +103,7 @@
     		<strong>Plus de 2200 offres d'emploi disponibles !</strong>    		
     	</p>
     	<p align="center">
-    	<a href="#recherche-detail" data-role="button" data-inline="true" data-mini="true">Effectuer une recherche</a>
+    	<a href="#recherche-detail" data-role="button" data-inline="true" data-mini="true">Lancer une recherche</a>
     	</p>
         	
     </div>	
@@ -192,13 +191,14 @@
 				
 					<li data-role="list-divider">Menu</li>
 					<li><a href="#accueil" data-theme="a" data-icon="home" data-corners="false"> Accueil </a></li>
-					<li><a href="#recherche-detail" data-theme="b" data-icon="search" data-corners="false"> Nouvelle recherche </a></li>
-					<!-- <a href="#" data-theme="c" data-icon="grid" data-corners="false"> Mes recherches </a>--></li>
-					<li><a href="#offre" data-theme="e" data-icon="alert" data-corners="false"> Créez une alerte e-mail</a></li>
+					<!--<li><a href="#recherche-detail" data-theme="b" data-icon="search" data-corners="false"> Nouvelle recherche </a></li>-->
+					<li><a href="#" onClick="reset_search();" data-theme="e" data-corners="false" data-icon="search" > Nouvelle recherche </a></li>
+					<li><a href="#mes-recherches" data-theme="c" data-icon="grid" data-corners="false"> Mes recherches </a></li>
+					<!--<li><a href="#offre" data-theme="e" data-icon="alert" data-corners="false"> Créez une alerte e-mail</a></li>-->
 					<li><a href="#recrutement" data-theme="c" data-icon="star" data-corners="false">Recrutement</a></li>
 					<li data-theme="a"><a href="#mentions-legales" data-theme="c" data-icon="gear" data-corners="false">Mentions légales</a></li>
-					<li><a href="javascript:window.open('http://mobile.batiactu.com/','_blank','location=yes');" data-theme="c" data-icon="gear" data-corners="false">BatiActu</a></li>
-					<li><a href="#" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a></li>
+					<li><a href="#" onClick="window.open('http://mobile.batiactu.com/','_blank','location=yes');" data-theme="c" data-icon="gear" data-corners="false">BatiActu</a></li>
+					<li><a href="http://www.batiactuemploi.com/" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a></li>
 	
 				</ul>
 			</div>
@@ -228,6 +228,29 @@
 		
 	</div>	
 </div>   
+
+<!-- Mes Recherches -->
+<div id="mes-recherches" data-role="page" data-add-back-btn="true" data-back-btn-text="Retour">
+	<div data-role="header" data-position="fixed">
+	    <h1>Mes recherches</h1>
+	    <a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos="notext">Menu</a>
+	</div>
+	<div class="notifications-wrapper">
+      <div class="notifications"></div>
+    </div>
+	<div data-role="content" class="content">
+		<ul id="resultat-mes-recherches" style="display:none;" data-role="listview" data-split-theme="d" data-split-icon="delete">
+		</ul>			
+	</div>
+	
+	<div id="more">
+		<p align="center">
+			<a data-inline="true" data-theme="b" data-role="button" onClick="reset_search();" data-icon="search" data-mini="true">Nouvelle recherche</a>
+			
+		</p>
+		
+	</div>	
+</div> 
 
 <!-- ================================================================================================= -->
 
@@ -329,10 +352,17 @@
 				
 			</li> -->
 			<li data-mini="true">
-				<input data-mini="true" name="mot-clef" id="recherche-detail-mot-clef" placeholder="Mot-clef" value="" type="text">
+				<input data-mini="true" name="mot-clef" id="recherche-detail-mot-clef" placeholder="Recherche par mots-clés" value="" type="text">
 			</li>
 			<li data-mini="true" style="text-align:center;">
 				<p><a id="link_search" onClick="save_current_criteres();go_url_recherche();" data-role="button" data-theme="b" data-mini="true" data-inline="true">Lancer une recherche</a></p>				 
+			</li>
+			<li data-mini="true" style="text-align:center;">
+				<p>
+					<a id="link_mine_search" href="#mes-recherches" data-role="button" data-theme="b" data-mini="true" data-inline="true">Recherches sauvegardées</a>
+	
+					<a id="last_search" onClick="load_last_searh();go_url_recherche();" data-role="button" data-theme="b" data-mini="true" data-inline="true">Dernière recherche</a>
+				</p>				 
 			</li>
 		</ul>
 		 
@@ -500,9 +530,6 @@ $('#recherche').on('pagecreate', function(){
 });
 $('#annonce').on('pagecreate', function(){
 	
-	//var $footer =$('#nav-annonce');
-	//alert($footer.html());
-    //$footer.navbar();  
 });
 $('#recherche').on('pagebeforeshow', function(){
 	
@@ -513,7 +540,7 @@ $('#recherche').on('pagebeforeshow', function(){
         current = parseInt($('#recherche #next').attr('data-next'));
 		if(current<=current_nb_annonce){			
 			e.preventDefault();
-	
+
 	        launchSearch(1);
 			
 			$('#resultat-recherche').listview('refresh');
@@ -571,22 +598,32 @@ $('#recherche').on('pageshow', function(){
  
 });  
 
-var notify = function(message) {
+var notify = function(message, page) {
       var $message = $('<p style="display:none;">' + message + '</p>');
 
-      $('.notifications').append($message);
+	  $(page+' .notifications').each(function(){	  
+	  $(this).append($message);
+      //$message.show();
       $message.slideDown(300, function() {
         window.setTimeout(function() {
-          $message.slideUp(300, function() {
-            $message.remove();
+          $message.slideUp(300, function() {            
+			$message.remove();
           });
-        }, 2000);
+        }, 3000);
+      });
       });
     };
-var remove_notify = function(message) {
-      $('.notifications p').remove();
+var remove_notify = function(page) {
+      $(page+' .notifications').find('p').remove();
     };
-    
+$('#mes-recherches').on('pagebeforechange', function(){
+   $('#mes-recherches #resultat-mesrecherches').hide();
+});
+$('#mes-recherches').on('pagebeforeshow', function(){
+	view_list_mes_recherches();
+    $('#mes-recherches').trigger('create');
+	//$('#mes-recherches #resultat-mesrecherches').show();
+});
 $('#recherche-detail').on('pageshow', function(){
 	$('.check_cac').off('click').on('click', function() {
 		uncheck_cac($(this).attr('cac_type'),$(this));
@@ -596,35 +633,37 @@ $('#recherche-detail').on('pageshow', function(){
 $(document).bind( "pagebeforechange", function( e, data ) {
 	var u = $.mobile.path.parseUrl( data.toPage );
 	
-	// We only want to handle changePage() calls where the caller is
-	// asking us to load a page by URL.
 	if ( typeof data.toPage === "string" ) {
+		
+		// recherche.
 		var re = /^#recherche\?/;
 		if ( u.hash.search(re) !== -1 ) {		
-			// We're being asked to display the items for a specific annonce.
-			// Call our internal method that builds the content for the annonce
-			// on the fly based on our in-memory annonce data structure.			
+		
 			execute_search( u, data.options );
-    
-			// Make sure to tell changePage() we've handled this call so it doesn't
-			// have to do anything.
+
 			e.preventDefault();
 		}
 	
-		// We are being asked to load a page by URL, but we only
-		// want to handle URLs that request the data for a specific
+
 		// annonce.
 		var re = /^#annonce/;
 		if ( u.hash.search(re) !== -1 ) {
-			// We're being asked to display the items for a specific annonce.
-			// Call our internal method that builds the content for the annonce
-			// on the fly based on our in-memory annonce data structure.
+
 			showAnnonce( u, data.options );
-            $('#annonce').trigger('pagecreate');	
-			// Make sure to tell changePage() we've handled this call so it doesn't
-			// have to do anything.
+
 			e.preventDefault();
 		}
+		
+		// mes-recherches.
+		//var re = /^#mes-recherches\?/;
+		//if ( u.hash.search(re) !== -1 ) {		
+			
+		//	view_list_mes_recherches( u, data.options );
+
+		//	e.preventDefault();
+		//}
+		
+		
 	} 
 });
 
@@ -676,11 +715,11 @@ $(document).ready(function()
 		<div align="center">
 		  	{{#each nav}}
 			{{#if SAVE}}
-			<a style="float:left;" onClick="alert('en cours... :)');" id="Save_search" data-role="button" data-theme="b" data-inline="true">{{SAVE}}</a>	
+			<a style="float:left;" onClick="saved_search();" id="Save_search" data-role="button" data-mini="true" data-theme="b" data-inline="true">{{SAVE}}</a>	
 			{{/if}}
-			<!--<a href="javascript:postuler();" data-role="button" data-theme="b" data-inline="true">Nouvelle recherche</a>-->
+			
 		  	{{#if NEW}}
-			<a style="float:right;" onClick="reset_search();" data-role="button" data-theme="b" data-inline="true">{{NEW}}</a>
+			<a style="float:right;" onClick="reset_search();" data-role="button" data-theme="b" data-mini="true" data-inline="true">{{NEW}}</a>
 			{{/if}}	
 			{{/each}}
 		  </div>
@@ -695,12 +734,12 @@ $(document).ready(function()
 		  	{{#each nav}}
 			{{#if PREVIOUS}}
 			<!--<a style="float:left;" href="javascript:showAnnonce({{PREVIOUS}});" data-role="button" data-theme="b" data-inline="true">&lt;</a>-->
-			<a style="float:left;" href="#annonce?id={{PREVIOUS}}" data-role="button" data-theme="b" data-inline="true">&lt;</a>
+			<a style="float:left;" href="#annonce?id={{PREVIOUS}}" data-role="button" data-mini="true" data-theme="b" data-inline="true">&lt;</a>
 		  	{{/if}}
-			<a href="javascript:postuler();" data-role="button" data-theme="b" data-inline="true">Postuler</a>
+			<a href="javascript:postuler();" data-role="button" data-theme="b" data-mini="true" data-inline="true">Postuler</a>
 		  	{{#if NEXT}}
 			<!--<a style="float:right;" href="javascript:showAnnonce({{NEXT}});" data-role="button" data-theme="b" data-inline="true">&gt;</a>-->
-			<a style="float:right;" href="#annonce?id={{NEXT}}" data-role="button" data-theme="b" data-inline="true">&gt;</a>
+			<a style="float:right;" href="#annonce?id={{NEXT}}" data-role="button" data-mini="true" data-theme="b" data-inline="true">&gt;</a>
 			{{/if}}	
 			{{/each}}
 		  </div>
@@ -776,12 +815,43 @@ $(document).ready(function()
 <script id="recherche-resultat-tpl" type="text/x-handlebars-template">
 		{{#.}}
 			<li class="infinite-item">
-				<!--<a href="javascript:showAnnonce({{item_origine}})">-->
 				<a href="#annonce?id={{item_origine}}">
      				<div id="div_img"><p>{{{item_image_to_show}}}</p></div>
      				<h2>{{item_libelle}}</h2>
      				<span class="resultat_lib_recruteur">{{item_lib_recruteur}}</span>
 				</a>
+			</li>
+		{{/.}}
+</script>
+
+<script id="mes-recherches-resultat-tpl" type="text/x-handlebars-template">
+		{{#.}}
+			<li class="infinite-item">
+				
+			        <div class="contenu">
+	   				<!--{{item_hash}}-->   				
+					{{#if item_current_fonction}}
+					<span class="">Fonction : {{item_current_fonction}}</span><br>
+	   				{{/if}}
+					{{#if item_current_zonegeo}}
+					<span class="">Région :{{item_current_zonegeo}}</span><br>
+	   				{{/if}}
+					{{#if item_current_experience}}
+					<span class="">Expérience : {{item_current_experience}}</span><br>
+	   				{{/if}}
+					{{#if item_current_contrat}}
+					<span class="">Contrat : {{item_current_contrat}}</span><br>
+					{{/if}}
+					{{#if item_no_criteres}}
+					<span class="">{{item_no_criteres}}</span><br>
+					{{/if}}
+					<!--href="#ma-recherche?hsh={{item_hash}}"-->
+				
+				    <br>
+				    </div>
+					<a href="#" onclick="gotosearch({{item_hash}});"><h3>Lancer la recherche</h3></a>
+					
+				<a href="#mes-recherches" onclick="del_searh_from_hash({{item_hash}});"></a>
 			</li>
 		{{/.}}
 </script>

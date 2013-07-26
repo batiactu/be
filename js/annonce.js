@@ -16,7 +16,7 @@ function postuler() {
 		//$.jStorage.flush();
 		$.jStorage.set('email', email);
 		$.jStorage.reInit();
-		notify('envoi en cours... patientez...');
+		notify('envoi en cours... patientez...', '#annonce');
 		$.mobile.loading( 'show' );
 		$.ajax({
 			 	url:DIRSCRIPTS+'interface-mobile.php'
@@ -37,10 +37,10 @@ function postuler() {
 						var msg = 'Une erreur est survenue!';					
 					}				
 									        
-					notify(msg);
-					$('#annonce').trigger('pagebeforecreate');
-					$('#annonce').trigger('pagecreate');
-					$('#annonce').page();	 
+					notify(msg, '#annonce');
+					//$('#annonce').trigger('pagebeforecreate');
+					//$('#annonce').trigger('pagecreate');
+					//$('#annonce').page();	 
 			 	}
 			 	,error:function() {
 			 		$.mobile.loading( 'hide' );
@@ -87,13 +87,15 @@ function showAnnonce(urlObj, options) {
 
 	$header.find( "h1" ).text( 'Détails annonce '+id_annonce );
 	
-	$page.page();
+	//$page.page();
             
 	options.dataUrl = urlObj.href;
 
     $.mobile.changePage( $page, options );
-	
-	$page.page().trigger('pagecreate');	
+    
+	//$page.page()
+	//$page.trigger('pagecreate');	
+	//$page.trigger('create');
 }
 
 function _refresh_datas(){ 

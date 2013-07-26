@@ -1,9 +1,62 @@
 (function($){
     $.fn.extend({
         
-        //This is where you write your plugin's name
-        completeListItem: function(options) {            
-			notify('Chargement...');
+		completeListMesRecherches: function(options) {            
+			notify('Chargement...', '#mes-recherches');
+            var defaults = {
+               template:'#mes-recherches-resultat-tpl'
+                ,url:'fill-url-source'
+                ,data:{  }                
+            }
+   
+            var options = $.extend(defaults, options);
+            
+			 var myList = $(this);
+			 var template = Handlebars.compile($(options.template).html());
+			  
+			 if(options.noLoading==null) $.mobile.loading( 'show' );
+
+	
+	
+				nb = Object.keys(tsearchs).length;
+			
+				myList.html('');
+
+				var Tab=new Array;
+			 		
+		 		$.each(tsearchs,function(i, row) {
+		 	       
+			 		var item = new Array;
+			 		
+					
+					item["item_no_criteres"] = 'Recherche globale (sans critère)';
+			 		for (k in row) {
+			 			if(row[k]!= '')item["item_no_criteres"]=null;
+			 			item["item_"+k] = row[k];						 			
+			 		}
+			 		item["item_hash"]=i;
+
+			 		
+			 		Tab.push(item);
+			 		
+			 	});
+			 	
+			 	myList.html(template(Tab));
+			 				 								
+
+			 	myList.show();
+			 	myList.listview('refresh');
+
+			 	if(options.noLoading==null){ remove_notify('#mes-recherches');$.mobile.loading( 'hide' )};
+			 	
+			 	$.waypoints();
+	    		$.waypoints('refresh');
+			 
+
+    }
+    
+    ,completeListItem: function(options) {            
+			notify('Chargement...', '#recherche');
             var defaults = {
                template:'#recherche-resultat-tpl'
                 ,url:'fill-url-source'
@@ -20,7 +73,7 @@
 			 //myList.hide();
 	
 			 if(options.dataType==null) options.dataType='jsonp';
-	
+	         
 			 $.ajax({
 			 	url : options.url
 			 	,data : options.data
@@ -117,8 +170,8 @@
 			 	myList.show();
 			 	myList.listview('refresh');
 			 	//myList.page();
-			 	//myList.trigger('pagecreate');
-			 	if(options.noLoading==null){remove_notify(); $.mobile.loading( 'hide' )};
+			 	//$('#recherche').trigger('pagecreate');
+			 	if(options.noLoading==null){ remove_notify('#recherche');$.mobile.loading( 'hide' )};
 			 	
 			 	$.waypoints();
 	    		$.waypoints('refresh');
@@ -144,9 +197,9 @@
 			var template = Handlebars.compile($(options.template).html()); 
             //var templatefooter = Handlebars.compile($('#nav-annonce-detail-tpl').html());
             //Handlebars.registerPartial("nav", $("#nav-annonce-detail-tpl").html());
-
+            notify('chargement...', '#annonce');
 			$.mobile.loading( 'show' );
-
+			
 			$.ajax({
 			 	url : options.url
 			 	,data : options.data
@@ -166,13 +219,16 @@
                     $(options.itemtarget).append(template(row));//.trigger('create');
                     _refresh_datas();
                     
-                    $('#annonce #nav-annonce').remove();
+                    
 					var template2 = Handlebars.compile($("#nav-annonce-detail-tpl").html());		 		
 					Tab=new Array;
 					Tab['nav']=[{'PREVIOUS':prevP,'NEXT':nextP}];
 					TabComplete=new Array;
 					TabComplete.push(Tab);	 
-					$('#annonce').append(template2(TabComplete)).page().trigger('create');
+					$('#annonce #nav-annonce').remove();
+					$('#annonce').append(template2(TabComplete)).trigger('pagecreate');;
+					//$('#annonce').append(template2(TabComplete)).page();
+					$('#annonce').trigger('create');
 	
                     //$(options.itemtarget).page();
                     
@@ -183,8 +239,9 @@
 			 		$.mobile.loading( 'hide' );
 			 	}
 			 });
-
-			$(options.itemtarget).trigger('create');
+			remove_notify('#annonce');
+            //$('#annonce').trigger('create');
+			//$(options.itemtarget).trigger('create');
             //$(options.itemtarget).page();             
 
 			return this;

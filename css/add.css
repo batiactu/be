@@ -1,3 +1,6 @@
+.ui-body-b, .ui-overlay-b {
+	background:#FFF !important;
+}
 #more{
 	margin-bottom:30px;	
 }
@@ -71,8 +74,29 @@ h2 {
 	opacity: 1; 
 	filter:alpha(opacity=100);
 }
+#annonce .ui-content{
+	padding:0px;
+}
 
-
+#resultat-mes-recherches li {
+	padding:10px 50px 10px 10px; 
+	margin-bottom:40px;
+}
+#resultat-mes-recherches li a {
+	padding:0px;
+}
+#resultat-mes-recherches li div.contenu{
+	padding:10px;
+	background-color:#fff;
+}
+#resultat-mes-recherches li h3{	
+	color:#fff;
+	background-color:#666;
+	margin:0px !important;
+	padding:10px 0px;
+	text-align:center;
+	font-weight:normal;
+}
 #resultat-recherche li #div_img {
     box-shadow: 1px 1px 5px #555555;
     float: left;
