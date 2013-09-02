@@ -16,14 +16,21 @@ function postuler() {
 	
 	email = $('#email').val();
 	
-	if(!$('#formpopupPostuler').valid())return false;
+	
+	if(!$('#formpopup_Postuler').valid()){
+		$('#waiting_send').popup('close');
+		return false;
+	}
 	
 	if ($.trim(email).length == 0 || !_validateEmail(email) ) {
-		alert('Veuillez saisir votre email pour postuler !');
+		//alert('Veuillez saisir votre email pour postuler !');
+		//$('#formpopup_Postuler #email').after('<label class="error">Veuillez entrer un email valide, merci.</label>') 
+		$('#waiting_send').popup('close');							    
 		return false;
 	}
 	else {
-		
+		$('#popupPostuler').popup('close');		
+		//if($('#formpopup_Postuler #email label.error'))$('#formpopup_Postuler #email label.error').remove(); 
 				
 		id_annonce = $('#annonce #id_annonce').val();
 		var subject = $('#annonce #subject').val();
@@ -51,15 +58,16 @@ function postuler() {
 
 					$.mobile.loading( 'hide' );	
 					if(rep=="OK"){
-					    var msg = 'Cette annonce a bien été envoyée à '+email;
+					    var msg = 'Cette annonce a bien été envoyée à '+email;												
+						$('#waiting_send').popup('close');
 						$('#confirm_send').popup('open');
-						$('#popupPostuler').popup('close');
-								    
+												    
 					}else{
 						var msg = 'Une erreur est survenue!';
+						$('#waiting_send').popup('close');
 						$('#error_send').popup('open');					
 					}				
-									        
+					remove_notify("#annonce");				        
 					//notify(msg, '#annonce');
  
 			 	}

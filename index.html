@@ -480,21 +480,25 @@
 	</div>   	
 </div>  
 
-<div class="ui-corner-all" id="dialogPostuler" data-rel="dialog" data-role="page" data-theme="a" data-dismissible="false">
-    <form>
-        <div style="padding: 10px 20px;">
-            <h3>Recevoir l'offre d'emploi pour postuler depuis votre ordinateur</h3>
-            <label class="ui-hidden-accessible" for="un">Mon adresse email*:</label>
-            <input name="email" id="email" type="text" placeholder="Adresse email*" value="" data-theme="a">
-            <a  data-role="button" onClick="postuler();" data-icon="check" data-theme="b">M'envoyer l'offre d'emploi</button>
-            <a  href="#" data-role="button" onClick="$('#dialogPostuler').dialog('close');" data-icon="" data-theme="a">Annuler</a>
-        </div>
-    </form>
-</div>
   
 <!-- Partie script javascript --------------------------------------------------------->
 
 <script type="text/javascript">
+$( document ).on( "pageshow", function() {
+	$( '#popupPostuler' ).on({
+	        popupafteropen: function(event, ui) {
+	            $('#btn_postuler').unbind();
+				$('#btn_postuler').bind('click', function(e){														
+					setTimeout( function(){ $( '#waiting_send' ).popup( 'open' ) }, 200 );	
+				});
+	        },
+			popupafterclose: function(event, ui) {
+	            
+	        }
+	    });
+});     
+	
+			
 $('[data-role=page]').on('pagebeforeshow', function(){
 	$( ".popupPanel" ).on({
 	    popupbeforeposition: function() {
@@ -506,6 +510,21 @@ $('[data-role=page]').on('pagebeforeshow', function(){
         $('#popupPanel').popup('close');
     });   
 });
+$('[data-role=page]').on('pagebeforecreate', function(){
+	var defaults = {
+	         template:'#popupPanel-tpl'
+	          ,url:'fill-url-source'
+	          ,data:{  }                
+	      }    
+    var options = $.extend(defaults, options);
+	var template = Handlebars.compile($(options.template).html());
+	Tab = new Array();
+	$('#' +this.id + ' div[data-role=content]').append(template(Tab));
+});
+
+
+
+
 
 
 $('#actu').on('pageinit', function(){
@@ -525,17 +544,7 @@ $('#offre').on('pageinit', function(){
 		});
 	});
 });
-$('[data-role=page]').on('pagebeforecreate', function(){
-	var defaults = {
-	         template:'#popupPanel-tpl'
-	          ,url:'fill-url-source'
-	          ,data:{  }                
-	      }    
-    var options = $.extend(defaults, options);
-	var template = Handlebars.compile($(options.template).html());
-	Tab = new Array();
-	$('#' +this.id + ' div[data-role=content]').append(template(Tab));
-});
+
 	
 $('#recherche-detail').on('pageinit', function(){
 	initSearch(); 	
@@ -787,10 +796,9 @@ $(document).ready(function()
 
 	$("#idFooter").html(sHtml);*/
 $(document).on("pageshow", "#annonce", function() {
-    
 
+	$("#formpopup_Postuler").validate({
 
-	$("#formpopupPostuler").validate({
 		rules: {
 			email: {
 			    required: true,
@@ -802,6 +810,7 @@ $(document).on("pageshow", "#annonce", function() {
 			required: "L'email est requis, merci",
 			email: "Veuillez entrer un email valide, merci."
 		},
+		
 		errorPlacement: function(error, element) {
 			var id = element.attr("id");
 			switch(id){
@@ -813,9 +822,9 @@ $(document).on("pageshow", "#annonce", function() {
 				error.insertBefore(element);
 			}
 		}
- 
+         
 	});
- 
+    
 });
 	
 
@@ -940,7 +949,7 @@ $(document).on("pageshow", "#annonce", function() {
 				-->
 			</p>
 			<div class="pad10 ui-corner-all" data-history="false" id="popupPostuler" data-role="popup" data-overlay-theme="a" data-theme="c" data-dismissible="false">
-			    <form id="formpopupPostuler">
+			    <form id="formpopup_Postuler">
 			        <div style="padding: 10px 20px;">
 			            <h3>Recevoir l'offre d'emploi pour postuler depuis votre ordinateur</h3>
 			            <label class="email_label" class="bold" for="email">Mon Adresse email*</label>
@@ -953,31 +962,40 @@ $(document).on("pageshow", "#annonce", function() {
 						<input type="hidden" value="{{ID_ANNONCE}}" id="id_annonce">
 						
 						<br>
-						<a  onClick="javascript:postuler();" data-role="button" data-icon="" data-theme="b">M'envoyer l'offre d'emploi</button>
+						<a  id="btn_postuler" onClick="postuler();" href="#" data-role="button" data-icon="" data-theme="b">M'envoyer l'offre d'emploi</button>
 			            <a  data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Annuler</a>
 			        </div>
 			    </form>
 			</div>
+
+			<div class="pad10 ui-corner-all" data-history="false" id="waiting_send" data-role="popup" data-overlay-theme="a" data-theme="c" data-dismissible="false">		
+			        <div style="padding: 10px 20px;">
+						<h3>Envoi en cours...patientez</h3>
+				    </div>
+			    
+			</div>
 			<div class="pad10 ui-corner-all" data-history="false" id="confirm_send" data-role="popup" data-overlay-theme="a" data-theme="c">
-			    <form>
+			 
 			        <div style="padding: 10px 20px;">
 						<h3>L'offre d'emploi vous a bien été transmise par email.</h3>
-					    <a  href="#recherche" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour aux résultats</a>
-					    <a  href="#" onClick="reset_search(1);" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle recherche</a>
+					    <p align="center">
+							<a  href="#recherche" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour aux résultats</a>
+						    <a  href="#" onClick="reset_search(1);" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle recherche</a>
+					    </p>
 				    </div>
-			    </form>
+			    
 			</div>
 			<div class="pad10 ui-corner-all" data-history="false" id="error_send" data-role="popup" data-overlay-theme="a" data-theme="c">
-			    <form>
+			    
 			        <div style="padding: 10px 20px;">
 						<h3>Une erreur c'est provoqué. L'offre d'emploi n'a pu être transmise par email.</h3>
 					    <p align="center">
-							<a  data-rel="back" href="#" data-role="button" data-inline="true" data-mini="true" data-icon="" data-theme="b">Retour à l'annonce</a><br>			    
-							<a  href="#recherche" data-role="button" data-mini="true" data-inline="true" data-icon="" data-theme="b">Retour aux résultats</a><br>
-						    <a  href="#" onClick="reset_search(1);" data-mini="true" data-inline="true" data-role="button" data-icon="" data-theme="c">Nouvelle recherche</a>
+							<a  data-rel="back" href="#" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour à l'annonce</a>			    
+							<a  href="#recherche" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour aux résultats</a>
+						    <a  href="#" onClick="reset_search(1);" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle recherche</a>
 					    </p>
 				    </div>
-			    </form>
+			    
 			</div>
 			
 		
