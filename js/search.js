@@ -1,10 +1,20 @@
 var DIRSCRIPTS = 'http://bo.v2.batiactuemploi.com/scripts/';
 //var DIRSCRIPTS = 'http://local.back2012.batiactuemploi.com/scripts/';
 
+var back_popup_hash = "";
+var use_infinite = false;
+
+var Tfonctions_search = new Array;
+var Tregions_search = new Array;
+var Tcontrats_search = new Array;
+
+var Tregions = new Array;
+var Tdepts = new Array;
+
 var Limit_Annonce = 200;
 var Limit_Recherche = 50;
 
-var nb_results_by_page = 30;
+var nb_results_by_page = 20;
 
 var current_zonegeo = new Array;
 var current_fonction = new Array;
@@ -16,7 +26,70 @@ var current_nb_annonce = 0;
 var last_search = new Object(); 
 
 var tsearchs = new Object();
+
+var notify = function(message, page, time) {
+	var $message = $('<p style="display:none;">' + message + '</p>');
+
+	$(page+' .notifications').each(function(){	  
+	if(time==null)time=3000;
+
+	$(this).append($message);
+		//$message.show();
+		$message.slideDown(300, function() {
+			window.setTimeout(function() {
+				$message.slideUp(300, function() {            
+					$message.remove();
+				});
+				}, time);
+		});
+	});
+};
+var remove_notify = function(page) {
+  $(page+' .notifications').find('p').remove();
+};
+
+
+function pagination(current){
+    
+	if((current+nb_results_by_page)<=current_nb_annonce){		
+		$('#recherche #pagin-next').show();
+		$('#recherche #pagin-next').removeClass('ui-disabled');
+		
+	}else{
+		$('#recherche #pagin-next').hide();	
+		$('#recherche #pagin-next').addClass('ui-disabled');
+		
+	}
+	if((current)>nb_results_by_page){		
+		$('#recherche #pagin-prev').show();
+		$('#recherche #pagin-prev').removeClass('ui-disabled');
+		
+	}else{
+		$('#recherche #pagin-prev').hide();	
+		$('#recherche #pagin-prev').addClass('ui-disabled');
+		
+	}
+	var pages = Math.floor(current_nb_annonce / nb_results_by_page);
 	
+	var current_page =  Math.floor(current / nb_results_by_page);
+
+	$('#recherche #pagin-pages').html(current_page+"/"+pages);
+	
+	$('#recherche .ui-select').css('display','none');
+	
+	$("#recherche #select-page").html('');
+	
+	$("#recherche #select-page").append('<option value="0">Aller à la page</option>');
+	for(i=1; i<=pages;i++){
+		if(i != current_page)$("#recherche #select-page").append('<option value="'+i+'">page '+i+'</option>');
+	}
+	//$("#recherche #select-page").trigger("change");
+	
+	$("#recherche #select-page").selectmenu('refresh', true);
+	$('#recherche .ui-select').css('display','inline');
+	$("#recherche #pagin-pages").css('display','inline');
+
+}		
 function uncheck_cac(type,el){
 	$('.check'+type).each(function(){
 		if(this.id!=el.attr('id')){
@@ -250,12 +323,8 @@ function load_last_searh(){
 	$('[id=recherche-detail-mot-clef]').val(criteres_last_search['current_motclef']);
 	
 }
-function initSearch() {
-	
-	tsearchs = $.jStorage.get('tsearchs');
-	if(!tsearchs) tsearchs = new Object();
-
-	//alert(Object.keys(tsearchs).length); 
+function init_global(){
+	//alert('init');
 
 	$.ajax({
 		url:DIRSCRIPTS+'interface-mobile.php'
@@ -264,35 +333,31 @@ function initSearch() {
 			,get:'zone-geo'
 		}
 		,dataType:'jsonp'
-		,ajax:false
+		,async :false
+		,cache :false
 	}).done(function(data) {
 		/*
 		 * Init zone geo détail
-		 */
-		var template = Handlebars.compile($('#recherche-detail-tpl').html());
-		var Tab = new Array;
+		 */		
+		Tregions_search = new Array;
 		
 		var k=0;
 		for(code in data) {
      			
      			label = data[code];
      			
-     			Tab.push({
+     			Tregions_search.push({
      					'item_value': code
      					,'item_label':label
      					,'item_index':k
      					,'type':'zonegeo'
      				});
-     				
-     			
+     			Tregions[code]=label;	
+
      			
      		k++;		
-     	}
-		$('#recherche-detail-zonegeo').html(template(Tab));
-        
-
+     	}	
 	});
-
 
 	$.ajax({
 		url:DIRSCRIPTS+'interface-mobile.php'
@@ -301,11 +366,11 @@ function initSearch() {
 			,get:'fonction'
 		}
 		,dataType:'jsonp'
-		,cache:false
+		,async :false
+		,cache :false
 	}).done(function(data) {
 		
-		var template = Handlebars.compile($('#recherche-detail-tpl').html());
-		var Tab = new Array;
+		Tfonctions_search = new Array;
 		var k=0;
 		for(parent in data) {
      			
@@ -314,7 +379,7 @@ function initSearch() {
 		
 	     			label = data[parent]["fonction"][fonction];
 					 	     
-     				Tab.push({
+     				Tfonctions_search.push({
      					'item_value': fonction
      					,'item_label':label
      					,'item_index':k
@@ -325,18 +390,48 @@ function initSearch() {
      			}
      			
      	}
-
- 		$('#recherche-detail-fonction').html(template(Tab));
-
-
 	});
 	
-	//load_contrats();
+	$.ajax({
+		url:DIRSCRIPTS+'interface-mobile.php'
+		,data: {
+			jsonp : 1
+			,get:'dept'
+		}
+		,dataType:'jsonp'
+		,async :false
+		,cache :false
+	}).done(function(data) {
+		/*
+		 * Init zone geo détail
+		 */
+		
+		Tdepts = new Array;
+		
+		var k=0;
+		for(code in data) {
+     			
+     			label = data[code];
+     			
+     			Tdepts[code]=label;
+     			
+     		k++;		
+     	}
+
+	});
+
+    load_contrats();
 
 	//load_experiences();
+
+}
+function initSearch() {
+
+	tsearchs = $.jStorage.get('tsearchs');
+	if(!tsearchs) tsearchs = new Object();
+	
 	
 	search_list_id = new Array;
-	
 }
 
 function load_contrats(){
@@ -347,12 +442,13 @@ function load_contrats(){
 			,get:'contrat'
 		}
 		,dataType:'jsonp'
+		,async :false
 		,cache:false
 	}).done(function(data) {
 		
 		var template = Handlebars.compile($('#recherche-detail-tpl').html());
 		var Tab = new Array;
-		
+		Tcontrats_search = new Array;
 		var k=0;
 		for(code in data) {
      			
@@ -364,9 +460,9 @@ function load_contrats(){
      					,'item_index':k
      					,'type':'contrat'
      				});
+     			Tcontrats_search[code]=label;	
      				
-     			
-     			
+
      		k++;		
      	}
 		$('#recherche-detail-contrat').html(template(Tab));
@@ -408,8 +504,9 @@ function load_experiences(){
 
 	});
 }
-function launchSearch(advanceMode) {
-	
+function launchSearch(advanceMode,gotopage_n) {
+	//$('#resultat-recherche').hide();
+
 	search_list_id = new Array;
 	
 	if(advanceMode==null)advanceMode=false;
@@ -441,9 +538,15 @@ function launchSearch(advanceMode) {
 		var zonegeo = $('#accueil #zone-geo').val();
 	}
 	
+	if(gotopage_n){
+	    var currentlength = (gotopage_n-1) * nb_results_by_page; 
+		var nextlength = currentlength + nb_results_by_page;
+	}else{
+		var currentlength = parseInt($('#recherche #next').attr('data-next'));
+		var nextlength = currentlength + nb_results_by_page;
+	}
 	
-	var currentlength = parseInt($('#recherche #next').attr('data-next'));
-	var nextlength = currentlength + nb_results_by_page;
+	
 	if(currentlength > Limit_Annonce){
 		$('#recherche #next').attr('data-next',currentlength);	
 		nextlength = Limit_Annonce;
@@ -456,12 +559,17 @@ function launchSearch(advanceMode) {
 		
 	
 	//$('#resultat-recherche').html('');
-	var $header = $('#recherche').children( ":jqmData(role=header)" );		
-	$header.find( "h1" ).text('');
-	$('#resultat-recherche').show();
-	//$('#recherche #next').attr('data-next',0);
+	//var $header = $('#recherche').children( ":jqmData(role=header)" );		
+	//$header.find( "h1" ).text('');
+	var $content = $('#recherche').children( ":jqmData(role=content)" );		
+	$content.find( "#nb_results" ).html("<br />");	
+	$content.find( "#pagin-prev" ).css('display','none');
+	$content.find( "#pagin-next" ).css('display','none');
+	$content.find( "#pagin-pages" ).css('display','none');	
+	$( "#select-page" ).parents('.ui-select').css('display', 'none');
+	$content.find( ".btn_display" ).css('display','none');
+	//$('#resultat-recherche').hide();
 		
-	//notify('Chargement...');			
 	$('#resultat-recherche').completeListItem({
 		url:DIRSCRIPTS+'interface-mobile.php'
 		,data:{
@@ -475,8 +583,10 @@ function launchSearch(advanceMode) {
 			,contrat:contrat
 			,length:nextlength
 		}
-	});	
-	
+	});
+	if(use_infinite){	
+		$('#resultat-recherche').show();
+	}	
 	saved_last_search();
 				 
 	return false;
@@ -485,20 +595,24 @@ function execute_search(urlObj, options){
     var pageSelector = urlObj.hash.replace( /\?.*$/, "" );
 
     var $page = $( pageSelector );
-
-   	launchSearch(1);
+    
+    if(!use_infinite)launchSearch(1);
    
 	$page.page();
 
 	options.dataUrl = urlObj.href;
-	
+
     $.mobile.changePage( $page, options );
     
+     if(options.noLoading==null) $.mobile.loading( 'show' );
     
 	
 }
 
 function go_url_recherche(){
+	var $content = $('#recherche').children( ":jqmData(role=content)" );
+	$content.find( "#resultat-recherche").html("");
+	
 	//l'url est créée dynamiquement
 	newurl = '#recherche' + '?zone=' + current_zonegeo.join('-')+'&fct='+  current_fonction.join('-');
   

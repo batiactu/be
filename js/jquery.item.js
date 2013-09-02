@@ -2,7 +2,7 @@
     $.fn.extend({
         
 		completeListMesRecherches: function(options) {            
-			notify('Chargement...', '#mes-recherches');
+			notify('Chargement...', '#mes-recherches', 3000);
             var defaults = {
                template:'#mes-recherches-resultat-tpl'
                 ,url:'fill-url-source'
@@ -49,14 +49,16 @@
 
 			 	if(options.noLoading==null){ remove_notify('#mes-recherches');$.mobile.loading( 'hide' )};
 			 	
-			 	$.waypoints();
-	    		$.waypoints('refresh');
+			 	if(use_infinite){
+			 		$.waypoints();
+	    			$.waypoints('refresh');
+	    		}
 			 
 
     }
     
     ,completeListItem: function(options) {            
-			notify('Chargement...', '#recherche');
+			notify('Chargement...', '#recherche',30000	);
             var defaults = {
                template:'#recherche-resultat-tpl'
                 ,url:'fill-url-source'
@@ -78,11 +80,11 @@
 			 	url : options.url
 			 	,data : options.data
 			 	,dataType:options.dataType
-			 	
+			 	,async :false
 			 }).done(function(dataSearch) {
 			 	data = dataSearch['TResults'];
 				nbTotal = dataSearch['nb'];
-				myList.html('');
+				//myList.html('');
 
 
 				var Tab=new Array;
@@ -135,7 +137,37 @@
 						search_list_id.push((data[i]['origine']).toString());
 						
 				 		for (k in row) {
-				 			item["item_"+k] = row[k];				 			
+				 			
+							switch(k){
+								case 'region':
+								//Tregions
+								item["item_lib_"+k]="";
+								var string = row[k] + '';
+								var tab = string.split(',');
+								for(j in tab){ 
+									if(item["item_lib_"+k]!='')item["item_lib_"+k]+=',';
+									item["item_lib_"+k] += Tregions[tab[j]];
+								}
+								break;
+								
+								case 'dept':
+			 					//Tdepts
+			 					item["item_lib_"+k]="";
+								var string = row[k] + '';
+								var tab = string.split(',');
+								for(j in tab){ 
+									if(item["item_lib_"+k]!='')item["item_lib_"+k]+=',';
+									item["item_lib_"+k] += Tdepts[tab[j]];
+								}
+			 					break;
+			 			
+			 					case 'contrat':
+								if(row[k]=='')row[k]='Tous contrats';
+								break; 
+
+								
+							}	
+							item["item_"+k] = row[k];			 			
 				 		}
 				 		item["item_previous"]=prevP;
 				 		item["item_next"]=nextP;
@@ -146,40 +178,59 @@
 				 	
 			 	}
 			 	
-			 	myList.html(template(Tab));
-			 				 	
-                var $header = $('#recherche').children( ":jqmData(role=header)" );
-                current_nb_annonce = nbTotal;
-				switch(nbTotal){
-					case 0:
-						res = 'Aucun résultat';
-					break;
-					case 1:
-						res = '1 résultat';
-					break;
-					case Limit_Annonce:
-						res = 'les '+nbTotal+' premiers résultats';
-					break;
-					default:
-						res = nbTotal+' résultats';										
+			 	current_nb_annonce = nbTotal;
+
+			 	if(!use_infinite){
+					var current_nb = parseInt($('#recherche #next').attr('data-next'));
+					var starting = current_nb-nb_results_by_page-1;
+					if(starting<0)starting=0;
+					Tab = Tab.slice(starting,current_nb-1);
 				}
 				
-				$header.find( "h1" ).text(res);
-								
-
+			 	myList.html(template(Tab));
+			 				 	
+                //var $header = $('#recherche').children( ":jqmData(role=header)" );
+                var $content = $('#recherche').children( ":jqmData(role=content)" );			
+                
+                
+				switch(nbTotal){
+					case 0:
+						res = 'Aucune offre d\'emploi';
+					break;
+					case 1:
+						res = '1 offre d\'emploi';
+					break;
+					case Limit_Annonce:
+						res = nbTotal+' premières offres d\'emploi';
+					break;
+					default:
+						res = nbTotal+' offres d\'emploi';										
+				}
+					
+				
+				//$header.find( "h1" ).text(res);
+				$content.find( "#nb_results" ).text(res);				
+                $content.find( ".btn_display" ).css('display','block');
+                
+                
+	
 			 	myList.show();
 			 	myList.listview('refresh');
+	
 			 	//myList.page();
 			 	//$('#recherche').trigger('pagecreate');
 			 	if(options.noLoading==null){ remove_notify('#recherche');$.mobile.loading( 'hide' )};
 			 	
-			 	$.waypoints();
-	    		$.waypoints('refresh');
-			 
-			 	
+			 	if(use_infinite){
+			 		$.waypoints();
+	    			$.waypoints('refresh');
+	    		}else{
+					pagination(current_nb);
+					$.mobile.silentScroll(0);
+				}
 	
 	        });    
-	       
+
     }
     
     ,getItem: function(options) {

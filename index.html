@@ -5,9 +5,9 @@
 	<meta name=viewport content="user-scalable=no,width=device-width, initial-scale=1" /> <!-- A tester -->
 	<title>[Batiactu] Emploi</title>
 	
-	<link rel="stylesheet" href="css/jquery.mobile-1.3.1.css" /> 
+	<link rel="stylesheet" href="css/jquery.mobile-1.3.1.css" />
 	
-	<link rel="stylesheet" href="roller/themes/emploi.css" /> 
+	<!--<link rel="stylesheet" href="roller/themes/emploi.css" />--> 
 	<link rel="stylesheet" href="css/jqm-doc.css" /> 
 	<link rel="stylesheet" href="css/add.css" /> 
 	
@@ -20,7 +20,7 @@
 	-->
 	
 	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="js/jquery.mobile-1.3.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
 	<script type="text/javascript" src="js/jqm-doc.js"></script>
 	<!--
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQWPWT2V_AQAtuFcQYZY3hDZtugpazXIU&sensor=true"></script>
@@ -35,9 +35,21 @@
 	<script type="text/javascript" src="js/search.js"></script>
 	<script type="text/javascript" src="js/annonce.js"></script>
 	<script type="text/javascript" src="js/actu.js"></script>
+	
+	<script type="text/javascript">
+
+	$(document).bind("mobileinit", function(){
+		init_global();
+	});
+	</script>
+	
+	<script type="text/javascript" src="js/jquery.mobile-1.3.1.min.js"></script>
+	
 	<script type="text/javascript" src="js/jstorage.js"></script>
+	
 	<script type="text/javascript" src="js/waypoints.min.js"></script>
 	<script type="text/javascript" src="js/waypoints-infinite.min.js"></script>
+	
 	<script type="text/javascript" src="js/handlebars.js"></script>
 	
 	<script type="text/javascript" src="http://www.capinfoproreport.com/cap_pub/scripts/rotate2-js?e=B_IP_HOME,TOP_IP&support=B.IP"></script>
@@ -57,45 +69,11 @@
 	
 	<div data-role="header" data-theme="b">	    
 	    <!--<a href="#accueil" data-role=button data-icon=home data-iconpos="notext">Accueil</a>-->
-	    <h1 style="margin:5px auto auto auto;width:200px;position:relative;font-size:32px;text-align:center !important;"><div style="position:relative;height:90px;"><span style="color:#FFF;font-size:46px !important">[</span> batiactu <span style="color:#FFF;font-size:46px !important">]</span><div style="right:32px;bottom:15px;position:absolute;font-size:22px;color:blue;">Emploi</div></div></h1>
-	    <a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos="notext">Menu</a>
+	    <h1 style="margin:5px auto auto auto;width:200px;position:relative;font-size:32px;text-align:center !important;"><div style="position:relative;height:90px;"><span style="color:#FFF;font-size:46px !important">[</span> batiactu <span style="color:#FFF;font-size:46px !important">]</span><div style="right:32px;bottom:15px;position:absolute;font-size:22px;color:#82befc;">Emploi</div></div></h1>
+	    <!--<a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos="notext">Menu</a>-->
+	     <a href="#popupPanel" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
+
 	</div>
-	
-	<div data-role="panel" id="menu" class="ui-state-persist" data-position="right" data-theme="b">
-		<!--<ul data-role="listview" data-theme="a" data-iconpos="left">
-			<li data-icon="home" > <a href="#"> Accueil </a> </li>
-			<li> <a href="#">Nouvelle recherche</a> </li>
-			<li> <a href="#"> Mes recherches</a> </li>
-		</ul> <a href="#accueil" data-role="button" data-icon="bars" data-iconpos="notext" data-theme="c" data-inline="true">My button</a>
-		-->
-		
-		<div data-role=controlgroup>
-			<a href="#accueil" data-role="button" data-theme="a" data-icon="home" data-corners="false"> Accueil </a>
-			<a onClick="reset_search();" data-role="button" data-theme="c" data-icon="search" data-corners="false">Nouvelle recherche</a>
-			<a href="#mes-recherches" data-role="button" data-theme="c" data-icon="grid" data-corners="false"> Mes recherches </a>
-			<!--<a href="#offre" data-role="button" data-theme="e" data-icon="alert" data-corners="false"> Créez une alerte e-mail</a>-->
-			<a href="#recrutement" data-role="button" data-theme="c" data-icon="star" data-corners="false">Recrutement</a>
-			<a href="#mentions-legales" data-role="button" data-theme="c" data-icon="gear" data-corners="false">Mentions légales</a>
-			<a href="#" onclick="javascript:window.open('http://mobile.batiactu.com/','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="gear" data-corners="false">BatiActu</a>
-			<a href="#" onclick="javascript:window.open('http://www.batiactuemploi.com/','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a>
-			<!--<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" data-theme="a" 
-			   data-icon="arrow-r" data-corners="false">Application batiactu</a>	-->
-		</div>
-			<center>
-			<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-theme="a" 
-			   data-corners="false"><img src="http://a3.mzstatic.com/us/r1000/120/Purple/1d/64/b1/mzi.thppjjiq.175x175-75.jpg" 
-			   width="57px" height="57px"></a>
-			   
-			&nbsp; <a href="https://itunes.apple.com/fr/app/maison-a-part/id397104131" data-theme="a" 
-			   data-corners="false"><img src="images/map.jpg" 
-			   width="57px" height="57px"></a></center>
-			   
-	   		<!--  <a href="http://www.batiactu.com/" data-role="button" target="_blank">Actualités</a>
-	   		<a href="http://formations.batiactu.com/" data-role="button" target="_blank">Formations</a>
-	   		<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" target="_blank"><img src="http://a3.mzstatic.com/us/r1000/120/Purple/1d/64/b1/mzi.thppjjiq.175x175-75.jpg" width="57px" height="57px"></a>
-			<a href="javascript:window.open('http://produits.batiactu.com/','_blank','location=yes');" data-role="button" target="_blank">Produithèque</a> -->
-	   
-	</div><!-- /panel -->
 	
 	<div data-role="content">
     	<p align="center">
@@ -113,6 +91,7 @@
 
 
 <!-- ================================================================================================= -->
+
 
 
 
@@ -143,6 +122,8 @@
 	    <a href="#accueil" data-role=button data-icon=home data-iconpos=notext data-direction="reverse">Accueil</a>
 	    <!--<a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos=notext>Menu</a>	-->
 	    <h1>Recrutement</h1>
+	    <a href="#popupPanel" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
+
 	</div>
 	<div data-role="content">
 		<h4 style="margin:.5em 0">Recrutez avec <code>Batiactu Emploi</code></h4>
@@ -162,9 +143,10 @@
 	<div data-role="header" data-position="fixed">
 	    <a href="#accueil" data-role=button data-icon=home data-iconpos=notext data-direction="reverse">Accueil</a>
 	    <h1>Mentions Légales</h1>
+	    <a href="#popupPanel" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
+
 	</div>
 	<div data-role="content">
-		<div class="content-primary">
 			<h4 style="margin:.5em 0">Batiactu est un site édité par</h4>
 			<div class="ui-body ui-body-b">
 			Cap Information Professionnelle SAS, au capital de 37 000 euros, dont le siège est situé au :<br> 
@@ -181,29 +163,7 @@
 			<small>Vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données qui vous concernent 
 			(art. 34 de la loi "Informatique et Libertés"). Pour l'exercer, adressez vous à Cap Information Professionnelle - 
 			202 rue de la Croix Nivert 75015 Paris ou écrivez à batiactu@capinfopro.com.</small>		
-		</div>
-		<div class="content-secondary">
-			<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
-			
-				<h3>Menu</h3>
-				
-				<ul data-role="listview" data-theme="c" data-dividertheme="d">
-				
-					<li data-role="list-divider">Menu</li>
-					<li><a href="#accueil" data-theme="a" data-icon="home" data-corners="false"> Accueil </a></li>
-					<!--<li><a href="#recherche-detail" data-theme="b" data-icon="search" data-corners="false"> Nouvelle recherche </a></li>-->
-					<li><a href="#" onClick="reset_search();" data-theme="e" data-corners="false" data-icon="search" > Nouvelle recherche </a></li>
-					<li><a href="#mes-recherches" data-theme="c" data-icon="grid" data-corners="false"> Mes recherches </a></li>
-					<!--<li><a href="#offre" data-theme="e" data-icon="alert" data-corners="false"> Créez une alerte e-mail</a></li>-->
-					<li><a href="#recrutement" data-theme="c" data-icon="star" data-corners="false">Recrutement</a></li>
-					<li data-theme="a"><a href="#mentions-legales" data-theme="c" data-icon="gear" data-corners="false">Mentions légales</a></li>
-					<li><a href="#" onClick="window.open('http://mobile.batiactu.com/','_blank','location=yes');" data-theme="c" data-icon="gear" data-corners="false">BatiActu</a></li>
-					<li><a href="http://www.batiactuemploi.com/" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a></li>
-	
-				</ul>
-			</div>
-			
-		</div>
+
 	</div>
 </div>   
 
@@ -211,21 +171,49 @@
 
 <!-- Recherche -->
 <div id="recherche" data-role="page" data-add-back-btn="true" data-back-btn-text="Retour">
-	<div data-role="header" data-position="fixed">
-	    <h1>Résultats</h1>
+	<div data-role="header" data-position="fixed" data-theme="b">
+	    <h1><span style="color:#FFF;font-size:16px !important">[</span> batiactu <span style="color:#FFF;font-size:16px !important">]</span> <span style="font-size:12px;color:#82befc;">Emploi</span></h1>
+	    <!--<a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos="notext">Menu</a>-->
+	    <a href="#popupPanel" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
+
 	</div>
+	<div id="panel">
+    </div>
 	<div class="notifications-wrapper">
       <div class="notifications"></div>
     </div>
 	<div data-role="content" class="content">
-		<ul id="resultat-recherche" style="display:none;" data-role="listview">
-		</ul>			
-	</div>
-	<div id="more">
-		<p align="center">
-			<a id="next" data-inline="true" data-theme="b" data-role="button" data-next="0" class="infinite-more-link" data-mini="true">Plus de résultats...</a>
+		<div id="nb_results"><br></div>
+		<!--
+		<fieldset class="btn_display ui-grid-solo " style="display:none;">		    
+			<div class="ui-block-a"><a data-inline="true" data-theme="c" data-role="button" href="#recherche-detail" data-icon="search" data-mini="true">Modifier la recherche</a></div>
+		</fieldset>
+		-->
+        <p class="btn_display" align="center">
+			<a data-inline="true" data-theme="c" data-role="button" href="#recherche-detail" data-icon="search" data-mini="true">Modifier la recherche</a>
 		</p>
+		<br>
 		
+		<ul id="resultat-recherche" style="display:none;" data-role="listview">
+		</ul>
+		<br>
+		<!--
+		<fieldset class="btn_display ui-grid-solo " style="display:none;">
+			<div class="ui-block-a"><a data-inline="true" data-theme="c" data-role="button" href="#recherche-detail" data-icon="search" data-mini="true">Modifier la recherche</a></div>			
+		</fieldset>
+		-->
+		<p class="btn_display" align="center">
+			<a data-inline="true" data-theme="c" data-role="button" href="#recherche-detail" data-icon="search" data-mini="true">Modifier la recherche</a>
+		</p>			
+
+		<p align="center">
+			<a id="pagin-prev" data-inline="true" data-iconpos="notext" data-theme="b" data-role="button" data-icon="arrow-l"></a>
+			<select data-theme="b" data-inline="true" data-mini="true" name="select-page" id="select-page" data-iconpos="right" data-icon="arrow-d"></select>
+			<span id="pagin-pages" class="blue"></span>
+			<a id="pagin-next" data-inline="true" data-iconpos="notext" data-theme="b" data-role="button" data-icon="arrow-r"></a>
+
+			<a id="next" data-inline="true" data-theme="b" data-role="button" data-next="0" class="infinite-more-link" data-mini="true">Plus de résultats...</a>
+		</p>	
 	</div>	
 </div>   
 
@@ -233,7 +221,9 @@
 <div id="mes-recherches" data-role="page" data-add-back-btn="true" data-back-btn-text="Retour">
 	<div data-role="header" data-position="fixed">
 	    <h1>Mes recherches</h1>
-	    <a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos="notext">Menu</a>
+	    <!--<a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos="notext">Menu</a>-->
+	    <a href="#popupPanel" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
+
 	</div>
 	<div class="notifications-wrapper">
       <div class="notifications"></div>
@@ -321,16 +311,18 @@
 	<div data-role="header">
 	<a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a>
 	    <h1>Recherche</h1>
+	    <a href="#popupPanel" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
+
 	</div>
 	<div data-role="content">
 		<ul data-role="listview">
-			<li data-mini="true">
+			<li>
 				<a href="#recherche-detail-page-fonction">
 					<h2>Fonctions</h2>
 					<p class="ui-li-desc" id="selected-detail-page-fonction"></p>	
 				</a>
 			</li>
-			<li data-mini="true">
+			<li>
 				<a href="#recherche-detail-page-zonegeo">
 					<h2>Localisations</h2>
 					<p class="ui-li-desc" id="selected-detail-page-zonegeo"></p>	
@@ -338,29 +330,30 @@
 				
 			</li>
 			<!-- 
-			<li data-mini="true">
+			<li>
 				<a href="#recherche-detail-page-contrat">
 					Type de contrat
 					<p class="ui-li-desc" id="selected-detail-page-contrat"></p>	
 				</a>
 			</li>
-			<li data-mini="true">
+			<li>
 				<a href="#recherche-detail-page-experience">
 					Expérience
 					<p class="ui-li-desc" id="selected-detail-page-experience"></p>	
 				</a>
 				
 			</li> -->
-			<li data-mini="true">
-				<input data-mini="true" name="mot-clef" id="recherche-detail-mot-clef" placeholder="Recherche par mots-clés" value="" type="text">
+			<li>
+				<input data-mini="true" name="mot-clef" id="recherche-detail-mot-clef" placeholder="Recherche par mots-clés" value="" type="search">
 			</li>
-			<li data-mini="true" style="text-align:center;">
+			<li style="text-align:center;">
 				<p><a id="link_search" onClick="save_current_criteres();go_url_recherche();" data-role="button" data-theme="b" data-mini="true" data-inline="true">Lancer une recherche</a></p>				 
 			</li>
-			<li data-mini="true" style="text-align:center;">
+			<li style="text-align:center;">
 				<p>
-					<a id="link_mine_search" href="#mes-recherches" data-role="button" data-theme="b" data-mini="true" data-inline="true">Recherches sauvegardées</a>
-	
+					<a id="link_mine_search" href="#mes-recherches" data-role="button" data-theme="b" data-mini="true" data-inline="true">Recherches sauvegardées</a>				
+				</p>				 
+				<p>					
 					<a id="last_search" onClick="load_last_searh();go_url_recherche();" data-role="button" data-theme="b" data-mini="true" data-inline="true">Dernière recherche</a>
 				</p>				 
 			</li>
@@ -485,10 +478,34 @@
 	</div>
 	<div id="nav-annonce" data-role="footer" style="overflow:hidden;" data-id="footer3" class="ui-state-persist" data-position="fixed">
 	</div>   	
-</div>    
+</div>  
+
+<div class="ui-corner-all" id="dialogPostuler" data-rel="dialog" data-role="page" data-theme="a" data-dismissible="false">
+    <form>
+        <div style="padding: 10px 20px;">
+            <h3>Recevoir l'offre d'emploi pour postuler depuis votre ordinateur</h3>
+            <label class="ui-hidden-accessible" for="un">Mon adresse email*:</label>
+            <input name="email" id="email" type="text" placeholder="Adresse email*" value="" data-theme="a">
+            <a  data-role="button" onClick="postuler();" data-icon="check" data-theme="b">M'envoyer l'offre d'emploi</button>
+            <a  href="#" data-role="button" onClick="$('#dialogPostuler').dialog('close');" data-icon="" data-theme="a">Annuler</a>
+        </div>
+    </form>
+</div>
+  
 <!-- Partie script javascript --------------------------------------------------------->
 
 <script type="text/javascript">
+$('[data-role=page]').on('pagebeforeshow', function(){
+	$( ".popupPanel" ).on({
+	    popupbeforeposition: function() {
+	        var h = $( window ).height();
+	        $( ".popupPanel" ).css( "height", h );
+	    }
+	});
+	 $(document).on('click', '#popupPanel-popup', function(){
+        $('#popupPanel').popup('close');
+    });   
+});
 
 
 $('#actu').on('pageinit', function(){
@@ -508,13 +525,37 @@ $('#offre').on('pageinit', function(){
 		});
 	});
 });
-
-$('#recherche-detail').on('pageinit', function(){
-	initSearch();
-}); 
-$('#recherche-detail').on('pagecreate', function(){
-
+$('[data-role=page]').on('pagebeforecreate', function(){
+	var defaults = {
+	         template:'#popupPanel-tpl'
+	          ,url:'fill-url-source'
+	          ,data:{  }                
+	      }    
+    var options = $.extend(defaults, options);
+	var template = Handlebars.compile($(options.template).html());
+	Tab = new Array();
+	$('#' +this.id + ' div[data-role=content]').append(template(Tab));
 });
+	
+$('#recherche-detail').on('pageinit', function(){
+	initSearch(); 	
+}); 
+$('#recherche-detail-page-zonegeo').on('pagebeforecreate', function(){
+	var template = Handlebars.compile($('#recherche-detail-tpl').html());
+	$('#recherche-detail-zonegeo').html(template(Tregions_search)).trigger('create');
+	$('#recherche-detail-page-zonegeo .check_cac').off('click').on('click', function() {
+		uncheck_cac($(this).attr('cac_type'),$(this));
+		$.mobile.changePage( "#recherche-detail", { transition: "fade"} );
+    }); 
+});
+$('#recherche-detail-page-fonction').on('pagebeforecreate', function(){;	
+	var template = Handlebars.compile($('#recherche-detail-tpl').html());
+ 	$('#recherche-detail-fonction').html(template(Tfonctions_search)).trigger('create'); 
+ 	$('#recherche-detail-page-fonction .check_cac').off('click').on('click', function() {
+		uncheck_cac($(this).attr('cac_type'),$(this));
+		$.mobile.changePage( "#recherche-detail", { transition: "fade"} );
+    }); 
+}); 	
 $('#recherche-detail').on('pageshow', function(){
 	$('#recherche #next').attr('data-next',0);
 	save_current_criteres();
@@ -528,94 +569,139 @@ $('#recherche').on('pagecreate', function(){
 	TabComplete.push(Tab);	 
 	$('#recherche').append(template2(TabComplete)).trigger('create');  
 });
-$('#annonce').on('pagecreate', function(){
-	
-});
-$('#recherche').on('pagebeforeshow', function(){
-	
-	$('#recherche .content').waypoint('destroy');
-	
-	$('#recherche #next').unbind();
-	$('#recherche #next').bind('click', function(e){
-        current = parseInt($('#recherche #next').attr('data-next'));
-		if(current<=current_nb_annonce){			
-			e.preventDefault();
 
-	        launchSearch(1);
-			
-			$('#resultat-recherche').listview('refresh');
-			$('#recherche .content').waypoint('disable');	
-			$('#recherche .content').waypoint('enable');
-			$('#recherche').trigger('pagecreate');
-		}
-		current = parseInt($('#recherche #next').attr('data-next'));
-		
-		
-		if((current+nb_results_by_page)<=current_nb_annonce){		
-			$('#recherche #next').show();
-			//$('#recherche #next').data('disabled',false); 
-			$('#recherche #next').removeClass('ui-disabled');
- 			
-		}else{
-			$('#recherche #next').hide();	
-			//$('#recherche #next').data('disabled',true);  
-			$('#recherche #next').addClass('ui-disabled');
-			
-		}
-			
-	});
+$("#recherche #select-page").on('change', function(event, ui){
+	launchSearch(1,$(this).val());
+});
+$('#recherche').on('pageshow', function(){
+	if(use_infinite)$( "#select-page" ).remove();
+	if(use_infinite)$( "#select-page" ).parents('.ui-select').css('display', 'none');
+});
+
+    
+
 	
+$('#recherche').on('pagebeforeshow', function(){	
+	if(use_infinite)$('#recherche #pagin-prev').hide();
+	if(use_infinite)$('#recherche #pagin-next').hide();
+	if(use_infinite)$('#recherche #select-page').hide();
+	if(use_infinite)$('#recherche #pagin-pages').hide();
+	if(use_infinite)$( "#select-page" ).remove();	
+	
+	$( "#select-page" ).parents('.ui-select').css('display', 'none');
+			
+	if(use_infinite)$('#recherche .content').waypoint('destroy');
+	if(!use_infinite){
+		$('#recherche #pagin-prev').unbind();
+		$('#recherche #pagin-prev').bind('click', function(e){
+	        current = parseInt($('#recherche #next').attr('data-next'));	        
+			if(current>nb_results_by_page){
+				current = current - (2*nb_results_by_page);	
+				$('#recherche #next').attr('data-next',current);		
+				e.preventDefault();
+	
+		        launchSearch(1);
+				
+				$('#resultat-recherche').listview('refresh');
+				if(use_infinite){
+					$('#recherche .content').waypoint('disable');	
+					$('#recherche .content').waypoint('enable');
+				}
+				$('#recherche').trigger('pagecreate');
+			}
+			//current = parseInt($('#recherche #next').attr('data-next'));			
+			//pagination(current);
+			$.mobile.silentScroll(0);	
+		});
+	
+	
+		$('#recherche #pagin-next').unbind();
+		$('#recherche #pagin-next').bind('click', function(e){	
+			current = parseInt($('#recherche #next').attr('data-next'));			       
+			
+			if(current<=current_nb_annonce){			
+				e.preventDefault();
+	
+		        launchSearch(1);
+				
+				$('#resultat-recherche').listview('refresh');
+				if(use_infinite){
+					$('#recherche .content').waypoint('disable');	
+					$('#recherche .content').waypoint('enable');
+				}
+				$('#recherche').trigger('pagecreate');
+			}
+			//current = parseInt($('#recherche #next').attr('data-next'));			
+			//pagination(current);
+			$.mobile.silentScroll(0);	
+		});
+	}
+	
+	if(use_infinite){
+		$('#recherche #next').unbind();
+		$('#recherche #next').bind('click', function(e){
+	        current = parseInt($('#recherche #next').attr('data-next'));
+	       
+			if(current<=current_nb_annonce){			
+				e.preventDefault();
+
+		        launchSearch(1);
+
+				$('#resultat-recherche').listview('refresh');
+				if(use_infinite){
+					$('#recherche .content').waypoint('disable');	
+					$('#recherche .content').waypoint('enable');
+				}
+				$('#recherche').trigger('pagecreate');
+			}
+			current = parseInt($('#recherche #next').attr('data-next'));
+			
+			
+			if((current+nb_results_by_page)<=current_nb_annonce){		
+				$('#recherche #next').show();
+				$('#recherche #next').removeClass('ui-disabled');
+	 			
+			}else{
+				$('#recherche #next').hide();	
+				$('#recherche #next').addClass('ui-disabled');
+				
+			}
+				
+		});
+	}    
+	
+	$('#recherche #next').hide();	
+	$('#recherche #next').addClass('ui-disabled');
+
 	
 	
 });
 
 $('#recherche').on('pageshow', function(){	
-	
-	
-	current = parseInt($('#recherche #next').attr('data-next'));
-	if(current_nb_annonce >= current){		
-		$('#recherche .content').waypoint(function(direction) {
+	if(use_infinite){
+		current = parseInt($('#recherche #next').attr('data-next'));
+		if(current_nb_annonce >= current){				
+			$('#recherche .content').waypoint(function(direction) {
 			
-			if (direction === 'down'){
-				$('#recherche #next').trigger('click');				
-			}
-		}, { offset: 'bottom-in-view' } );
-    }
-    
-    
-	if((current+nb_results_by_page)<=current_nb_annonce){		
-		$('#recherche #next').show();
-		//$('#recherche #next').data('disabled',false); 
-		$('#recherche #next').removeClass('ui-disabled');
-		
-	}else{
-		$('#recherche #next').hide();	
-		//$('#recherche #next').data('disabled',true);  
-		$('#recherche #next').addClass('ui-disabled');
-		
+				if (direction === 'down'){ 
+					$('#recherche #next').trigger('click');				
+				}
+			}, { offset: 'bottom-in-view' } ); 
+	    } 
+	    if((current+nb_results_by_page)<=current_nb_annonce){		
+			$('#recherche #next').show();
+			$('#recherche #next').removeClass('ui-disabled');
+			
+		}else{
+			$('#recherche #next').hide();	 
+			$('#recherche #next').addClass('ui-disabled');
+			
+		}
 	}
-		
- 
+	
 });  
 
-var notify = function(message, page) {
-      var $message = $('<p style="display:none;">' + message + '</p>');
 
-	  $(page+' .notifications').each(function(){	  
-	  $(this).append($message);
-      //$message.show();
-      $message.slideDown(300, function() {
-        window.setTimeout(function() {
-          $message.slideUp(300, function() {            
-			$message.remove();
-          });
-        }, 3000);
-      });
-      });
-    };
-var remove_notify = function(page) {
-      $(page+' .notifications').find('p').remove();
-    };
 $('#mes-recherches').on('pagebeforechange', function(){
    $('#mes-recherches #resultat-mesrecherches').hide();
 });
@@ -624,15 +710,15 @@ $('#mes-recherches').on('pagebeforeshow', function(){
     $('#mes-recherches').trigger('create');
 	//$('#mes-recherches #resultat-mesrecherches').show();
 });
-$('#recherche-detail').on('pageshow', function(){
+/*$('#recherche-detail').on('pageshow', function(){
 	$('.check_cac').off('click').on('click', function() {
 		uncheck_cac($(this).attr('cac_type'),$(this));
 		$.mobile.changePage( "#recherche-detail", { transition: "fade"} );
     }); 
-});
+}); */
 $(document).bind( "pagebeforechange", function( e, data ) {
 	var u = $.mobile.path.parseUrl( data.toPage );
-	
+
 	if ( typeof data.toPage === "string" ) {
 		
 		// recherche.
@@ -648,7 +734,7 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 		// annonce.
 		var re = /^#annonce/;
 		if ( u.hash.search(re) !== -1 ) {
-
+			back_popup_hash = u['hash'];
 			showAnnonce( u, data.options );
 
 			e.preventDefault();
@@ -679,10 +765,6 @@ $('#accueil').on('pagebeforecreate', function(){
 	//$('div[id!="annonce"][id!="recherche"][data-role="page"]').append(footer);
 	
 });
-$(document).ready(function() 
-{
-	//onBodyLoad();
-});
 
 
 // avoir pour ajouter en dynamique le footer
@@ -704,11 +786,70 @@ $(document).ready(function()
 
 
 	$("#idFooter").html(sHtml);*/
+$(document).on("pageshow", "#annonce", function() {
+    
+
+
+	$("#formpopupPostuler").validate({
+		rules: {
+			email: {
+			    required: true,
+				email: true
+			}
+			
+		},
+		messages: {
+			required: "L'email est requis, merci",
+			email: "Veuillez entrer un email valide, merci."
+		},
+		errorPlacement: function(error, element) {
+			var id = element.attr("id");
+			switch(id){
+			    case 'email':
+			    error.insertAfter('.email_label');
+			    break;
+			    
+				default:
+				error.insertBefore(element);
+			}
+		}
+ 
+	});
+ 
+});
 	
 
 </script>
 
 <!-- template handlebar -->
+
+<script id="popupPanel-tpl" type="text/x-handlebars-template">
+<div data-role="popup" class="popupPanel" id="popupPanel" data-corners="false" data-theme="none" data-shadow="false" data-tolerance="0,0">
+
+    <div data-role=controlgroup>
+			<a href="#accueil" data-role="button" data-theme="a" data-icon="home" data-corners="false"> Accueil </a>
+			<a href="#" onClick="reset_search(1);" data-role="button" data-theme="c" data-icon="search" data-corners="false">Nouvelle recherche</a>
+			<a href="#mes-recherches" data-role="button" data-theme="c" data-icon="grid" data-corners="false"> Mes recherches </a>
+			<!--<a href="#offre" data-role="button" data-theme="e" data-icon="alert" data-corners="false"> Créez une alerte e-mail</a>-->
+			<a href="#recrutement" data-role="button" data-theme="c" data-icon="star" data-corners="false">Recrutement</a>
+			<a href="#mentions-legales" data-role="button" data-theme="c" data-icon="gear" data-corners="false">Mentions légales</a>
+			<!--<a href="#" onclick="javascript:window.open('http://mobile.batiactu.com/','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="gear" data-corners="false">BatiActu</a>-->
+			<a href="#" onclick="javascript:window.open('http://www.batiactuemploi.com/','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a>
+			<!--<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" data-theme="a" 
+			   data-icon="arrow-r" data-corners="false">Application batiactu</a>	-->
+		</div>
+			<center>
+			<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-theme="a" 
+			   data-corners="false"><img src="http://a3.mzstatic.com/us/r1000/120/Purple/1d/64/b1/mzi.thppjjiq.175x175-75.jpg" 
+			   width="57px" height="57px"></a>
+			   
+			&nbsp; <a href="https://itunes.apple.com/fr/app/maison-a-part/id397104131" data-theme="a" 
+			   data-corners="false"><img src="images/map.jpg" 
+			   width="57px" height="57px"></a></center>
+	 
+</div>
+{{#.}}{{/.}} 
+</script>
 <script id="nav-recherche-tpl" type="text/x-handlebars-template">
 {{#.}}    
 	<div id="nav-recherche" data-role="footer" style="overflow:hidden;" data-id="footer2" data-position="fixed">
@@ -736,7 +877,9 @@ $(document).ready(function()
 			<!--<a style="float:left;" href="javascript:showAnnonce({{PREVIOUS}});" data-role="button" data-theme="b" data-inline="true">&lt;</a>-->
 			<a style="float:left;" href="#annonce?id={{PREVIOUS}}" data-role="button" data-mini="true" data-theme="b" data-inline="true">&lt;</a>
 		  	{{/if}}
-			<a href="javascript:postuler();" data-role="button" data-theme="b" data-mini="true" data-inline="true">Postuler</a>
+			<!--<a href="javascript:postuler();" data-role="button" data-theme="b" data-mini="true" data-inline="true">Postuler</a>-->
+			<a href="#popupPostuler" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Postuler</a>
+				
 		  	{{#if NEXT}}
 			<!--<a style="float:right;" href="javascript:showAnnonce({{NEXT}});" data-role="button" data-theme="b" data-inline="true">&gt;</a>-->
 			<a style="float:right;" href="#annonce?id={{NEXT}}" data-role="button" data-mini="true" data-theme="b" data-inline="true">&gt;</a>
@@ -752,48 +895,91 @@ $(document).ready(function()
 	<div data-role="content">
         
         	<div class="entete">
-	        	<table border="0" width="100%">
-	        		<tr>
-	        			<td colspan="2"><h1>{{LIBELLE}}</h1></td>	
-	        		</tr>
-	        		<tr>
-	        			<td class="black"><span class="grey">Entreprise : </span>{{{LIB_RECRUTEUR}}}</td>
-	        			<td rowspan="4" align="right"><div class="img_ann_detail">{{{IMG}}}</div></td>
-	        		</tr>
-        			{{#if LIEUX}}
-					<tr>
-        				<td class="black" colspan="2"><span class="grey">Lieu(x) : </span>{{{LIEUX}}}</td>
-        			</tr>
-        			{{/if}}
-        			{{#if CONTRAT}}
-        			<tr>
-        				<td class="black" colspan="2"><span class="grey">Type : </span>{{{CONTRAT}}}</td>
-        			</tr>
-        			{{/if}}
-        			{{#if REMUNERATION}}
-        			<tr>
-        				<td class="black" colspan="2"><span class="grey">Rémunération : </span>{{{REMUNERATION}}}</td>
-        			</tr>
-        			{{/if}}
-        			<tr>
-	        			<td class="blue padtop10">{{DT_DEBVALID}}</td>
-	        			<td class="blue padtop10" align="right">Réf. {{REFERENCE}}</td>
-	        			
-	        		</tr>
-        		</table>
+        		<h1>{{LIBELLE}}</h1>
+        		<br>
+				<div>
+				{{{IMG}}}
+				<span class="grey">Entreprise : </span>{{{LIB_RECRUTEUR}}}
+				
+	        	
+      			{{#if LIEUX}}
+				<br><span class="grey">Lieu(x) : </span>{{{LIEUX}}}
+      			{{/if}}
+      			
+      			{{#if CONTRAT}}
+      			<br><span class="grey">Type : </span>{{{CONTRAT}}}
+      			{{/if}}
+      			
+      			{{#if REMUNERATION}}
+      			<br><span class="grey">Rémunération : </span>{{{REMUNERATION}}}
+      			{{/if}}
+        		</div>
+        		
+				<div class="clear padtop10">	
+      			<span class="blue ">{{DT_DEBVALID}}</span>
+				<span class="blue floatright" align="right">{{#if REFERENCE}}Réf. {{REFERENCE}}{{/if}}</span>
+				</div>
+	        	
         	</div>
         	<div class="centre">
         	<p class="description">{{{DESCRIPTION_ENTREPRISE}}}</p>
         	<p class="description">{{{DESCRIPTION}}}</p>
         	
         	
-		    <input data-mini="true" type="text" value="" placeholder="Votre email" id="email" />
+		    <!--<input data-mini="true" type="text" value="" placeholder="Votre email" id="email" />-->
 		    <!--<input type="button" value="Postuler" onclick="postuler();" />-->
 		    
 			</div>
 		    
 		    <input type="hidden" value="{{ID_ANNONCE}}" id="id_annonce">
-		
+		    <p align="center">
+				<a href="#popupPostuler" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Postuler à l'offre d'emploi</a>
+				<!--
+				<a href="#confirm_send" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">confirm_send</a>
+				<a href="#error_send" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">error_send</a>
+				-->
+			</p>
+			<div class="pad10 ui-corner-all" data-history="false" id="popupPostuler" data-role="popup" data-overlay-theme="a" data-theme="c" data-dismissible="false">
+			    <form id="formpopupPostuler">
+			        <div style="padding: 10px 20px;">
+			            <h3>Recevoir l'offre d'emploi pour postuler depuis votre ordinateur</h3>
+			            <label class="email_label" class="bold" for="email">Mon Adresse email*</label>
+			            <input name="email" id="email" type="text" placeholder="Adresse email*" value="" data-theme="b">
+			            <label class="bold" for="subject">Objet Email</label>
+			            <input name="subject" id="subject" type="text" placeholder="Objet Email" value="Postuler à : {{LIBELLE}} {{#if REFERENCE}}(Réf. {{REFERENCE}}){{/if}}" data-theme="b">
+			            <label class="bold" for="message">Votre message</label>
+			            <textarea name="message" id="message" placeholder="Votre message" value="" data-theme="b"></textarea>
+			            
+						<input type="hidden" value="{{ID_ANNONCE}}" id="id_annonce">
+						
+						<br>
+						<a  onClick="javascript:postuler();" data-role="button" data-icon="" data-theme="b">M'envoyer l'offre d'emploi</button>
+			            <a  data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Annuler</a>
+			        </div>
+			    </form>
+			</div>
+			<div class="pad10 ui-corner-all" data-history="false" id="confirm_send" data-role="popup" data-overlay-theme="a" data-theme="c">
+			    <form>
+			        <div style="padding: 10px 20px;">
+						<h3>L'offre d'emploi vous a bien été transmise par email.</h3>
+					    <a  href="#recherche" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour aux résultats</a>
+					    <a  href="#" onClick="reset_search(1);" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle recherche</a>
+				    </div>
+			    </form>
+			</div>
+			<div class="pad10 ui-corner-all" data-history="false" id="error_send" data-role="popup" data-overlay-theme="a" data-theme="c">
+			    <form>
+			        <div style="padding: 10px 20px;">
+						<h3>Une erreur c'est provoqué. L'offre d'emploi n'a pu être transmise par email.</h3>
+					    <p align="center">
+							<a  data-rel="back" href="#" data-role="button" data-inline="true" data-mini="true" data-icon="" data-theme="b">Retour à l'annonce</a><br>			    
+							<a  href="#recherche" data-role="button" data-mini="true" data-inline="true" data-icon="" data-theme="b">Retour aux résultats</a><br>
+						    <a  href="#" onClick="reset_search(1);" data-mini="true" data-inline="true" data-role="button" data-icon="" data-theme="c">Nouvelle recherche</a>
+					    </p>
+				    </div>
+			    </form>
+			</div>
+			
 		
     </div>
 	
@@ -815,11 +1001,17 @@ $(document).ready(function()
 <script id="recherche-resultat-tpl" type="text/x-handlebars-template">
 		{{#.}}
 			<li class="infinite-item">
+					
 				<a href="#annonce?id={{item_origine}}">
-     				<div id="div_img"><p>{{{item_image_to_show}}}</p></div>
+     				
      				<h2>{{item_libelle}}</h2>
-     				<span class="resultat_lib_recruteur">{{item_lib_recruteur}}</span>
+     				{{#if item_contrat}}<span class="resultat_lib_contrat">({{{item_contrat}}})</span><br>{{/if}}
+     				<span class="resultat_lib_recruteur">{{item_lib_recruteur}}</span><br>
+					<span class="resultat_lib_region">{{item_lib_region}}</span>      				
+					<!--<br><span class="resultat_lib_region">{{item_lib_dept}}</span>-->
+						{{#if item_image_to_show}}<div id="div_img"><p>{{{item_image_to_show}}}</p></div>{{/if}}  			
 				</a>
+				
 			</li>
 		{{/.}}
 </script>

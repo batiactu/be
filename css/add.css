@@ -1,3 +1,10 @@
+label.error { 
+	/*float: left;*/ 
+	color: red; 
+	padding-top: .5em; 
+	vertical-align: top; 
+	font-weight:bold
+}
 .ui-body-b, .ui-overlay-b {
 	background:#FFF !important;
 }
@@ -14,6 +21,14 @@ h2 {
 	font-size:12px !important;
 	font-weight:normal !important;
 }
+.resultat_lib_region {
+	font-size:12px !important;
+	font-weight:normal !important;
+}
+.resultat_lib_contrat {
+    font-size:12px !important;
+	font-weight:normal !important;
+}
 .entete h1 {
     color:#444444;
 	margin-top:0px;
@@ -24,15 +39,18 @@ h2 {
 	border-bottom:1px solid #dbdbdb;
 }
 #recherche h1.ui-title{
-	text-align:right !important;
+/*	text-align:right !important;
 	float:right;
-	margin-right:15px;
+	margin-right:15px;  */
 }
+#recherche #nb_results{
+	font-weight:bold;
+}
+
 .centre {
 	border-top:1px solid #cfcfcf;
 	padding:5px 10px;
 	background-color:#e8e8e8;
-}
 }
 .black {
 	color:black;
@@ -46,12 +64,19 @@ h2 {
 .darkgrey {
 	color:#666666;
 }
-.img_ann_detail img{
+.entete img{
 	float:right;
+	display:inline;
 	width:100px;
     box-shadow: 1px 1px 6px  #555555;
     padding:5px;
     margin-bottom: 9px;
+}
+.floatright{
+	float:right;
+}
+.clear{
+	clear:both;
 }
 .padtop10 {
 	padding-top:10px;
@@ -77,7 +102,15 @@ h2 {
 #annonce .ui-content{
 	padding:0px;
 }
-
+#popupPostuler .bold{
+	font-weight:bold !important;
+}
+.bold{
+	font-weight:bold;
+}
+.pad10 {
+	padding:10px;
+}
 #resultat-mes-recherches li {
 	padding:10px 50px 10px 10px; 
 	margin-bottom:40px;
@@ -97,12 +130,20 @@ h2 {
 	text-align:center;
 	font-weight:normal;
 }
+#resultat-recherche li {
+	position:relative;
+}
+#resultat-recherche li a {
+	padding-right:100px !important;
+}
 #resultat-recherche li #div_img {
-    box-shadow: 1px 1px 5px #555555;
-    float: left;
+    position:absolute;
+    right:35px;
+    top:15px;
+	box-shadow: 1px 1px 5px #555555;
+    /*float: right;*/
     height: 60px;
     width: 60px;
-    margin-right:10px;
 }
 #resultat-recherche li #div_img p {
     float:none;
@@ -117,9 +158,15 @@ h2 {
 	vertical-align:middle;
 }
 
-#resultat-recherche li h2{
+#resultat-recherche li h2 .contrat{
+	font-weight:normal;
 }
-
+#recherche #pagin-pages {
+	font-weight:bold;
+}
+.displaynone {
+	display:none;
+}
 .notifications-wrapper {
   position: fixed;
   z-index: 2;
@@ -141,3 +188,20 @@ h2 {
     text-align: center;
     margin: 0;
     border-top: 1px solid #c5d5e5; }
+    
+    
+#popupPanel-popup {
+    right: 0 !important;
+    left: auto !important;
+}
+.popupPanel {
+    width: 280px;
+    border: 1px solid #000;
+    border-right: none;
+    background: rgba(0,0,0,.5);
+    margin: -1px 0;
+}
+.popupPanel .ui-btn {
+    margin: 0 15px;
+}
+    

@@ -1,16 +1,33 @@
 var prevP=0,nextP=0;
 
+
+function _validateEmail(sEmail) {
+
+	var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/; 
+	
+	if (filter.test(sEmail)) { 
+		return true; 
+	} 
+	else { 
+		return false; 
+	}
+}	
 function postuler() {
 	
 	email = $('#email').val();
 	
-	if(email=='') {
+	if(!$('#formpopupPostuler').valid())return false;
+	
+	if ($.trim(email).length == 0 || !_validateEmail(email) ) {
 		alert('Veuillez saisir votre email pour postuler !');
+		return false;
 	}
 	else {
 		
 				
 		id_annonce = $('#annonce #id_annonce').val();
+		var subject = $('#annonce #subject').val();
+		var message = $('#annonce #message').val();
 		//alert("Vous avez postuler pour l'offre "+id_annonce+" !");
 		//SaveEmail();
 		//$.jStorage.flush();
@@ -25,6 +42,8 @@ function postuler() {
 					,put:'candidate-annonce'
 					,id:id_annonce
 					,email:email
+					,subject:subject
+					,message:message
 				}
 				,dataType:'jsonp'
 			 	,async : true
@@ -32,15 +51,17 @@ function postuler() {
 
 					$.mobile.loading( 'hide' );	
 					if(rep=="OK"){
-					    var msg = 'Cette annonce a bien été envoyée à '+email;					    
+					    var msg = 'Cette annonce a bien été envoyée à '+email;
+						$('#confirm_send').popup('open');
+						$('#popupPostuler').popup('close');
+								    
 					}else{
-						var msg = 'Une erreur est survenue!';					
+						var msg = 'Une erreur est survenue!';
+						$('#error_send').popup('open');					
 					}				
 									        
-					notify(msg, '#annonce');
-					//$('#annonce').trigger('pagebeforecreate');
-					//$('#annonce').trigger('pagecreate');
-					//$('#annonce').page();	 
+					//notify(msg, '#annonce');
+ 
 			 	}
 			 	,error:function() {
 			 		$.mobile.loading( 'hide' );
@@ -49,7 +70,7 @@ function postuler() {
 		//$('#annonce').page();
         //$('#annonce').trigger('pagebeforecreate').trigger('pagecreate').page();	 
 	}
-	
+	return true;
 }
 
 
