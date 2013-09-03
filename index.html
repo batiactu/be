@@ -34,8 +34,11 @@
 	<script type="text/javascript" src="js/jquery.item.js"></script>
 	<script type="text/javascript" src="js/search.js"></script>
 	<script type="text/javascript" src="js/annonce.js"></script>
-	<script type="text/javascript" src="js/actu.js"></script>
+	<!--<script type="text/javascript" src="js/actu.js"></script>-->
+	<script type="text/javascript" src="js/jstorage.js"></script>
 	
+	
+
 	<script type="text/javascript">
 
 	$(document).bind("mobileinit", function(){
@@ -45,7 +48,6 @@
 	
 	<script type="text/javascript" src="js/jquery.mobile-1.3.1.min.js"></script>
 	
-	<script type="text/javascript" src="js/jstorage.js"></script>
 	
 	<script type="text/javascript" src="js/waypoints.min.js"></script>
 	<script type="text/javascript" src="js/waypoints-infinite.min.js"></script>
@@ -71,7 +73,7 @@
 	    <!--<a href="#accueil" data-role=button data-icon=home data-iconpos="notext">Accueil</a>-->
 	    <h1 style="margin:5px auto auto auto;width:200px;position:relative;font-size:32px;text-align:center !important;"><div style="position:relative;height:90px;"><span style="color:#FFF;font-size:46px !important">[</span> batiactu <span style="color:#FFF;font-size:46px !important">]</span><div style="right:32px;bottom:15px;position:absolute;font-size:22px;color:#82befc;">Emploi</div></div></h1>
 	    <!--<a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos="notext">Menu</a>-->
-	     <a href="#popupPanel" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
+	     <a href="#popupPanelaccueil" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
 
 	</div>
 	
@@ -105,7 +107,7 @@
 	<a href=#accueil data-role=button data-icon=home data-iconpos=notext data-direction="reverse" data-transition="fade"></a>
 	    <h1>Gallerie</h1>
 	</div>
-	<div data-role="content" data-theme=b style="padding:0px;margin:0px;"><img id="imageMaquette" src="demo/0.jpg" width="100%" height="100%" />
+	<!--<div data-role="content" data-theme=b style="padding:0px;margin:0px;"><img id="imageMaquette" src="demo/0.jpg" width="100%" height="100%" />-->
 
 	<!-- onclick="javascript:changeLink();"  -->
 
@@ -122,7 +124,7 @@
 	    <a href="#accueil" data-role=button data-icon=home data-iconpos=notext data-direction="reverse">Accueil</a>
 	    <!--<a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos=notext>Menu</a>	-->
 	    <h1>Recrutement</h1>
-	    <a href="#popupPanel" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
+	    <a href="#popupPanelrecrutement" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
 
 	</div>
 	<div data-role="content">
@@ -143,7 +145,7 @@
 	<div data-role="header" data-position="fixed">
 	    <a href="#accueil" data-role=button data-icon=home data-iconpos=notext data-direction="reverse">Accueil</a>
 	    <h1>Mentions Légales</h1>
-	    <a href="#popupPanel" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
+	    <a href="#popupPanelmentions-legales" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
 
 	</div>
 	<div data-role="content">
@@ -174,7 +176,7 @@
 	<div data-role="header" data-position="fixed" data-theme="b">
 	    <h1><span style="color:#FFF;font-size:16px !important">[</span> batiactu <span style="color:#FFF;font-size:16px !important">]</span> <span style="font-size:12px;color:#82befc;">Emploi</span></h1>
 	    <!--<a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos="notext">Menu</a>-->
-	    <a href="#popupPanel" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
+	    <a href="#popupPanelrecherche" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
 
 	</div>
 	<div id="panel">
@@ -185,11 +187,11 @@
 	<div data-role="content" class="content">
 		<div id="nb_results"><br></div>
 		<!--
-		<fieldset class="btn_display ui-grid-solo " style="display:none;">		    
+		<fieldset class="btn_display1 ui-grid-solo " style="display:none;">		    
 			<div class="ui-block-a"><a data-inline="true" data-theme="c" data-role="button" href="#recherche-detail" data-icon="search" data-mini="true">Modifier la recherche</a></div>
 		</fieldset>
 		-->
-        <p class="btn_display" align="center">
+        <p class="btn_display1" align="center">
 			<a data-inline="true" data-theme="c" data-role="button" href="#recherche-detail" data-icon="search" data-mini="true">Modifier la recherche</a>
 		</p>
 		<br>
@@ -198,11 +200,11 @@
 		</ul>
 		<br>
 		<!--
-		<fieldset class="btn_display ui-grid-solo " style="display:none;">
+		<fieldset class="btn_display2 ui-grid-solo " style="display:none;">
 			<div class="ui-block-a"><a data-inline="true" data-theme="c" data-role="button" href="#recherche-detail" data-icon="search" data-mini="true">Modifier la recherche</a></div>			
 		</fieldset>
 		-->
-		<p class="btn_display" align="center">
+		<p class="btn_display2" align="center">
 			<a data-inline="true" data-theme="c" data-role="button" href="#recherche-detail" data-icon="search" data-mini="true">Modifier la recherche</a>
 		</p>			
 
@@ -214,7 +216,19 @@
 
 			<a id="next" data-inline="true" data-theme="b" data-role="button" data-next="0" class="infinite-more-link" data-mini="true">Plus de résultats...</a>
 		</p>	
-	</div>	
+	</div>
+	<div class="pad10 ui-corner-all" data-history="false" id="popupSaveSearch" data-role="popup" data-overlay-theme="a" data-theme="c" data-dismissible="true">
+	    <div style="padding: 10px 20px;">
+            <h3>Votre recherche est sauvegardée avec succès</h3>
+            <a  data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Fermer</a>
+        </div>
+	</div>
+	<div class="pad10 ui-corner-all" data-history="false" id="popupAlreadyExistsSaveSearch" data-role="popup" data-overlay-theme="a" data-theme="c" data-dismissible="true">
+	    <div style="padding: 10px 20px;">
+            <h3>Cette recherche existe déjà dans vos sauvegardes!</h3>
+            <a  data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Fermer</a>
+        </div>
+	</div>
 </div>   
 
 <!-- Mes Recherches -->
@@ -222,7 +236,7 @@
 	<div data-role="header" data-position="fixed">
 	    <h1>Mes recherches</h1>
 	    <!--<a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos="notext">Menu</a>-->
-	    <a href="#popupPanel" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
+	    <a href="#popupPanelmes-recherches" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
 
 	</div>
 	<div class="notifications-wrapper">
@@ -235,10 +249,18 @@
 	
 	<div id="more">
 		<p align="center">
-			<a data-inline="true" data-theme="b" data-role="button" onClick="reset_search();" data-icon="search" data-mini="true">Nouvelle recherche</a>
+			<a data-inline="true" data-theme="b" data-role="button" onClick="reset_search(1);" data-icon="search" data-mini="true">Nouvelle recherche</a>
 			
 		</p>
 		
+	</div>
+	<a href="#delete_search" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Suppression recherche</a>
+				
+	<div class="pad10 ui-corner-all" data-history="false" id="delete_search" data-role="popup" data-overlay-theme="a" data-theme="c" data-dismissible="true">		
+	        <div style="padding: 10px 20px;">
+				<h3>Recherche supprimée avec succès</h3>
+		    </div>
+	    
 	</div>	
 </div> 
 
@@ -311,7 +333,7 @@
 	<div data-role="header">
 	<a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a>
 	    <h1>Recherche</h1>
-	    <a href="#popupPanel" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
+	    <a href="#popupPanelrecherche-detail" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
 
 	</div>
 	<div data-role="content">
@@ -484,31 +506,34 @@
 <!-- Partie script javascript --------------------------------------------------------->
 
 <script type="text/javascript">
-$( document ).on( "pageshow", function() {
+$('#annonce').on( "pagebeforeshow", function() {
 	$( '#popupPostuler' ).on({
 	        popupafteropen: function(event, ui) {
-	            $('#btn_postuler').unbind();
+				$('#btn_postuler').unbind();
 				$('#btn_postuler').bind('click', function(e){														
 					setTimeout( function(){ $( '#waiting_send' ).popup( 'open' ) }, 200 );	
 				});
-	        },
-			popupafterclose: function(event, ui) {
-	            
 	        }
 	    });
 });     
 	
 			
-$('[data-role=page]').on('pagebeforeshow', function(){
+$('[data-role=page]').bind('pageshow',function(){
 	$( ".popupPanel" ).on({
 	    popupbeforeposition: function() {
 	        var h = $( window ).height();
-	        $( ".popupPanel" ).css( "height", h );
-	    }
+	        $( ".popupPanel" ).css( "height", h );	        
+	    },
+		popupafteropen: function() {    
+	       $('.popupPanel').each(function(){
+				$(this).unbind();
+				$(this).bind('click', function(e){														
+					$('.popupPanel').popup('close');	
+				});
+			});
+	    }, 
 	});
-	 $(document).on('click', '#popupPanel-popup', function(){
-        $('#popupPanel').popup('close');
-    });   
+	 
 });
 $('[data-role=page]').on('pagebeforecreate', function(){
 	var defaults = {
@@ -518,8 +543,11 @@ $('[data-role=page]').on('pagebeforecreate', function(){
 	      }    
     var options = $.extend(defaults, options);
 	var template = Handlebars.compile($(options.template).html());
-	Tab = new Array();
+
+	Tab = new Array({'id_page':$(this).attr('id')});
+	
 	$('#' +this.id + ' div[data-role=content]').append(template(Tab));
+
 });
 
 
@@ -547,9 +575,10 @@ $('#offre').on('pageinit', function(){
 
 	
 $('#recherche-detail').on('pageinit', function(){
-	initSearch(); 	
+	//initSearch(); 	
 }); 
-$('#recherche-detail-page-zonegeo').on('pagebeforecreate', function(){
+//$('#recherche-detail-page-zonegeo').on('pagebeforecreate', function(){
+$(document).bind('pageinit', function(){
 	var template = Handlebars.compile($('#recherche-detail-tpl').html());
 	$('#recherche-detail-zonegeo').html(template(Tregions_search)).trigger('create');
 	$('#recherche-detail-page-zonegeo .check_cac').off('click').on('click', function() {
@@ -557,7 +586,8 @@ $('#recherche-detail-page-zonegeo').on('pagebeforecreate', function(){
 		$.mobile.changePage( "#recherche-detail", { transition: "fade"} );
     }); 
 });
-$('#recherche-detail-page-fonction').on('pagebeforecreate', function(){;	
+//$('#recherche-detail-page-fonction').on('pagebeforecreate', function(){;
+$(document).bind('pageinit', function(){	
 	var template = Handlebars.compile($('#recherche-detail-tpl').html());
  	$('#recherche-detail-fonction').html(template(Tfonctions_search)).trigger('create'); 
  	$('#recherche-detail-page-fonction .check_cac').off('click').on('click', function() {
@@ -716,7 +746,9 @@ $('#mes-recherches').on('pagebeforechange', function(){
 });
 $('#mes-recherches').on('pagebeforeshow', function(){
 	view_list_mes_recherches();
+	$('#mes-recherches #resultat-mesrecherches').show();
     $('#mes-recherches').trigger('create');
+    
 	//$('#mes-recherches #resultat-mesrecherches').show();
 });
 /*$('#recherche-detail').on('pageshow', function(){
@@ -833,7 +865,8 @@ $(document).on("pageshow", "#annonce", function() {
 <!-- template handlebar -->
 
 <script id="popupPanel-tpl" type="text/x-handlebars-template">
-<div data-role="popup" class="popupPanel" id="popupPanel" data-corners="false" data-theme="none" data-shadow="false" data-tolerance="0,0">
+{{#.}}
+<div data-history="false" data-role="popup" class="popupPanel" id="popupPanel{{id_page}}" data-corners="false" data-theme="none" data-shadow="false" data-tolerance="0,0">
 
     <div data-role=controlgroup>
 			<a href="#accueil" data-role="button" data-theme="a" data-icon="home" data-corners="false"> Accueil </a>
@@ -843,7 +876,7 @@ $(document).on("pageshow", "#annonce", function() {
 			<a href="#recrutement" data-role="button" data-theme="c" data-icon="star" data-corners="false">Recrutement</a>
 			<a href="#mentions-legales" data-role="button" data-theme="c" data-icon="gear" data-corners="false">Mentions légales</a>
 			<!--<a href="#" onclick="javascript:window.open('http://mobile.batiactu.com/','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="gear" data-corners="false">BatiActu</a>-->
-			<a href="#" onclick="javascript:window.open('http://www.batiactuemploi.com/','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a>
+			<a href="#" onclick="javascript:window.open('http://www.batiactuemploi.com/?FROM_MOBILE','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a>
 			<!--<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" data-theme="a" 
 			   data-icon="arrow-r" data-corners="false">Application batiactu</a>	-->
 		</div>
@@ -857,7 +890,7 @@ $(document).on("pageshow", "#annonce", function() {
 			   width="57px" height="57px"></a></center>
 	 
 </div>
-{{#.}}{{/.}} 
+{{/.}} 
 </script>
 <script id="nav-recherche-tpl" type="text/x-handlebars-template">
 {{#.}}    
@@ -1040,17 +1073,17 @@ $(document).on("pageshow", "#annonce", function() {
 				
 			        <div class="contenu">
 	   				<!--{{item_hash}}-->   				
-					{{#if item_current_fonction}}
-					<span class="">Fonction : {{item_current_fonction}}</span><br>
+					{{#if item_lib_current_fonction}}
+					<span class="">Fonction : {{item_lib_current_fonction}}</span><br>
 	   				{{/if}}
-					{{#if item_current_zonegeo}}
-					<span class="">Région :{{item_current_zonegeo}}</span><br>
+					{{#if item_lib_current_zonegeo}}
+					<span class="">Région :{{item_lib_current_zonegeo}}</span><br>
 	   				{{/if}}
-					{{#if item_current_experience}}
-					<span class="">Expérience : {{item_current_experience}}</span><br>
+					{{#if item_lib_current_experience}}
+					<span class="">Expérience : {{item_lib_current_experience}}</span><br>
 	   				{{/if}}
-					{{#if item_current_contrat}}
-					<span class="">Contrat : {{item_current_contrat}}</span><br>
+					{{#if item_lib_current_contrat}}
+					<span class="">Contrat : {{item_lib_current_contrat}}</span><br>
 					{{/if}}
 					{{#if item_no_criteres}}
 					<span class="">{{item_no_criteres}}</span><br>
@@ -1061,7 +1094,7 @@ $(document).on("pageshow", "#annonce", function() {
 				    </div>
 					<a href="#" onclick="gotosearch({{item_hash}});"><h3>Lancer la recherche</h3></a>
 					
-				<a href="#mes-recherches" onclick="del_searh_from_hash({{item_hash}});"></a>
+				<a href="#" onclick="del_searh_from_hash({{item_hash}});"></a>
 			</li>
 		{{/.}}
 </script>

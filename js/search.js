@@ -6,10 +6,14 @@ var use_infinite = false;
 
 var Tfonctions_search = new Array;
 var Tregions_search = new Array;
+var Texperiences_search = new Array;
 var Tcontrats_search = new Array;
 
 var Tregions = new Array;
 var Tdepts = new Array;
+var Tfonctions = new Array;
+var Texperiences = new Array;
+var Tcontrats = new Array;
 
 var Limit_Annonce = 200;
 var Limit_Recherche = 50;
@@ -50,8 +54,12 @@ var remove_notify = function(page) {
 
 
 function pagination(current){
-    
-	if((current+nb_results_by_page)<=current_nb_annonce){		
+    var pages = Math.ceil(current_nb_annonce / nb_results_by_page);
+	
+	var current_page =  Math.floor(current / nb_results_by_page);
+	
+	//if((current+nb_results_by_page)<=current_nb_annonce){
+	if(current_page<pages){	
 		$('#recherche #pagin-next').show();
 		$('#recherche #pagin-next').removeClass('ui-disabled');
 		
@@ -60,7 +68,8 @@ function pagination(current){
 		$('#recherche #pagin-next').addClass('ui-disabled');
 		
 	}
-	if((current)>nb_results_by_page){		
+	//if((current)>nb_results_by_page){
+	if(current_page>1){	
 		$('#recherche #pagin-prev').show();
 		$('#recherche #pagin-prev').removeClass('ui-disabled');
 		
@@ -69,9 +78,7 @@ function pagination(current){
 		$('#recherche #pagin-prev').addClass('ui-disabled');
 		
 	}
-	var pages = Math.floor(current_nb_annonce / nb_results_by_page);
 	
-	var current_page =  Math.floor(current / nb_results_by_page);
 
 	$('#recherche #pagin-pages').html(current_page+"/"+pages);
 	
@@ -84,10 +91,11 @@ function pagination(current){
 		if(i != current_page)$("#recherche #select-page").append('<option value="'+i+'">page '+i+'</option>');
 	}
 	//$("#recherche #select-page").trigger("change");
-	
-	$("#recherche #select-page").selectmenu('refresh', true);
-	$('#recherche .ui-select').css('display','inline');
-	$("#recherche #pagin-pages").css('display','inline');
+	if(pages>1){
+		$("#recherche #select-page").selectmenu('refresh', true);
+		$('#recherche .ui-select').css('display','inline');
+		$("#recherche #pagin-pages").css('display','inline');
+	}
 
 }		
 function uncheck_cac(type,el){
@@ -159,11 +167,13 @@ function saved_search(){
 	var current_hash = convert_array_to_hash(current_search);
 	
 	if(tsearchs.hasOwnProperty(current_hash)){
-		notify('Cette recherche existe déjà dans vos sauvegardes!', '#recherche');
+		//notify('Cette recherche existe déjà dans vos sauvegardes!', '#recherche');
+		$('#popupAlreadyExistsSaveSearch').popup('open');
 	}else{
 		tsearchs[current_hash]=current_search;
 		$.jStorage.set('tsearchs',tsearchs);
-		notify('Cette recherche a été sauvegardée avec succès', '#recherche');
+		//notify('Cette recherche a été sauvegardée avec succès', '#recherche');
+		$('#popupSaveSearch').popup('open');
 	}
 	
 	
@@ -210,7 +220,13 @@ function del_searh_from_hash(current_hash){
 		delete tsearchs[current_hash];
 		$.jStorage.set('tsearchs',tsearchs);
 		//$('#mes-recherches').page().trigger('pagecreate');
-		$.mobile.changePage( "#mes-recherches" );		
+		//$.mobile.changePage( "#mes-recherches" );
+		//$('#mes-recherches').trigger('pagebeforechange');
+    	$('#mes-recherches #resultat-mesrecherches').hide();
+		view_list_mes_recherches();
+		$('#mes-recherches #resultat-mesrecherches').show();
+	    $('#mes-recherches').trigger('create');	    
+		$('#delete_search').popup('open');	
 		return true;
 	}else{		
 		notify('Erreur, ce hash ne correspond pas!', '#mes-recherches');
@@ -235,13 +251,13 @@ function load_searh_from_hash(current_hash){
 	
 	
 	$.each(criteres_search_current_hash,function(key, value) {
-		window[key]=value;	
+		window[key]=value;
 	});	
 	
 	$.each(current_zonegeo,function(i) {
 		value = current_zonegeo[i];
 		var type = 'zonegeo';
-		$('[cac_type='+type+'][value='+value+']').attr('id');
+		$('[cac_type='+type+'][value='+value+']').attr('id');     
 		$('[cac_type='+type+'][value='+value+']').prop('checked', true);
 		$('[cac_type='+type+'][value='+value+']').checkboxradio().checkboxradio("refresh");
 		$('#selected-detail-page-'+type).html(($('[cac_type='+type+'][value="'+value+'"]').parent().find('label').text()));
@@ -249,7 +265,8 @@ function load_searh_from_hash(current_hash){
 	
 	$.each(current_fonction,function(i) {
 		value = current_fonction[i];
-		var type = 'fonction';
+		var type = 'fonction';                                             
+		$('[cac_type='+type+'][value='+value+']').attr('id');     		
 		$('[cac_type='+type+'][value='+value+']').prop('checked', true);
 		$('[cac_type='+type+'][value='+value+']').checkboxradio().checkboxradio("refresh");
 		$('#selected-detail-page-'+type).html(($('[cac_type='+type+'][value='+value+']').parent().find('label').text()));
@@ -257,7 +274,8 @@ function load_searh_from_hash(current_hash){
 	
 	$.each(current_contrat,function(i) {
 		value = current_contrat[i];
-		var type = 'contrat';
+		var type = 'contrat';         
+		$('[cac_type='+type+'][value='+value+']').attr('id');     		
 		$('[cac_type='+type+'][value='+value+']').prop('checked', true);
 		$('[cac_type='+type+'][value='+value+']').checkboxradio().checkboxradio("refresh");
 		$('#selected-detail-page-'+type).html(($('[cac_type='+type+'][value='+value+']').parent().find('label').text()));
@@ -266,6 +284,7 @@ function load_searh_from_hash(current_hash){
 	$.each(current_experience,function(i) {
 		value = current_experience[i];
 		var type = 'experience';
+		$('[cac_type='+type+'][value='+value+']').attr('id');     		
 		$('[cac_type='+type+'][value='+value+']').prop('checked', true);
 		$('[cac_type='+type+'][value='+value+']').checkboxradio().checkboxradio("refresh");
 		$('#selected-detail-page-'+type).html(($('[cac_type='+type+'][value='+value+']').parent().find('label').text()));
@@ -371,6 +390,7 @@ function init_global(){
 	}).done(function(data) {
 		
 		Tfonctions_search = new Array;
+		Tfonctions = new Array;
 		var k=0;
 		for(parent in data) {
      			
@@ -385,7 +405,7 @@ function init_global(){
      					,'item_index':k
      					,'type':'fonction'
      				});
-     				
+     				Tfonctions[fonction]=label;
 	         		k++;		
      			}
      			
@@ -422,8 +442,10 @@ function init_global(){
 
     load_contrats();
 
-	//load_experiences();
+	load_experiences();
 
+    initSearch();
+    
 }
 function initSearch() {
 
@@ -447,25 +469,25 @@ function load_contrats(){
 	}).done(function(data) {
 		
 		var template = Handlebars.compile($('#recherche-detail-tpl').html());
-		var Tab = new Array;
 		Tcontrats_search = new Array;
+		Tcontrats = new Array;
 		var k=0;
 		for(code in data) {
      			
      			label = data[code];
      			
-     			Tab.push({
+     			Tcontrats_search.push({
      					'item_value': code
      					,'item_label':label
      					,'item_index':k
      					,'type':'contrat'
      				});
-     			Tcontrats_search[code]=label;	
+     			Tcontrats[code]=label;	
      				
 
      		k++;		
      	}
-		$('#recherche-detail-contrat').html(template(Tab));
+		$('#recherche-detail-contrat').html(template(Tcontrats_search));
 
 	});
 }
@@ -482,25 +504,26 @@ function load_experiences(){
 	}).done(function(data) {
 		
 		var template = Handlebars.compile($('#recherche-detail-tpl').html());
-		var Tab = new Array;
+		Texperiences_search = new Array;
+		Texperiences = new Array;
 		
 		var k=0;
 		for(code in data) {
      			
      			label = data[code];
      			
-     			Tab.push({
+     			Texperiences_search.push({
      					'item_value': code
      					,'item_label':label
      					,'item_index':k
      					,'type':'experience'
      				});
-     				
+     			Texperiences[code]=label;	
      			
      			
      		k++;		
      	}
-		$('#recherche-detail-experience').html(template(Tab));
+		$('#recherche-detail-experience').html(template(Texperiences_search));
 
 	});
 }
@@ -567,7 +590,8 @@ function launchSearch(advanceMode,gotopage_n) {
 	$content.find( "#pagin-next" ).css('display','none');
 	$content.find( "#pagin-pages" ).css('display','none');	
 	$( "#select-page" ).parents('.ui-select').css('display', 'none');
-	$content.find( ".btn_display" ).css('display','none');
+	$content.find( ".btn_display1" ).css('display','none');
+	$content.find( ".btn_display2" ).css('display','none');
 	//$('#resultat-recherche').hide();
 		
 	$('#resultat-recherche').completeListItem({

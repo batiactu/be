@@ -39,14 +39,15 @@ h2 {
 	border-bottom:1px solid #dbdbdb;
 }
 #recherche h1.ui-title{
-/*	text-align:right !important;
-	float:right;
-	margin-right:15px;  */
+	width:50%;
 }
 #recherche #nb_results{
 	font-weight:bold;
 }
-
+#recherche #nb_results.noresult{
+	text-align:center;
+	color:#666;
+}
 .centre {
 	border-top:1px solid #cfcfcf;
 	padding:5px 10px;
@@ -190,18 +191,20 @@ h2 {
     border-top: 1px solid #c5d5e5; }
     
     
-#popupPanel-popup {
+div[id^=popupPanel][id$=-popup] {
     right: 0 !important;
     left: auto !important;
+    min-width:250px;
+	width: 90%;
 }
-.popupPanel {
-    width: 280px;
+.popupPanel {    
     border: 1px solid #000;
     border-right: none;
-    background: rgba(0,0,0,.5);
+    background: rgba(0,0,0,.7);
     margin: -1px 0;
 }
 .popupPanel .ui-btn {
     margin: 0 15px;
+    /*margin: auto auto;*/
 }
     

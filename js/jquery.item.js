@@ -1,8 +1,8 @@
 (function($){
     $.fn.extend({
         
-		completeListMesRecherches: function(options) {            
-			notify('Chargement...', '#mes-recherches', 3000);
+		completeListMesRecherches: function(options) {    		       
+			//notify('Chargement...', '#mes-recherches', 3000);
             var defaults = {
                template:'#mes-recherches-resultat-tpl'
                 ,url:'fill-url-source'
@@ -32,7 +32,28 @@
 					item["item_no_criteres"] = 'Recherche globale (sans critère)';
 			 		for (k in row) {
 			 			if(row[k]!= '')item["item_no_criteres"]=null;
-			 			item["item_"+k] = row[k];						 			
+						  switch(k){
+			 			 	case 'current_zonegeo':			 			 	
+			 			 	if(row[k]=='')item["item_lib_"+k] = row[k];
+			 			 	else item["item_lib_"+k] = Tregions[row[k]];
+			 			 	break;
+			 			 	case 'current_fonction':
+			 			 	if(row[k]=='')item["item_lib_"+k] = row[k];
+			 			 	else item["item_lib_"+k] = Tfonctions[row[k]];
+			 			 	break;
+			 			 	case 'current_experience':
+			 			 	if(row[k]=='')item["item_lib_"+k] = row[k];
+			 			 	else item["item_lib_"+k] = Texperiences[row[k]];
+			 			 	break
+			 			 	case 'current_contrat':
+			 			 	if(row[k]=='')item["item_lib_"+k] = row[k];
+			 			 	else item["item_lib_"+k] = Tcontrats[row[k]];
+			 			 	break
+			 			 	
+			 			 	default:
+
+						 }
+						 item["item_"+k] = row[k];						 			
 			 		}
 			 		item["item_hash"]=i;
 
@@ -58,7 +79,7 @@
     }
     
     ,completeListItem: function(options) {            
-			notify('Chargement...', '#recherche',30000	);
+			//notify('Chargement...', '#recherche',30000	);
             var defaults = {
                template:'#recherche-resultat-tpl'
                 ,url:'fill-url-source'
@@ -192,10 +213,11 @@
                 //var $header = $('#recherche').children( ":jqmData(role=header)" );
                 var $content = $('#recherche').children( ":jqmData(role=content)" );			
                 
-                
+                $content.find( "#nb_results" ).removeClass('noresult');
 				switch(nbTotal){
 					case 0:
-						res = 'Aucune offre d\'emploi';
+						res = 'Aucune offre d\'emploi ne correspond à vos critères';
+						$content.find( "#nb_results" ).addClass('noresult');
 					break;
 					case 1:
 						res = '1 offre d\'emploi';
@@ -210,8 +232,8 @@
 				
 				//$header.find( "h1" ).text(res);
 				$content.find( "#nb_results" ).text(res);				
-                $content.find( ".btn_display" ).css('display','block');
-                
+                $content.find( ".btn_display1" ).css('display','block');
+                if(nbTotal>nb_results_by_page)$content.find( ".btn_display2" ).css('display','block');
                 
 	
 			 	myList.show();
@@ -248,7 +270,7 @@
 			var template = Handlebars.compile($(options.template).html()); 
             //var templatefooter = Handlebars.compile($('#nav-annonce-detail-tpl').html());
             //Handlebars.registerPartial("nav", $("#nav-annonce-detail-tpl").html());
-            notify('chargement...', '#annonce');
+            //notify('chargement...', '#annonce');
 			$.mobile.loading( 'show' );
 			
 			$.ajax({
@@ -290,7 +312,7 @@
 			 		$.mobile.loading( 'hide' );
 			 	}
 			 });
-			remove_notify('#annonce');
+			//remove_notify('#annonce');
             //$('#annonce').trigger('create');
 			//$(options.itemtarget).trigger('create');
             //$(options.itemtarget).page();             
