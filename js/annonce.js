@@ -112,9 +112,9 @@ function showAnnonce(urlObj, options) {
 		}
 	});
 	
-    var $header = $page.children( ":jqmData(role=header)" );
+    //var $header = $page.children( ":jqmData(role=header)" );
 
-	$header.find( "h1" ).text( 'Détails annonce '+id_annonce );
+	//$header.find( "h1" ).text( 'Détails de l\'offre' );
 	
 	//$page.page();
             

@@ -17,6 +17,18 @@ h1 {
 h2 {
 	font-size:12px !important;
 }
+#annonce .entete h1 {
+	font-size:18px;
+}
+#annonce .entete span{
+	font-size:14px;
+}
+#annonce .entete .datas{
+	font-size:14px;
+}
+.size12 {
+	font-size:12px;
+}
 .resultat_lib_recruteur {
 	font-size:12px !important;
 	font-weight:normal !important;
@@ -38,8 +50,20 @@ h2 {
 	background-color:#fff;
 	border-bottom:1px solid #dbdbdb;
 }
+#annonce h1.ui-title{
+    width:60%;
+}
 #recherche h1.ui-title{
 	width:50%;
+}
+#recrutement h1.ui-title{
+	margin-left: 15%;
+	margin-right: 15%;
+}
+
+#mentions-legales h1.ui-title{
+	margin-left: 15%;
+	margin-right: 15%;
 }
 #recherche #nb_results{
 	font-weight:bold;
@@ -65,6 +89,13 @@ h2 {
 .darkgrey {
 	color:#666666;
 }
+.bg_grey_clair {
+	background-color:#ccc;
+}
+.bg_white {
+	background-color:#fff;	
+}
+
 .entete img{
 	float:right;
 	display:inline;
@@ -100,6 +131,12 @@ h2 {
 	opacity: 1; 
 	filter:alpha(opacity=100);
 }
+#recrutement .ui-content{
+	padding:0px;
+}
+#recrutement { 
+	background-color:#ccc !important;
+}
 #annonce .ui-content{
 	padding:0px;
 }
@@ -112,6 +149,12 @@ h2 {
 .pad10 {
 	padding:10px;
 }
+.pad20 {
+	padding:20px;
+}
+.pad30 {
+	padding:30px;
+}
 #resultat-mes-recherches li {
 	padding:10px 50px 10px 10px; 
 	margin-bottom:40px;
@@ -122,6 +165,16 @@ h2 {
 #resultat-mes-recherches li div.contenu{
 	padding:10px;
 	background-color:#fff;
+	font-size:12px;
+	min-height: 1.1em;
+    outline: 0 none !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#resultat-mes-recherches li div.contenu div{
+	color:#0c59b1;
+	margin-bottom:5px;
 }
 #resultat-mes-recherches li h3{	
 	color:#fff;
