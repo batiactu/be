@@ -775,6 +775,14 @@ $('#annonce').on( "pageshow", function() {
 				}); 
 	        }
 	    });
+	$( '#popupTransfertAmi' ).on({
+	        popupafteropen: function(event, ui) {
+	        	$('#btn_transfert_ami').unbind();
+				$('#btn_transfert_ami').bind('click', function(e){														
+					setTimeout( function(){ $( '#waiting_send' ).popup( 'open' ) }, 200 );	
+				}); 
+	        }
+	    });
 });     
 	
 $('#mes-recherches').on('pagecreate', function(){
@@ -864,15 +872,15 @@ $(document).on("pageshow", "#annonce", function() {
 			
 		},
 		messages: {
-			required: "L'email est requis, merci",
-			email: "Veuillez entrer un email valide, merci."
+			required: "Le champ adresse e-mail est obligatoire.",
+			email: "Veuillez saisir une adresse e-mail valide."
 		},
 		
 		errorPlacement: function(error, element) {
 			var id = element.attr("id");
 			switch(id){
 			    case 'email':
-			    error.insertAfter('.email_label');
+			    error.insertAfter('#formpopup_Postuler .email_label');
 			    break;
 			    
 				default:
@@ -881,7 +889,33 @@ $(document).on("pageshow", "#annonce", function() {
 		}
          
 	});
-    
+    $("#formpopup_TransfertAmi").validate({
+
+		rules: {
+			email: {
+			    required: true,
+				email: true
+			}
+			
+		},
+		messages: {
+			required: "Le champ adresse e-mail est obligatoire.",
+			email: "Veuillez saisir une adresse e-mail valide."
+		},
+		
+		errorPlacement: function(error, element) {
+			var id = element.attr("id");
+			switch(id){
+			    case 'email':
+			    error.insertAfter('#formpopup_TransfertAmi .email_label');
+			    break;
+			    
+				default:
+				error.insertBefore(element);
+			}
+		}
+         
+	});
 });
 	
 
@@ -941,14 +975,11 @@ $(document).on("pageshow", "#annonce", function() {
 		<div align="center">
 		  	{{#each nav}}
 			{{#if PREVIOUS}}
-			<!--<a style="float:left;" href="javascript:showAnnonce({{PREVIOUS}});" data-role="button" data-theme="b" data-inline="true">&lt;</a>-->
 			<a style="float:left;" href="#annonce?id={{PREVIOUS}}" data-role="button" data-mini="true" data-theme="b" data-inline="true">&lt;</a>
 		  	{{/if}}
-			<!--<a href="javascript:postuler();" data-role="button" data-theme="b" data-mini="true" data-inline="true">Postuler</a>-->
 			<a href="#popupPostuler" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Postuler</a>
 				
 		  	{{#if NEXT}}
-			<!--<a style="float:right;" href="javascript:showAnnonce({{NEXT}});" data-role="button" data-theme="b" data-inline="true">&gt;</a>-->
 			<a style="float:right;" href="#annonce?id={{NEXT}}" data-role="button" data-mini="true" data-theme="b" data-inline="true">&gt;</a>
 			{{/if}}	
 			{{/each}}
@@ -997,29 +1028,57 @@ $(document).on("pageshow", "#annonce", function() {
 		    
 		    <input type="hidden" value="{{ID_ANNONCE}}" id="id_annonce">
 		    <p align="center">
-				<a href="#popupPostuler" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Postuler à l'offre d'emploi</a>
+				<a href="#popupPostuler" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Postuler</a>
+			</p>
+			<p align="center">
+				<a href="#popupTransfertAmi" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Envoyer par mail</a>
 			</p>
 			<div class="pad10 ui-corner-all" data-history="false" id="popupPostuler" data-role="popup" data-overlay-theme="a" data-theme="c" data-dismissible="false">
 			    
 				<form id="formpopup_Postuler">			        
 			        <div style="padding: 10px;" class="ui-corner-all ui-content" data-role="content" class="content_popup" data-theme="d">
-					    <h3>Recevoir l'offre d'emploi pour postuler depuis votre ordinateur</h3>
-			            <label class="email_label" class="bold" for="email">Mon Adresse email*</label>
+					    <h3>Recevoir l'offre d'emploi pour postuler depuis votre ordinateur</h3><br>
+			            <label class="email_label" class="bold" for="email"><b>Mon Adresse email*</b></label>
 			            <input name="email" id="email" type="text" placeholder="Adresse email*" value="" data-theme="b">
-			            <label class="bold" for="subject">Objet Email</label>
-			            <input name="subject" id="subject" type="text" placeholder="Objet Email" value="Offre Batiactu Emploi - {{LIBELLE}} {{#if REFERENCE}}(Réf. {{REFERENCE}}){{/if}}" data-theme="b">
+			            <br>
+						<label class="bold" for="subject">Objet Email</label>
+			            <p>Postuler à l’annonce : {{LIBELLE}} {{#if REFERENCE}}(Réf. {{REFERENCE}}){{/if}}</p>
+			            
+						<!--
+						<input name="subject" id="subject" type="text" placeholder="Objet Email" value="Offre Batiactu Emploi - {{LIBELLE}} {{#if REFERENCE}}(Réf. {{REFERENCE}}){{/if}}" data-theme="b">						
 			            <label class="bold" for="message">Votre message</label>
 			            <textarea name="message" id="message" placeholder="Votre message" value="" data-theme="b"></textarea>
-			            
+						-->			            
 						<input type="hidden" value="{{ID_ANNONCE}}" id="id_annonce">
 						
 						<br>
-						<a  id="btn_postuler" onClick="postuler()" href="#" data-role="button" data-icon="" data-theme="b">M'envoyer l'offre d'emploi</button>
+						<a  id="btn_postuler" onClick="postuler('popupPostuler','formpopup_Postuler')" href="#" data-role="button" data-icon="" data-theme="b">M'envoyer l'offre d'emploi</button>
 			            <a  data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Annuler</a>
 			        </div>
 			    </form>
 			</div>
-
+            <div class="pad10 ui-corner-all" data-history="false" id="popupTransfertAmi" data-role="popup" data-overlay-theme="a" data-theme="c" data-dismissible="false">
+			    
+				<form id="formpopup_TransfertAmi">			        
+			        <div style="padding: 10px;" class="ui-corner-all ui-content" data-role="content" class="content_popup" data-theme="d">
+					    <h3>Transférez l'offre d'emploi à un ami</h3><br>
+			            <label class="email_label" class="bold" for="email"><b>Son Adresse email*</b></label>
+			            <input name="email" id="email" type="text" placeholder="Adresse email*" value="" data-theme="b">
+			            <br>
+						<label class="bold" for="subject">Objet Email</label>
+			            <p>Offre Batiactu Emploi : {{LIBELLE}} {{#if REFERENCE}}(Réf. {{REFERENCE}}){{/if}}</p>
+			            <br>
+						<label class="bold" for="message">Votre message</label>
+			            <textarea name="message" id="message" placeholder="Votre message" value="" data-theme="b"></textarea>
+									            
+						<input type="hidden" value="{{ID_ANNONCE}}" id="id_annonce">
+						
+						<br>
+						<a  id="btn_transfert_ami" onClick="transfert_ami('popupTransfertAmi','formpopup_TransfertAmi')" href="#" data-role="button" data-icon="" data-theme="b">Envoyer l'offre d'emploi</button>
+			            <a  data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Annuler</a>
+			        </div>
+			    </form>
+			</div>
 			
 			
 		

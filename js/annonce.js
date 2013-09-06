@@ -12,28 +12,28 @@ function _validateEmail(sEmail) {
 		return false; 
 	}
 }	
-function postuler() {
+function transfert_ami(idpopup,formname){
+	postuler(idpopup,formname,1);	
+}
+function postuler(idpopup,formname,istransfertami) {
+
+	email = $('#'+formname+' #email').val();
 	
-	email = $('#email').val();
-	
-	
-	if(!$('#formpopup_Postuler').valid()){
+	if(!$('#'+formname).valid()){
 		$('#waiting_send').popup('close');
 		return false;
 	}
 	
 	if ($.trim(email).length == 0 || !_validateEmail(email) ) {
-		//$('#formpopup_Postuler #email').after('<label class="error">Veuillez entrer un email valide, merci.</label>') 
 		$('#waiting_send').popup('close');							    
 		return false;
 	}
 	else {
-		$('#popupPostuler').popup('close');		
-		//if($('#formpopup_Postuler #email label.error'))$('#formpopup_Postuler #email label.error').remove(); 
+		$('#'+idpopup).popup('close');		
 				
-		id_annonce = $('#annonce #id_annonce').val();
-		var subject = $('#annonce #subject').val();
-		var message = $('#annonce #message').val();
+		id_annonce = $('#annonce #'+formname+' #id_annonce').val();
+		var subject = $('#annonce #'+formname+' #subject').val();
+		var message = $('#annonce #'+formname+' #message').val();
 
 		//SaveEmail();
 		//$.jStorage.flush();
@@ -50,6 +50,7 @@ function postuler() {
 					,email:email
 					,subject:subject
 					,message:message
+					,istransfertami:istransfertami
 				}
 				,dataType:'jsonp'
 			 	,async : true
