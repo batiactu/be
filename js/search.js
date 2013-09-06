@@ -197,12 +197,12 @@ function convert_array_to_hash(array_object){
 }
 
 String.prototype.hashCode = function(){
-    var hash = 0, i, char;
+    var hash = 0, i, chain;
     nb = this.length;
     if (nb == 0) return hash;
     for (i = 0, l = nb; i < l; i++) {
-        char  = this.charCodeAt(i);
-        hash  = ((hash<<5)-hash)+char;
+        chain  = this.charCodeAt(i);
+        hash  = ((hash<<5)-hash)+chain;
         hash |= 0; // Convert to 32bit integer
     }
     return hash;

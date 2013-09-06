@@ -40,7 +40,7 @@
     <icon src="images/icon.png" gap:platform="android" gap:density="xhdpi" /> <!-- 96 pixels -->
 
     <icon src="images/icon.png" gap:platform="blackberry" /> <!-- 72 pixels -->
-    <icon src="images/icon_hover.png" gap:platform="blackberry" gap:state="hover"/> <!-- 72 pixels -->
+    <icon src="images/iconhover.png" gap:platform="blackberry" gap:state="hover"/> <!-- 72 pixels -->
 
     <icon src="images/icon.png" gap:platform="winphone" /> <!-- 57 pixels -->
     <icon src="images/tileicon.png" gap:platform="winphone" gap:role="background" /> <!-- 72 pixels -->

@@ -5,51 +5,52 @@
 	<meta name=viewport content="user-scalable=no,width=device-width, initial-scale=1" /> <!-- A tester -->
 	<title>[Batiactu] Emploi</title>
 	
-	<link rel="stylesheet" href="css/jquery.mobile-1.3.1.css" />
-	
+	<link rel="stylesheet" href="css/jquerymobile131.css" />
+	<!-- non utilisés : -->
 	<!--<link rel="stylesheet" href="roller/themes/emploi.css" />--> 
-	<!--<link rel="stylesheet" href="css/jqm-doc.css" />--> 
+	<!--<link rel="stylesheet" href="css/jqmdoc.css" />-->
+	<!-- fin non utilisés! --> 
 	<link rel="stylesheet" href="css/add.css" /> 
 	
 	
 	<link rel="apple-touch-icon" href="images/icon.png" />
 	<link rel="apple-touch-startup-image" href="images/splash.png" />
-
+    <!-- non utilisés : -->
 	<!--<link rel="stylesheet" href="css/test.min.css" />-->
+	<!-- fin non utilisés! -->
 	
-	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
-	<!--<script type="text/javascript" src="js/jqm-doc.js"></script>-->
+	<!-- dans allpluginsmin.js :--> 
+	<!--
+	<script type="text/javascript" src="js/jquery191min.js"></script>
+	<script type="text/javascript" src="js/jqueryvalidatemin.js"></script>
+	<script type="text/javascript" src="js/jstoragemin.js"></script>	
+	<script type="text/javascript" src="js/jquerymobile131min.js"></script>
+	<script type="text/javascript" src="js/waypointsmin.js"></script>
+	<script type="text/javascript" src="js/waypointsinfinitemin.js"></script>	
+	<script type="text/javascript" src="js/handlebarsmin.js"></script>
+	-->	
+	<script type="text/javascript" src="js/allpluginsmin.js"></script>
+    <!-- fin dans allpluginsmin.js :-->
+    
+	<!-- non utilisés : -->
+	<!--<script type="text/javascript" src="js/jqmdoc.js"></script>-->
 	<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQWPWT2V_AQAtuFcQYZY3hDZtugpazXIU&sensor=true"></script>-->
 	<!--<script type="text/javascript" src="js/geolocalisation.js"></script>-->
-	<!--<script type="text/javascript" src="js/storage/memory-store.js"></script>-->
-	<!--<script type="text/javascript" src="js/sql.js"></script>-->
+	<!--<script type="text/javascript" src="js/actu.js"></script>-->
+	<!-- fin non utilisés! -->
 	
-	<script type="text/javascript" src="js/jquery.item.js"></script>
+	<!-- dans cipallmin.js :-->
+	<!--
+	<script type="text/javascript" src="js/jqueryitem.js"></script>
 	<script type="text/javascript" src="js/search.js"></script>
 	<script type="text/javascript" src="js/annonce.js"></script>
-	<!--<script type="text/javascript" src="js/actu.js"></script>-->
-	<script type="text/javascript" src="js/jstorage.js"></script>
+	-->
+	<script type="text/javascript" src="js/cipallmin.js"></script>
+	<!-- fin dans cipallmin.js :-->
 	
 	
-
-	<script type="text/javascript">
-
-	$(document).bind("mobileinit", function(){
-		//init_global();
-	});
-	</script>
-	
-	<script type="text/javascript" src="js/jquery.mobile-1.3.1.min.js"></script>
-	
-	
-	<script type="text/javascript" src="js/waypoints.min.js"></script>
-	<script type="text/javascript" src="js/waypoints-infinite.min.js"></script>
-	
-	<script type="text/javascript" src="js/handlebars.js"></script>
 	
 	<script type="text/javascript" src="http://www.capinfoproreport.com/cap_pub/scripts/rotate2-js?e=B_IP_HOME,TOP_IP&support=B.IP"></script>
-	
 	
 	<script src="phonegap.js"></script><!-- PhoneGap en a besoin derrière pour pouvoir utiliser ses fonctions natives -->
 
@@ -443,7 +444,7 @@
 		
 		<ul style="display:none">
 			<li id="item-actu-blank"><a href="javascript:showArticle('item_link')">
-     			<img src="item_image#" />
+     			<img src="itemimage#" />
      			<h2>item_title</h2><p>item_description</p>
 			</a></li>
 		</ul>
@@ -836,7 +837,7 @@ $('#accueil').on('pagebeforecreate', function(){
 });
 
 
-// avoir pour ajouter en dynamique le footer
+// à voir pour ajouter en dynamique le footer
 /*
 $(document).ready(function() 
 {
@@ -906,7 +907,7 @@ $(document).on("pageshow", "#annonce", function() {
 		</div>
 			<center>
 			<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-theme="a" 
-			   data-corners="false"><img src="http://a3.mzstatic.com/us/r1000/120/Purple/1d/64/b1/mzi.thppjjiq.175x175-75.jpg" 
+			   data-corners="false"><img src="images/ba175x175d75.jpg" 
 			   width="57px" height="57px"></a>
 			   
 			&nbsp; <a href="https://itunes.apple.com/fr/app/maison-a-part/id397104131" data-theme="a" 
@@ -991,19 +992,12 @@ $(document).on("pageshow", "#annonce", function() {
         	<p class="description">{{{DESCRIPTION_ENTREPRISE}}}</p>
         	<p class="description">{{{DESCRIPTION}}}</p>
         	
-        	
-		    <!--<input data-mini="true" type="text" value="" placeholder="Votre email" id="email" />-->
-		    <!--<input type="button" value="Postuler" onclick="postuler();" />-->
 		    
 			</div>
 		    
 		    <input type="hidden" value="{{ID_ANNONCE}}" id="id_annonce">
 		    <p align="center">
 				<a href="#popupPostuler" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Postuler à l'offre d'emploi</a>
-				<!--
-				<a href="#confirm_send" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">confirm_send</a>
-				<a href="#error_send" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">error_send</a>
-				-->
 			</p>
 			<div class="pad10 ui-corner-all" data-history="false" id="popupPostuler" data-role="popup" data-overlay-theme="a" data-theme="c" data-dismissible="false">
 			    
