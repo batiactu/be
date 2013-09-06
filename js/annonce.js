@@ -23,7 +23,6 @@ function postuler() {
 	}
 	
 	if ($.trim(email).length == 0 || !_validateEmail(email) ) {
-		//alert('Veuillez saisir votre email pour postuler !');
 		//$('#formpopup_Postuler #email').after('<label class="error">Veuillez entrer un email valide, merci.</label>') 
 		$('#waiting_send').popup('close');							    
 		return false;
@@ -35,7 +34,7 @@ function postuler() {
 		id_annonce = $('#annonce #id_annonce').val();
 		var subject = $('#annonce #subject').val();
 		var message = $('#annonce #message').val();
-		//alert("Vous avez postuler pour l'offre "+id_annonce+" !");
+
 		//SaveEmail();
 		//$.jStorage.flush();
 		$.jStorage.set('email', email);
@@ -75,8 +74,7 @@ function postuler() {
 			 		$.mobile.loading( 'hide' );
 			 	}
 			 });
-		//$('#annonce').page();
-        //$('#annonce').trigger('pagebeforecreate').trigger('pagecreate').page();	 
+	 
 	}
 	return true;
 }
@@ -112,28 +110,17 @@ function showAnnonce(urlObj, options) {
 		}
 	});
 	
-    //var $header = $page.children( ":jqmData(role=header)" );
-
-	//$header.find( "h1" ).text( 'Détails de l\'offre' );
-	
-	//$page.page();
             
 	options.dataUrl = urlObj.href;
 
     $.mobile.changePage( $page, options );
-    
-	//$page.page()
-	//$page.trigger('pagecreate');	
-	//$page.trigger('create');
+
 }
 
 function _refresh_datas(){ 
 	var email = $.jStorage.get('email');
-	/*if(!email){
-		// if not - load the data from the server
-	 	email = load_data_from_server();
-	 	// and save it
-		$.jStorage.set("email",email);
-	}*/
+	if(!email){
+	 	email = '';
+	}
 	$('#annonce #email').val( email );
 }

@@ -86,6 +86,9 @@ h2 {
 .grey {
 	color:grey;
 }
+.grey_clair {
+	color:#ccc;
+}
 .darkgrey {
 	color:#666666;
 }
@@ -156,13 +159,17 @@ h2 {
 	padding:30px;
 }
 #resultat-mes-recherches li {
-	padding:10px 50px 10px 10px; 
-	margin-bottom:40px;
+	padding:10px; 
+	margin-bottom:10px;
+	border:0;
+	background:none;
 }
 #resultat-mes-recherches li a {
 	padding:0px;
+	text-decoration:none;
 }
 #resultat-mes-recherches li div.contenu{
+	position:relative;
 	padding:10px;
 	background-color:#fff;
 	font-size:12px;
@@ -173,16 +180,31 @@ h2 {
     white-space: nowrap;
 }
 #resultat-mes-recherches li div.contenu div{
-	color:#0c59b1;
 	margin-bottom:5px;
 }
-#resultat-mes-recherches li h3{	
+#resultat-mes-recherches li div.contenu div.motclef {
+   font-style:normal;
+   color:#333;
+   padding-top:5px;
+   margin-bottom:0px;
+}
+#resultat-mes-recherches li a h2{	
+	font-size:14px !important;
 	color:#fff;
 	background-color:#666;
 	margin:0px !important;
 	padding:10px 0px;
 	text-align:center;
 	font-weight:normal;
+	text-decoration:none;
+}
+#resultat-mes-recherches li a.delete {
+	position:absolute;
+	right:5px;
+	top:0px;
+	text-decoration:none;
+	font-size:24px;
+	font-weight:bold;
 }
 #resultat-recherche li {
 	position:relative;

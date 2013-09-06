@@ -15,19 +15,13 @@
 	<link rel="apple-touch-icon" href="images/icon.png" />
 	<link rel="apple-touch-startup-image" href="images/splash.png" />
 
-	<!-- 
-	<link rel="stylesheet" href="css/test.min.css" />
-	-->
+	<!--<link rel="stylesheet" href="css/test.min.css" />-->
 	
 	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
-	<script type="text/javascript" src="js/jqm-doc.js"></script>
-	<!--
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQWPWT2V_AQAtuFcQYZY3hDZtugpazXIU&sensor=true"></script>
-	-->
-	<!-- 
-		<script type="text/javascript" src="js/geolocalisation.js"></script> desac 
-	-->
+	<!--<script type="text/javascript" src="js/jqm-doc.js"></script>-->
+	<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQWPWT2V_AQAtuFcQYZY3hDZtugpazXIU&sensor=true"></script>-->
+	<!--<script type="text/javascript" src="js/geolocalisation.js"></script>-->
 	<!--<script type="text/javascript" src="js/storage/memory-store.js"></script>-->
 	<!--<script type="text/javascript" src="js/sql.js"></script>-->
 	
@@ -42,7 +36,7 @@
 	<script type="text/javascript">
 
 	$(document).bind("mobileinit", function(){
-		init_global();
+		//init_global();
 	});
 	</script>
 	
@@ -132,7 +126,7 @@
 		<div class="pad20 bg_white">
 			<h3 style="margin:.5em 0">Recrutez avec Batiactu Emploi</h3>
 			
-				- Publiez vos offres d'emploi pour une visibilité aupres de la première audience du BTP.
+				- Publiez vos offres d'emploi pour une visibilité auprès de la première audience du BTP.
 				<br><br>
 				- Une CVthèque 100% BTP, couvrant tous les métiers du secteur
 				<br><br>
@@ -255,7 +249,7 @@
       <div class="notifications"></div>
     </div>
 	<div data-role="content" class="content">
-		<ul id="resultat-mes-recherches" style="display:none;" data-role="listview" data-split-theme="d" data-split-icon="delete">
+		<ul id="resultat-mes-recherches" style="display:none;" data-role="listview" data-split-theme="d" >
 		</ul>			
 	</div>
 	
@@ -265,14 +259,18 @@
 		</p>
 		
 	</div>
-	<a style="display:none;" href="#delete_search" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Suppression recherche</a>
+	<a style="display:none;" href="#confirmDeleteSearch" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Confirmation suppression recherche</a>
 				
-	<div class="pad10 ui-corner-all" data-history="false" id="delete_search" data-role="popup" data-overlay-theme="a" data-theme="c" data-dismissible="true">		
-	        <div style="padding: 10px 20px;">
-				<h3>Recherche supprimée avec succès</h3>
-		    </div>
-	    
-	</div>	
+	<div class="pad10 ui-corner-all" data-history="false" id="confirmDeleteSearch" data-role="popup" data-theme="c" data-overlay-theme="a" data-dismissible="false">
+	    <div style="padding: 10px;" class="ui-corner-all ui-content" data-role="content" data-theme="d">
+			<h3 class="ui-title">Confirmez-vous la suppression de la recherche?</h3>
+	        <p align="center">
+			<a href="#" id="cancel_delete_searh" data-role="button" data-theme="c" data-rel="back" data-inline="true">Annuler</a>
+	        <a href="#" id="confirm_delete_searh" data-role="button" data-theme="b" data-transition="flow" data-rel="back" data-inline="true">Ok</a>
+	        </p>
+	    </div>
+	</div>
+	
 </div> 
 
 <!-- ================================================================================================= -->
@@ -284,10 +282,8 @@
 	</div>
 
 	<div data-role="content">
-		<div data-role="fieldcontain">
-				<fieldset data-role="controlgroup" id="recherche-detail-fonction">
-				</fieldset>				
-			</div>
+		<fieldset data-role="controlgroup" id="recherche-detail-fonction">
+		</fieldset>				
 	</div>	
 </div>
         
@@ -387,7 +383,7 @@
 					<a id="link_mine_search" href="#mes-recherches" data-role="button" data-theme="b" data-mini="true" data-inline="true">Recherches sauvegardées</a>				
 				</p>				 
 				<p>					
-					<a id="last_search" onClick="load_last_searh();go_url_recherche();" data-role="button" data-theme="b" data-mini="true" data-inline="true">Dernière recherche</a>
+					<a style="display:none;" id="last_search" onClick="load_last_searh();go_url_recherche();" data-role="button" data-theme="b" data-mini="true" data-inline="true">Dernière recherche</a>
 				</p>				 
 			</li>
 		</ul>
@@ -519,17 +515,6 @@
 <!-- Partie script javascript --------------------------------------------------------->
 
 <script type="text/javascript">
-$('#annonce').on( "pagebeforeshow", function() {
-	$( '#popupPostuler' ).on({
-	        popupafteropen: function(event, ui) {
-				$('#btn_postuler').unbind();
-				$('#btn_postuler').bind('click', function(e){														
-					setTimeout( function(){ $( '#waiting_send' ).popup( 'open' ) }, 200 );	
-				});
-	        }
-	    });
-});     
-	
 			
 $('[data-role=page]').bind('pageshow',function(){
 	$( ".popupPanel" ).on({
@@ -540,7 +525,8 @@ $('[data-role=page]').bind('pageshow',function(){
 		popupafteropen: function() {    
 	       $('.popupPanel').each(function(){
 				$(this).unbind();
-				$(this).bind('click', function(e){														
+				$(this).bind('click', function(e){	
+					$('.popupPanel').popup();													
 					$('.popupPanel').popup('close');	
 				});
 			});
@@ -563,11 +549,6 @@ $('[data-role=page]').on('pagebeforecreate', function(){
 
 });
 
-
-
-
-
-
 $('#actu').on('pageinit', function(){
 
 	$( "#actu" ).bind( "click", function() {
@@ -586,32 +567,60 @@ $('#offre').on('pageinit', function(){
 	});
 });
 
+$(document).bind('pageinit', function(event){
+	//$.each(event,function(i){alert(i+":"+event[i]);});
+	if(!pageinit){
+        pageinit=true;
+        var dfd = $.Deferred();
+        dfd.done(init_global).done(function(n){
+	        setTimeout( function(){ $('#recherche-detail-page-fonction').trigger('pagebeforeshow'); }, 100 );
+	        setTimeout( function(){$('#recherche-detail-page-zonegeo').trigger('pagebeforeshow'); }, 100 );
+			setTimeout( function(){$('#mes-recherches').trigger('pagebeforeshow'); }, 400 );			
+		}).resolve(); 
+	}
 	
-$('#recherche-detail').on('pageinit', function(){
-	//initSearch(); 	
-}); 
-//$('#recherche-detail-page-zonegeo').on('pagebeforecreate', function(){
-$(document).bind('pageinit', function(){
+});
+
+$('#recherche-detail-page-zonegeo').on('pagebeforeshow', function(){ 
 	var template = Handlebars.compile($('#recherche-detail-tpl').html());
-	$('#recherche-detail-zonegeo').html(template(Tregions_search)).trigger('create');
+	//$.each(Tregions_search,function(i){alert(i);});
+	$('#recherche-detail-zonegeo').html(template(Tregions_search)).trigger('create'); 	
 	$('#recherche-detail-page-zonegeo .check_cac').off('click').on('click', function() {
 		uncheck_cac($(this).attr('cac_type'),$(this));
 		$.mobile.changePage( "#recherche-detail", { transition: "fade"} );
-    }); 
-});
-//$('#recherche-detail-page-fonction').on('pagebeforecreate', function(){;
-$(document).bind('pageinit', function(){	
+    });
+    $('#recherche-detail-page-zonegeo').page();
+    set_fields_from_current();
+}); 	
+
+$('#recherche-detail-page-fonction').on('pagebeforeshow', function(){	
 	var template = Handlebars.compile($('#recherche-detail-tpl').html());
- 	$('#recherche-detail-fonction').html(template(Tfonctions_search)).trigger('create'); 
+ 	$('#recherche-detail-fonction').html(template(Tfonctions_search)).trigger('create');
  	$('#recherche-detail-page-fonction .check_cac').off('click').on('click', function() {
 		uncheck_cac($(this).attr('cac_type'),$(this));
 		$.mobile.changePage( "#recherche-detail", { transition: "fade"} );
     }); 
-}); 	
+    $('#recherche-detail-page-fonction').page();
+	set_fields_from_current();
+});
+
+$('#recherche-detail-page-experience').on('pagebeforeshow', function(){
+	set_fields_from_current();
+});
+	
+$('#recherche-detail-page-contrat').on('pagebeforeshow', function(){
+	set_fields_from_current();
+});
+	
+$('#recherche-detail').on('pagebeforeshow', function(){
+	if(criteres_last_search)$('#recherche-detail #last_search').show();		
+	set_fields_from_current();
+});
+				
 $('#recherche-detail').on('pageshow', function(){
 	$('#recherche #next').attr('data-next',0);
-	save_current_criteres();
 });
+
 $('#recherche').on('pagecreate', function(){
 	$('#nav-recherche').remove();
 	var template2 = Handlebars.compile($("#nav-recherche-tpl").html());		 		
@@ -625,13 +634,6 @@ $('#recherche').on('pagecreate', function(){
 $("#recherche #select-page").on('change', function(event, ui){
 	launchSearch(1,$(this).val());
 });
-$('#recherche').on('pageshow', function(){
-	if(use_infinite)$( "#select-page" ).remove();
-	if(use_infinite)$( "#select-page" ).parents('.ui-select').css('display', 'none');
-});
-
-    
-
 	
 $('#recherche').on('pagebeforeshow', function(){	
 	if(use_infinite)$('#recherche #pagin-prev').hide();
@@ -654,15 +656,14 @@ $('#recherche').on('pagebeforeshow', function(){
 	
 		        launchSearch(1);
 				
-				$('#resultat-recherche').listview('refresh');
+				$('#resultat-recherche').listview().listview('refresh');
 				if(use_infinite){
 					$('#recherche .content').waypoint('disable');	
 					$('#recherche .content').waypoint('enable');
 				}
 				$('#recherche').trigger('pagecreate');
 			}
-			//current = parseInt($('#recherche #next').attr('data-next'));			
-			//pagination(current);
+
 			$.mobile.silentScroll(0);	
 		});
 	
@@ -676,15 +677,14 @@ $('#recherche').on('pagebeforeshow', function(){
 	
 		        launchSearch(1);
 				
-				$('#resultat-recherche').listview('refresh');
+				$('#resultat-recherche').listview().listview('refresh');
 				if(use_infinite){
 					$('#recherche .content').waypoint('disable');	
 					$('#recherche .content').waypoint('enable');
 				}
 				$('#recherche').trigger('pagecreate');
 			}
-			//current = parseInt($('#recherche #next').attr('data-next'));			
-			//pagination(current);
+
 			$.mobile.silentScroll(0);	
 		});
 	}
@@ -699,7 +699,7 @@ $('#recherche').on('pagebeforeshow', function(){
 
 		        launchSearch(1);
 
-				$('#resultat-recherche').listview('refresh');
+				$('#resultat-recherche').listview().listview('refresh');
 				if(use_infinite){
 					$('#recherche .content').waypoint('disable');	
 					$('#recherche .content').waypoint('enable');
@@ -725,11 +725,20 @@ $('#recherche').on('pagebeforeshow', function(){
 	$('#recherche #next').hide();	
 	$('#recherche #next').addClass('ui-disabled');
 
-	
-	
 });
 
-$('#recherche').on('pageshow', function(){	
+$('#recherche').on('pageshow', function(){
+	if(use_infinite)$( "#select-page" ).remove();
+	if(use_infinite)$( "#select-page" ).parents('.ui-select').css('display', 'none');
+	if(!use_infinite){
+		var pages = Math.ceil(current_nb_annonce / nb_results_by_page);
+		if(pages>1){
+			$("#recherche #select-page").selectmenu().selectmenu('refresh', true);
+			$('#recherche .ui-select').css('display','inline');
+			$("#recherche #pagin-pages").css('display','inline');
+		}
+	}
+
 	if(use_infinite){
 		current = parseInt($('#recherche #next').attr('data-next'));
 		if(current_nb_annonce >= current){				
@@ -752,33 +761,48 @@ $('#recherche').on('pageshow', function(){
 	}
 	
 });  
-
-
+$('#annonce').on( "pagebeforeshow", function() {
+	$('#annonce :jqmData(class="content_annonce")').remove();
+}); 
+$('#annonce').on( "pageshow", function() {
+	$('.ui-page-active').trigger('create');				
+	$( '#popupPostuler' ).on({
+	        popupafteropen: function(event, ui) {
+	        	$('#btn_postuler').unbind();
+				$('#btn_postuler').bind('click', function(e){														
+					setTimeout( function(){ $( '#waiting_send' ).popup( 'open' ) }, 200 );	
+				}); 
+	        }
+	    });
+});     
+	
+$('#mes-recherches').on('pagecreate', function(){
+	$('#confirm_delete_searh').bind('click',function(){
+	   del_searh_from_hash(hash_search_selected_to_del);
+	});
+	$('#cancel_delete_searh').bind('click',function(){
+	   candel_del_search();
+	});
+});
 $('#mes-recherches').on('pagebeforechange', function(){
    $('#mes-recherches #resultat-mesrecherches').hide();
-});
+});   
 $('#mes-recherches').on('pagebeforeshow', function(){
 	view_list_mes_recherches();
 	$('#mes-recherches #resultat-mesrecherches').show();
-    $('#mes-recherches').trigger('create');
-    
-	//$('#mes-recherches #resultat-mesrecherches').show();
-});
-/*$('#recherche-detail').on('pageshow', function(){
-	$('.check_cac').off('click').on('click', function() {
-		uncheck_cac($(this).attr('cac_type'),$(this));
-		$.mobile.changePage( "#recherche-detail", { transition: "fade"} );
-    }); 
-}); */
+    $('#mes-recherches').page();//.trigger('create');
+});           
+
+
 $(document).bind( "pagebeforechange", function( e, data ) {
 	var u = $.mobile.path.parseUrl( data.toPage );
-
+    set_fields_from_current();
 	if ( typeof data.toPage === "string" ) {
 		
 		// recherche.
 		var re = /^#recherche\?/;
 		if ( u.hash.search(re) !== -1 ) {		
-		
+
 			execute_search( u, data.options );
 
 			e.preventDefault();
@@ -793,16 +817,7 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 
 			e.preventDefault();
 		}
-		
-		// mes-recherches.
-		//var re = /^#mes-recherches\?/;
-		//if ( u.hash.search(re) !== -1 ) {		
-			
-		//	view_list_mes_recherches( u, data.options );
-
-		//	e.preventDefault();
-		//}
-		
+				
 		
 	} 
 });
@@ -833,13 +848,9 @@ $(document).ready(function()
 		    '<li><a href="#offre" data-icon="check">Mes alertes</a></li>' +
 		'</ul>' +
 	    '</div>'; 
-
-
-
-
-
-
 	$("#idFooter").html(sHtml);*/
+
+	
 $(document).on("pageshow", "#annonce", function() {
 
 	$("#formpopup_Postuler").validate({
@@ -915,7 +926,7 @@ $(document).on("pageshow", "#annonce", function() {
 			{{/if}}
 			
 		  	{{#if NEW}}
-			<a style="float:right;" onClick="reset_search();" data-role="button" data-theme="b" data-mini="true" data-inline="true">{{NEW}}</a>
+			<a style="float:right;" onClick="reset_search(1);" data-role="button" data-theme="b" data-mini="true" data-inline="true">{{NEW}}</a>
 			{{/if}}	
 			{{/each}}
 		  </div>
@@ -947,7 +958,7 @@ $(document).on("pageshow", "#annonce", function() {
 
 <script id="annonce-detail-tpl" type="text/x-handlebars-template">
 {{#.}}
-	<div data-role="content">
+	<div data-role="content" data-class="content_annonce">
         
         	<div class="entete">
         		<h1>{{LIBELLE}}</h1>
@@ -995,67 +1006,63 @@ $(document).on("pageshow", "#annonce", function() {
 				-->
 			</p>
 			<div class="pad10 ui-corner-all" data-history="false" id="popupPostuler" data-role="popup" data-overlay-theme="a" data-theme="c" data-dismissible="false">
-			    <form id="formpopup_Postuler">
-			        <div style="padding: 10px 20px;">
-			            <h3>Recevoir l'offre d'emploi pour postuler depuis votre ordinateur</h3>
+			    
+				<form id="formpopup_Postuler">			        
+			        <div style="padding: 10px;" class="ui-corner-all ui-content" data-role="content" class="content_popup" data-theme="d">
+					    <h3>Recevoir l'offre d'emploi pour postuler depuis votre ordinateur</h3>
 			            <label class="email_label" class="bold" for="email">Mon Adresse email*</label>
 			            <input name="email" id="email" type="text" placeholder="Adresse email*" value="" data-theme="b">
 			            <label class="bold" for="subject">Objet Email</label>
-			            <input name="subject" id="subject" type="text" placeholder="Objet Email" value="Postuler à : {{LIBELLE}} {{#if REFERENCE}}(Réf. {{REFERENCE}}){{/if}}" data-theme="b">
+			            <input name="subject" id="subject" type="text" placeholder="Objet Email" value="Offre Batiactu Emploi - {{LIBELLE}} {{#if REFERENCE}}(Réf. {{REFERENCE}}){{/if}}" data-theme="b">
 			            <label class="bold" for="message">Votre message</label>
 			            <textarea name="message" id="message" placeholder="Votre message" value="" data-theme="b"></textarea>
 			            
 						<input type="hidden" value="{{ID_ANNONCE}}" id="id_annonce">
 						
 						<br>
-						<a  id="btn_postuler" onClick="postuler();" href="#" data-role="button" data-icon="" data-theme="b">M'envoyer l'offre d'emploi</button>
+						<a  data-rel="back" id="btn_postuler" onClick="postuler()" href="#" data-role="button" data-icon="" data-theme="b">M'envoyer l'offre d'emploi</button>
 			            <a  data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Annuler</a>
 			        </div>
 			    </form>
 			</div>
 
-			<div class="pad10 ui-corner-all" data-history="false" id="waiting_send" data-role="popup" data-overlay-theme="a" data-theme="c" data-dismissible="false">		
-			        <div style="padding: 10px 20px;">
-						<h3>Envoi en cours...patientez</h3>
-				    </div>
-			    
-			</div>
-			<div class="pad10 ui-corner-all" data-history="false" id="confirm_send" data-role="popup" data-overlay-theme="a" data-theme="c">
-			 
-			        <div style="padding: 10px 20px;">
-						<h3>L'offre d'emploi vous a bien été transmise par email.</h3>
-					    <p align="center">
-							<a  href="#recherche" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour aux résultats</a>
-						    <a  href="#" onClick="reset_search(1);" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle recherche</a>
-					    </p>
-				    </div>
-			    
-			</div>
-			<div class="pad10 ui-corner-all" data-history="false" id="error_send" data-role="popup" data-overlay-theme="a" data-theme="c">
-			    
-			        <div style="padding: 10px 20px;">
-						<h3>Une erreur c'est provoqué. L'offre d'emploi n'a pu être transmise par email.</h3>
-					    <p align="center">
-							<a  data-rel="back" href="#" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour à l'annonce</a>			    
-							<a  href="#recherche" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour aux résultats</a>
-						    <a  href="#" onClick="reset_search(1);" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle recherche</a>
-					    </p>
-				    </div>
-			    
-			</div>
+			
 			
 		
     </div>
-	
+	<div class="pad10 ui-corner-all" data-history="false" id="waiting_send" data-role="popup" data-overlay-theme="a" data-theme="c" data-dismissible="false">		
+	        <div style="padding: 10px 20px;">
+				<h3>Envoi en cours...patientez</h3>
+		    </div>
+	    
+	</div>
+	<div class="pad10 ui-corner-all" data-history="false" id="confirm_send" data-role="popup" data-overlay-theme="a" data-theme="c">
+	 
+	        <div style="padding: 10px 20px;">
+				<h3>L'offre d'emploi vous a bien été transmise par email.</h3>
+			    <p align="center">
+					<a  href="#recherche" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour aux résultats</a>
+				    <a  href="#" onClick="reset_search(1);" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle recherche</a>
+			    </p>
+		    </div>
+	    
+	</div>
+	<div class="pad10 ui-corner-all" data-history="false" id="error_send" data-role="popup" data-overlay-theme="a" data-theme="c">
+	    
+	        <div style="padding: 10px 20px;">
+				<h3>Une erreur c'est provoqué. L'offre d'emploi n'a pu être transmise par email.</h3>
+			    <p align="center">
+					<a  data-rel="back" href="#" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour à l'annonce</a>			    
+					<a  href="#recherche" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour aux résultats</a>
+				    <a  href="#" onClick="reset_search(1);" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle recherche</a>
+			    </p>
+		    </div>
+	    
+	</div>
 		
 {{/.}}
 </script> 
-
-<!--
-	{{#if nav.length}}
-      {{> nav}}
-    {{/if}}
--->   
+  
 <script id="recherche-detail-tpl" type="text/x-handlebars-template">
 {{#.}}
 	<label><input data-mini="true" cac_type="{{type}}" class="check{{type}} check_cac" type="checkbox" value="{{item_value}}" id="T{{item_libelle}}_{{item_index}}"> {{item_label}}</label>
@@ -1085,18 +1092,22 @@ $(document).on("pageshow", "#annonce", function() {
 			<li class="infinite-item">
 				
 			        <div class="contenu">
-	   				<!--{{item_hash}}-->   				
+	   				   <a href="#" onclick="select_del_search_from_hash({{item_hash}});" class="delete">X</a>
+					   <!--{{item_hash}}-->   				
 					{{#if item_lib_current_fonction}}
-					<div class="">{{item_lib_current_fonction}}</div>
+					<div class="blue">{{item_lib_current_fonction}}</div>
 	   				{{/if}}
 					{{#if item_lib_current_zonegeo}}
-					<div class="">{{item_lib_current_zonegeo}}</div>
+					<div class="blue">{{item_lib_current_zonegeo}}</div>
 	   				{{/if}}
 					{{#if item_lib_current_experience}}
-					<div class="">{{item_lib_current_experience}}</div>
+					<div class="blue">{{item_lib_current_experience}}</div>
 	   				{{/if}}
 					{{#if item_lib_current_contrat}}
-					<div class="">{{item_lib_current_contrat}}</div>
+					<div class="blue">{{item_lib_current_contrat}}</div>
+					{{/if}}
+					{{#if item_current_motclef}}
+					<div class="motclef">{{item_current_motclef}}</div>
 					{{/if}}
 					{{#if item_no_criteres}}
 					<div class="">{{item_no_criteres}}</div>
@@ -1105,9 +1116,9 @@ $(document).on("pageshow", "#annonce", function() {
 				
 				    <br>
 				    </div>
-					<a href="#" onclick="gotosearch({{item_hash}});"><h3>Lancer la recherche</h3></a>
+					<a href="#" onclick="gotosearch({{item_hash}});"><h2>Lancer la recherche</h2></a>
 					
-				<a href="#" onclick="del_searh_from_hash({{item_hash}});"></a>
+				
 			</li>
 		{{/.}}
 </script>

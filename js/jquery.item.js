@@ -16,7 +16,7 @@
 			  
 			 if(options.noLoading==null) $.mobile.loading( 'show' );
 
-	
+	            //alert(tsearchs + " / "+$.jStorage.storageSize());
 	
 				nb = Object.keys(tsearchs).length;
 			
@@ -27,8 +27,7 @@
 		 		$.each(tsearchs,function(i, row) {
 		 	       
 			 		var item = new Array;
-			 		
-					
+			 							                  
 					item["item_no_criteres"] = 'Recherche globale (sans critère)';
 			 		for (k in row) {
 			 			if(row[k]!= '')item["item_no_criteres"]=null;
@@ -37,14 +36,17 @@
 			 			 	if(row[k]=='')item["item_lib_"+k] = row[k];
 			 			 	else item["item_lib_"+k] = Tregions[row[k]];
 			 			 	break;
+			 			 	
 			 			 	case 'current_fonction':
 			 			 	if(row[k]=='')item["item_lib_"+k] = row[k];
 			 			 	else item["item_lib_"+k] = Tfonctions[row[k]];
 			 			 	break;
+			 			 	
 			 			 	case 'current_experience':
 			 			 	if(row[k]=='')item["item_lib_"+k] = row[k];
 			 			 	else item["item_lib_"+k] = Texperiences[row[k]];
 			 			 	break
+			 			 	
 			 			 	case 'current_contrat':
 			 			 	if(row[k]=='')item["item_lib_"+k] = row[k];
 			 			 	else item["item_lib_"+k] = Tcontrats[row[k]];
@@ -66,7 +68,7 @@
 			 				 								
 
 			 	myList.show();
-			 	myList.listview('refresh');
+			 	//myList.listview('refresh');
 
 			 	if(options.noLoading==null){ remove_notify('#mes-recherches');$.mobile.loading( 'hide' )};
 			 	
@@ -237,7 +239,7 @@
                 
 	
 			 	myList.show();
-			 	myList.listview('refresh');
+			 	myList.listview().listview('refresh');
 	
 			 	//myList.page();
 			 	//$('#recherche').trigger('pagecreate');
@@ -279,16 +281,9 @@
 			 	,dataType:'jsonp'
 			 	,async : false
 			 	,success:function(row) {
-			 		//var annonce = new Array();
-			 		//for (k in row) {
-			 		//nb = Object.keys(row).length;
-			 		//for (k=0; k<nb; k++) {
-			 		//	annonce[k] = row[k];	
-			 		//}
-                    
-                    //row['nav']=[{'PREVIOUS':row['PREVIOUS'],'NEXT':row['NEXT']}];
+
                     $(options.itemtarget+' :jqmData(role=footer)').remove();
-                    $(options.itemtarget+' :jqmData(role=content)').remove();
+                    $(options.itemtarget+' :jqmData(class="content_annonce")').remove();
                     $(options.itemtarget).append(template(row));//.trigger('create');
                     _refresh_datas();
                     
@@ -300,11 +295,7 @@
 					TabComplete.push(Tab);	 
 					$('#annonce #nav-annonce').remove();
 					$('#annonce').append(template2(TabComplete)).trigger('pagecreate');;
-					//$('#annonce').append(template2(TabComplete)).page();
 					$('#annonce').trigger('create');
-	
-                    //$(options.itemtarget).page();
-                    
 					$.mobile.loading( 'hide' );	
 													        
 			 	}
@@ -312,10 +303,7 @@
 			 		$.mobile.loading( 'hide' );
 			 	}
 			 });
-			//remove_notify('#annonce');
-            //$('#annonce').trigger('create');
-			//$(options.itemtarget).trigger('create');
-            //$(options.itemtarget).page();             
+			//remove_notify('#annonce');           
 
 			return this;
 

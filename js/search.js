@@ -1,6 +1,8 @@
 var DIRSCRIPTS = 'http://bo.v2.batiactuemploi.com/scripts/';
 //var DIRSCRIPTS = 'http://local.back2012.batiactuemploi.com/scripts/';
 
+var pageinit = false;
+
 var back_popup_hash = "";
 var use_infinite = false;
 
@@ -25,11 +27,14 @@ var current_fonction = new Array;
 var current_metier = new Array;
 var current_experience = new Array;
 var current_contrat = new Array;
+var current_motclef = '';
+
+var hash_searh_selected_to_del = '';
 
 var current_nb_annonce = 0;
 var last_search = new Object(); 
 
-var tsearchs = new Object();
+tsearchs = new Object();
 
 var notify = function(message, page, time) {
 	var $message = $('<p style="display:none;">' + message + '</p>');
@@ -58,7 +63,6 @@ function pagination(current){
 	
 	var current_page =  Math.floor(current / nb_results_by_page);
 	
-	//if((current+nb_results_by_page)<=current_nb_annonce){
 	if(current_page<pages){	
 		$('#recherche #pagin-next').show();
 		$('#recherche #pagin-next').removeClass('ui-disabled');
@@ -68,7 +72,7 @@ function pagination(current){
 		$('#recherche #pagin-next').addClass('ui-disabled');
 		
 	}
-	//if((current)>nb_results_by_page){
+
 	if(current_page>1){	
 		$('#recherche #pagin-prev').show();
 		$('#recherche #pagin-prev').removeClass('ui-disabled');
@@ -78,7 +82,6 @@ function pagination(current){
 		$('#recherche #pagin-prev').addClass('ui-disabled');
 		
 	}
-	
 
 	$('#recherche #pagin-pages').html(current_page+"/"+pages);
 	
@@ -90,7 +93,7 @@ function pagination(current){
 	for(i=1; i<=pages;i++){
 		if(i != current_page)$("#recherche #select-page").append('<option value="'+i+'">page '+i+'</option>');
 	}
-	//$("#recherche #select-page").trigger("change");
+
 	if(pages>1){
 		$("#recherche #select-page").selectmenu('refresh', true);
 		$('#recherche .ui-select').css('display','inline');
@@ -99,14 +102,15 @@ function pagination(current){
 
 }		
 function uncheck_cac(type,el){
+	window['current_'+type]=new Array;
+	
 	$('.check'+type).each(function(){
 		if(this.id!=el.attr('id')){
 			$(this).prop('checked', false);
 		}		
 		$(this).checkboxradio().checkboxradio("refresh");
 	});
-	if(el.prop('checked')) $('#selected-detail-page-'+type).html((el.parent().find('label').text()));
-	else $('#selected-detail-page-'+type).html('');
+	if(el.prop('checked'))window['current_'+type].push(el.attr('value'));
 }
 
 function view_list_mes_recherches(){
@@ -115,13 +119,15 @@ function view_list_mes_recherches(){
 
 
 function reset_search(gotodetail){
-	var current_zonegeo = new Array;
-	var current_fonction = new Array;
-	var current_metier = new Array;
-	var current_experience = new Array;
-	var current_contrat = new Array;
+
+	current_zonegeo = new Array;
+	current_fonction = new Array;
+	current_metier = new Array;
+	current_experience = new Array;
+	current_contrat = new Array;
+	current_motclef = '';
 	
-	var current_nb_annonce = 0;
+	current_nb_annonce = 0;
 	
 	$('[id^=selected-detail-page-]').text('');
 	$('[id=recherche-detail-mot-clef]').val('');
@@ -133,7 +139,7 @@ function reset_search(gotodetail){
 	if(gotodetail)$.mobile.changePage('#recherche-detail');
 }
 function saved_last_search(){
-
+	
 	criteres_last_search = new Object(); 
 
 	criteres_last_search['current_zonegeo'] = current_zonegeo;
@@ -144,11 +150,12 @@ function saved_last_search(){
 
 	criteres_last_search['current_contrat'] = current_contrat;
 	
-	criteres_last_search['current_motclef'] = $('[id=recherche-detail-mot-clef]').val();
+	criteres_last_search['current_motclef'] = current_motclef;
 	
 	$.jStorage.set('last_search',criteres_last_search);		
 }
 function saved_search(){
+	
 	tsearchs = $.jStorage.get('tsearchs');
 	if(!tsearchs) tsearchs= new Object();
 	
@@ -162,7 +169,7 @@ function saved_search(){
 
 	current_search['current_contrat'] = current_contrat;
 	
-	current_search['current_motclef'] = $('[id=recherche-detail-mot-clef]').val();
+	current_search['current_motclef'] = current_motclef;
 	
 	var current_hash = convert_array_to_hash(current_search);
 	
@@ -202,7 +209,6 @@ String.prototype.hashCode = function(){
 };
 function gotosearch(hash){
 	if(load_searh_from_hash(hash)){
-		save_current_criteres();
 		go_url_recherche();
 		return false;		
 	}
@@ -211,6 +217,14 @@ function gotosearch(hash){
 		return false;
 	}
 } 
+function select_del_search_from_hash(hsh){
+	hash_search_selected_to_del = hsh;
+	$('#confirmDeleteSearch').popup();
+	$('#confirmDeleteSearch').popup('open', {history: false});
+}
+function candel_del_search(){
+	hash_search_selected_to_del = '';
+}
 function del_searh_from_hash(current_hash){
 	tsearchs = $.jStorage.get('tsearchs');
 	if(!tsearchs) tsearchs= new Object();
@@ -219,14 +233,10 @@ function del_searh_from_hash(current_hash){
 		notify('Suppression...', '#mes-recherches');
 		delete tsearchs[current_hash];
 		$.jStorage.set('tsearchs',tsearchs);
-		//$('#mes-recherches').page().trigger('pagecreate');
-		//$.mobile.changePage( "#mes-recherches" );
-		//$('#mes-recherches').trigger('pagebeforechange');
     	$('#mes-recherches #resultat-mesrecherches').hide();
 		view_list_mes_recherches();
 		$('#mes-recherches #resultat-mesrecherches').show();
 	    $('#mes-recherches').trigger('create');	    
-		$('#delete_search').popup('open');	
 		return true;
 	}else{		
 		notify('Erreur, ce hash ne correspond pas!', '#mes-recherches');
@@ -234,6 +244,7 @@ function del_searh_from_hash(current_hash){
 	}
 }
 function load_searh_from_hash(current_hash){
+	
 	tsearchs = $.jStorage.get('tsearchs');
 	if(!tsearchs) tsearchs= new Object();
 	
@@ -254,13 +265,23 @@ function load_searh_from_hash(current_hash){
 		window[key]=value;
 	});	
 	
+	set_fields_from_current();
+	
+	return true;
+}
+function set_fields_from_current(){
+
+	$('[id^=selected-detail-page-]').html('');
+	
+	
 	$.each(current_zonegeo,function(i) {
 		value = current_zonegeo[i];
 		var type = 'zonegeo';
 		$('[cac_type='+type+'][value='+value+']').attr('id');     
 		$('[cac_type='+type+'][value='+value+']').prop('checked', true);
 		$('[cac_type='+type+'][value='+value+']').checkboxradio().checkboxradio("refresh");
-		$('#selected-detail-page-'+type).html(($('[cac_type='+type+'][value="'+value+'"]').parent().find('label').text()));
+		var lib = get_value_by_key(Tregions,value);
+		$('#selected-detail-page-'+type).html(lib);
 	});	
 	
 	$.each(current_fonction,function(i) {
@@ -269,7 +290,8 @@ function load_searh_from_hash(current_hash){
 		$('[cac_type='+type+'][value='+value+']').attr('id');     		
 		$('[cac_type='+type+'][value='+value+']').prop('checked', true);
 		$('[cac_type='+type+'][value='+value+']').checkboxradio().checkboxradio("refresh");
-		$('#selected-detail-page-'+type).html(($('[cac_type='+type+'][value='+value+']').parent().find('label').text()));
+		var lib = get_value_by_key(Tfonctions,value);
+		$('#selected-detail-page-'+type).html(lib);
 	});		
 	
 	$.each(current_contrat,function(i) {
@@ -278,7 +300,8 @@ function load_searh_from_hash(current_hash){
 		$('[cac_type='+type+'][value='+value+']').attr('id');     		
 		$('[cac_type='+type+'][value='+value+']').prop('checked', true);
 		$('[cac_type='+type+'][value='+value+']').checkboxradio().checkboxradio("refresh");
-		$('#selected-detail-page-'+type).html(($('[cac_type='+type+'][value='+value+']').parent().find('label').text()));
+		var lib = get_value_by_key(Tcontrats,value);
+		$('#selected-detail-page-'+type).html(lib);
 	});	
 	
 	$.each(current_experience,function(i) {
@@ -287,63 +310,28 @@ function load_searh_from_hash(current_hash){
 		$('[cac_type='+type+'][value='+value+']').attr('id');     		
 		$('[cac_type='+type+'][value='+value+']').prop('checked', true);
 		$('[cac_type='+type+'][value='+value+']').checkboxradio().checkboxradio("refresh");
-		$('#selected-detail-page-'+type).html(($('[cac_type='+type+'][value='+value+']').parent().find('label').text()));
+		var lib = get_value_by_key(Texperiences,value);
+		$('#selected-detail-page-'+type).html(lib);
 	});	
-	$('[id=recherche-detail-mot-clef]').val(criteres_search_current_hash['current_motclef']);
-	
-	return true;
+
+	$('#recherche-detail-mot-clef').val(current_motclef);
+}
+function get_value_by_key(tab,key){
+	return (tab[key]=== undefined)?'':tab[key];	
 }
 function load_last_searh(){
 	reset_search(true);
-	//alert($.jStorage.index());
-	//alert($.jStorage.storageSize());
-	
+
 	criteres_last_search = $.jStorage.get('last_search');
-	
-	//alert(criteres_last_search);
-	//if(!jQuery.isArray( criteres_last_search ))criteres_last_search = new Object();
-	
+
 	$.each(criteres_last_search,function(key, value) {
 		window[key]=value;	
 	});	
 	
-	$.each(current_zonegeo,function(i) {
-		value = current_zonegeo[i];
-		var type = 'zonegeo';
-		$('[cac_type='+type+'][value='+value+']').attr('id');
-		$('[cac_type='+type+'][value='+value+']').prop('checked', true);
-		$('[cac_type='+type+'][value='+value+']').checkboxradio().checkboxradio("refresh");
-		$('#selected-detail-page-'+type).html(($('[cac_type='+type+'][value="'+value+'"]').parent().find('label').text()));
-	});	
-	
-	$.each(current_fonction,function(i) {
-		value = current_fonction[i];
-		var type = 'fonction';
-		$('[cac_type='+type+'][value='+value+']').prop('checked', true);
-		$('[cac_type='+type+'][value='+value+']').checkboxradio().checkboxradio("refresh");
-		$('#selected-detail-page-'+type).html(($('[cac_type='+type+'][value='+value+']').parent().find('label').text()));
-	});		
-	
-	//$.each(current_contrat,function(i) {
-	//	value = current_contrat[i];
-	//	var type = 'contrat';
-	//	$('[cac_type='+type+'][value='+value+']').prop('checked', true);
-	//	$('[cac_type='+type+'][value='+value+']').checkboxradio().checkboxradio("refresh");
-	//	$('#selected-detail-page-'+type).html(($('[cac_type='+type+'][value='+value+']').parent().find('label').text()));
-	//});	
-	
-	//$.each(current_experience,function(i) {
-	//	value = current_experience[i];
-	//	var type = 'experience';
-	//	$('[cac_type='+type+'][value='+value+']').prop('checked', true);
-	//	$('[cac_type='+type+'][value='+value+']').checkboxradio().checkboxradio("refresh");
-	//	$('#selected-detail-page-'+type).html(($('[cac_type='+type+'][value='+value+']').parent().find('label').text()));
-	//});	
-	$('[id=recherche-detail-mot-clef]').val(criteres_last_search['current_motclef']);
+	set_fields_from_current();
 	
 }
 function init_global(){
-	//alert('init');
 
 	$.ajax({
 		url:DIRSCRIPTS+'interface-mobile.php'
@@ -445,15 +433,16 @@ function init_global(){
 	load_experiences();
 
     initSearch();
-    
+
+	return true;
 }
 function initSearch() {
 
 	tsearchs = $.jStorage.get('tsearchs');
 	if(!tsearchs) tsearchs = new Object();
-	
-	
 	search_list_id = new Array;
+	
+	criteres_last_search = $.jStorage.get('last_search');
 }
 
 function load_contrats(){
@@ -500,6 +489,7 @@ function load_experiences(){
 			,get:'experience'
 		}
 		,dataType:'jsonp'
+		,async :false
 		,cache:false
 	}).done(function(data) {
 		
@@ -528,7 +518,6 @@ function load_experiences(){
 	});
 }
 function launchSearch(advanceMode,gotopage_n) {
-	//$('#resultat-recherche').hide();
 
 	search_list_id = new Array;
 	
@@ -560,6 +549,9 @@ function launchSearch(advanceMode,gotopage_n) {
 	else {
 		var zonegeo = $('#accueil #zone-geo').val();
 	}
+	
+	current_motclef=$('[id=recherche-detail-mot-clef]').val();
+	
 	
 	if(gotopage_n){
 	    var currentlength = (gotopage_n-1) * nb_results_by_page; 
@@ -615,12 +607,13 @@ function launchSearch(advanceMode,gotopage_n) {
 				 
 	return false;
 }
+
 function execute_search(urlObj, options){
     var pageSelector = urlObj.hash.replace( /\?.*$/, "" );
 
     var $page = $( pageSelector );
     
-    if(!use_infinite)launchSearch(1);
+    if(!use_infinite)launchSearch(1,1);
    
 	$page.page();
 
@@ -638,58 +631,62 @@ function go_url_recherche(){
 	$content.find( "#resultat-recherche").html("");
 	
 	//l'url est créée dynamiquement
-	newurl = '#recherche' + '?zone=' + current_zonegeo.join('-')+'&fct='+  current_fonction.join('-');
+	newurl = '#recherche' + '?zone=' + current_zonegeo.join('-')+'&fct='+  current_experience.join('-')+  current_contrat.join('-')+  current_fonction.join('-')+'&motclef='+ current_motclef;
   
 	$.mobile.changePage( newurl);
   	
 	return true; 
 }
+
+
 function save_current_criteres(){
+
+	if($('.checkzonegeo').lenght>0){
+		current_zonegeo = new Array;
+		$('.checkzonegeo').each(function(i) {
+				if($(this).prop('checked')){
+					current_zonegeo.push($(this).val());
+				}
+			});	
+	}
 	
-	current_zonegeo = new Array;
-	$('.checkzonegeo').each(function(i) {
-			
-			if($(this).is(':checked')) {
-				//if(zonegeo!='')zonegeo+='|';
-				//zonegeo+=$(this).val();
-				current_zonegeo.push($(this).val());
-			}
-		});	
-	
+	if($('.checkfonction').lenght>0){	
 	current_fonction = new Array;	
 	$('.checkfonction').each(function(i) {
-			
-			if($(this).is(':checked')) {
-				//if(fonction!='')fonction+='|';
-				//fonction+=$(this).val();
+			if($(this).prop('checked')){
 				current_fonction.push($(this).val());
 			}
 		});	
+	}
 	
-	$('.checkcontrat').each(function(i) {
-		
-		if($(this).is(':checked')) {
-			if(contrat!='')contrat+='|';
-			contrat+=$(this).val();
-		}
-	});	
-		
+	if($('.checkcontrat').lenght>0){	
+		current_contrat = new Array;	
+		$('.checkcontrat').each(function(i) {			
+			if($(this).prop('checked')){
+				current_contrat.push($(this).val());
+			}
+		});	
+	}	
 	
+	//if($('.checkmetier').lenght>0){
+	//	$('.checkmetier').each(function(i) {
+		
+	//		if($(this).is(':checked')) {
+	//			if(metier!='')metier+='|';
+	//			metier+=$(this).val();
+	//		}
+	//	});
+	//}
+	if($('.checkexperience').lenght>0){
+		current_experience = new Array;		
+		$('.checkexperience').each(function(i) {
+			if($(this).prop('checked')){
+				current_experience.push($(this).val());
+			}
+		});
+	}	
 	
-	//$('.checkmetier').each(function(i) {
-		
-	//	if($(this).is(':checked')) {
-	//		if(metier!='')metier+='|';
-	//		metier+=$(this).val();
-	//	}
-	//});
-		
-	$('.checkexperience').each(function(i) {
-		if($(this).is(':checked')) {
-			if(experience!='')experience+='|';
-			experience+=$(this).val();
-		}
-	});	
+	current_motclef=$('[id=recherche-detail-mot-clef]').val();
 			
 	return false;		
-}
+} 
