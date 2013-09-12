@@ -1,4 +1,6 @@
+var DIRHTTP = 'http://www.batiactuemploi.com/';
 var DIRSCRIPTS = 'http://bo.v2.batiactuemploi.com/scripts/';
+//var DIRHTTP = 'http://local.www2012.batiactuemploi.com/';
 //var DIRSCRIPTS = 'http://local.back2012.batiactuemploi.com/scripts/';
 
 var pageinit = false;
