@@ -34,6 +34,8 @@ var hash_searh_selected_to_del = '';
 var current_nb_annonce = 0;
 var last_search = new Object(); 
 
+var search_list_id = new Array;
+
 tsearchs = new Object();
 
 var notify = function(message, page, time) {

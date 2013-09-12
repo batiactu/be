@@ -86,9 +86,11 @@ function showAnnonce(urlObj, options) {
 
 	var id_annonce = urlObj.hash.replace( /.*id=/, "" );
 	
-	var nb = search_list_id.length;
-	
+	var nb = 0;
+	if(search_list_id) nb = search_list_id.length;
+	else search_list_id = new Array; 
 	var current_ind = search_list_id.indexOf(id_annonce.toString());
+
 	prevP = current_ind>0?search_list_id[current_ind-1]:null;
 	nextP = current_ind<nb-1?search_list_id[current_ind+1]:null;
 	
