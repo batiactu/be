@@ -1,2 +1,0 @@
-java -jar compiler.jar --warning_level QUIET --js=../../js/annonce.js --js=../../js/search.js --js=../../js/jqueryitem.js --js_output_file=../../js/cipallmin.js
-java -jar compiler.jar --warning_level QUIET --js=../../js/jquery191min.js --js=../../js/jqueryvalidatemin.js --js=../../js/jstoragemin.js --js=../../js/jquerymobile131min.js --js=../../js/waypointsmin.js --js=../../js/waypointsinfinitemin.js --js=../../js/handlebarsmin.js --js_output_file=../../js/allpluginsmin.js

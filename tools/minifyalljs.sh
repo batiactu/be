@@ -1,2 +1,0 @@
-sudo -u www-data java -jar compiler.jar --js=../js/annonce.js --js=../js/search.js --js=../js/jqueryitem.js --js_output_file=../js/cip.all.min.js
-sudo -u www-data java -jar compiler.jar --js=../js/jquery191min.js --js=../js/jqueryvalidatemin.js --js=../js/jstoragemin.js --js=../js/jquerymobile131min.js --js=../js/waypointsmin.js --js=../js/waypointsinfinitemin.js --js=../js/handlebarsmin.js --js_output_file=../js/allpluginsmin.js
