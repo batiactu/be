@@ -20,12 +20,12 @@ function postuler(idpopup,formname,istransfertami) {
 	email = $('#'+formname+' #email').val();
 	
 	if(!$('#'+formname).valid()){
-		$('#waiting_send').popup('close');
+		setTimeout( function(){ $( '#waiting_send' ).popup( 'close') }, 200 );							
 		return false;
 	}
 	
 	if ($.trim(email).length == 0 || !_validateEmail(email) ) {
-		$('#waiting_send').popup('close');							    
+		setTimeout( function(){ $( '#waiting_send' ).popup( 'close') }, 200 );														    
 		return false;
 	}
 	else {
@@ -37,9 +37,10 @@ function postuler(idpopup,formname,istransfertami) {
 
 		//SaveEmail();
 		//$.jStorage.flush();
-		$.jStorage.set('email', email);
+		if(istransfertami)$.jStorage.set('emailami', email);
+		else $.jStorage.set('email', email);		
 		$.jStorage.reInit();
-		notify('envoi en cours... patientez...', '#annonce');
+		//notify('envoi en cours... patientez...', '#annonce');
 		$.mobile.loading( 'show' );
 		$.ajax({
 			 	url:DIRSCRIPTS+'interface-mobile.php'
@@ -59,20 +60,38 @@ function postuler(idpopup,formname,istransfertami) {
 					$.mobile.loading( 'hide' );	
 					if(rep=="OK"){
 					    var msg = 'Cette annonce a bien été envoyée à '+email;												
-						$('#waiting_send').popup('close');
-						$('#confirm_send').popup('open');
+						//$('#waiting_send').popup('close');
+						setTimeout( function(){ $( '#waiting_send' ).popup( 'close') }, 200 );	
+						setTimeout( function(){ 
+							$( "#confirm_send" ).popup({ history: false }); 
+							$( '#confirm_send' ).popup('open'); 
+							}, 300 );
+						//$('#confirm_send').popup('open', {history:false});
+						/*var popup = setInterval(function(){
+					        $("#confirm_send").popup("open", {history:false});
+					        clearInterval(popup);
+					    },1); */
 												    
 					}else{
 						var msg = 'Une erreur est survenue!';
-						$('#waiting_send').popup('close');
-						$('#error_send').popup('open');					
+						setTimeout( function(){ $( '#waiting_send' ).popup( 'close') }, 200 );							
+						setTimeout( function(){ 
+							$( "#confirm_send" ).popup({ history: false }); 
+							$( '#confirm_send' ).popup('open'); 
+							}, 300 );					
 					}				
-					remove_notify("#annonce");				        
+					//remove_notify("#annonce");				        
 					//notify(msg, '#annonce');
  
 			 	}
 			 	,error:function() {
 			 		$.mobile.loading( 'hide' );
+			 		var msg = 'Une erreur est survenue!';
+						setTimeout( function(){ $( '#waiting_send' ).popup( 'close') }, 200 );							
+						setTimeout( function(){ 
+							$( "#confirm_send" ).popup({ history: false }); 
+							$( '#confirm_send' ).popup('open'); 
+							}, 300 );														    		
 			 	}
 			 });
 	 
@@ -113,9 +132,10 @@ function showAnnonce(urlObj, options) {
 		}
 	});
 	
-            
+    
 	options.dataUrl = urlObj.href;
-
+	
+	//options.changeHash = false;
     $.mobile.changePage( $page, options );
 
 }
@@ -125,5 +145,11 @@ function _refresh_datas(){
 	if(!email){
 	 	email = '';
 	}
-	$('#annonce #email').val( email );
+	$('#popupPostuler #email').val( email );
+	
+	var emailami = $.jStorage.get('emailami');
+	if(!emailami){
+	 	emailami = '';
+	}
+	$('#popupTransfertAmi #email').val( emailami );
 }
