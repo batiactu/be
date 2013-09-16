@@ -98,32 +98,6 @@
 <!-- ================================================================================================= -->
 
 
-<!-- choice support -->
-<div id="choice_support" data-role="page" data-theme="b" >
-	
-	<div data-role="header" data-theme="b">	    
-	    <h1 style="margin:5px auto auto auto;width:200px;position:relative;font-size:32px;text-align:center !important;"><div style="position:relative;height:90px;"><span style="color:#FFF;font-size:46px !important">[</span> batiactu <span style="color:#FFF;font-size:46px !important">]</span><div style="right:32px;bottom:15px;position:absolute;font-size:22px;color:#82befc;">Emploi</div></div></h1>	    
-	</div>
-	
-	<div data-role="content">
-    	<p align="center">
-    		<strong>CONTINUEZ VOTRE NAVIGATION EMPLOI EN CHOISISSANT VOTRE SUPPORT :</strong>    		
-    	</p>
-    	<p align="center">
-    	<a href="#accueil" data-role="button" data-inline="true" data-mini="true">VERSION MOBILE</a>
-    		<span>Version optimisée pour mobiles</span>
-    	<a href="" data-role="button" data-inline="true" data-mini="true">VERSION CLASSIQUE</a>
-    		<span>Accès à tous les services de Batiactu Emploi</span>
-    	</p>
-        	
-    </div>	
-	
-	
-</div>
-
-
-
-
 
 <!-- Gallerie d'image de batiactu -->
 <div id="galleryimg" data-role="page" style="padding:0px;">
@@ -208,7 +182,7 @@
 
 
 <!-- Recherche -->
-<div id="recherche" data-role="page" data-back-btn-text="Retour" data-transition="none">
+<div id="recherche" data-role="page" data-transition="none">
 	<div data-role="header" data-position="fixed" data-theme="b">
 	    <a href="#recherche-detail" data-transition="none" data-icon="arrow-l" data-position-to="window" data-role="button" data-theme="b" >Retour</a>
 		<h1><span style="color:#FFF;font-size:16px !important">[</span> batiactu <span style="color:#FFF;font-size:16px !important">]</span> <span style="font-size:12px;color:#82befc;">Emploi</span></h1>
@@ -797,7 +771,7 @@ $('#recherche').on('pageshow', function(){
 	
 });  
 $('#annonce').on( "pagebeforeshow", function() {
-	$('#annonce :jqmData(class="content_annonce")').remove();
+	$('#annonce :jqmData(class="content_annonce")').remove();	
 }); 
 $('#annonce').on( "pageshow", function() {
 	$('.ui-page-active').trigger('create');				
