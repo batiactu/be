@@ -637,7 +637,8 @@ $('#recherche-detail').on('pagebeforeshow', function(){
 	$.mobile.urlHistory.clearForward();
 	if(current_fonction.length>0)$('[href=#recherche-detail-page-fonction] > h2').removeClass('border_red');	
 	if(criteres_last_search)$('#recherche-detail #last_search').show();
-	if(Object.keys(tsearchs).length>0)$('#recherche-detail #link_mine_search').show();		
+	if(Object.keys(tsearchs).length>0)$('#recherche-detail #link_mine_search').show();
+	else $('#recherche-detail #link_mine_search').hide();		
 	set_fields_from_current();
 });
 				
