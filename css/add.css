@@ -5,6 +5,9 @@ label.error {
 	vertical-align: top; 
 	font-weight:bold
 }
+.border_red {
+	color:red;
+}
 .ui-body-b, .ui-overlay-b {
 	background:#FFF !important;
 }

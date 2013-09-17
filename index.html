@@ -352,7 +352,7 @@
 		<ul data-role="listview">
 			<li>
 				<a href="#recherche-detail-page-fonction">
-					<h2>Fonctions</h2>
+					<h2>Fonctions *</h2>
 					<p class="ui-li-desc" id="selected-detail-page-fonction"></p>	
 				</a>
 			</li>
@@ -381,18 +381,25 @@
 				<input data-mini="true" name="mot-clef" id="recherche-detail-mot-clef" placeholder="Recherche par mots-clés" value="" type="search">
 			</li>
 			<li style="text-align:center;">
-				<p><a id="link_search" onClick="save_current_criteres();go_url_recherche();" data-direction="reverse" data-transition="none" data-role="button" data-theme="b" data-mini="true" data-inline="true">Lancer une recherche</a></p>				 
-			</li>
-			<li style="text-align:center;">
+				<p><a id="link_search" onClick="check_params();" data-direction="reverse" data-transition="none" data-role="button" data-theme="b" data-mini="true" data-inline="true">Lancer une recherche</a></p>				 
+				<br />
 				<p>
-					<a id="link_mine_search" href="#mes-recherches" data-role="button" data-theme="b" data-mini="true" data-inline="true">Recherches sauvegardées</a>				
+					<a style="display:none;" id="link_mine_search" href="#mes-recherches" data-role="button" data-theme="b" data-mini="true" data-inline="true">Recherches sauvegardées</a>				
 				</p>				 
 				<p>					
 					<a style="display:none;" id="last_search" onClick="load_last_searh();go_url_recherche();" data-role="button" data-theme="b" data-mini="true" data-inline="true">Dernière recherche</a>
 				</p>				 
+                <br>
+				<p class="size12 grey">* Champs obligatoires</p>
 			</li>
 		</ul>
-		 
+		<div id="fonctionrequired" data-icon="info" data-history=false data-rel="back" data-role="popup" data-theme="d" data-overlay-theme="a" class="ui-content">
+
+		   <label class="error">La fonction est obligatoire.</label>
+		
+		</div>
+
+ 
 	</div>
 	
 </div>   
@@ -537,6 +544,14 @@ $('[data-role=page]').bind('pageshow',function(){
 			});
 	    }, 
 	});
+	$( "#fonctionrequired" ).on({
+		popupafteropen: function(e) { 
+	       autoclosing = setTimeout( function(){$('#fonctionrequired').popup('close');}, 3000 );		   
+	    },
+		popupafterclose: function(e) {    
+		   clearTimeout(autoclosing);		   
+	    },  
+	});
 	 
 });
 $('[data-role=page]').on('pagebeforecreate', function(){
@@ -605,6 +620,7 @@ $('#recherche-detail-page-fonction').on('pagebeforeshow', function(){
 		uncheck_cac($(this).attr('cac_type'),$(this));
 		$.mobile.changePage( "#recherche-detail", { transition: "none"} );
     }); 
+    
     $('#recherche-detail-page-fonction').page();
 	set_fields_from_current();
 });
@@ -619,7 +635,9 @@ $('#recherche-detail-page-contrat').on('pagebeforeshow', function(){
 	
 $('#recherche-detail').on('pagebeforeshow', function(){				
 	$.mobile.urlHistory.clearForward();
-	if(criteres_last_search)$('#recherche-detail #last_search').show();		
+	if(current_fonction.length>0)$('[href=#recherche-detail-page-fonction] > h2').removeClass('border_red');	
+	if(criteres_last_search)$('#recherche-detail #last_search').show();
+	if(Object.keys(tsearchs).length>0)$('#recherche-detail #link_mine_search').show();		
 	set_fields_from_current();
 });
 				
