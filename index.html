@@ -243,7 +243,7 @@
 </div>   
 
 <!-- Mes Recherches -->
-<div id="mes-recherches" data-role="page" data-add-back-btn="true" data-back-btn-text="Retour">
+<div id="mes-recherches" data-role="page" data-add-back-btn="true" data-back-btn-text="Retour" data-transition="none">
 	<div data-role="header" data-position="fixed" data-theme="b">
 	    <h1>Mes recherches</h1>
 	    <!--<a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos="notext">Menu</a>-->
@@ -533,16 +533,17 @@ $('[data-role=page]').bind('pageshow',function(){
 	    popupbeforeposition: function() {
 	        var h = $( window ).height();
 	        $( ".popupPanel" ).css( "height", h );	        
-	    },
-		popupafteropen: function() {    
-	       $('.popupPanel').each(function(){
-				$(this).unbind();
-				$(this).bind('click', function(e){	
+	    }, 
+		/*popupafteropen: function() {    
+	       $('.popupPanel').each(function(){				
+				var id = $(this).attr('id');
+				$('[id='+id+']').unbind();
+				$('[id='+id+']').bind('click', function(e){	
 					$('.popupPanel').popup();													
 					$('.popupPanel').popup('close');	
-				});
-			});
-	    }, 
+				}); 
+			}); 
+	    },*/  
 	});
 	$( "#fonctionrequired" ).on({
 		popupafteropen: function(e) { 
@@ -552,7 +553,6 @@ $('[data-role=page]').bind('pageshow',function(){
 		   clearTimeout(autoclosing);		   
 	    },  
 	});
-	 
 });
 $('[data-role=page]').on('pagebeforecreate', function(){
 	var defaults = {
@@ -564,9 +564,9 @@ $('[data-role=page]').on('pagebeforecreate', function(){
 	var template = Handlebars.compile($(options.template).html());
 
 	Tab = new Array({'id_page':$(this).attr('id')});
-	
-	$('#' +this.id + ' div[data-role=content]').append(template(Tab));
-
+	$('#' +$(this).attr('id') + ' div[data-role=content]').append(template(Tab));
+	//var id = $(this).attr('id');
+	//setTimeout( function(){notify(id,'#' +id );}, 1000 );
 });
 
 $('#actu').on('pageinit', function(){
@@ -602,6 +602,7 @@ $(document).bind('pageinit', function(event){
 });
 
 $('#recherche-detail-page-zonegeo').on('pagebeforeshow', function(){ 
+	
 	var template = Handlebars.compile($('#recherche-detail-tpl').html());
 	//$.each(Tregions_search,function(i){alert(i);});
 	$('#recherche-detail-zonegeo').html(template(Tregions_search)).trigger('create'); 	
@@ -619,8 +620,7 @@ $('#recherche-detail-page-fonction').on('pagebeforeshow', function(){
  	$('#recherche-detail-page-fonction .check_cac').off('click').on('click', function() {
 		uncheck_cac($(this).attr('cac_type'),$(this));
 		$.mobile.changePage( "#recherche-detail", { transition: "none"} );
-    }); 
-    
+    });   
     $('#recherche-detail-page-fonction').page();
 	set_fields_from_current();
 });
@@ -843,6 +843,8 @@ $('#mes-recherches').on('pagebeforeshow', function(){
 
 
 $(document).bind( "pagebeforechange", function( e, data ) {
+	
+					
 	var u = $.mobile.path.parseUrl( data.toPage );
     set_fields_from_current();
 	if ( typeof data.toPage === "string" ) {
@@ -968,11 +970,16 @@ $(document).on("pageshow", "#annonce", function() {
 <script id="popupPanel-tpl" type="text/x-handlebars-template">
 {{#.}}
 <div data-history="false" data-role="popup" class="popupPanel" id="popupPanel{{id_page}}" data-corners="false" data-theme="none" data-shadow="false" data-tolerance="0,0">
-
+			 
+			<div  style="text-align:right;">
+			<br>
+			<a href="#popupPanel{{id_page}}" data-rel="close" data-role="button" data-theme="a" class="ui-btn-right" data-icon="delete" data-inline="true" data-iconpos="notext"></a>
+			</div>
+				
     <div data-role=controlgroup>
 			<a href="#accueil" data-role="button" data-theme="a" data-icon="home" data-corners="false"> Accueil </a>
 			<a href="#" onClick="reset_search(1);" data-role="button" data-theme="c" data-icon="search" data-corners="false">Nouvelle recherche</a>
-			<a href="#mes-recherches" data-role="button" data-theme="c" data-icon="grid" data-corners="false"> Mes recherches </a>
+			<a href="#mes-recherches" data-role="button" data-theme="c" data-icon="grid" data-corners="false">Mes recherches</a>
 			<!--<a href="#offre" data-role="button" data-theme="e" data-icon="alert" data-corners="false"> Créez une alerte e-mail</a>-->
 			<a href="#recrutement" data-role="button" data-theme="c" data-icon="star" data-corners="false">Recrutement</a>
 			<a href="#mentions-legales" data-role="button" data-theme="c" data-icon="gear" data-corners="false">Mentions légales</a>
@@ -981,6 +988,7 @@ $(document).on("pageshow", "#annonce", function() {
 			<!--<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" data-theme="a" 
 			   data-icon="arrow-r" data-corners="false">Application batiactu</a>	-->
 		</div>
+			<!--
 			<center>
 			<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-theme="a" 
 			   data-corners="false"><img src="images/ba175x175d75.jpg" 
@@ -989,6 +997,7 @@ $(document).on("pageshow", "#annonce", function() {
 			&nbsp; <a href="https://itunes.apple.com/fr/app/maison-a-part/id397104131" data-theme="a" 
 			   data-corners="false"><img src="images/map.jpg" 
 			   width="57px" height="57px"></a></center>
+			   -->
 	 
 </div>
 {{/.}} 
