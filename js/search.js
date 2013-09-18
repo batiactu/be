@@ -6,7 +6,7 @@ var DIRSCRIPTS = 'http://bo.v2.batiactuemploi.com/scripts/';
 var pageinit = false;
 
 var back_popup_hash = "";
-var use_infinite = false;
+var use_infinite = true;
 
 var Tfonctions_search = new Array;
 var Tregions_search = new Array;
@@ -37,6 +37,8 @@ var current_nb_annonce = 0;
 var last_search = new Object(); 
 
 var search_list_id = new Array;
+var nb_annonce = 2200;
+var nb_annonce_cent_inf = (nb_annonce - nb_annonce%100);
 
 tsearchs = new Object();
 
@@ -336,7 +338,9 @@ function load_last_searh(){
 	
 }
 function init_global(){
-
+    
+	
+	
 	$.ajax({
 		url:DIRSCRIPTS+'interface-mobile.php'
 		,data: {
@@ -346,7 +350,7 @@ function init_global(){
 		,dataType:'jsonp'
 		,async :false
 		,cache :false
-	}).done(function(data) {
+	}).done(function(data) {		
 		/*
 		 * Init zone geo détail
 		 */		
@@ -369,7 +373,23 @@ function init_global(){
      		k++;		
      	}	
 	});
-
+    $.ajax({
+		url:DIRSCRIPTS+'interface-mobile.php'
+		,data: {
+			jsonp : 1
+			,get:'nb_annonce'
+		}
+		,dataType:'jsonp'
+		,async :false
+		,cache :false
+		,success:function(ret) {			
+				nb_annonce = ret['nb'];
+				nb_annonce_cent_inf = (nb_annonce - nb_annonce%100);
+				$("#nbannonce_cent_inf").text(nb_annonce_cent_inf);
+			}
+		,error:function(ret) {						
+			}
+	});
 	$.ajax({
 		url:DIRSCRIPTS+'interface-mobile.php'
 		,data: {
@@ -643,7 +663,16 @@ function check_params(){
 function go_url_recherche(){
 	var $content = $('#recherche').children( ":jqmData(role=content)" );
 	$content.find( "#resultat-recherche").html("");
-	
+		
+	$content.find( "#nb_results" ).html("<br />");	
+	$content.find( "#pagin-prev" ).css('display','none');
+	$content.find( "#pagin-next" ).css('display','none');
+	$content.find( "#pagin-pages" ).css('display','none');	
+	$( "#select-page" ).parents('.ui-select').css('display', 'none');
+	$content.find( ".btn_display1" ).css('display','none');
+	$content.find( ".btn_display2" ).css('display','none'); 
+	$('#recherche #next').addClass('displaynone');
+
 	//l'url est créée dynamiquement
 	newurl = '#recherche' + '?zone=' + current_zonegeo.join('-')+'&fct='+  current_experience.join('-')+  current_contrat.join('-')+  current_fonction.join('-')+'&motclef='+ current_motclef;
   

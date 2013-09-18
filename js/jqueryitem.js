@@ -212,7 +212,6 @@
 				
 			 	myList.html(template(Tab));
 			 				 	
-                //var $header = $('#recherche').children( ":jqmData(role=header)" );
                 var $content = $('#recherche').children( ":jqmData(role=content)" );			
                 
                 $content.find( "#nb_results" ).removeClass('noresult');
@@ -232,17 +231,25 @@
 				}
 					
 				
-				//$header.find( "h1" ).text(res);
+			 	myList.show();
+			 	myList.listview().listview('refresh');
+	
 				$content.find( "#nb_results" ).text(res);				
                 $content.find( ".btn_display1" ).css('display','block');
                 if(nbTotal>nb_results_by_page)$content.find( ".btn_display2" ).css('display','block');
                 
-	
-			 	myList.show();
-			 	myList.listview().listview('refresh');
-	
-			 	//myList.page();
-			 	//$('#recherche').trigger('pagecreate');
+                if(use_infinite){	
+					$('#recherche #next').trigger('create');
+					$('#recherche #next').button();	
+					if((current+nb_results_by_page)<=current_nb_annonce){		
+			 			$('#recherche #next').removeClass('displaynone');
+					}else{
+						$('#recherche #next').addClass('displaynone');
+					}
+					$('#recherche #next').trigger('create');
+
+			    }
+
 			 	if(options.noLoading==null){ remove_notify('#recherche');$.mobile.loading( 'hide' )};
 			 	
 			 	if(use_infinite){

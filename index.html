@@ -83,7 +83,7 @@
 	<div data-role="content">
     	<p align="center">
     		Batiactu Emploi, 1er site d'offre d'emploi dans le BTP, la construction et l'immobilier<br />
-    		<strong>Plus de 2200 offres d'emploi disponibles !</strong>    		
+    		<strong>Plus de <span id="nbannonce_cent_inf"></span> offres d'emploi disponibles !</strong>    		
     	</p>
     	<p align="center">
     	<a href="#recherche-detail" data-role="button" data-inline="true" data-mini="true">Lancer une recherche</a>
@@ -155,7 +155,7 @@
 	</div>
 	<div data-role="content">
 		<div class="pad10">		
-			<h4 style="margin:.5em 0">Batiactu Emploi est un site édité par</h4>
+			<h4 style="margin:.5em 0">Batiactu Emploi est un site édité par :</h4>
 			<div class="ui-body ui-body-b">
 			Cap Information Professionnelle SAS, au capital de 37 000 euros, dont le siège est situé au :<br> 
 			<br>202 rue de la Croix Nivert 
@@ -168,9 +168,9 @@
 			Le site web est hébergé par Ecritel, 51 rue Le Peletier 75009 Paris,<br>
 			Tel : 01 40 61 20 00.<br>
 			<br>
-			<small>Vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données qui vous concernent 
+			Vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données qui vous concernent 
 			(art. 34 de la loi "Informatique et Libertés"). Pour l'exercer, adressez vous à Cap Information Professionnelle - 
-			202 rue de la Croix Nivert 75015 Paris ou écrivez à batiactu@capinfopro.com.</small>		
+			202 rue de la Croix Nivert 75015 Paris ou écrivez à batiactu@capinfopro.com.		
 
             <p align="center">
 				<a data-inline="true" data-theme="b" data-role="button" onClick="reset_search(1);" data-icon="search" data-mini="true">Nouvelle recherche</a>
@@ -230,13 +230,13 @@
 	</div>
 	<div class="pad10 ui-corner-all" data-history="false" id="popupSaveSearch" data-role="popup" data-overlay-theme="a" data-theme="c" data-dismissible="true">
 	    <div style="padding: 10px 20px;">
-            <h3>Votre recherche est sauvegardée avec succès</h3>
+            <h3>Votre recherche a été sauvegardée avec succès</h3>
             <a  data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Fermer</a>
         </div>
 	</div>
 	<div class="pad10 ui-corner-all" data-history="false" id="popupAlreadyExistsSaveSearch" data-role="popup" data-overlay-theme="a" data-theme="c" data-dismissible="true">
 	    <div style="padding: 10px 20px;">
-            <h3>Cette recherche existe déjà dans vos sauvegardes!</h3>
+            <h3>Cette recherche a déjà été sauvegardée</h3>
             <a  data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Fermer</a>
         </div>
 	</div>
@@ -381,13 +381,17 @@
 				<input data-mini="true" name="mot-clef" id="recherche-detail-mot-clef" placeholder="Recherche par mots-clés" value="" type="search">
 			</li>
 			<li style="text-align:center;">
-				<p><a id="link_search" onClick="check_params();" data-direction="reverse" data-transition="none" data-role="button" data-theme="b" data-mini="true" data-inline="true">Lancer une recherche</a></p>				 
+				<p style="text-align:center;">					
+					<a id="link_search" onClick="check_params();" data-direction="reverse" data-transition="none" data-role="button" data-theme="b" data-mini="true" data-inline="true">Lancer une recherche</a>
+					<br>parmi <span id="nbannonce_header"></span> d'emploi
+					</p>
+									 
 				<br />
 				<p>
 					<a style="display:none;" id="link_mine_search" href="#mes-recherches" data-role="button" data-theme="b" data-mini="true" data-inline="true">Recherches sauvegardées</a>				
 				</p>				 
 				<p>					
-					<a style="display:none;" id="last_search" onClick="load_last_searh();go_url_recherche();" data-role="button" data-theme="b" data-mini="true" data-inline="true">Dernière recherche</a>
+					<a style="display:none;" id="last_search" onClick="load_last_searh();go_url_recherche();" data-role="button" data-theme="b" data-mini="true" data-inline="true">Lancer la dernière recherche</a>
 				</p>				 
                 <br>
 				<p class="size12 grey">* Champs obligatoires</p>
@@ -534,16 +538,6 @@ $('[data-role=page]').bind('pageshow',function(){
 	        var h = $( window ).height();
 	        $( ".popupPanel" ).css( "height", h );	        
 	    }, 
-		/*popupafteropen: function() {    
-	       $('.popupPanel').each(function(){				
-				var id = $(this).attr('id');
-				$('[id='+id+']').unbind();
-				$('[id='+id+']').bind('click', function(e){	
-					$('.popupPanel').popup();													
-					$('.popupPanel').popup('close');	
-				}); 
-			}); 
-	    },*/  
 	});
 	$( "#fonctionrequired" ).on({
 		popupafteropen: function(e) { 
@@ -565,8 +559,7 @@ $('[data-role=page]').on('pagebeforecreate', function(){
 
 	Tab = new Array({'id_page':$(this).attr('id')});
 	$('#' +$(this).attr('id') + ' div[data-role=content]').append(template(Tab));
-	//var id = $(this).attr('id');
-	//setTimeout( function(){notify(id,'#' +id );}, 1000 );
+
 });
 
 $('#actu').on('pageinit', function(){
@@ -633,7 +626,11 @@ $('#recherche-detail-page-contrat').on('pagebeforeshow', function(){
 	set_fields_from_current();
 });
 	
-$('#recherche-detail').on('pagebeforeshow', function(){				
+$('#recherche-detail').on('pagebeforeshow', function(){
+	var nb_offres = nb_annonce +' offre';
+	if(nb_annonce>1)nb_offres+='s';
+	 				
+	$("#nbannonce_header").text(nb_offres);
 	$.mobile.urlHistory.clearForward();
 	if(current_fonction.length>0)$('[href=#recherche-detail-page-fonction] > h2').removeClass('border_red');	
 	if(criteres_last_search)$('#recherche-detail #last_search').show();
@@ -706,15 +703,12 @@ $('#recherche').on('pagebeforeshow', function(){
 		        launchSearch(1);
 				
 				$('#resultat-recherche').listview().listview('refresh');
-				if(use_infinite){
-					$('#recherche .content').waypoint('disable');	
-					$('#recherche .content').waypoint('enable');
-				}
 				$('#recherche').trigger('pagecreate');
 			}
 
 			$.mobile.silentScroll(0);	
 		});
+		$('#recherche #next').addClass('displaynone');
 	}
 	
 	if(use_infinite){
@@ -735,23 +729,11 @@ $('#recherche').on('pagebeforeshow', function(){
 				$('#recherche').trigger('pagecreate');
 			}
 			current = parseInt($('#recherche #next').attr('data-next'));
-			
-			
-			if((current+nb_results_by_page)<=current_nb_annonce){		
-				$('#recherche #next').show();
-				$('#recherche #next').removeClass('ui-disabled');
-	 			
-			}else{
-				$('#recherche #next').hide();	
-				$('#recherche #next').addClass('ui-disabled');
-				
-			}
-				
+
 		});
 	}    
 	
-	$('#recherche #next').hide();	
-	$('#recherche #next').addClass('ui-disabled');
+	
 
 });
 
@@ -777,15 +759,7 @@ $('#recherche').on('pageshow', function(){
 				}
 			}, { offset: 'bottom-in-view' } ); 
 	    } 
-	    if((current+nb_results_by_page)<=current_nb_annonce){		
-			$('#recherche #next').show();
-			$('#recherche #next').removeClass('ui-disabled');
-			
-		}else{
-			$('#recherche #next').hide();	 
-			$('#recherche #next').addClass('ui-disabled');
-			
-		}
+
 	}
 	
 });  
@@ -884,8 +858,9 @@ $('#accueil').on('pagebeforecreate', function(){
 	//$('div[id!="annonce"][id!="recherche"][data-role="page"]').append(footer);
 	
 });
-
-
+$('#accueil').on('pagebeforeshow', function(){
+	$("#nbannonce_cent_inf").text(nb_annonce_cent_inf);
+});
 // à voir pour ajouter en dynamique le footer
 /*
 $(document).ready(function() 
@@ -973,11 +948,11 @@ $(document).on("pageshow", "#annonce", function() {
 			 
 			<div  style="text-align:right;">
 			<br>
-			<a href="#popupPanel{{id_page}}" data-rel="close" data-role="button" data-theme="a" class="ui-btn-right" data-icon="delete" data-inline="true" data-iconpos="notext"></a>
+			<a href="#popupPanel{{id_page}}" data-rel="close" data-role="button" data-theme="c" class="ui-btn-right" data-icon="delete" data-inline="true" data-iconpos="notext"></a>
 			</div>
 				
     <div data-role=controlgroup>
-			<a href="#accueil" data-role="button" data-theme="a" data-icon="home" data-corners="false"> Accueil </a>
+			<a href="#accueil" data-role="button" data-theme="c" data-icon="home" data-corners="false"> Accueil </a>
 			<a href="#" onClick="reset_search(1);" data-role="button" data-theme="c" data-icon="search" data-corners="false">Nouvelle recherche</a>
 			<a href="#mes-recherches" data-role="button" data-theme="c" data-icon="grid" data-corners="false">Mes recherches</a>
 			<!--<a href="#offre" data-role="button" data-theme="e" data-icon="alert" data-corners="false"> Créez une alerte e-mail</a>-->
@@ -1028,8 +1003,9 @@ $(document).on("pageshow", "#annonce", function() {
 			{{#if PREVIOUS}}
 			<a style="float:left;" href="#annonce?id={{PREVIOUS}}" data-role="button" data-mini="true" data-theme="b" data-inline="true">&lt;</a>
 		  	{{/if}}
+			<!--
 			<a href="#popupPostuler" data-history="false" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Postuler</a>
-				
+			-->	
 		  	{{#if NEXT}}
 			<a style="float:right;" href="#annonce?id={{NEXT}}" data-role="button" data-mini="true" data-theme="b" data-inline="true">&gt;</a>
 			{{/if}}	
@@ -1082,7 +1058,7 @@ $(document).on("pageshow", "#annonce", function() {
 				<a href="#popupPostuler" data-history="false" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Postuler</a>
 			</p>
 			<p align="center">
-				<a href="#popupTransfertAmi" data-history="false" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Envoyer par mail</a>
+				<a href="#popupTransfertAmi" data-history="false" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Envoyer à un ami</a>
 			</p>
 			<div class="pad10 ui-corner-all" data-history="false" id="popupPostuler" data-role="popup" data-overlay-theme="a" data-theme="c" data-dismissible="false">
 			    
@@ -1143,7 +1119,7 @@ $(document).on("pageshow", "#annonce", function() {
 	<div class="pad10 ui-corner-all" data-history="false" id="confirm_send" data-role="popup" data-overlay-theme="a" data-theme="c">
 	 
 	        <div style="padding: 10px 20px;">
-				<h3>L'offre d'emploi vous a bien été transmise par email.</h3>
+				<h3>L'offre d'emploi a bien été transmise.</h3>
 			    <p align="center">
 					<a  href="#" id="back_to_results" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour aux résultats</a>
 				    <a  href="#" id="back_new_search" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle recherche</a>
