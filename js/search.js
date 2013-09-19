@@ -661,6 +661,7 @@ function check_params(){
 }
 
 function go_url_recherche(){
+	
 	var $content = $('#recherche').children( ":jqmData(role=content)" );
 	$content.find( "#resultat-recherche").html("");
 		
@@ -675,7 +676,7 @@ function go_url_recherche(){
 
 	//l'url est créée dynamiquement
 	newurl = '#recherche' + '?zone=' + current_zonegeo.join('-')+'&fct='+  current_experience.join('-')+  current_contrat.join('-')+  current_fonction.join('-')+'&motclef='+ current_motclef;
-  
+    
 	$.mobile.changePage( newurl);
   	
 	return true; 

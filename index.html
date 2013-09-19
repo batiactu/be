@@ -682,10 +682,7 @@ $('#recherche').on('pagebeforeshow', function(){
 		        launchSearch(1);
 				
 				$('#resultat-recherche').listview().listview('refresh');
-				if(use_infinite){
-					$('#recherche .content').waypoint('disable');	
-					$('#recherche .content').waypoint('enable');
-				}
+				
 				$('#recherche').trigger('pagecreate');
 			}
 
@@ -715,17 +712,16 @@ $('#recherche').on('pagebeforeshow', function(){
 		$('#recherche #next').unbind();
 		$('#recherche #next').bind('click', function(e){
 	        current = parseInt($('#recherche #next').attr('data-next'));
-	       
-			if(current<=current_nb_annonce){			
+	        if(current<=current_nb_annonce){			
 				e.preventDefault();
-
+				
 		        launchSearch(1);
 
 				$('#resultat-recherche').listview().listview('refresh');
-				if(use_infinite){
-					$('#recherche .content').waypoint('disable');	
-					$('#recherche .content').waypoint('enable');
-				}
+
+				$('#recherche .content').waypoint('disable');	
+				$('#recherche .content').waypoint('enable');
+
 				$('#recherche').trigger('pagecreate');
 			}
 			current = parseInt($('#recherche #next').attr('data-next'));
@@ -751,9 +747,11 @@ $('#recherche').on('pageshow', function(){
 
 	if(use_infinite){
 		current = parseInt($('#recherche #next').attr('data-next'));
+		
 		if(current_nb_annonce >= current){				
-			$('#recherche .content').waypoint(function(direction) {
 			
+			$('#recherche .content').waypoint(function(direction) {
+
 				if (direction === 'down'){ 
 					$('#recherche #next').trigger('click');				
 				}
@@ -810,6 +808,7 @@ $('#mes-recherches').on('pagebeforechange', function(){
    $('#mes-recherches #resultat-mesrecherches').hide();
 });   
 $('#mes-recherches').on('pagebeforeshow', function(){
+	$('#recherche #next').attr('data-next',0);
 	view_list_mes_recherches();
 	$('#mes-recherches #resultat-mesrecherches').show();
     $('#mes-recherches').page();//.trigger('create');
@@ -826,7 +825,7 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 		// recherche.
 		var re = /^#recherche\?/;
 		if ( u.hash.search(re) !== -1 ) {		
-
+			
 			execute_search( u, data.options );
 
 			e.preventDefault();
