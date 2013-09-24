@@ -597,7 +597,6 @@ $(document).bind('pageinit', function(event){
 $('#recherche-detail-page-zonegeo').on('pagebeforeshow', function(){ 
 	
 	var template = Handlebars.compile($('#recherche-detail-tpl').html());
-	//$.each(Tregions_search,function(i){alert(i);});
 	$('#recherche-detail-zonegeo').html(template(Tregions_search)).trigger('create'); 	
 	$('#recherche-detail-page-zonegeo .check_cac').off('click').on('click', function() {
 		uncheck_cac($(this).attr('cac_type'),$(this));
@@ -609,7 +608,7 @@ $('#recherche-detail-page-zonegeo').on('pagebeforeshow', function(){
 
 $('#recherche-detail-page-fonction').on('pagebeforeshow', function(){	
 	var template = Handlebars.compile($('#recherche-detail-tpl').html());
- 	$('#recherche-detail-fonction').html(template(Tfonctions_search)).trigger('create');
+	$('#recherche-detail-fonction').html(template(Tfonctions_search)).trigger('create');
  	$('#recherche-detail-page-fonction .check_cac').off('click').on('click', function() {
 		uncheck_cac($(this).attr('cac_type'),$(this));
 		$.mobile.changePage( "#recherche-detail", { transition: "none"} );

@@ -338,8 +338,6 @@ function load_last_searh(){
 	
 }
 function init_global(){
-    
-	
 	
 	$.ajax({
 		url:DIRSCRIPTS+'interface-mobile.php'
@@ -404,13 +402,12 @@ function init_global(){
 		Tfonctions_search = new Array;
 		Tfonctions = new Array;
 		var k=0;
-		for(parent in data) {
+		for(item in data) {
      			
      			//for(fonction in data[parent]["fonction"]) {
-     			for(fonction in data[parent]["fonction"]) {
+     			for(fonction in data[item]["fonction"]) {
 		
-	     			label = data[parent]["fonction"][fonction];
-					 	     
+	     			label = data[item]["fonction"][fonction];	     
      				Tfonctions_search.push({
      					'item_value': fonction
      					,'item_label':label
