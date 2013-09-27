@@ -50,7 +50,7 @@
 	-->
 	<script type="text/javascript" >
 	$(document).bind("mobileinit", function () {
-    	$.mobile.defaultPageTransition = 'fade';
+    	$.mobile.defaultPageTransition = 'fade';    	
 	});
 	</script>
 
@@ -62,7 +62,7 @@
 	<script type="text/javascript" src="http://www.capinfoproreport.com/cap_pub/scripts/rotate2-js?e=B_IP_HOME,TOP_IP&support=B.IP"></script>
 	
 	<script src="phonegap.js"></script><!-- PhoneGap en a besoin derrière pour pouvoir utiliser ses fonctions natives -->
-
+	<script src="GAPlugin.js"></script>
 </head>
     
 <body>
@@ -545,7 +545,7 @@ _gaq.push(['_setAccount', "UA-28270289-2"]);
 
 fireTracker = function(){
   try {
-    hash = location.hash
+    hash = location.hash;
     if (hash)
       _gaq.push(['_trackPageview', hash.substr(1)]);
     else
@@ -556,7 +556,47 @@ fireTracker = function(){
 
 
 
-$($(document).on('pageshow', fireTracker));
+
+
+var gaObj;
+function initialize() {
+  	document.addEventListener("deviceready", onDeviceReady, true);
+}
+function onDeviceReady() {
+
+	gaObj = window.plugins.gaPlugin;
+    gaObj.init( function() {console.log('success');}, function() {console.log('failed');}, "UA-28270289-3", 15);   
+    
+}
+function TrackEvent(category,action,label,value) {
+	gaObj.trackEvent( function() {console.log('success');}, function() {console.log('failed');}, category, action, label, value);
+}
+function TrackPageView(pageurl) {
+	gaObj.trackPage(function() {console.log('success');}, function() {console.log('failed');}, pageurl);
+}
+appFireTracker = function(){
+  try {
+    hash = location.hash;
+    if (hash)
+      pageUrl = hash.substr(1);
+    else
+      pageUrl = location.pathname;
+
+    TrackPageView(pageUrl);
+    }
+  catch (err){}
+}
+
+
+var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
+if ( app ) {
+    // PhoneGap application
+    $($(document).on('pageshow', appFireTracker));
+} else {
+    // Web page
+    $($(document).on('pageshow', fireTracker));
+}
+
 			
 $('[data-role=page]').bind('pageshow',function(){
 	$( ".popupPanel" ).on({

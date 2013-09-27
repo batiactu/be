@@ -91,5 +91,6 @@
     <preference name="permissions" value="none"/>
 
 	
+	<gap:plugin name="com.adobe.plugins.gaplugin" />
 	
 </widget>
