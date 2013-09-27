@@ -604,7 +604,7 @@ if ( app ) {
  **/ 
 function wrp_cpt_mobile(libelle){
   if(typeof(libelle) != 'undefined' && libelle !=null && libelle!=undefined){
-    var WRP_ID= 284489;
+    var WRP_ID= 436070;
     var WRP_SECTION='Mobile emploi';
     var WRP_SUBSECTION=libelle;
     var WRP_SECTION_GRP= WRP_ID;
@@ -901,7 +901,7 @@ $('#mes-recherches').on('pagebeforeshow', function(){
     $('#mes-recherches').page();//.trigger('create');
 });           
 $('#mentions-legales').bind('pageshow', function(){
-	if(!is_device){
+	if(is_device){
 		$('#mentions-legales div[data-role=content] .ui-body ').addClass('bg_is_device');
 	}
 });
