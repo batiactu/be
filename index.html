@@ -47,6 +47,7 @@
 	<script type="text/javascript" src="js/jqueryitem.js"></script>
 	<script type="text/javascript" src="js/search.js"></script>
 	<script type="text/javascript" src="js/annonce.js"></script>
+	<script type="text/javascript" src="js/wreport.js"></script>
 	-->
 	<script type="text/javascript" >
 	$(document).bind("mobileinit", function () {
@@ -557,13 +558,13 @@ fireTracker = function(){
 
 
 
-
+var is_device = 0;
 var gaObj;
-function initialize() {
-  	document.addEventListener("deviceready", onDeviceReady, true);
-}
-function onDeviceReady() {
 
+document.addEventListener("deviceready", onDeviceReady, true);
+
+function onDeviceReady() {
+	is_device = 1;
 	gaObj = window.plugins.gaPlugin;
     gaObj.init( function() {console.log('success');}, function() {console.log('failed');}, "UA-28270289-3", 15);   
     
@@ -597,6 +598,27 @@ if ( app ) {
     $($(document).on('pageshow', fireTracker));
 }
 
+
+/**
+ *  Fonction pour ajouter à wreport un tag
+ **/ 
+function wrp_cpt_mobile(libelle){
+  if(typeof(libelle) != 'undefined' && libelle !=null && libelle!=undefined){
+    var WRP_ID= 284489;
+    var WRP_SECTION='Mobile emploi';
+    var WRP_SUBSECTION=libelle;
+    var WRP_SECTION_GRP= WRP_ID;
+    var WRP_SUBSECTION_GRP= WRP_SECTION;
+    var WRP_CONTENT= '';
+    var WRP_CHANNEL= '';
+    var WRP_ACC;
+    
+    var w_counter = new wreport_counter(WRP_SECTION, WRP_SUBSECTION, WRP_ID, WRP_ACC, WRP_CHANNEL, WRP_SECTION_GRP, WRP_SUBSECTION_GRP);
+    
+    w_counter.add_content(WRP_CONTENT);
+    w_counter.count();
+  }
+}
 			
 $('[data-role=page]').bind('pageshow',function(){
 	$( ".popupPanel" ).on({
@@ -878,11 +900,24 @@ $('#mes-recherches').on('pagebeforeshow', function(){
 	$('#mes-recherches #resultat-mesrecherches').show();
     $('#mes-recherches').page();//.trigger('create');
 });           
-
-
+$('#mentions-legales').bind('pageshow', function(){
+	if(!is_device){
+		$('#mentions-legales div[data-role=content] .ui-body ').addClass('bg_is_device');
+	}
+});
+$(document).bind( "pageshow", function( e, data ) {
+		hash = location.hash;
+		    if (hash)
+		      pageUrl = hash.substr(1);
+		    else
+		      pageUrl = location.pathname;
+		      
+		wrp_cpt_mobile(pageUrl);	
+});
+	
 $(document).bind( "pagebeforechange", function( e, data ) {
 	
-					
+			
 	var u = $.mobile.path.parseUrl( data.toPage );
     set_fields_from_current();
 	if ( typeof data.toPage === "string" ) {

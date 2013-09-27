@@ -101,7 +101,9 @@ h2 {
 .bg_white {
 	background-color:#fff;	
 }
-
+.bg_is_device {
+	background-color:#eeeeff !important;	
+}
 .entete img{
 	float:right;
 	display:inline;
