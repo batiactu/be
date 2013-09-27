@@ -4,6 +4,8 @@
 	<meta charset="utf-8">
 	<!--<meta name=viewport content="user-scalable=no,width=device-width, initial-scale=1" />--> <!-- A tester -->
 	<meta name="viewport" content="width=device-width, user-scalable=no" />
+	<meta name="google-site-verification" content="bctYEMaFdsCRQ_lbkTE-6Renn-mm6Bfy7geOOX60VWs" />
+	
 	<title>[Batiactu] Emploi</title>
 	
 	<link rel="stylesheet" href="css/jquerymobile131.css" />
@@ -531,6 +533,30 @@
 <!-- Partie script javascript --------------------------------------------------------->
 
 <script type="text/javascript">
+
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', "UA-28270289-2"]);
+//_gaq.push(['_setDomainName', 'batiactuemploi.com']);
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+fireTracker = function(){
+  try {
+    hash = location.hash
+    if (hash)
+      _gaq.push(['_trackPageview', hash.substr(1)]);
+    else
+      _gaq.push(['_trackPageview', location.pathname]);
+      }
+  catch (err){}
+}
+
+
+
+$($(document).on('pageshow', fireTracker));
 			
 $('[data-role=page]').bind('pageshow',function(){
 	$( ".popupPanel" ).on({
