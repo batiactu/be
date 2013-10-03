@@ -637,22 +637,21 @@ $("[data-role=page][id=annonce]").bind( "pageshow", function( e, data ) {
 	if(!app){
 		var historyPrev = $.mobile.urlHistory.getPrev();
 		if(historyPrev){
-			if(historyPrev.url.search(/mobile.batiactuemploi/i)===-1){
-				$.mobile.urlHistory.clearForward();
+			if($('div.ui-header a.ui-btn-left[data-rel=none]').attr('data-rel')!='back'){
 				setTimeout( function(){
-				$('a.ui-btn-left[data-rel=back]').find('span.ui-btn-text').text("Accueil");
-				$('a.ui-btn-left[data-rel=back]').attr('href','#accueil');
-				$('a.ui-btn-left[data-rel=back]').removeAttr('data-rel');
+					var el = $('div.ui-header a.ui-btn-left[data-rel=none]');
+					el.attr('data-rel','back');
+					el.find('span.ui-btn-text').text("Retour");
+					el.attr('href','javascript:void(0);');
 				}, 200 );
 			}
-
 		}else{
 			$.mobile.urlHistory.clearForward();
 			setTimeout( function(){
-				$('a.ui-btn-left[data-rel=back]').find('span.ui-btn-text').text("Accueil");
-				$('a.ui-btn-left[data-rel=back]').attr('href','#accueil');
-				$('a.ui-btn-left[data-rel=back]').removeAttr('data-rel');
-				}, 200 );		
+				$('div.ui-header a.ui-btn-left[data-rel=back]').find('span.ui-btn-text').text("Accueil");
+				$('div.ui-header a.ui-btn-left[data-rel=back]').attr('href','#accueil');
+				$('div.ui-header a.ui-btn-left[data-rel=back]').attr('data-rel','none');
+			}, 200 );		
 		}
 	}
 });	
