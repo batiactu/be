@@ -603,14 +603,76 @@ if ( app ) {
 /**
  *  Fonction pour ajouter à wreport un tag
  **/ 
-function wrp_cpt_mobile(libelle){
+function wrp_cpt_mobile(libelle,content){
+  if(typeof(content)=='undefined' || content==null || content==undefined){
+  	content = '';
+  }
   if(typeof(libelle) != 'undefined' && libelle !=null && libelle!=undefined){
-    var WRP_ID= 436070;
+    switch(libelle){		
+		case 'form-envoi-annonce-ami':
+		    libelle='form-envoi-annonce-ami'; 
+			break;
+		case 'form-envoi-annonce-ami-success':
+		    libelle='form-envoi-annonce-ami-success'; 
+			break;
+		case 'form-envoi-annonce-ami-error':
+		    libelle='form-envoi-annonce-ami-error'; 
+			break;
+		case 'form-auto-transfert':
+		    libelle='form-auto-transfert'; 
+			break;
+		case 'form-auto-transfert-success':
+		    libelle='form-auto-transfert-success'; 
+			break;
+		case 'form-auto-transfert-error':
+		    libelle='form-auto-transfert-error'; 
+			break;
+		case 'recherche':
+			libelle='page-resultats-recherche'; 
+			break;
+		case 'recherche-detail':
+			libelle='page-formulaire-recherche'; 
+			break;
+		case 'recherche-detail-page-fonction':
+			libelle='page-liste-fonctions'; 
+			break;
+		case 'recherche-detail-page-zonegeo':
+			libelle='page-liste-localisations'; 
+			break;
+		case 'recherche-detail-page-experience':
+			libelle='page-liste-experiences'; 
+			break;
+		case 'recherche-detail-page-contrat':
+			libelle='page-liste-contrats'; 
+			break;
+		case 'recherche':
+			libelle='page-resultats-recherche'; 
+			break;
+		case 'annonce':
+			libelle='pages-annonces-emploi'; 
+			break;
+		case 'recrutement':
+			libelle='acces-recruteurs'; 
+			break;
+		case 'mentions-legales':
+			libelle='mention-legales'; 
+			break;
+		case 'mes-recherches':
+			libelle='mes-recherches'; 
+			break
+		case 'accueil':
+			libelle='accueil'; 
+			break;
+		default:
+			libelle='divers';	
+	}
+	
+	var WRP_ID= 436070;
     var WRP_SECTION='Mobile emploi';
     var WRP_SUBSECTION=libelle;
     var WRP_SECTION_GRP= WRP_ID;
     var WRP_SUBSECTION_GRP= WRP_SECTION;
-    var WRP_CONTENT= '';
+    var WRP_CONTENT= content;
     var WRP_CHANNEL= '';
     var WRP_ACC;
     
@@ -621,14 +683,23 @@ function wrp_cpt_mobile(libelle){
   }
 }
 
-$(document).bind( "pageshow", function( e, data ) {
+$(document).bind( "pagechange", function( e, data ) {
 		hash = location.hash;
 		    if (hash)
 		      pageUrl = hash.substr(1);
 		    else
 		      pageUrl = location.pathname;
-    
-		wrp_cpt_mobile(pageUrl);			
+		      
+		      if(pageUrl == '/')pageUrl='accueil';
+        
+			switch(pageUrl){
+				case 'annonce':
+				case 'recherche':				
+				break;
+				default:
+				wrp_cpt_mobile(pageUrl);
+			}
+			
 });
 
 
@@ -917,6 +988,18 @@ $('#annonce').on( "pageshow", function() {
 			}); 
 		}
 	});
+	$( '#confirm_send_ami' ).on({
+        popupafteropen: function(event, ui) {
+			$('#back_to_results').unbind();
+			$( '#back_to_results').bind('click', function(e){														
+				$.mobile.changePage( '#recherche') ;	
+			});
+			$('#back_new_search').unbind();
+			$( '#back_new_search').bind('click', function(e){														
+				setTimeout( function(){ $( '#confirm_send_ami' ).popup( 'close');reset_search(1); }, 300 );	
+			}); 
+		}
+	});
 });     
 	
 $('#mes-recherches').on('pagecreate', function(){
@@ -950,8 +1033,11 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 		
 		// recherche.
 		var re = /^#recherche\?/;
-		if ( u.hash.search(re) !== -1 ) {		
+		var re2 = /^#recherche-\?/;
+		if ( u.hash.search(re) !== -1 && u.hash.search(re2) === -1) {		
 			
+		    wrp_cpt_mobile('recherche',get_current_search_wreport(1));
+				
 			execute_search( u, data.options );
 
 			e.preventDefault();
@@ -962,6 +1048,15 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 		var re = /^#annonce/;
 		if ( u.hash.search(re) !== -1 ) {
 			
+			var re = /(?:.*id={1})+(\d+)(.*)/g;
+			re.exec(data.toPage);
+			if (RegExp.$1 !='') {
+				var id_annonce = RegExp.$1;
+			}
+		    
+			wrp_cpt_mobile('annonce',id_annonce);
+					
+				
 			back_popup_hash = u['hash'];
 			showAnnonce( u, data.options );
 
@@ -1243,6 +1338,17 @@ $(document).on("pageshow", "#annonce", function() {
 	    
 	</div>
 	<div class="pad10 ui-corner-all" data-history="false" id="confirm_send" data-role="popup" data-overlay-theme="a" data-theme="c">
+	 
+	        <div style="padding: 10px 20px;">
+				<h3>L'offre d'emploi a bien été transmise.</h3>
+			    <p align="center">
+					<a  href="#" id="back_to_results" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour aux résultats</a>
+				    <a  href="#" id="back_new_search" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle recherche</a>
+			    </p>
+		    </div>
+	    
+	</div>
+	<div class="pad10 ui-corner-all" data-history="false" id="confirm_send_ami" data-role="popup" data-overlay-theme="a" data-theme="c">
 	 
 	        <div style="padding: 10px 20px;">
 				<h3>L'offre d'emploi a bien été transmise.</h3>

@@ -322,6 +322,81 @@ function set_fields_from_current(){
 
 	$('#recherche-detail-mot-clef').val(current_motclef);
 }
+function get_current_search_wreport(lib){
+	if(typeof(lib)=='undefined' || lib==null || lib==undefined){
+	  	lib = 0;
+	}
+  
+	var content_criteres_lib_wrp = '';
+	var content_criteres_code_wrp = '';
+	var type = 'zonegeo';	
+
+	content_criteres_code_wrp+= type + ' : ' + current_zonegeo.join(',') + '\
+	';		
+	content_criteres_lib_wrp += type + ' : ';
+	var i = 0;	
+	$.each(current_zonegeo,function(j) {
+		value = current_zonegeo[j];
+		if(i>0)content_criteres_lib_wrp +=',';
+		content_criteres_lib_wrp += get_value_by_key(Tregions,value);
+		i++;
+	});
+    content_criteres_lib_wrp += '\
+	';
+
+	type = 'fonction';
+	content_criteres_code_wrp+= type + ' : ' + current_fonction.join(',') + '\
+	';		
+	content_criteres_lib_wrp += type + ' : ';
+	i = 0;
+	$.each(current_fonction,function(j) {
+		value = current_fonction[j];
+		if(i>0)content_criteres_lib_wrp +=',';
+		content_criteres_lib_wrp +=get_value_by_key(Tfonctions,value);
+		i++;
+	});		
+    content_criteres_lib_wrp += '\
+	';
+	
+    
+	type = 'contrat';
+	content_criteres_code_wrp+= type + ' : ' + current_contrat.join(',') + '\
+	';		
+	content_criteres_lib_wrp += type + ' : ';
+	i = 0;
+	$.each(current_contrat,function(j) {
+		value = current_contrat[j];
+		if(i>0)content_criteres_lib_wrp +=',';
+		content_criteres_lib_wrp +=get_value_by_key(Tcontrats,value);
+		i++;
+	});	
+    content_criteres_lib_wrp += '\
+	';
+    
+	
+	type = 'experience';
+	content_criteres_code_wrp+= type + ' : ' + current_experience.join(',') + '\
+	';		
+	content_criteres_lib_wrp += type + ' : ';
+	i = 0;
+	$.each(current_experience,function(j) {
+		value = current_experience[j];
+		if(i>0)content_criteres_lib_wrp +=',';
+		content_criteres_lib_wrp +=get_value_by_key(Texperiences,value);
+		i++;
+	});	
+    content_criteres_lib_wrp += '\
+	';
+    
+	type = 'motclef';
+    content_criteres_code_wrp+= type + ' : ' + current_motclef + '\
+	';		
+	content_criteres_lib_wrp += type + ' : ' + current_motclef + '\
+	';
+	
+	if(lib)return content_criteres_lib_wrp;
+	else return content_criteres_code_wrp; 
+}
 function get_value_by_key(tab,key){
 	return (tab[key]=== undefined)?'':tab[key];	
 }

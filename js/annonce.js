@@ -35,6 +35,10 @@ function postuler(idpopup,formname,istransfertami) {
 		var subject = $('#annonce #'+formname+' #subject').val();
 		var message = $('#annonce #'+formname+' #message').val();
 
+
+        if(istransfertami)wrp_cpt_mobile('form-envoi-annonce-ami');
+        else wrp_cpt_mobile('form-auto-transfert');
+        
 		//SaveEmail();
 		//$.jStorage.flush();
 		if(istransfertami)$.jStorage.set('emailami', email);
@@ -63,21 +67,28 @@ function postuler(idpopup,formname,istransfertami) {
 						//$('#waiting_send').popup('close');
 						setTimeout( function(){ $( '#waiting_send' ).popup( 'close') }, 200 );	
 						setTimeout( function(){ 
-							$( "#confirm_send" ).popup({ history: false }); 
-							$( '#confirm_send' ).popup('open'); 
+							
+							if(istransfertami){
+								$( "#confirm_send" ).popup({ history: false }); 
+								$( '#confirm_send' ).popup('open');
+								wrp_cpt_mobile('form-envoi-annonce-ami-success');
+							}
+        					else{
+								$( "#confirm_send_ami" ).popup({ history: false }); 
+								$( '#confirm_send_ami' ).popup('open');
+								wrp_cpt_mobile('form-auto-transfert-success');
+							} 
 							}, 300 );
-						//$('#confirm_send').popup('open', {history:false});
-						/*var popup = setInterval(function(){
-					        $("#confirm_send").popup("open", {history:false});
-					        clearInterval(popup);
-					    },1); */
+						
 												    
 					}else{
 						var msg = 'Une erreur est survenue!';
 						setTimeout( function(){ $( '#waiting_send' ).popup( 'close') }, 200 );							
 						setTimeout( function(){ 
-							$( "#confirm_send" ).popup({ history: false }); 
-							$( '#confirm_send' ).popup('open'); 
+							$( "#error_send" ).popup({ history: false }); 
+							$( '#error_send' ).popup('open');
+							if(istransfertami)wrp_cpt_mobile('form-envoi-annonce-ami-error');
+        					else wrp_cpt_mobile('form-auto-transfert-error'); 
 							}, 300 );					
 					}				
 					//remove_notify("#annonce");				        
@@ -89,8 +100,10 @@ function postuler(idpopup,formname,istransfertami) {
 			 		var msg = 'Une erreur est survenue!';
 						setTimeout( function(){ $( '#waiting_send' ).popup( 'close') }, 200 );							
 						setTimeout( function(){ 
-							$( "#confirm_send" ).popup({ history: false }); 
-							$( '#confirm_send' ).popup('open'); 
+							$( "#error_send" ).popup({ history: false }); 
+							$( '#error_send' ).popup('open');
+							if(istransfertami)wrp_cpt_mobile('form-envoi-annonce-ami-error');
+        					else wrp_cpt_mobile('form-auto-transfert-error'); 
 							}, 300 );														    		
 			 	}
 			 });
@@ -102,9 +115,14 @@ function postuler(idpopup,formname,istransfertami) {
 
 function showAnnonce(urlObj, options) {
 	/* populate annonce */
-
-	var id_annonce = urlObj.hash.replace( /.*id=/, "" );
+	//var id_annonce = urlObj.hash.replace( /.*id=/, "" );
 	
+	var re = /(?:.*id={1})+(\d+)(.*)/g;
+	re.exec(urlObj.hash);
+	if (RegExp.$1 !='') {
+		var id_annonce = RegExp.$1;	
+	}
+			
 	var nb = 0;
 	if(search_list_id) nb = search_list_id.length;
 	else search_list_id = new Array; 
