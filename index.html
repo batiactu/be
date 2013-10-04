@@ -666,7 +666,9 @@ function wrp_cpt_mobile(libelle,content){
 		default:
 			libelle='divers';	
 	}
-	
+	if(app){
+		alert('app wreport: '+libelle+' '+content);
+	}
 	var WRP_ID= 436070;
     var WRP_SECTION='Mobile emploi';
     var WRP_SUBSECTION=libelle;
@@ -686,18 +688,18 @@ function wrp_cpt_mobile(libelle,content){
 $(document).bind( "pagechange", function( e, data ) {
 		hash = location.hash;
 		    if (hash)
-		      pageUrl = hash.substr(1);
+		      tagpageUrl = hash.substr(1);
 		    else
-		      pageUrl = location.pathname;
-		      
-		      if(pageUrl == '/')pageUrl='accueil';
+		      tagpageUrl = location.pathname.split('/').pop();
+
+		      if(tagpageUrl == '/' || tagpageUrl == '')tagpageUrl='accueil';
         
-			switch(pageUrl){
+			switch(tagpageUrl){
 				case 'annonce':
 				case 'recherche':				
 				break;
 				default:
-				wrp_cpt_mobile(pageUrl);
+				wrp_cpt_mobile(tagpageUrl);
 			}
 			
 });
