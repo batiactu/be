@@ -692,7 +692,7 @@ $(document).bind( "pagechange", function( e, data ) {
 		    else
 		      tagpageUrl = location.pathname.split('/').pop();
 
-		      if(tagpageUrl == '/' || tagpageUrl == '')tagpageUrl='accueil';
+		      if(tagpageUrl == '/' || tagpageUrl == '' || tagpageUrl == 'index.html')tagpageUrl='accueil';
         
 			switch(tagpageUrl){
 				case 'annonce':

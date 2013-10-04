@@ -36,8 +36,8 @@ function postuler(idpopup,formname,istransfertami) {
 		var message = $('#annonce #'+formname+' #message').val();
 
 
-        if(istransfertami)wrp_cpt_mobile('form-envoi-annonce-ami');
-        else wrp_cpt_mobile('form-auto-transfert');
+        if(istransfertami)wrp_cpt_mobile('form-envoi-annonce-ami',id_annonce);
+        else wrp_cpt_mobile('form-auto-transfert',id_annonce);
         
 		//SaveEmail();
 		//$.jStorage.flush();
@@ -71,12 +71,12 @@ function postuler(idpopup,formname,istransfertami) {
 							if(istransfertami){
 								$( "#confirm_send" ).popup({ history: false }); 
 								$( '#confirm_send' ).popup('open');
-								wrp_cpt_mobile('form-envoi-annonce-ami-success');
+								wrp_cpt_mobile('form-envoi-annonce-ami-success',id_annonce);
 							}
         					else{
 								$( "#confirm_send_ami" ).popup({ history: false }); 
 								$( '#confirm_send_ami' ).popup('open');
-								wrp_cpt_mobile('form-auto-transfert-success');
+								wrp_cpt_mobile('form-auto-transfert-success',id_annonce);
 							} 
 							}, 300 );
 						
@@ -87,8 +87,8 @@ function postuler(idpopup,formname,istransfertami) {
 						setTimeout( function(){ 
 							$( "#error_send" ).popup({ history: false }); 
 							$( '#error_send' ).popup('open');
-							if(istransfertami)wrp_cpt_mobile('form-envoi-annonce-ami-error');
-        					else wrp_cpt_mobile('form-auto-transfert-error'); 
+							if(istransfertami)wrp_cpt_mobile('form-envoi-annonce-ami-error',id_annonce);
+        					else wrp_cpt_mobile('form-auto-transfert-error',id_annonce); 
 							}, 300 );					
 					}				
 					//remove_notify("#annonce");				        
@@ -102,8 +102,8 @@ function postuler(idpopup,formname,istransfertami) {
 						setTimeout( function(){ 
 							$( "#error_send" ).popup({ history: false }); 
 							$( '#error_send' ).popup('open');
-							if(istransfertami)wrp_cpt_mobile('form-envoi-annonce-ami-error');
-        					else wrp_cpt_mobile('form-auto-transfert-error'); 
+							if(istransfertami)wrp_cpt_mobile('form-envoi-annonce-ami-error',id_annonce);
+        					else wrp_cpt_mobile('form-auto-transfert-error',id_annonce); 
 							}, 300 );														    		
 			 	}
 			 });
