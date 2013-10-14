@@ -69,13 +69,13 @@ function postuler(idpopup,formname,istransfertami) {
 						setTimeout( function(){ 
 							
 							if(istransfertami){
-								$( "#confirm_send" ).popup({ history: false }); 
-								$( '#confirm_send' ).popup('open');
+								$( "#confirm_send_ami" ).popup({ history: false }); 
+								$( '#confirm_send_ami' ).popup('open');
 								wrp_cpt_mobile('form-envoi-annonce-ami-success',id_annonce);
 							}
         					else{
-								$( "#confirm_send_ami" ).popup({ history: false }); 
-								$( '#confirm_send_ami' ).popup('open');
+								$( "#confirm_send" ).popup({ history: false }); 
+								$( '#confirm_send' ).popup('open');
 								wrp_cpt_mobile('form-auto-transfert-success',id_annonce);
 							} 
 							}, 300 );

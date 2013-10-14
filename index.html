@@ -990,12 +990,12 @@ $('#annonce').on( "pageshow", function() {
 	});
 	$( '#confirm_send_ami' ).on({
         popupafteropen: function(event, ui) {
-			$('#back_to_results').unbind();
-			$( '#back_to_results').bind('click', function(e){														
+			$('#back_to_results_ami').unbind();
+			$( '#back_to_results_ami').bind('click', function(e){														
 				$.mobile.changePage( '#recherche') ;	
 			});
-			$('#back_new_search').unbind();
-			$( '#back_new_search').bind('click', function(e){														
+			$('#back_new_search_ami').unbind();
+			$( '#back_new_search_ami').bind('click', function(e){														
 				setTimeout( function(){ $( '#confirm_send_ami' ).popup( 'close');reset_search(1); }, 300 );	
 			}); 
 		}
@@ -1353,8 +1353,8 @@ $(document).on("pageshow", "#annonce", function() {
 	        <div style="padding: 10px 20px;">
 				<h3>L'offre d'emploi a bien été transmise.</h3>
 			    <p align="center">
-					<a  href="#" id="back_to_results" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour aux résultats</a>
-				    <a  href="#" id="back_new_search" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle recherche</a>
+					<a  href="#" id="back_to_results_ami" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour aux résultats</a>
+				    <a  href="#" id="back_new_search_ami" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle recherche</a>
 			    </p>
 		    </div>
 	    
