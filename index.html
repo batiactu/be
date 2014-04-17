@@ -668,7 +668,8 @@ function wrp_cpt_mobile(libelle,content){
 	}
 
 	var WRP_ID= 436070;
-    var WRP_SECTION='Mobile emploi';
+	if(app) var WRP_SECTION='Mobile emploi';
+    else var WRP_SECTION='Mobile emploi WEB';
     var WRP_SUBSECTION=libelle;
     var WRP_SECTION_GRP= WRP_ID;
     var WRP_SUBSECTION_GRP= WRP_SECTION;
