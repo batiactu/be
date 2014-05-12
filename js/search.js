@@ -724,12 +724,12 @@ function execute_search(urlObj, options){
 
 function check_params(){
 	save_current_criteres();
-	if(current_fonction.length>0){
+	//if(current_fonction.length>0){
 		go_url_recherche();
-	}else{
-		$('[href=#recherche-detail-page-fonction] > h2').addClass('border_red');
-		$('#fonctionrequired').popup('open',{history:false});
-	}
+	//}else{
+	//	$('[href=#recherche-detail-page-fonction] > h2').addClass('border_red');
+	//	$('#fonctionrequired').popup('open',{history:false});
+	//}
 }
 
 function go_url_recherche(){
