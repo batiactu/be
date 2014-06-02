@@ -53,15 +53,19 @@ h2 {
 	background-color:#fff;
 	border-bottom:1px solid #dbdbdb;
 }
+#accueil .ui-header .ui-title{
+    margin: 0.6em 0% 0.8em;
+}
+
 #annonce h1.ui-title{
     width:60%;
 }
 #recherche h1.ui-title{
-	width:50%;
+	/*width:50%;*/
+	margin:0;
 }
 #recrutement h1.ui-title{
-	margin-left: 15%;
-	margin-right: 15%;
+	margin: 0;
 }
 
 #mentions-legales h1.ui-title{
