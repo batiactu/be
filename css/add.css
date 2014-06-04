@@ -67,7 +67,9 @@ h2 {
 #recrutement h1.ui-title{
 	margin: 0;
 }
-
+h1.ui-title img.logotitle{
+	margin-top:4px;
+}
 #mentions-legales h1.ui-title{
 	margin-left: 15%;
 	margin-right: 15%;
