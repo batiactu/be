@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns = "http://www.w3.org/ns/widgets" xmlns:gap = "http://phonegap.com/ns/1.0" 
-	id = "batiactu" 
-	version = "1.1.0"
+	id = "Test appli push"
+	version = "1.0.0"
 	versionCode = "1">
 
-
-
-    <name>Batiactu Emploi</name>
-    <description>Batiactu Emploi : 1er site de référence des annonces emploi du BTP</description>
+    <name>Test appli push</name>
+    <description></description>
     <author href="http://www.batiactugroupe.com" email="webmaster@batiactugroupe.com">Batiactu Groupe</author>
 
     <icon src="images/icon.png" />
-
-
 
     <gap:splash src="images/splash/ios/Default320x480.png" gap:platform="ios" width="320" height="480" />
     <gap:splash src="images/splash/ios/Default480x320.png" gap:platform="ios" width="480" height="320" />
@@ -60,8 +56,6 @@
     <icon src="images/icon29.png" gap:platform="webos" /> <!-- 29 pixels -->
     <icon src="images/icon15.png" gap:platform="webos" gap:role="mini" /> <!-- 15 pixels -->
 
-	
-
     <preference name="phonegap-version" value="3.5.0" />
 
     <!-- orientation with possible values default (both), landscape, or portrait -->
@@ -69,11 +63,7 @@
 
     <preference name="target-device" value="universal" />
 
-
     <preference name="fullscreen" value="true" /> <!-- remove the upper bar on iOS and Android -->
-
-
-
 
     <!-- iOS PREFERENCES -->
         
@@ -107,8 +97,9 @@
         
     <preference name="permissions" value="none"/>
 
-
+    <gap:plugin name="org.apache.cordova.device" />
     <gap:plugin name="com.adobe.plugins.gaplugin" />
     <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.1.1" />
+
 
 </widget>
