@@ -8,7 +8,7 @@
 
     <name>Batiactu Emploi</name>
     <description>Batiactu Emploi : 1er site de référence des annonces emploi du BTP</description>
-    <author href="http://www.capinfopro.com" email="webmaster@capinfopro.com">Capinfopro</author>
+    <author href="http://www.batiactugroupe.com" email="webmaster@batiactugroupe.com">Batiactu Groupe</author>
 
     <icon src="images/icon.png" />
 
@@ -57,9 +57,9 @@
 
 	
 
-    <preference name="phonegap-version" value="2.9.0" />
+    <preference name="phonegap-version" value="3.5.0" />
 
-	<!-- orientation with possible values default (both), landscape, or portrait -->
+    <!-- orientation with possible values default (both), landscape, or portrait -->
     <preference name="orientation" value="default" />
 
     <preference name="target-device" value="universal" />
@@ -97,7 +97,8 @@
         
     <preference name="permissions" value="none"/>
 
-	
-	<gap:plugin name="com.adobe.plugins.gaplugin" />
-	
+
+    <gap:plugin name="com.adobe.plugins.gaplugin" />
+    <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.1.1" />
+
 </widget>
