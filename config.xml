@@ -102,4 +102,8 @@
     <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.1.1" />
 
 
+    <!-- -->
+    <plugin name="File" value="org.apache.cordova.FileUtils" />
+
+
 </widget>

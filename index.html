@@ -1469,6 +1469,7 @@ $(document).on("pageshow", "#annonce", function() {
 <script type="text/javascript">
 
     var pushNotification;
+    var theWriter = null;
     function onDeviceReady() {
 
         $("#app-status-ul").append('<li>deviceready event received</li>');
@@ -1485,6 +1486,11 @@ $(document).on("pageshow", "#annonce", function() {
             }
         }, false);
         try {
+
+            <!-- debug -->
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+
+
             pushNotification = window.plugins.pushNotification;
             if (device.platform == 'android' || device.platform == 'Android') {
                 $("#app-status-ul").append('<li>registering android</li>');
@@ -1533,6 +1539,12 @@ $(document).on("pageshow", "#annonce", function() {
                     // here is where you might want to send it the regID for later use.
                     alert("regID = " + e.regid);
                     console.log("regID = " + e.regid);
+                    if (theWriter != null) {
+                        theWriter.write(e.regid);
+                    }
+
+
+
                 }
                 break;
             case 'message':
@@ -1572,6 +1584,27 @@ $(document).on("pageshow", "#annonce", function() {
     function errorHandler(error) {
         $("#app-status-ul").append('<li>error:' + error + '</li>');
     }
+
+    function gotFS(fileSystem) {
+        fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
+    }
+
+    function gotFileEntry(fileEntry) {
+        fileEntry.createWriter(gotFileWriter, fail);
+    }
+
+    function gotFileWriter(writer) {
+
+        theWriter = writer;
+
+    }
+
+    function fail(error) {
+        alert("File : " + error.code);
+    }
+
+
+
     document.addEventListener('deviceready', onDeviceReady, true);
 </script>
 
