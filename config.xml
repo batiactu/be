@@ -97,7 +97,9 @@
         
     <preference name="permissions" value="none"/>
 
+    <gap:plugin name="org.apache.cordova.device" />
     <gap:plugin name="com.adobe.plugins.gaplugin" />
     <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.1.1" />
+
 
 </widget>
