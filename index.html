@@ -1490,11 +1490,6 @@ $(document).on("pageshow", "#annonce", function() {
             }
         }, false);
         try {
-
-            <!-- debug -->
-            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-
-
             pushNotification = window.plugins.pushNotification;
             if (device.platform == 'android' || device.platform == 'Android') {
                 $("#app-status-ul").append('<li>registering android</li>');
