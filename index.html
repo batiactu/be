@@ -583,8 +583,7 @@ fireTracker = function(){
 
 
 <!-- Gestion notification -->
-var pushNotification;
-var acceptedPush = 0;
+var pushNotification = null;
 
 var is_device = 0;
 var gaObj;
@@ -596,61 +595,30 @@ function onDeviceReady() {
 	gaObj = window.plugins.gaPlugin;
     gaObj.init( function() {console.log('success');}, function() {console.log('failed');}, "UA-28270289-3", 15);
 
-
     <!-- Gestion notification -->
+    var pushToken = getPushToken();
 
-    checkPush();
-
-
-    $("#app-status-ul").append('<li>deviceready event received</li>');
-
-    document.addEventListener("backbutton", function (e) {
-
-        $("#app-status-ul").append('<li>backbutton event received</li>');
-
-        if ($("#home").length > 0) {
-            // call this to get a new token each time. don't call it to reuse existing token.
-            //pushNotification.unregister(successHandler, errorHandler);
-            e.preventDefault();
-            navigator.app.exitApp();
+    if (pushToken != null) {
+        try {
+            pushNotification = window.plugins.pushNotification;
+            if (device.platform == 'android' || device.platform == 'Android') {
+                registerDeviceAndroid();
+            } else {
+                registerDeviceIos();
+            }
         }
-        else {
-            navigator.app.backHistory();
+        catch (err) {
+            txt = "There was an error on this page.\n\n";
+            txt += "Error description: " + err.message + "\n\n";
+            alert(txt);
         }
-    }, false);
-
-    try {
-        pushNotification = window.plugins.pushNotification;
-        if (device.platform == 'android' || device.platform == 'Android') {
-
-            $("#app-status-ul").append('<li>registering android</li>');
-
-            pushNotification.register(successHandler, errorHandler, {
-                "senderID": "211095738121",
-                "ecb": "onNotificationGCM"
-            });	// required!
-        } else {
-
-            $("#app-status-ul").append('<li>registering iOS</li>');
-
-            pushNotification.register(tokenHandler, errorHandler, {
-                "badge": "true",
-                "sound": "true",
-                "alert": "true",
-                "ecb": "onNotificationAPN"
-            });	// required!
-        }
-    }
-    catch (err) {
-        txt = "There was an error on this page.\n\n";
-        txt += "Error description: " + err.message + "\n\n";
-        alert(txt);
     }
     <!-- Fin Gestion notification -->
 }
 
 <!-- Gestion notification -->
 // handle APNS notifications for iOS
+// @TODO a tester
 function onNotificationAPN(e) {
     if (e.alert) {
 
@@ -666,6 +634,7 @@ function onNotificationAPN(e) {
         pushNotification.setApplicationIconBadgeNumber(successHandler, e.badge);
     }
 }
+
 // handle GCM notifications for Android
 function onNotificationGCM(e) {
 
@@ -675,13 +644,9 @@ function onNotificationGCM(e) {
         case 'registered':
             if (e.regid.length > 0) {
                 $("#app-status-ul").append('<li>REGID:' + e.regid + "</li>");
-                // Your GCM push server needs to know the regID before it can push to this device
-                // here is where you might want to send it the regID for later use.
 
-                $("#app-status-ul").append('<li>regID = ' + e.regid + '</li>');
-
-                // $("a#sendmail").attr("href", "mailto:?subject=subject of the email&body=" + $("#app-status-ul").getEncodedText());
-                // window.location = $("a#sendmail").attr('href');
+                registerPush(e.regid);
+                localStorage.setItem("pushToken", e.regid);
             }
 
             break;
@@ -709,11 +674,9 @@ function onNotificationGCM(e) {
             if (typeof e.payload.type != 'undefined' &&  e.payload.type == 'annonce') {
                 $("#app-status-ul").append('<li>des annonces sont dispo' + '</li>');
             }
-                else {
-
+            else {
+                $("#app-status-ul").append('<li>Autre' + '</li>');
             }
-
-
 
 
 
@@ -732,12 +695,13 @@ function onNotificationGCM(e) {
     }
 }
 
-
+// IOS recup du token par cette fonction
 function tokenHandler(result) {
     $("#app-status-ul").append('<li>token: ' + result + '</li>');
     // Your iOS push server needs to know the token before it can push to this device
     // here is where you might want to send it the token for later use.
 }
+
 function successHandler(result) {
     $("#app-status-ul").append('<li>success:' + result + '</li>');
 }
@@ -745,8 +709,9 @@ function errorHandler(error) {
     $("#app-status-ul").append('<li>error:' + error + '</li>');
 }
 
-function checkPush() {
-  acceptedPush = 0;
+function getPushToken() {
+    var pref1 = localStorage.getItem("pushToken");
+    return pref1;
 }
 
 function onSuccess(data) {
@@ -754,32 +719,57 @@ function onSuccess(data) {
 }
 
 /**
- * Permet de supprimer les notifications sur les recherches
- */
-function unRegisterPush() {
+* Permet de supprimer les notifications sur les recherches
+*/
+function unRegisterPush(token) {
     $("#app-status-ul").append('<li>unRegisterPush </li>');
     $.ajax({
-        url: "http://pushserver.dev/index.php",
-        data: {'register':0,'token':'kkjkjkj'},
-        type: "GET",
+        url: "http://http://local.demo.dev/demo/back_push/scripts/interface.php",
+        data: {'register':0, 'cmd':'unregister','token':token},
+        type: "POST",
         success: onSuccess
     });
-    acceptedPush = 0;
 }
-
 
 /**
  * Permet de demander les notifications sur les recherches
  */
-function registerPush() {
-    $("#app-status-ul").append('<li>registerPush </li>');
+function registerPush(token) {
+    $("#app-status-ul").append('<li>registerPush send token</li>');
+    var device_uuid = device.uuid;
     $.ajax({
-        url: "http://pushserver.dev/index.php",
-        data: {'register':1,'token':'kkjkjkj'},
-        type: "GET",
+        url: "http://local.demo.dev/demo/back_push/scripts/interface.php",
+        data: {'register': 0, 'cmd': 'register', 'token': token, 'uuid':device_uuid},
+        type: "POST",
+        crossDomain: true,
         success: onSuccess
     });
-    acceptedPush = 1;
+}
+
+/**
+ * permet d'enregister le device Android et associer la fonction aux evenements recus
+ */
+function registerDeviceAndroid() {
+    $("#app-status-ul").append('<li>registering android</li>');
+
+    pushNotification.register(successHandler, errorHandler, {
+        "senderID": "211095738121", // id projet android
+        "ecb": "onNotificationGCM"
+    });	// required!
+}
+
+/**
+ * permet d'enregister le device IOS et associer la fonction aux evenements recus
+ */
+function registerDeviceIos() {
+    $("#app-status-ul").append('<li>registering iOS</li>');
+
+    pushNotification.register(tokenHandler, errorHandler, {
+        "badge": "true",
+        "sound": "true",
+        "alert": "true",
+        "ecb": "onNotificationAPN"
+    });	// required!
 }
 
 <!-- FIN Gestion notification -->
@@ -986,7 +976,7 @@ $("[data-role=page][id=annonce]").bind( "pageshow", function( e, data ) {
 		}
 	}
 });	
-			
+
 $('[data-role=page]').bind('pageshow',function(){
 	$( ".popupPanel" ).on({
 	    popupbeforeposition: function() {
@@ -1003,9 +993,17 @@ $('[data-role=page]').bind('pageshow',function(){
 	    }
 	});
 });
+
 $('[data-role=page]').on('pagebeforecreate', function(){
-    is_device = 1;
-    //acceptedPush = 1;
+
+    var acceptedPush = 0;
+
+    if (is_device) {
+        var testToken = getPushToken();
+        if (testToken != null) {
+            acceptedPush = 1;
+        }
+    }
 
 	var defaults = {
 	         template:'#popupPanel-tpl'
@@ -1015,7 +1013,7 @@ $('[data-role=page]').on('pagebeforecreate', function(){
     var options = $.extend(defaults, options);
 	var template = Handlebars.compile($(options.template).html());
 
-	Tab = new Array({'id_page':$(this).attr('id'), 'is_device': is_device, 'sendPush': !acceptedPush, 'noPush': acceptedPush });
+	Tab = new Array({'id_page':$(this).attr('id'), 'is_device': is_device, 'sendPush': !acceptedPush, 'noPush': acceptedPush, 'is_android':1, 'is_ios':0 });
 	$('#' +$(this).attr('id') + ' div[data-role=content]').append(template(Tab));
 
 });
@@ -1430,26 +1428,31 @@ $(document).on("pageshow", "#annonce", function() {
 {{#.}}
 <div data-history="false" data-role="popup" class="popupPanel" id="popupPanel{{id_page}}" data-corners="false" data-theme="none" data-shadow="false" data-tolerance="0,0">
 			 
-			<div  style="text-align:right;">
-			<br>
-			<a href="#popupPanel{{id_page}}" data-rel="close" data-role="button" data-theme="c" class="ui-btn-right" data-icon="delete" data-inline="true" data-iconpos="notext"></a>
-			</div>
+    <div  style="text-align:right;">
+    <br>
+    <a href="#popupPanel{{id_page}}" data-rel="close" data-role="button" data-theme="c" class="ui-btn-right" data-icon="delete" data-inline="true" data-iconpos="notext"></a>
+    </div>
 				
     <div data-role=controlgroup>
-			<a href="#accueil" data-role="button" data-theme="c" data-icon="home" data-corners="false"> Accueil </a>
-			<a href="#" onClick="reset_search(1);" data-role="button" data-theme="c" data-icon="search" data-corners="false">Nouvelle recherche</a>
-			<a href="#mes-recherches" data-role="button" data-theme="c" data-icon="grid" data-corners="false">Mes recherches</a>
-			<!--<a href="#offre" data-role="button" data-theme="e" data-icon="alert" data-corners="false"> Créez une alerte e-mail</a>-->
-			<a href="#recrutement" data-role="button" data-theme="c" data-icon="star" data-corners="false">Accès recruteurs</a>
-			<a href="#mentions-legales" data-role="button" data-theme="c" data-icon="gear" data-corners="false">Mentions légales</a>
-			<!--<a href="#" onclick="javascript:window.open('http://mobile.batiactu.com/','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="gear" data-corners="false">BatiActu</a>-->
-			<a href="#" onclick="javascript:window.open('http://www.batiactuemploi.com/?FROM_MOBILE','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a>
+        <a href="#accueil" data-role="button" data-theme="c" data-icon="home" data-corners="false"> Accueil </a>
+        <a href="#" onClick="reset_search(1);" data-role="button" data-theme="c" data-icon="search" data-corners="false">Nouvelle recherche</a>
+        <a href="#mes-recherches" data-role="button" data-theme="c" data-icon="grid" data-corners="false">Mes recherches</a>
+        <!--<a href="#offre" data-role="button" data-theme="e" data-icon="alert" data-corners="false"> Créez une alerte e-mail</a>-->
+        <a href="#recrutement" data-role="button" data-theme="c" data-icon="star" data-corners="false">Accès recruteurs</a>
+        <a href="#mentions-legales" data-role="button" data-theme="c" data-icon="gear" data-corners="false">Mentions légales</a>
+        <!--<a href="#" onclick="javascript:window.open('http://mobile.batiactu.com/','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="gear" data-corners="false">BatiActu</a>-->
+        <a href="#" onclick="javascript:window.open('http://www.batiactuemploi.com/?FROM_MOBILE','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a>
         {{#if is_device}}
-            <a href="#" onclick="javascript:{{#if sendPush}}registerPush();{{/if}} {{#if noPush}}unRegisterPush();{{/if}} return false;" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">{{#if sendPush}}Recevoir des notifications sur vos recherches{{/if}} {{#if noPush}}Supprimer les notifications sur vos recherches{{/if}}</a>
+            {{#if is_android}}
+                <a href="#" onclick="javascript:{{#if sendPush}}registerDeviceAndroid();{{/if}} {{#if noPush}}unRegisterDeviceAndroid();{{/if}} return false;" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">{{#if sendPush}}Recevoir des notifications sur vos recherches{{/if}} {{#if noPush}}Supprimer les notifications sur vos recherches{{/if}}</a>
+            {{/if}}
+            {{#if is_ios}}
+                <a href="#" onclick="javascript:{{#if sendPush}}registerDeviceIos();{{/if}} {{#if noPush}}unRegisterDeviceIos();{{/if}} return false;" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">{{#if sendPush}}Recevoir des notifications sur vos recherches{{/if}} {{#if noPush}}Supprimer les notifications sur vos recherches{{/if}}</a>
+            {{/if}}
         {{/if}}
             <!--<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" data-theme="a"
 			   data-icon="arrow-r" data-corners="false">Application batiactu</a>	-->
-		</div>
+    </div>
 			<!--
 			<center>
 			<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-theme="a" 
