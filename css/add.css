@@ -53,6 +53,7 @@ h2 {
 	background-color:#fff;
 	border-bottom:1px solid #dbdbdb;
 }
+
 #accueil .ui-header h1.ui-title{
     margin: 0.6em 0% 0.8em;
 }
@@ -61,6 +62,7 @@ h2 {
     width:60%;
 }
 #recherche h1.ui-title{
+
 	/*width:50%;*/
 	margin:0;
 }
@@ -70,6 +72,9 @@ h2 {
 h1.ui-title img.logotitle{
 	margin-top:4px;
 }
+
+
+
 #mentions-legales h1.ui-title{
 	margin-left: 15%;
 	margin-right: 15%;

@@ -13,9 +13,9 @@
 	<!--<link rel="stylesheet" href="roller/themes/emploi.css" />--> 
 	<!--<link rel="stylesheet" href="css/jqmdoc.css" />-->
 	<!-- fin non utilisés! --> 
+
 	<link rel="stylesheet" href="css/add.css?v1" /> 
-	
-	
+
 	<link rel="apple-touch-icon" href="images/icon.png" />
 	<link rel="apple-touch-startup-image" href="images/splash.png" />
     <!-- non utilisés : -->
@@ -78,6 +78,7 @@
 	
 	<div data-role="header" data-theme="b">	    
 	    <!--<a href="#accueil" data-role=button data-icon=home data-iconpos="notext">Accueil</a>-->
+
 	    <!--<h1 style="margin:5px auto auto auto;width:200px;position:relative;font-size:32px;text-align:center !important;"><div style="position:relative;height:90px;"><span style="color:#FFF;font-size:46px !important">[</span> batiactu <span style="color:#FFF;font-size:46px !important">]</span><div style="right:32px;bottom:15px;position:absolute;font-size:22px;color:#82befc;">Emploi</div></div></h1>-->
 	    <!--<a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos="notext">Menu</a>-->
 	    <h1><img src="./images/logo.png" width="183" alt="Batiactu Emploi" title="Batiactu Emploi"></h1>
@@ -128,6 +129,7 @@
 	    
 		<a href="#accueil" data-role=button data-icon=home data-iconpos=notext data-direction="reverse">Accueil</a>
 	    <!--<a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos=notext>Menu</a>	-->
+
 	    <!--<h1 style="margin:5px auto auto auto;width:200px;position:relative;font-size:32px;text-align:center !important;"><div style="position:relative;height:90px;"><span style="color:#FFF;font-size:46px !important">[</span> batiactu <span style="color:#FFF;font-size:46px !important">]</span><div style="right:32px;bottom:15px;position:absolute;font-size:22px;color:#82befc;">Emploi</div></div></h1>-->
 	    <h1><img src="./images/logo.png" class="logotitle" width="90" alt="Batiactu Emploi" title="Batiactu Emploi"></h1>	    
 		<a href="#popupPanelrecrutement" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
@@ -145,6 +147,7 @@
 		<div align="center" class="pad20">
 			<h3 align="center" class="darkgrey">Contactez un conseiller</h3>
 			<a data-theme="b" href="tel:0153684029" data-role="button">Téléphone : 01 53 68 40 29</a>
+
 			<a data-theme="a" href="mailto:emploi@capinfopro.com?subject=demande%20batiactu%20emploi%20mobile&body=demande%20de%20contact" data-role="button">emploi@capinfopro.com</a>
 			<br>
 		</div>
@@ -164,6 +167,7 @@
 		<div class="pad10">		
 			<h4 style="margin:.5em 0">Batiactu Emploi est un site édité par :</h4>
 			<div class="ui-body ui-body-b">
+
 			Batiactu Groupe SAS, au capital de 37 000 euros, dont le siège est situé au :<br> 
 			<br>202 rue de la Croix Nivert 
 			<br>75015 Paris
@@ -172,12 +176,13 @@
 			immatriculée au RCS de Paris sous le numéro 449 204 320.<br>
 			</div>
 			<br>
-			Le site web est hébergé par Ecritel, 51 rue Le Peletier 75009 Paris,<br>
-			Tel : 01 40 61 20 00.<br>
+
+            Ce site est hébergé par la société Dedibox<br>
+            Siège social : DEDIBOX SAS BP 80342 75365 Paris Cedex 08. <br>
 			<br>
 			Vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données qui vous concernent 
-			(art. 34 de la loi "Informatique et Libertés"). Pour l'exercer, adressez vous à Batiactu Groupe - 
-			202 rue de la Croix Nivert 75015 Paris ou écrivez à batiactu@capinfopro.com.		
+			(art. 34 de la loi "Informatique et Libertés"). Pour l'exercer, adressez vous à Cap Information Professionnelle - 
+			202 rue de la Croix Nivert 75015 Paris ou écrivez à batiactu@batiactugroupe.com.
 
             <p align="center">
 				<a data-inline="true" data-theme="b" data-role="button" onClick="reset_search(1);" data-icon="search" data-mini="true">Nouvelle recherche</a>
@@ -192,6 +197,7 @@
 <div id="recherche" data-role="page" data-transition="none">
 	<div data-role="header" data-position="fixed" data-theme="b">
 	    <a href="#recherche-detail" data-transition="none" data-icon="arrow-l" data-position-to="window" data-role="button" data-theme="b" >Retour</a>
+
 		<!--<h1><span style="color:#FFF;font-size:16px !important">[</span> batiactu <span style="color:#FFF;font-size:16px !important">]</span> <span style="font-size:12px;color:#82befc;">Emploi</span></h1>-->
 	    <!--<a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos="notext">Menu</a>-->
 	    <h1><img src="./images/logo.png" class="logotitle" width="90" alt="Batiactu Emploi" title="Batiactu Emploi"></h1>
@@ -361,6 +367,7 @@
 		<ul data-role="listview">
 			<li>
 				<a href="#recherche-detail-page-fonction">
+
 					<h2>Fonctions</h2>
 					<p class="ui-li-desc" id="selected-detail-page-fonction"></p>	
 				</a>
@@ -402,8 +409,10 @@
 				<p>					
 					<a style="display:none;" id="last_search" onClick="load_last_searh();go_url_recherche();" data-role="button" data-theme="b" data-mini="true" data-inline="true">Lancer la dernière recherche</a>
 				</p>				 
+
                 <!--<br>
 				<p class="size12 grey">* Champs obligatoires</p>-->
+
 			</li>
 		</ul>
 		<div id="fonctionrequired" data-icon="info" data-history=false data-rel="back" data-role="popup" data-theme="d" data-overlay-theme="a" class="ui-content">
@@ -673,8 +682,10 @@ function wrp_cpt_mobile(libelle,content){
 	}
 
 	var WRP_ID= 436070;
+
 	if(app) var WRP_SECTION='Mobile emploi';
     else var WRP_SECTION='Mobile emploi WEB';
+
     var WRP_SUBSECTION=libelle;
     var WRP_SECTION_GRP= WRP_ID;
     var WRP_SUBSECTION_GRP= WRP_SECTION;

@@ -74,4 +74,4 @@ if ( location.protocol.substr(0,4)  === 'file' ||
     });
   });
 }
-*/
+
