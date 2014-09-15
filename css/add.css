@@ -301,4 +301,14 @@ div[id^=popupPanel][id$=-popup] {
     margin: 0 15px;
     /*margin: auto auto;*/
 }
-    
+
+
+/**** Modif pour Iphone : status bar *****/
+.ui-header > .ui-btn {
+    margin-top: 10px;
+}
+
+.ui-header {
+    padding-bottom: 10px;
+}
+/**** Fin Modif pour Iphone : status bar *****/
