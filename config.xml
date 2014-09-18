@@ -81,7 +81,12 @@
     <preference name="exit-on-suspend" value="true" />
     <preference name="show-splash-screen-spinner" value="false" />
     <preference name="auto-hide-splash-screen" value="true" /> <!-- if set to false, the splash screen must be hidden using a JavaScript API -->
-        
+
+    <gap:config-file platform="ios" parent="CFBundleShortVersionString">
+        <string>101</string>
+    </gap:config-file>
+
+
     <!-- ANDROID PREFERENCES -->
         
     <preference name="android-minSdkVersion" value="7" /> <!-- minimum Android 2.1 -->
