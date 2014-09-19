@@ -1,317 +1,356 @@
-label.error { 
-	/*float: left;*/ 
-	color: red; 
-	padding-top: .5em; 
-	vertical-align: top; 
-	font-weight:bold
+label.error {
+    /*float: left;*/
+    color: red;
+    padding-top: .5em;
+    vertical-align: top;
+    font-weight: bold;
 }
+
 .border_red {
-	color:red;
+    color: red;
 }
+
 .ui-body-b, .ui-overlay-b {
-	background:#FFF !important;
+    background: #FFF !important;
 }
-#more{
-	margin-bottom:30px;	
+
+#more {
+    margin-bottom: 30px;
 }
+
 h1 {
-    font-family: "ff-tisa-web-pro",Georgia,serif;
+    font-family: "ff-tisa-web-pro", Georgia, serif;
 }
+
 h2 {
-	font-size:12px !important;
+    font-size: 12px !important;
 }
+
 #annonce .entete h1 {
-	font-size:18px;
+    font-size: 18px;
 }
-#annonce .entete span{
-	font-size:14px;
+
+#annonce .entete span {
+    font-size: 14px;
 }
-#annonce .entete .datas{
-	font-size:14px;
+
+#annonce .entete .datas {
+    font-size: 14px;
 }
+
 .size12 {
-	font-size:12px;
+    font-size: 12px;
 }
+
 .resultat_lib_recruteur {
-	font-size:12px !important;
-	font-weight:normal !important;
+    font-size: 12px !important;
+    font-weight: normal !important;
 }
+
 .resultat_lib_region {
-	font-size:12px !important;
-	font-weight:normal !important;
+    font-size: 12px !important;
+    font-weight: normal !important;
 }
+
 .resultat_lib_contrat {
-    font-size:12px !important;
-	font-weight:normal !important;
+    font-size: 12px !important;
+    font-weight: normal !important;
 }
+
 .entete h1 {
-    color:#444444;
-	margin-top:0px;
+    color: #444444;
+    margin-top: 0;
 }
+
 .entete {
-	padding:5px 10px;
-	background-color:#fff;
-	border-bottom:1px solid #dbdbdb;
+    padding: 5px 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #dbdbdb;
 }
 
-#accueil .ui-header h1.ui-title{
-    margin: 0.6em 0% 0.8em;
+#annonce h1.ui-title {
+    width: 60%;
 }
 
-#annonce h1.ui-title{
-    width:60%;
-}
-#recherche h1.ui-title{
+#recherche h1.ui-title {
 
-	/*width:50%;*/
-	margin:0;
-}
-#recrutement h1.ui-title{
-	margin: 0;
-}
-h1.ui-title img.logotitle{
-	margin-top:4px;
+    /*width:50%;*/
+    margin: 0;
 }
 
+#recrutement h1.ui-title {
+    margin: 0;
+}
 
+h1.ui-title img.logotitle {
+    margin-top: 4px;
+}
 
-#mentions-legales h1.ui-title{
-	margin-left: 15%;
-	margin-right: 15%;
+#mentions-legales h1.ui-title {
+    margin-left: 15%;
+    margin-right: 15%;
 }
-#recherche #nb_results{
-	font-weight:bold;
+
+#recherche #nb_results {
+    font-weight: bold;
 }
-#recherche #nb_results.noresult{
-	text-align:center;
-	color:#666;
+
+#recherche #nb_results.noresult {
+    text-align: center;
+    color: #666;
 }
+
 .centre {
-	border-top:1px solid #cfcfcf;
-	padding:5px 10px;
-	background-color:#e8e8e8;
+    border-top: 1px solid #cfcfcf;
+    padding: 5px 10px;
+    background-color: #e8e8e8;
 }
+
 .black {
-	color:black;
+    color: black;
 }
+
 .blue {
-	color:#0c59b1;
+    color: #0c59b1;
 }
+
 .grey {
-	color:grey;
+    color: grey;
 }
+
 .grey_clair {
-	color:#ccc;
+    color: #ccc;
 }
+
 .darkgrey {
-	color:#666666;
+    color: #666666;
 }
+
 .bg_grey_clair {
-	background-color:#ccc;
+    background-color: #ccc;
 }
+
 .bg_white {
-	background-color:#fff;	
+    background-color: #fff;
 }
+
 .bg_is_device {
-	background-color:#eeeeff !important;	
+    background-color: #eeeeff !important;
 }
-.entete img{
-	float:right;
-	display:inline;
-	width:100px;
-    box-shadow: 1px 1px 6px  #555555;
-    padding:5px;
+
+.entete img {
+    float: right;
+    display: inline;
+    width: 100px;
+    box-shadow: 1px 1px 6px #555555;
+    padding: 5px;
     margin-bottom: 9px;
 }
-.floatright{
-	float:right;
-}
-.clear{
-	clear:both;
-}
-.padtop10 {
-	padding-top:10px;
+
+.floatright {
+    float: right;
 }
 
-#nav-annonce.ui-footer-fullscreen, #nav-annonce.ui-footer
-{
-	moz-opacity:0.9;
-	opacity: 0.9; 
-	filter:alpha(opacity=90);
+.clear {
+    clear: both;
 }
-#nav-recherche.ui-footer-fullscreen, #nav-recherche.ui-footer
-{
-	moz-opacity:0.9;
-	opacity: 0.9; 
-	filter:alpha(opacity=90);
-} 
-#nav-annonce a{
-    moz-opacity:1;
-	opacity: 1; 
-	filter:alpha(opacity=100);
+
+.padtop10 {
+    padding-top: 10px;
 }
-#recrutement .ui-content{
-	padding:0px;
+
+#nav-annonce.ui-footer-fullscreen, #nav-annonce.ui-footer {
+    moz-opacity: 0.9;
+    opacity: 0.9;
+    filter: alpha(opacity=90);
 }
-#recrutement { 
-	background-color:#ccc !important;
+
+#nav-recherche.ui-footer-fullscreen, #nav-recherche.ui-footer {
+    moz-opacity: 0.9;
+    opacity: 0.9;
+    filter: alpha(opacity=90);
 }
-#annonce .ui-content{
-	padding:0px;
+
+#nav-annonce a {
+    moz-opacity: 1;
+    opacity: 1;
+    filter: alpha(opacity=100);
 }
-#popupPostuler .bold{
-	font-weight:bold !important;
+
+#recrutement .ui-content {
+    padding: 0;
 }
-#popupTransfertAmi .bold{
-	font-weight:bold !important;
+
+#recrutement {
+    background-color: #ccc !important;
 }
-.bold{
-	font-weight:bold;
+
+#annonce .ui-content {
+    padding: 0;
 }
+
+#popupPostuler .bold {
+    font-weight: bold !important;
+}
+
+#popupTransfertAmi .bold {
+    font-weight: bold !important;
+}
+
+.bold {
+    font-weight: bold;
+}
+
 .pad10 {
-	padding:10px;
+    padding: 10px;
 }
+
 .pad20 {
-	padding:20px;
+    padding: 20px;
 }
+
 .pad30 {
-	padding:30px;
+    padding: 30px;
 }
+
 #resultat-mes-recherches li {
-	padding:10px; 
-	margin-bottom:10px;
-	border:0;
-	background:none;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 0;
+    background: none;
 }
+
 #resultat-mes-recherches li a {
-	padding:0px;
-	text-decoration:none;
+    padding: 0;
+    text-decoration: none;
 }
-#resultat-mes-recherches li div.contenu{
-	position:relative;
-	padding:10px;
-	background-color:#fff;
-	font-size:12px;
-	min-height: 1.1em;
+
+#resultat-mes-recherches li div.contenu {
+    position: relative;
+    padding: 10px;
+    background-color: #fff;
+    font-size: 12px;
+    min-height: 1.1em;
     outline: 0 none !important;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-#resultat-mes-recherches li div.contenu div{
-	margin-bottom:5px;
+
+#resultat-mes-recherches li div.contenu div {
+    margin-bottom: 5px;
 }
+
 #resultat-mes-recherches li div.contenu div.motclef {
-   font-style:normal;
-   color:#333;
-   padding-top:5px;
-   margin-bottom:0px;
+    font-style: normal;
+    color: #333;
+    padding-top: 5px;
+    margin-bottom: 0;
 }
-#resultat-mes-recherches li a h2{	
-	font-size:14px !important;
-	color:#fff;
-	background-color:#666;
-	margin:0px !important;
-	padding:10px 0px;
-	text-align:center;
-	font-weight:normal;
-	text-decoration:none;
+
+#resultat-mes-recherches li a h2 {
+    font-size: 14px !important;
+    color: #fff;
+    background-color: #666;
+    margin: 0 !important;
+    padding: 10px 0;
+    text-align: center;
+    font-weight: normal;
+    text-decoration: none;
 }
-#resultat-mes-recherches li a.delete {
-	position:absolute;
-	right:5px;
-	top:0px;
-	text-decoration:none;
-	font-size:24px;
-	font-weight:bold;
-}
+
 #resultat-recherche li {
-	position:relative;
+    position: relative;
 }
+
 #resultat-recherche li a {
-	padding-right:100px !important;
+    padding-right: 100px !important;
 }
+
 #resultat-recherche li #div_img {
-    position:absolute;
-    right:35px;
-    top:15px;
-	box-shadow: 1px 1px 5px #555555;
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    box-shadow: 1px 1px 5px #555555;
     /*float: right;*/
     height: 60px;
     width: 60px;
 }
+
 #resultat-recherche li #div_img p {
-    float:none;
-	margin:0;
-	text-align:center !important;
+    float: none;
+    margin: 0;
+    text-align: center !important;
     line-height: 60px;
     width: 60px;
 }
+
 #resultat-recherche li #div_img img {
-	max-height: 98%;
-	max-width: 98%;
-	vertical-align:middle;
+    max-height: 98%;
+    max-width: 98%;
+    vertical-align: middle;
 }
 
-#resultat-recherche li h2 .contrat{
-	font-weight:normal;
+#resultat-recherche li h2 .contrat {
+    font-weight: normal;
 }
+
 #recherche #pagin-pages {
-	font-weight:bold;
+    font-weight: bold;
 }
+
 .displaynone {
-	display:none;
+    display: none;
 }
+
 .notifications-wrapper {
-  position: fixed;
-  z-index: 2;
-  height: 0;
-  overflow: visible;
-  left: 0;
-  right: 0;
-  top: 45px; }
+    position: fixed;
+    z-index: 2;
+    height: 0;
+    overflow: visible;
+    left: 0;
+    right: 0;
+    top: 45px;
+}
 
 .notifications {
-  width: 320px;
-  margin: 0 auto;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
-  .notifications > p {
+    width: 320px;
+    margin: 0 auto;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.notifications > p {
     /*height: 32px;
     line-height: 32px;*/
     background: #e2eaf2;
     color: #626a72;
     text-align: center;
     margin: 0;
-    border-top: 1px solid #c5d5e5; }
-    
-    
-div[id^=popupPanel][id$=-popup] {
-    right: 0 !important;
-    left: auto !important;
-    min-width:250px;
-	width: 80%;
-}
-.popupPanel {    
-    border: 1px solid #000;
-    border-right: none;
-    background: rgba(0,0,0,.8);
-    margin: -1px 0;
-}
-.popupPanel .ui-btn {
-    margin: 0 15px;
-    /*margin: auto auto;*/
+    border-top: 1px solid #c5d5e5;
 }
 
-
-/**** Modif pour Iphone : status bar *****/
-.ui-header > .ui-btn {
-    margin-top: 15px;
+div[data-role=panel] {
+    height: 100%;
+    width: 272px;
 }
 
-.ui-header {
-    padding-bottom: 9px;
+div[data-role=content] {
+    /*float:right;*/
+    margin-left: 272px;
+    /*width: 100%;*/
 }
-.ui-header h1.ui-title {
-    padding-top: 10px;
+
+.mr_icon_delete, .mr_icon_demande_alerte_push {
+    float: right;
 }
-/**** Fin Modif pour Iphone : status bar *****/
+
+.mr_icon_demande_alerte_push {
+    margin-right: 20px;
+}
+
+@media (max-width: 640px) {
+    div[data-role=content] {
+        margin-left: 0px;
+    }
+}
+

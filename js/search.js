@@ -160,6 +160,7 @@ function saved_last_search(){
 	
 	$.jStorage.set('last_search',criteres_last_search);		
 }
+
 function saved_search(){
 	
 	tsearchs = $.jStorage.get('tsearchs');
@@ -194,9 +195,12 @@ function saved_search(){
 
 function convert_array_to_hash(array_object){ 
 	var Tstr = [];
-	$.each(array_object, function(i,v) {                   
-	     var str = i + ":" + v;
-	     Tstr.push(str);
+	$.each(array_object, function(i,v) {
+        if (i != 'push') {
+            // non prise en compte de la clé push dans le hash
+            var str = i + ":" + v;
+            Tstr.push(str);
+        }
 	});
 	var str = Tstr.join(", ");
 	return str.hashCode();
@@ -263,10 +267,8 @@ function load_searh_from_hash(current_hash){
 	
 	reset_search();
 
-
     criteres_search_current_hash = tsearchs[current_hash];
-	
-	
+
 	$.each(criteres_search_current_hash,function(key, value) {
 		window[key]=value;
 	});	
@@ -275,6 +277,72 @@ function load_searh_from_hash(current_hash){
 	
 	return true;
 }
+
+function saved_object_search(obj){
+
+    tsearchs = $.jStorage.get('tsearchs');
+    if(!tsearchs) tsearchs= new Object();
+
+    var current_hash = convert_array_to_hash(obj);
+
+    tsearchs[current_hash] = obj;
+    $.jStorage.set('tsearchs',tsearchs);
+
+}
+
+
+function switch_alert_from_search(that, current_hash) {
+
+    tsearchs = $.jStorage.get('tsearchs');
+    if(!tsearchs) tsearchs= new Object();
+
+
+    console.log (current_hash, tsearchs, tsearchs.hasOwnProperty(current_hash));
+
+    if(! tsearchs.hasOwnProperty(current_hash)){
+        notify('Erreur, ce hash ne correspond pas!', '#mes-recherches');
+        return false;
+    }
+
+    if (typeof tsearchs[current_hash]['push'] != 'undefined' && tsearchs[current_hash]['push'] == true) {
+        // desactivation de l'alerte
+        tsearchs[current_hash]['push'] = false;
+        // on envoi l'info de desactivation
+        if ( is_device ) {
+            batiMP.log('Désactivation alerte hash :' + current_hash , 'DEBUG');
+            registerPush(batiMP.getPushToken(), {'put':'supp_push_alert', 'local_hash':current_hash});
+        }
+        $(that).buttonMarkup({theme: "d"});
+    }
+    else {
+        // activation de l'alerte'
+        tsearchs[current_hash]['push'] = true;
+        // on envoi l'info d'activation
+
+        console.log('on envoi une demande :');
+
+        var alerte = {};
+
+        alerte.fonction = tsearchs[current_hash]['current_fonction'];
+        alerte.zonegeo = tsearchs[current_hash]['current_zonegeo'];
+        alerte.motclef = tsearchs[current_hash]['current_motclef'];
+
+        console.log(alerte);
+
+        if ( is_device ) {
+            batiMP.log('Activation alerte hash :' + current_hash , 'DEBUG');
+            registerPush(batiMP.getPushToken(), {'put':'add_push_alert', 'local_hash':current_hash, 'alerte':alerte});
+        }
+
+        $(that).buttonMarkup({theme: "a"});
+    }
+
+    saved_object_search( tsearchs[current_hash]);
+
+}
+
+
+
 function set_fields_from_current(){
 
 	$('[id^=selected-detail-page-]').html('');

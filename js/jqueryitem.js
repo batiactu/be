@@ -51,6 +51,11 @@
 			 			 	if(row[k]=='')item["item_lib_"+k] = row[k];
 			 			 	else item["item_lib_"+k] = Tcontrats[row[k]];
 			 			 	break
+
+                          case 'push':
+                              item["item_"+k] = row[k];
+                          break
+
 			 			 	
 			 			 	default:
 
@@ -70,12 +75,18 @@
 			 	myList.show();
 			 	//myList.listview('refresh');
 
+
+
 			 	if(options.noLoading==null){ remove_notify('#mes-recherches');$.mobile.loading( 'hide' )};
 			 	
 			 	if(use_infinite){
 			 		$.waypoints();
 	    			$.waypoints('refresh');
 	    		}
+
+
+            $(".mr_icon_demande_alerte_push").buttonMarkup({ corners: true });
+            $(".mr_icon_delete").buttonMarkup({ corners: true });
 			 
 
     }
