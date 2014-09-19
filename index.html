@@ -7,8 +7,13 @@
 	<meta name="google-site-verification" content="bctYEMaFdsCRQ_lbkTE-6Renn-mm6Bfy7geOOX60VWs" />
 	
 	<title>[Batiactu] Emploi</title>
-	
-	<link rel="stylesheet" href="css/jquerymobile131.css" />
+
+
+    <!-- MIG link rel="stylesheet" href="css/jquerymobile131.css" /-->
+
+	<link rel="stylesheet" href="css/lib/jquery.mobile.custom.theme.min.css" />
+	<link rel="stylesheet" href="css/lib/jquery.mobile.custom.structure.min.css" />
+
 	<!-- non utilisés : -->
 	<!--<link rel="stylesheet" href="roller/themes/emploi.css" />--> 
 	<!--<link rel="stylesheet" href="css/jqmdoc.css" />-->
@@ -31,8 +36,18 @@
 	<script type="text/javascript" src="js/waypointsmin.js"></script>
 	<script type="text/javascript" src="js/waypointsinfinitemin.js"></script>	
 	<script type="text/javascript" src="js/handlebarsmin.js"></script>
-	-->	
-	<script type="text/javascript" src="js/allpluginsmin.js"></script>
+	-->
+    <script type="text/javascript" src="js/lib/jquery-2.1.1.min.js" ></script>
+    <script type="text/javascript" src="js/lib/jquery.validate.min.js" ></script>
+    <script type="text/javascript" src="js/lib/jquery.mobile.custom.min.js" ></script>
+    <script type="text/javascript" src="js/lib/jstorage.js" ></script>
+    <script type="text/javascript" src="js/lib/waypoints.min.js" ></script>
+    <script type="text/javascript" src="js/lib/waypoints-infinite.min.js" ></script>
+    <script type="text/javascript" src="js/lib/handlebars-v2.0.0.js" ></script>
+
+
+
+    <!-- MIG script type="text/javascript" src="js/old_js/allpluginsmin.js"></script-->
     <!-- fin dans allpluginsmin.js :-->
     
 	<!-- non utilisés : -->
@@ -65,7 +80,7 @@
 	
 	<script src="phonegap.js"></script><!-- PhoneGap en a besoin derrière pour pouvoir utiliser ses fonctions natives -->
 	<script src="GAPlugin.js"></script>
-    <script type="text/javascript" src="js/PushNotification.js"></script>
+    <script type="text/javascript" src="js/lib/PushNotification.js"></script>
 
 
 </head>
@@ -73,7 +88,11 @@
 <body>
 
 
+<script type="text/javascript">
 
+    $.mobile.urlHistory = $.mobile.navigate.urlHistory;
+
+</script>
 
 
 <!-- Accueil -->
@@ -1086,7 +1105,7 @@ $('#recherche-detail').on('pagebeforeshow', function(){
 	if(nb_annonce>1)nb_offres+='s';
 	 				
 	$("#nbannonce_header").text(nb_offres);
-	$.mobile.urlHistory.clearForward();
+	//$.mobile.urlHistory.clearForward();
 	if(current_fonction.length>0)$('[href=#recherche-detail-page-fonction] > h2').removeClass('border_red');	
 	if(criteres_last_search)$('#recherche-detail #last_search').show();
 	if(Object.keys(tsearchs).length>0)$('#recherche-detail #link_mine_search').show();
@@ -1113,7 +1132,7 @@ $("#recherche #select-page").on('change', function(event, ui){
 });
 	
 $('#recherche').on('pagebeforeshow', function(){
-	$.mobile.urlHistory.clearForward();
+	//$.mobile.urlHistory.clearForward();
 
 					
 	if(use_infinite)$('#recherche #pagin-prev').hide();
