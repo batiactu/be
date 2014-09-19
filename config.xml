@@ -42,6 +42,11 @@
     <icon src="images/icon114.png" gap:platform="ios" width="114" height="114" /> <!-- iPhone 4, 4S, iPod Touch 4G -->
     <icon src="images/icon144.png" gap:platform="ios" width="144" height="144" /> <!-- iPad 3, 4 -->
 
+    <icon src="images/icon76.png" gap:platform="ios" width="76" height="76" /> <!-- IOS7  -->
+    <icon src="images/icon120.png" gap:platform="ios" width="120" height="120" /> <!-- IOS7  -->
+    <icon src="images/icon152.png" gap:platform="ios" width="152" height="152" /> <!-- IOS7  -->
+
+
     <icon src="images/icon36.png" gap:platform="android" gap:density="ldpi" /> <!-- 36 pixels -->
     <icon src="images/icon48.png" gap:platform="android" gap:density="mdpi" /> <!-- 48 pixels -->
     <icon src="images/icon72.png" gap:platform="android" gap:density="hdpi" /> <!-- 72 pixels -->
