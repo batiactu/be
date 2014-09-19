@@ -63,7 +63,7 @@
 
 	
 
-    <preference name="phonegap-version" value="2.9.0" />
+    <preference name="phonegap-version" value="3.5.0" />
 
 	<!-- orientation with possible values default (both), landscape, or portrait -->
     <preference name="orientation" value="default" />
@@ -88,7 +88,7 @@
     <preference name="auto-hide-splash-screen" value="true" /> <!-- if set to false, the splash screen must be hidden using a JavaScript API -->
 
     <gap:config-file platform="ios" parent="CFBundleShortVersionString">
-        <string>101.1</string>
+        <string>101.2</string>
     </gap:config-file>
 
 
