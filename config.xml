@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns = "http://www.w3.org/ns/widgets" xmlns:gap = "http://phonegap.com/ns/1.0" 
-	id = "Test appli push"
-	version = "1.0.0"
+	id = "batiactu"
+	version = "1.1.0"
 	versionCode = "1">
 
-    <name>Test appli push</name>
-    <description></description>
+    <name>Batiactu Emploi</name>
+    <description>Batiactu Emploi : 1er site de référence des annonces emploi du BTP</description>
     <author href="http://www.batiactugroupe.com" email="webmaster@batiactugroupe.com">Batiactu Groupe</author>
 
     <icon src="images/icon.png" />
