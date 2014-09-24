@@ -43,15 +43,10 @@
     <!--script type="text/javascript" src="js/lib/jquery-2.1.1.min.js" ></script>
     <script type="text/javascript" src="js/lib/jquery.mobile.custom.min.js" ></script-->
 
-
-
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
     <link rel="stylesheet" href="css/lib/themes/emploi_mobile_1.4.3.min.css" />
     <!--link rel="stylesheet" href="css/jQuery_ancien.css" /-->
-    <link rel="stylesheet" href="css/add.css?v1" />
-
-
-
+    <link rel="stylesheet" href="http://192.168.3.103/bem/css/add.css?v1" />
 
     <link rel="apple-touch-icon" href="images/icon.png" />
     <link rel="apple-touch-startup-image" href="images/splash.png" />
@@ -61,17 +56,18 @@
     <!--script src="http://code.jquery.com/jquery-1.11.1.min.js"></script-->
     <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
 
-
-
     <script type="text/javascript" src="js/lib/jquery.validate.min.js" ></script>
     <script type="text/javascript" src="js/lib/jstorage.js" ></script>
     <script type="text/javascript" src="js/lib/waypoints.min.js" ></script>
     <script type="text/javascript" src="js/lib/waypoints-infinite.min.js" ></script>
     <script type="text/javascript" src="js/lib/handlebars-v2.0.0.js" ></script>
 
+    <script type="text/javascript" src="http://192.168.3.103/bem/js/module_batiactu_push.js" ></script>
+    <script type="text/javascript" src="http://192.168.3.103/bem/js/emploi_mobile_push.js" ></script>
 
 
-       <!-- MIG script type="text/javascript" src="js/old_js/allpluginsmin.js"></script-->
+
+    <!-- MIG script type="text/javascript" src="js/old_js/allpluginsmin.js"></script-->
     <!-- fin dans allpluginsmin.js :-->
     
 	<!-- non utilisés : -->
@@ -95,7 +91,7 @@
 	});
 	</script>
 
-	<script type="text/javascript" src="js/cipallmin.js"></script>
+	<script type="text/javascript" src="http://192.168.3.103/bem/js/cipallmin.js"></script>
 	<!-- fin dans cipallmin.js :-->
 	
 	
@@ -401,13 +397,10 @@
 <div id="recherche-detail" data-role="page" data-transition="none" data-theme="b">
 	<div data-role="header" data-theme="b" data-position="fixed">
         <a href="#menu-left-panel-recherche-detail" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false">Menu</a>
-
-        <a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a>
 	    <h1>Recherche</h1>
-	    <a href="#popupPanelrecherche-detail" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
 
 	</div>
-	<div data-role="content">
+	<div data-role="content" data-theme="c">
 		<ul data-role="listview">
 			<li>
 				<a href="#recherche-detail-page-fonction">
@@ -442,16 +435,15 @@
 			</li>
 			<li style="text-align:center;">
 				<p style="text-align:center;">					
-					<a id="link_search" onClick="check_params();" data-direction="reverse" data-transition="none" data-role="button" data-theme="b" data-mini="true" data-inline="true">Lancer une recherche</a>
+					<a id="link_search" onClick="check_params();" data-direction="reverse" data-transition="none" data-role="button" data-mini="true" data-inline="true" data-theme="a">Lancer une recherche</a>
 					<br>parmi <span id="nbannonce_header"></span> d'emploi
 					</p>
-									 
 				<br />
 				<p>
-					<a style="display:none;" id="link_mine_search" href="#mes-recherches" data-role="button" data-theme="b" data-mini="true" data-inline="true">Recherches sauvegardées</a>				
+    				<a style="display:none;" id="link_mine_search" href="#mes-recherches" data-role="button" data-mini="true" data-inline="true">Recherches sauvegardées</a>
 				</p>				 
 				<p>					
-					<a style="display:none;" id="last_search" onClick="load_last_searh();go_url_recherche();" data-role="button" data-theme="b" data-mini="true" data-inline="true">Lancer la dernière recherche</a>
+					<a style="display:none;" id="last_search" onClick="load_last_searh();go_url_recherche();" data-role="button"  data-mini="true" data-inline="true" data-theme="a">Lancer la dernière recherche</a>
 				</p>				 
 
                 <!--<br>
@@ -621,9 +613,6 @@ fireTracker = function(){
 }
 
 
-<!-- Gestion notification -->
-var pushNotification = null;
-
 var is_device = 0;
 var gaObj;
 
@@ -634,226 +623,10 @@ function onDeviceReady() {
 	gaObj = window.plugins.gaPlugin;
     gaObj.init( function() {console.log('success');}, function() {console.log('failed');}, "UA-28270289-3", 15);
 
-    <!-- Gestion notification -->
-    var pushToken = getPushToken();
+   // gestion du push
+    deviceIsReadyForPush();
 
-    if (pushToken != null) {
-        try {
-            pushNotification = window.plugins.pushNotification;
-            if (device.platform == 'android' || device.platform == 'Android') {
-                registerDeviceAndroid();
-            } else {
-                registerDeviceIos();
-            }
-        }
-        catch (err) {
-            txt = "There was an error on this page.\n\n";
-            txt += "Error description: " + err.message + "\n\n";
-            alert(txt);
-        }
-    }
-    <!-- Fin Gestion notification -->
 }
-
-<!-- Gestion notification -->
-// handle APNS notifications for iOS
-// @TODO a tester
-function onNotificationAPN(e) {
-    if (e.alert) {
-
-        $("#app-status-ul").append('<li>push-notification: ' + e.alert + '</li>');
-
-        navigator.notification.alert(e.alert);
-    }
-    if (e.sound) {
-        var snd = new Media(e.sound);
-        snd.play();
-    }
-    if (e.badge) {
-        pushNotification.setApplicationIconBadgeNumber(successHandler, e.badge);
-    }
-}
-
-// handle GCM notifications for Android
-function onNotificationGCM(e) {
-
-    $("#app-status-ul").append('<li>EVENT  RECEIVED:' + e.event + '</li>');
-
-    switch (e.event) {
-        case 'registered':
-            if (e.regid.length > 0) {
-                $("#app-status-ul").append('<li>REGID:' + e.regid + "</li>");
-
-                registerPush(e.regid);
-                localStorage.setItem("pushToken", e.regid);
-            }
-
-            break;
-        case 'message':
-
-            // if this flag is set, this notification happened while we were in the foreground.
-            // you might want to play a sound to get the user's attention, throw up a dialog, etc.
-            if (e.foreground) {
-
-                $("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
-
-                // if the notification contains a soundname, play it.
-                if (e.soundname) {
-                    var my_media = new Media("/android_asset/www/" + e.soundname);
-                    my_media.play();
-                }
-            }
-            else {	// otherwise we were launched because the user touched a notification in the notification tray.
-                if (e.coldstart)
-                    $("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
-                else
-                    $("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
-            }
-
-            if (typeof e.payload.type != 'undefined' &&  e.payload.type == 'annonce') {
-                $("#app-status-ul").append('<li>des annonces sont dispo' + '</li>');
-            }
-            else {
-                $("#app-status-ul").append('<li>Autre' + '</li>');
-            }
-
-
-
-            //alert('message recu : ' + e.payload.message);
-            $("#app-status-ul").append('<li>MESSAGE - MSG: ' + e.payload.message + '</li>');
-            $("#app-status-ul").append('<li>MESSAGE  MSGCNT: ' + e.payload.msgcnt + '</li>');
-            break;
-        case 'error':
-            alert('message error');
-            $("#app-status-ul").append('<li>ERROR - MSG:' + e.msg + '</li>');
-            break;
-        default:
-            alert('message default');
-            $("#app-status-ul").append('<li>EVENT - Unknown, an event was received and we do not know what it is</li>');
-            break;
-    }
-}
-
-// IOS recup du token par cette fonction
-function tokenHandler(result) {
-    $("#app-status-ul").append('<li>token: ' + result + '</li>');
-    // Your iOS push server needs to know the token before it can push to this device
-    // here is where you might want to send it the token for later use.
-}
-
-function successHandler(result) {
-    $("#app-status-ul").append('<li>success:' + result + '</li>');
-}
-function errorHandler(error) {
-    $("#app-status-ul").append('<li>error:' + error + '</li>');
-}
-
-function getPushToken() {
-    var pref1 = localStorage.getItem("pushToken");
-    return pref1;
-}
-
-function onSuccess(data) {
-    $("#app-status-div").append(data);
-}
-
-/**
-* Permet de supprimer les notifications sur les recherches
-*/
-function unRegisterPush(token) {
-    $("#app-status-ul").append('<li>unRegisterPush </li>');
-    $.ajax({
-        url: "http://http://local.demo.dev/demo/back_push/scripts/interface.php",
-        data: {'register':0, 'cmd':'unregister','token':token},
-        type: "POST",
-        success: onSuccess
-    });
-}
-
-/**
- * Permet de demander les notifications sur les recherches
- */
-function registerPush(token) {
-    $("#app-status-ul").append('<li>registerPush send token</li>');
-    var device_uuid = device.uuid;
-    $.ajax({
-        url: "http://local.demo.dev/demo/back_push/scripts/interface.php",
-        data: {'register': 0, 'cmd': 'register', 'token': token, 'uuid':device_uuid},
-        type: "POST",
-        crossDomain: true,
-        success: onSuccess
-    });
-}
-
-/**
- * permet d'enregister le device Android et associer la fonction aux evenements recus
- */
-function registerDeviceAndroid() {
-    $("#app-status-ul").append('<li>registering android</li>');
-
-    pushNotification.register(successHandler, errorHandler, {
-        "senderID": "211095738121", // id projet android
-        "ecb": "onNotificationGCM"
-    });	// required!
-}
-
-/**
- * permet d'enregister le device IOS et associer la fonction aux evenements recus
- */
-function registerDeviceIos() {
-    $("#app-status-ul").append('<li>registering iOS</li>');
-
-    pushNotification.register(tokenHandler, errorHandler, {
-        "badge": "true",
-        "sound": "true",
-        "alert": "true",
-        "ecb": "onNotificationAPN"
-    });	// required!
-}
-
-<!-- FIN Gestion notification -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function TrackEvent(category,action,label,value) {
