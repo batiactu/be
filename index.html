@@ -8,21 +8,24 @@
 	
 	<title>[Batiactu] Emploi</title>
 
+    <!--link rel="stylesheet" href="css/jquerymobile131.css" /-->
 
-    <!-- MIG link rel="stylesheet" href="css/jquerymobile131.css" /-->
+    <!--link rel="stylesheet" href="css/jQuery_ancien.css" />
+    <link rel="stylesheet" href="css/lib/themes/emploi_mobile_1.4.3.min.css" />
+    <link rel="stylesheet" href="css/lib/themes/jquery.mobile.icons.min.css" />
 
-	<link rel="stylesheet" href="css/lib/jquery.mobile.custom.theme.min.css" />
-	<link rel="stylesheet" href="css/lib/jquery.mobile.custom.structure.min.css" />
+	<!--link rel="stylesheet" href="css/lib/jquery.mobile.custom.theme.min.css" /-->
+	<!--link rel="stylesheet" href="css/lib/jquery.mobile.custom.structure.min.css" />
 
 	<!-- non utilisés : -->
 	<!--<link rel="stylesheet" href="roller/themes/emploi.css" />--> 
 	<!--<link rel="stylesheet" href="css/jqmdoc.css" />-->
-	<!-- fin non utilisés! --> 
+	<!-- fin non utilisés! -->
 
-	<link rel="stylesheet" href="css/add.css?v1" /> 
 
-	<link rel="apple-touch-icon" href="images/icon.png" />
-	<link rel="apple-touch-startup-image" href="images/splash.png" />
+    <!--link rel="stylesheet" href="css/add.css?v1" /-->
+
+
     <!-- non utilisés : -->
 	<!--<link rel="stylesheet" href="css/test.min.css" />-->
 	<!-- fin non utilisés! -->
@@ -37,9 +40,30 @@
 	<script type="text/javascript" src="js/waypointsinfinitemin.js"></script>	
 	<script type="text/javascript" src="js/handlebarsmin.js"></script>
 	-->
+    <!--script type="text/javascript" src="js/lib/jquery-2.1.1.min.js" ></script>
+    <script type="text/javascript" src="js/lib/jquery.mobile.custom.min.js" ></script-->
+
+
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
+    <link rel="stylesheet" href="css/lib/themes/emploi_mobile_1.4.3.min.css" />
+    <!--link rel="stylesheet" href="css/jQuery_ancien.css" /-->
+    <link rel="stylesheet" href="css/add.css?v1" />
+
+
+
+
+    <link rel="apple-touch-icon" href="images/icon.png" />
+    <link rel="apple-touch-startup-image" href="images/splash.png" />
+
+
     <script type="text/javascript" src="js/lib/jquery-2.1.1.min.js" ></script>
+    <!--script src="http://code.jquery.com/jquery-1.11.1.min.js"></script-->
+    <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+
+
+
     <script type="text/javascript" src="js/lib/jquery.validate.min.js" ></script>
-    <script type="text/javascript" src="js/lib/jquery.mobile.custom.min.js" ></script>
     <script type="text/javascript" src="js/lib/jstorage.js" ></script>
     <script type="text/javascript" src="js/lib/waypoints.min.js" ></script>
     <script type="text/javascript" src="js/lib/waypoints-infinite.min.js" ></script>
@@ -47,7 +71,7 @@
 
 
 
-    <!-- MIG script type="text/javascript" src="js/old_js/allpluginsmin.js"></script-->
+       <!-- MIG script type="text/javascript" src="js/old_js/allpluginsmin.js"></script-->
     <!-- fin dans allpluginsmin.js :-->
     
 	<!-- non utilisés : -->
@@ -75,61 +99,45 @@
 	<!-- fin dans cipallmin.js :-->
 	
 	
-	
-	<script type="text/javascript" src="http://www.capinfoproreport.com/cap_pub/scripts/rotate2-js.php?e=B_IP_HOME,TOP_IP&support=B.IP"></script>
+	<!-- @TODO : remettre www.capinfoproreport.com -->
+	<!--script type="text/javascript" src="http://www.capinfoproreport.com/cap_pub/scripts/rotate2-js.php?e=B_IP_HOME,TOP_IP&support=B.IP"></script-->
 	
 	<script src="phonegap.js"></script><!-- PhoneGap en a besoin derrière pour pouvoir utiliser ses fonctions natives -->
 	<script src="GAPlugin.js"></script>
+
     <script type="text/javascript" src="js/lib/PushNotification.js"></script>
 
 
 </head>
     
-<body>
+<body >
 
 
+<!-- @todo Gestion du urlHistory -->
 <script type="text/javascript">
-
     $.mobile.urlHistory = $.mobile.navigate.urlHistory;
-
 </script>
 
 
 <!-- Accueil -->
 
 <div id="accueil" data-role="page" data-theme="b" >
-	
-	<div data-role="header" data-theme="b">	    
-	    <!--<a href="#accueil" data-role=button data-icon=home data-iconpos="notext">Accueil</a>-->
-
-	    <!--<h1 style="margin:5px auto auto auto;width:200px;position:relative;font-size:32px;text-align:center !important;"><div style="position:relative;height:90px;"><span style="color:#FFF;font-size:46px !important">[</span> batiactu <span style="color:#FFF;font-size:46px !important">]</span><div style="right:32px;bottom:15px;position:absolute;font-size:22px;color:#82befc;">Emploi</div></div></h1>-->
-	    <!--<a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos="notext">Menu</a>-->
+	<div data-role="header" data-position="fixed">
 	    <h1><img src="./images/logo.png" width="183" alt="Batiactu Emploi" title="Batiactu Emploi"></h1>
-	    
-	     <a href="#popupPanelaccueil" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
-
+        <a href="#menu-left-panel-accueil" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false">Menu</a>
 	</div>
-	
-	<div data-role="content">
-    	<p align="center">
-    		Batiactu Emploi, 1er site d'offre d'emploi dans le BTP, la construction et l'immobilier<br />
-    		<strong>Plus de <span id="nbannonce_cent_inf"></span> offres d'emploi disponibles !</strong>    		
-    	</p>
-    	<p align="center">
-    	<a href="#recherche-detail" data-role="button" data-inline="true" data-mini="true">Lancer une recherche</a>
-    	</p>
-        	
-    </div>
 
-    <div data-role="footer" id="notification">
-        <a id="sendmail" href="" target="_blank">send email</a>
-        <div id="app-status-div">
-            <ul id="app-status-ul">
-                <li>Cordova PushNotification Plugin Demo</li>
-            </ul>
-        </div>
+    <div data-role="content" class="content">
+            <p align="center">
+                Batiactu Emploi, 1er site d'offre d'emploi dans le BTP, la construction et l'immobilier<br />
+                <strong>Plus de <span id="nbannonce_cent_inf"></span> offres d'emploi disponibles !</strong>
+            </p>
+            <p align="center">
+                <a href="#recherche-detail" data-role="button"  data-inline="true" data-mini="true">Lancer une recherche</a>
+            </p>
     </div>
 </div>
+
 
 
 <!-- ================================================================================================= -->
@@ -137,9 +145,9 @@
 
 
 <!-- Gallerie d'image de batiactu -->
-<div id="galleryimg" data-role="page" style="padding:0px;">
-	<div data-role="header">
-	<a href=#accueil data-role=button data-icon=home data-iconpos=notext data-direction="reverse" data-transition="none"></a>
+<div id="galleryimg" data-role="page" data-theme="b" style="padding:0px;">
+	<div data-role="header" data-position="fixed">
+	<!--a href=#accueil data-role=button data-icon=home data-iconpos=notext data-direction="reverse" data-transition="none"></a-->
 	    <h1>Gallerie</h1>
 	</div>
 	<!--<div data-role="content" data-theme=b style="padding:0px;margin:0px;"><img id="imageMaquette" src="demo/0.jpg" width="100%" height="100%" />-->
@@ -157,12 +165,10 @@
 <div id="recrutement" data-role="page" data-add-back-btn="true" data-theme="b">
 	<div data-role="header" data-position="fixed" data-theme="b">
 	    
-		<a href="#accueil" data-role=button data-icon=home data-iconpos=notext data-direction="reverse">Accueil</a>
-	    <!--<a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos=notext>Menu</a>	-->
+        <a href="#menu-left-panel-recrutement" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false">Menu</a>
 
 	    <!--<h1 style="margin:5px auto auto auto;width:200px;position:relative;font-size:32px;text-align:center !important;"><div style="position:relative;height:90px;"><span style="color:#FFF;font-size:46px !important">[</span> batiactu <span style="color:#FFF;font-size:46px !important">]</span><div style="right:32px;bottom:15px;position:absolute;font-size:22px;color:#82befc;">Emploi</div></div></h1>-->
 	    <h1><img src="./images/logo.png" class="logotitle" width="90" alt="Batiactu Emploi" title="Batiactu Emploi"></h1>	    
-		<a href="#popupPanelrecrutement" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
 
 	</div>
 	<div data-role="content">
@@ -186,12 +192,10 @@
 </div>   
 
 <!-- recrutement -->
-<div id="mentions-legales"  data-role="page" data-add-back-btn="true">
-	<div data-role="header" data-position="fixed" data-theme="b">
-	    <a href="#accueil" data-role=button data-icon=home data-iconpos=notext data-direction="reverse">Accueil</a>
-	    <h1>Mentions Légales</h1>
-	    <a href="#popupPanelmentions-legales" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
-
+<div id="mentions-legales"  data-role="page" data-add-back-btn="true" data-theme="b">
+	<div data-role="header" data-position="fixed" data-theme="b" data-position="fixed">
+        <a href="#menu-left-panel-mentions-legales" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false">Menu</a>
+        <h1>Mentions Légales</h1>
 	</div>
 	<div data-role="content">
 		<div class="pad10">		
@@ -224,15 +228,14 @@
 
 
 <!-- Recherche -->
-<div id="recherche" data-role="page" data-transition="none">
+<div id="recherche" data-role="page" data-transition="none" data-theme="b">
 	<div data-role="header" data-position="fixed" data-theme="b">
-	    <a href="#recherche-detail" data-transition="none" data-icon="arrow-l" data-position-to="window" data-role="button" data-theme="b" >Retour</a>
 
-		<!--<h1><span style="color:#FFF;font-size:16px !important">[</span> batiactu <span style="color:#FFF;font-size:16px !important">]</span> <span style="font-size:12px;color:#82befc;">Emploi</span></h1>-->
-	    <!--<a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos="notext">Menu</a>-->
+
+        <a href="#recherche-detail" data-transition="none" data-icon="arrow-l" data-position-to="window" data-role="button" data-theme="b" >Retour</a>
+        <a href="#menu-left-panel-recherche" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false">Menu</a>
+
 	    <h1><img src="./images/logo.png" class="logotitle" width="90" alt="Batiactu Emploi" title="Batiactu Emploi"></h1>
-	    
-	    <a href="#popupPanelrecherche" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
 
 	</div>
 	<div id="panel">
@@ -288,11 +291,12 @@
 </div>   
 
 <!-- Mes Recherches -->
-<div id="mes-recherches" data-role="page" data-add-back-btn="true" data-back-btn-text="Retour" data-transition="none">
+<div id="mes-recherches" data-role="page" data-add-back-btn="true" data-back-btn-text="Retour" data-transition="none" data-theme="b">
 	<div data-role="header" data-position="fixed" data-theme="b">
-	    <h1>Mes recherches</h1>
+        <a href="#menu-left-panel-mes-recherche" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false">Menu</a>
+
+        <h1>Mes recherches</h1>
 	    <!--<a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos="notext">Menu</a>-->
-	    <a href="#popupPanelmes-recherches" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
 
 	</div>
 	<div class="notifications-wrapper">
@@ -326,9 +330,11 @@
 <!-- ================================================================================================= -->
 
 <!-- Recherche détaillé fonction -->
-<div id="recherche-detail-page-fonction" data-role="page"  data-add-back-btn="true" data-back-btn-text="Retour">
-	<div data-role="header" data-theme="b">
-	    <h1>Fonctions</h1>
+<div id="recherche-detail-page-fonction" data-role="page"  data-add-back-btn="true" data-back-btn-text="Retour" data-theme="b">
+	<div data-role="header" data-theme="b" data-position="fixed">
+        <a href="#menu-left-panel-page-fonction" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false">Menu</a>
+
+        <h1>Fonctions</h1>
 	</div>
 
 	<div data-role="content">
@@ -341,9 +347,11 @@
 
 <!-- Recherche détaillé zone géographique -->
         
-<div id="recherche-detail-page-zonegeo" data-role="page"  data-add-back-btn="true" data-back-btn-text="Retour">
-	<div data-role="header" data-theme="b">
-	    <h1>Régions</h1>
+<div id="recherche-detail-page-zonegeo" data-role="page"  data-add-back-btn="true" data-back-btn-text="Retour" data-theme="b">
+	<div data-role="header" data-theme="b" data-position="fixed">
+        <a href="#menu-left-panel-page-zonegeo" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false">Menu</a>
+
+        <h1>Régions</h1>
 	</div>
 	<div data-role="content">
 		<fieldset data-role="controlgroup" id="recherche-detail-zonegeo" >
@@ -355,9 +363,11 @@
 
 <!-- Recherche détaillé type contrat -->
         
-<div id="recherche-detail-page-contrat" data-role="page"  data-add-back-btn="true" data-back-btn-text="Retour">
-	<div data-role="header" data-theme="b">
-	    <h1>Contrats</h1>
+<div id="recherche-detail-page-contrat" data-role="page"  data-add-back-btn="true" data-back-btn-text="Retour" data-theme="b">
+	<div data-role="header" data-theme="b" data-position="fixed">
+        <a href="#menu-left-panel-page-contrat" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false">Menu</a>
+
+        <h1>Contrats</h1>
 	</div>
 	<div data-role="content">
 		<fieldset data-role="controlgroup" id="recherche-detail-contrat">
@@ -371,9 +381,11 @@
 
 <!-- Recherche détaillé expérience -->
         
-<div id="recherche-detail-page-experience" data-role="page" data-add-back-btn="true" data-back-btn-text="Retour">
-	<div data-role="header" data-theme="b">
-	    <h1>Expériences</h1>
+<div id="recherche-detail-page-experience" data-role="page" data-add-back-btn="true" data-back-btn-text="Retour" data-theme="b">
+	<div data-role="header" data-theme="b" data-position="fixed">
+        <a href="#menu-left-panel-page-experience" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false">Menu</a>
+
+        <h1>Expériences</h1>
 	</div>
 	<div data-role="content">
 		<fieldset data-role="controlgroup" id="recherche-detail-experience">
@@ -386,9 +398,11 @@
 
 <!-- Recherche détaillé détail -->
         
-<div id="recherche-detail" data-role="page" data-transition=none>
-	<div data-role="header" data-theme="b">
-	<a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a>
+<div id="recherche-detail" data-role="page" data-transition="none" data-theme="b">
+	<div data-role="header" data-theme="b" data-position="fixed">
+        <a href="#menu-left-panel-recherche-detail" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false">Menu</a>
+
+        <a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a>
 	    <h1>Recherche</h1>
 	    <a href="#popupPanelrecherche-detail" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
 
@@ -459,8 +473,10 @@
 <!-- ============================================= Les recherches personnalisées =================================== -->
 
 <div id="offre" data-role="page" data-theme=e>
-	<div data-role="header" data-theme=e>
-	<a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a>
+	<div data-role="header" data-theme=e data-position="fixed">
+        <a href="#menu-left-panel-offre" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false">Menu</a>
+
+        <a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a>
 	    <h1>Mes alertes</h1>
 	</div>
 	<div data-role="content" data-theme=d>
@@ -495,9 +511,11 @@
 
 <!-- ============================================= La page ACTU  =================================== -->
 
-<div id="actu" data-role="page" data-theme=c  data-add-back-btn="true" data-back-btn-text="Retour">
-	<div data-role="header" data-theme="b">
-		<!-- <a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a> -->
+<div id="actu" data-role="page" data-theme="b"  data-add-back-btn="true" data-back-btn-text="Retour">
+	<div data-role="header" data-theme="b" data-position="fixed">
+        <a href="#menu-left-panel-actu" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false">Menu</a>
+
+        <!-- <a href=#accueil data-role=button data-icon=home data-iconpos=notext data-transition=none></a> -->
 		<!-- <a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos=notext>Menu</a> -->
 		<h1>Actualités</h1>
 	</div>
@@ -521,9 +539,10 @@
         
 
 <!-- Article -->        
-<div id="article" data-role="page"  data-add-back-btn="true" data-back-btn-text="Retour">
-	<div data-role="header" data-theme="b">
-	    <a href="#menu" data-icon="bars" class="ui-btn-right" data-iconpos=notext>Menu</a>
+<div id="article" data-role="page"  data-add-back-btn="true" data-back-btn-text="Retour" data-theme="b">
+	<div data-role="header" data-theme="b" data-position="fixed">
+        <a href="#menu-left-panel-article" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false">Menu</a>
+
 		<h1>Article <!-- <span class="item_titre"> --></span></h1>
 	</div>
 	<div data-role="content">
@@ -560,10 +579,11 @@
 	</div>    
 </div>  
 
-<div id="annonce" data-role="page" data-add-back-btn="true" data-back-btn-text="Retour">
-	<div data-role="header" data-theme="b">
-		<h1>Détails de l'offre</h1>
-		<a href="#popupPanelannonce" data-rel="popup" class="ui-btn-right" data-transition="slide" data-icon="bars" data-iconpos="notext" data-position-to="window" data-role="button"></a>
+<div id="annonce" data-role="page" data-add-back-btn="true" data-back-btn-text="Retour" data-theme="b">
+	<div data-role="header" data-theme="b" data-position="fixed">
+        <a href="#menu-left-panel-annonce" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false">Menu</a>
+
+        <h1>Détails de l'offre</h1>
 
 	</div>
 	<div class="notifications-wrapper">
@@ -953,29 +973,81 @@ function wrp_cpt_mobile(libelle,content){
 }
 
 $(document).bind( "pagechange", function( e, data ) {
-		hash = location.hash;
-		    if (hash)
-		      tagpageUrl = hash.substr(1);
-		    else
-		      tagpageUrl = location.pathname.split('/').pop();
 
-		      if(tagpageUrl == '/' || tagpageUrl == '' || tagpageUrl == 'index.html')tagpageUrl='accueil';
-        
-			switch(tagpageUrl){
-				case 'annonce':
-				case 'recherche':				
-				break;
-				default:
-				wrp_cpt_mobile(tagpageUrl);
-			}
+    hash = location.hash;
+    if (hash) {
+        tagpageUrl = hash.substr(1);
+    }
+    else {
+        tagpageUrl = location.pathname.split('/').pop();
+    }
+
+    if(tagpageUrl == '/' || tagpageUrl == '' || tagpageUrl == 'index.html') {
+        tagpageUrl='accueil';
+    }
+
+    switch(tagpageUrl){
+        case 'annonce':
+        case 'recherche':
+        break;
+        default:
+        wrp_cpt_mobile(tagpageUrl);
+    }
+
+    /*
+     * gestion du menu sur le cote gauche
+     * permet de l'afficher ouvert
+     * permet de l'avoir sous le header
+     */
+
+    // recup du panel de la page active
+    var panelObject =  data.toPage[0].firstElementChild;
+
+    // recup du header de la page active
+    var header = $(data.toPage[0]).find("div[data-role=header]");
+
+
+
+
+    // on ouvre le panel pour avoir le menu
+
+
+    if (window.matchMedia("(min-width: 640px)").matches) {
+        // 640 et plus
+        $(panelObject).panel("open");
+    } else {
+        //moins de 640
+        $(panelObject).panel("close");
+    }
+
+
+    // on le place sous le header
+    var header = $(header).outerHeight();
+    var panel = $('.ui-panel').height();
+    var panel_width = $('.ui-panel').width();
+
+    console.log(panel_width);
+
+    var panelheight = panel - header;
+
+    $('.ui-panel').css({
+        'top': header,
+        'min-height': panelheight
+    });
+
+    /* Fin gestion menu */
+
 			
 });
+
 
 
 $("[data-role=page][id=annonce]").bind( "pageshow", function( e, data ) {
 
 	if(!app){
-		var historyPrev = $.mobile.urlHistory.getPrev();
+        var historyPrev = null;
+
+		//var historyPrev = $.mobile.urlHistory.getPrev(); // todo $.mobile.urlHistory
 		if(historyPrev){
 			if($('div.ui-header a.ui-btn-left[data-rel=none]').attr('data-rel')!='back'){
 				setTimeout( function(){
@@ -986,7 +1058,7 @@ $("[data-role=page][id=annonce]").bind( "pageshow", function( e, data ) {
 				}, 200 );
 			}
 		}else{
-			$.mobile.urlHistory.clearForward();
+			//$.mobile.urlHistory.clearForward(); // todo $.mobile.urlHistory
 			setTimeout( function(){
 				$('div.ui-header a.ui-btn-left[data-rel=back]').find('span.ui-btn-text').text("Accueil");
 				$('div.ui-header a.ui-btn-left[data-rel=back]').attr('href','#accueil');
@@ -1024,16 +1096,18 @@ $('[data-role=page]').on('pagebeforecreate', function(){
         }
     }
 
+
 	var defaults = {
-	         template:'#popupPanel-tpl'
+	         template:'#panelMenu-tpl'
 	          ,url:'fill-url-source'
 	          ,data:{  }                
-	      }    
+	      };
+
     var options = $.extend(defaults, options);
 	var template = Handlebars.compile($(options.template).html());
 
 	Tab = new Array({'id_page':$(this).attr('id'), 'is_device': is_device, 'sendPush': !acceptedPush, 'noPush': acceptedPush, 'is_android':1, 'is_ios':0 });
-	$('#' +$(this).attr('id') + ' div[data-role=content]').append(template(Tab));
+	$('#' +$(this).attr('id') + ' div[data-role=header]').before(template(Tab));
 
 });
 
@@ -1441,51 +1515,48 @@ $(document).on("pageshow", "#annonce", function() {
 
 </script>
 
+
+
+
+
+
+
 <!-- template handlebar -->
 
-<script id="popupPanel-tpl" type="text/x-handlebars-template">
+<script id="panelMenu-tpl" type="text/x-handlebars-template">
 {{#.}}
-<div data-history="false" data-role="popup" class="popupPanel" id="popupPanel{{id_page}}" data-corners="false" data-theme="none" data-shadow="false" data-tolerance="0,0">
-			 
-    <div  style="text-align:right;">
-    <br>
-    <a href="#popupPanel{{id_page}}" data-rel="close" data-role="button" data-theme="c" class="ui-btn-right" data-icon="delete" data-inline="true" data-iconpos="notext"></a>
-    </div>
-				
-    <div data-role=controlgroup>
-        <a href="#accueil" data-role="button" data-theme="c" data-icon="home" data-corners="false"> Accueil </a>
-        <a href="#" onClick="reset_search(1);" data-role="button" data-theme="c" data-icon="search" data-corners="false">Nouvelle recherche</a>
-        <a href="#mes-recherches" data-role="button" data-theme="c" data-icon="grid" data-corners="false">Mes recherches</a>
+        <div data-role="panel" id="menu-left-panel-{{id_page}}" data-display="overlay" data-position-fixed="true"
+             data-swipe-close="false" data-dismissible="false" class="ui-responsive-panel" >
+
+            <div data-role=controlgroup>
+                <a href="#accueil" data-role="button" data-theme="c" data-icon="home" data-corners="false"> Accueil </a>
+                <a href="#" onClick="reset_search(1);" data-role="button" data-theme="c" data-icon="search" data-corners="false">Nouvelle recherche</a>
+                <a href="#mes-recherches" data-role="button" data-theme="c" data-icon="grid" data-corners="false">Mes recherches</a>
         <!--<a href="#offre" data-role="button" data-theme="e" data-icon="alert" data-corners="false"> Créez une alerte e-mail</a>-->
-        <a href="#recrutement" data-role="button" data-theme="c" data-icon="star" data-corners="false">Accès recruteurs</a>
-        <a href="#mentions-legales" data-role="button" data-theme="c" data-icon="gear" data-corners="false">Mentions légales</a>
-        <!--<a href="#" onclick="javascript:window.open('http://mobile.batiactu.com/','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="gear" data-corners="false">BatiActu</a>-->
-        <a href="#" onclick="javascript:window.open('http://www.batiactuemploi.com/?FROM_MOBILE','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a>
-        {{#if is_device}}
-            {{#if is_android}}
+                <a href="#recrutement" data-role="button" data-theme="c" data-icon="star" data-corners="false">Accès recruteurs</a>
+                <a href="#mentions-legales" data-role="button" data-theme="c" data-icon="gear" data-corners="false">Mentions légales</a>
+                <!--<a href="#" onclick="javascript:window.open('http://mobile.batiactu.com/','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="gear" data-corners="false">BatiActu</a>-->
+                <a href="#" onclick="javascript:window.open('http://www.batiactuemploi.com/?FROM_MOBILE','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a>
+                {{#if is_device}}
+                {{#if is_android}}
                 <a href="#" onclick="javascript:{{#if sendPush}}registerDeviceAndroid();{{/if}} {{#if noPush}}unRegisterDeviceAndroid();{{/if}} return false;" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">{{#if sendPush}}Recevoir des notifications sur vos recherches{{/if}} {{#if noPush}}Supprimer les notifications sur vos recherches{{/if}}</a>
-            {{/if}}
-            {{#if is_ios}}
+                {{/if}}
+                {{#if is_ios}}
                 <a href="#" onclick="javascript:{{#if sendPush}}registerDeviceIos();{{/if}} {{#if noPush}}unRegisterDeviceIos();{{/if}} return false;" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">{{#if sendPush}}Recevoir des notifications sur vos recherches{{/if}} {{#if noPush}}Supprimer les notifications sur vos recherches{{/if}}</a>
-            {{/if}}
-        {{/if}}
-            <!--<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" data-theme="a"
-			   data-icon="arrow-r" data-corners="false">Application batiactu</a>	-->
-    </div>
-			<!--
-			<center>
-			<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-theme="a" 
-			   data-corners="false"><img src="images/ba175x175d75.jpg" 
-			   width="57px" height="57px"></a>
-			   
-			&nbsp; <a href="https://itunes.apple.com/fr/app/maison-a-part/id397104131" data-theme="a" 
-			   data-corners="false"><img src="images/map.jpg" 
-			   width="57px" height="57px"></a></center>
-			   -->
-	 
-</div>
-{{/.}} 
+                {{/if}}
+                {{/if}}
+                <!--<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" data-theme="a"
+                   data-icon="arrow-r" data-corners="false">Application batiactu</a>	-->
+            </div>
+
+        </div>
+{{/.}}
 </script>
+
+
+
+
+
 <script id="nav-recherche-tpl" type="text/x-handlebars-template">
 {{#.}}    
 	<div id="nav-recherche" data-role="footer" style="overflow:hidden;" data-id="footer2" data-position="fixed">

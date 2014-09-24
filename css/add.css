@@ -3,7 +3,7 @@ label.error {
 	color: red; 
 	padding-top: .5em; 
 	vertical-align: top; 
-	font-weight:bold
+	font-weight:bold;
 }
 .border_red {
 	color:red;
@@ -46,7 +46,7 @@ h2 {
 }
 .entete h1 {
     color:#444444;
-	margin-top:0px;
+	margin-top:0;
 }
 .entete {
 	padding:5px 10px;
@@ -55,7 +55,7 @@ h2 {
 }
 
 #accueil .ui-header h1.ui-title{
-    margin: 0.6em 0% 0.8em;
+    margin: 0.6em 0 0.8em;
 }
 
 #annonce h1.ui-title{
@@ -151,13 +151,13 @@ h1.ui-title img.logotitle{
 	filter:alpha(opacity=100);
 }
 #recrutement .ui-content{
-	padding:0px;
+	padding:0;
 }
 #recrutement { 
 	background-color:#ccc !important;
 }
 #annonce .ui-content{
-	padding:0px;
+	padding:0;
 }
 #popupPostuler .bold{
 	font-weight:bold !important;
@@ -184,7 +184,7 @@ h1.ui-title img.logotitle{
 	background:none;
 }
 #resultat-mes-recherches li a {
-	padding:0px;
+	padding:0;
 	text-decoration:none;
 }
 #resultat-mes-recherches li div.contenu{
@@ -205,14 +205,14 @@ h1.ui-title img.logotitle{
    font-style:normal;
    color:#333;
    padding-top:5px;
-   margin-bottom:0px;
+   margin-bottom:0;
 }
 #resultat-mes-recherches li a h2{	
 	font-size:14px !important;
 	color:#fff;
 	background-color:#666;
-	margin:0px !important;
-	padding:10px 0px;
+	margin:0 !important;
+	padding:10px 0;
 	text-align:center;
 	font-weight:normal;
 	text-decoration:none;
@@ -220,7 +220,7 @@ h1.ui-title img.logotitle{
 #resultat-mes-recherches li a.delete {
 	position:absolute;
 	right:5px;
-	top:0px;
+	top:0;
 	text-decoration:none;
 	font-size:24px;
 	font-weight:bold;
@@ -285,20 +285,25 @@ h1.ui-title img.logotitle{
     border-top: 1px solid #c5d5e5; }
     
     
-div[id^=popupPanel][id$=-popup] {
-    right: 0 !important;
-    left: auto !important;
-    min-width:250px;
-	width: 80%;
-}
-.popupPanel {    
-    border: 1px solid #000;
-    border-right: none;
-    background: rgba(0,0,0,.8);
-    margin: -1px 0;
-}
-.popupPanel .ui-btn {
-    margin: 0 15px;
-    /*margin: auto auto;*/
+
+div[data-role=panel] {
+    height: 100%;
+    width: 272px;
 }
 
+div[data-role=content] {
+    /*float:right;*/
+    margin-left: 272px;
+    /*width: 100%;*/
+}
+
+
+@media (max-width:640px){
+
+
+    div[data-role=content] {
+        /*float:right;*/
+        margin-left: 0px;
+        /*width: 100%;*/
+    }
+}

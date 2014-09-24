@@ -150,145 +150,145 @@
 	text-decoration: none;
 }
 /* B
------------------------------------------------------------------------------------------------------------*/
+
+/* C
+------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 .ui-bar-b {
-	border: 1px solid 		#456f9a /*{b-bar-border}*/;
-	background: 			#5e87b0 /*{b-bar-background-color}*/;
-	color: 					#fff /*{b-bar-color}*/;
-	font-weight: bold;
-	text-shadow: 0 /*{b-bar-shadow-x}*/ 1px /*{b-bar-shadow-y}*/ 0 /*{b-bar-shadow-radius}*/ #3e6790 /*{b-bar-shadow-color}*/;
-	background-image: -webkit-gradient(linear, left top, left bottom, from( #6facd5 /*{b-bar-background-start}*/), to( #497bae /*{b-bar-background-end}*/)); /* Saf4+, Chrome */
-	background-image: -webkit-linear-gradient( #6facd5 /*{b-bar-background-start}*/, #497bae /*{b-bar-background-end}*/); /* Chrome 10+, Saf5.1+ */
-	background-image:    -moz-linear-gradient( #6facd5 /*{b-bar-background-start}*/, #497bae /*{b-bar-background-end}*/); /* FF3.6 */
-	background-image:     -ms-linear-gradient( #6facd5 /*{b-bar-background-start}*/, #497bae /*{b-bar-background-end}*/); /* IE10 */
-	background-image:      -o-linear-gradient( #6facd5 /*{b-bar-background-start}*/, #497bae /*{b-bar-background-end}*/); /* Opera 11.10+ */
-	background-image:         linear-gradient( #6facd5 /*{b-bar-background-start}*/, #497bae /*{b-bar-background-end}*/);
+    border: 1px solid 		#456f9a /*{b-bar-border}*/;
+    background: 			#5e87b0 /*{b-bar-background-color}*/;
+    color: 					#fff /*{b-bar-color}*/;
+    font-weight: bold;
+    text-shadow: 0 /*{b-bar-shadow-x}*/ 1px /*{b-bar-shadow-y}*/ 0 /*{b-bar-shadow-radius}*/ #3e6790 /*{b-bar-shadow-color}*/;
+    background-image: -webkit-gradient(linear, left top, left bottom, from( #6facd5 /*{b-bar-background-start}*/), to( #497bae /*{b-bar-background-end}*/)); /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient( #6facd5 /*{b-bar-background-start}*/, #497bae /*{b-bar-background-end}*/); /* Chrome 10+, Saf5.1+ */
+    background-image:    -moz-linear-gradient( #6facd5 /*{b-bar-background-start}*/, #497bae /*{b-bar-background-end}*/); /* FF3.6 */
+    background-image:     -ms-linear-gradient( #6facd5 /*{b-bar-background-start}*/, #497bae /*{b-bar-background-end}*/); /* IE10 */
+    background-image:      -o-linear-gradient( #6facd5 /*{b-bar-background-start}*/, #497bae /*{b-bar-background-end}*/); /* Opera 11.10+ */
+    background-image:         linear-gradient( #6facd5 /*{b-bar-background-start}*/, #497bae /*{b-bar-background-end}*/);
 }
 .ui-bar-b,
 .ui-bar-b input,
 .ui-bar-b select,
 .ui-bar-b textarea,
 .ui-bar-b button {
-	font-family: Helvetica, Arial, sans-serif /*{global-font-family}*/;
+    font-family: Helvetica, Arial, sans-serif /*{global-font-family}*/;
 }
 .ui-bar-b .ui-link-inherit {
-	color: 	#fff /*{b-bar-color}*/;
+    color: 	#fff /*{b-bar-color}*/;
 }
 .ui-bar-b a.ui-link {
-	color: #ddf0f8 /*{b-bar-link-color}*/;
-	font-weight: bold;
+    color: #ddf0f8 /*{b-bar-link-color}*/;
+    font-weight: bold;
 }
 .ui-bar-b a.ui-link:visited {
     color: #ddf0f8 /*{b-bar-link-visited}*/;
 }
 .ui-bar-b a.ui-link:hover {
-	color: #ddf0f8 /*{b-bar-link-hover}*/;
+    color: #ddf0f8 /*{b-bar-link-hover}*/;
 }
 .ui-bar-b a.ui-link:active {
-	color: #ddf0f8 /*{b-bar-link-active}*/;
+    color: #ddf0f8 /*{b-bar-link-active}*/;
 }
 .ui-body-b,
 .ui-overlay-b {
-	border: 1px solid 		#999 /*{b-body-border}*/;
-	background: 			#f3f3f3 /*{b-body-background-color}*/;
-	color: 					#222 /*{b-body-color}*/;
-	text-shadow: 0 /*{b-body-shadow-x}*/ 1px /*{b-body-shadow-y}*/ 0 /*{b-body-shadow-radius}*/ #fff /*{b-body-shadow-color}*/;
-	font-weight: normal;
-	background-image: -webkit-gradient(linear, left top, left bottom, from( #ddd /*{b-body-background-start}*/), to( #ccc /*{b-body-background-end}*/)); /* Saf4+, Chrome */
-	background-image: -webkit-linear-gradient( #ddd /*{b-body-background-start}*/, #ccc /*{b-body-background-end}*/); /* Chrome 10+, Saf5.1+ */
-	background-image:    -moz-linear-gradient( #ddd /*{b-body-background-start}*/, #ccc /*{b-body-background-end}*/); /* FF3.6 */
-	background-image:     -ms-linear-gradient( #ddd /*{b-body-background-start}*/, #ccc /*{b-body-background-end}*/); /* IE10 */
-	background-image:      -o-linear-gradient( #ddd /*{b-body-background-start}*/, #ccc /*{b-body-background-end}*/); /* Opera 11.10+ */
-	background-image:         linear-gradient( #ddd /*{b-body-background-start}*/, #ccc /*{b-body-background-end}*/);
+    border: 1px solid 		#999 /*{b-body-border}*/;
+    background: 			#f3f3f3 /*{b-body-background-color}*/;
+    color: 					#222 /*{b-body-color}*/;
+    text-shadow: 0 /*{b-body-shadow-x}*/ 1px /*{b-body-shadow-y}*/ 0 /*{b-body-shadow-radius}*/ #fff /*{b-body-shadow-color}*/;
+    font-weight: normal;
+    background-image: -webkit-gradient(linear, left top, left bottom, from( #ddd /*{b-body-background-start}*/), to( #ccc /*{b-body-background-end}*/)); /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient( #ddd /*{b-body-background-start}*/, #ccc /*{b-body-background-end}*/); /* Chrome 10+, Saf5.1+ */
+    background-image:    -moz-linear-gradient( #ddd /*{b-body-background-start}*/, #ccc /*{b-body-background-end}*/); /* FF3.6 */
+    background-image:     -ms-linear-gradient( #ddd /*{b-body-background-start}*/, #ccc /*{b-body-background-end}*/); /* IE10 */
+    background-image:      -o-linear-gradient( #ddd /*{b-body-background-start}*/, #ccc /*{b-body-background-end}*/); /* Opera 11.10+ */
+    background-image:         linear-gradient( #ddd /*{b-body-background-start}*/, #ccc /*{b-body-background-end}*/);
 }
 .ui-overlay-b {
-	background-image: none;
-	border-width: 0;
+    background-image: none;
+    border-width: 0;
 }
 .ui-body-b,
 .ui-body-b input,
 .ui-body-b select,
 .ui-body-b textarea,
 .ui-body-b button {
-	font-family: Helvetica, Arial, sans-serif /*{global-font-family}*/;
+    font-family: Helvetica, Arial, sans-serif /*{global-font-family}*/;
 }
 .ui-body-b .ui-link-inherit {
-	color: 	#333 /*{b-body-color}*/;
+    color: 	#333 /*{b-body-color}*/;
 }
 .ui-body-b .ui-link {
-	color: #2489ce /*{b-body-link-color}*/;
-	font-weight: bold;
+    color: #2489ce /*{b-body-link-color}*/;
+    font-weight: bold;
 }
 .ui-body-b .ui-link:visited {
     color: #2489ce /*{b-body-link-visited}*/;
 }
 .ui-body-b .ui-link:hover {
-	color: #2489ce /*{b-body-link-hover}*/;
+    color: #2489ce /*{b-body-link-hover}*/;
 }
 .ui-body-b .ui-link:active {
-	color: #2489ce /*{b-body-link-active}*/;
+    color: #2489ce /*{b-body-link-active}*/;
 }
 .ui-btn-up-b {
-	border: 1px solid 		#044062 /*{b-bup-border}*/;
-	background: 			#396b9e /*{b-bup-background-color}*/;
-	font-weight: bold;
-	color: 					#fff /*{b-bup-color}*/;
-	text-shadow: 0 /*{b-bup-shadow-x}*/ 1px /*{b-bup-shadow-y}*/ 0 /*{b-bup-shadow-radius}*/ #194b7e /*{b-bup-shadow-color}*/;
-	background-image: -webkit-gradient(linear, left top, left bottom, from( #5f9cc5 /*{b-bup-background-start}*/), to( #396b9e /*{b-bup-background-end}*/)); /* Saf4+, Chrome */
-	background-image: -webkit-linear-gradient( #5f9cc5 /*{b-bup-background-start}*/, #396b9e /*{b-bup-background-end}*/); /* Chrome 10+, Saf5.1+ */
-	background-image:    -moz-linear-gradient( #5f9cc5 /*{b-bup-background-start}*/, #396b9e /*{b-bup-background-end}*/); /* FF3.6 */
-	background-image:     -ms-linear-gradient( #5f9cc5 /*{b-bup-background-start}*/, #396b9e /*{b-bup-background-end}*/); /* IE10 */
-	background-image:      -o-linear-gradient( #5f9cc5 /*{b-bup-background-start}*/, #396b9e /*{b-bup-background-end}*/); /* Opera 11.10+ */
-	background-image:         linear-gradient( #5f9cc5 /*{b-bup-background-start}*/, #396b9e /*{b-bup-background-end}*/);
+    border: 1px solid 		#044062 /*{b-bup-border}*/;
+    background: 			#396b9e /*{b-bup-background-color}*/;
+    font-weight: bold;
+    color: 					#fff /*{b-bup-color}*/;
+    text-shadow: 0 /*{b-bup-shadow-x}*/ 1px /*{b-bup-shadow-y}*/ 0 /*{b-bup-shadow-radius}*/ #194b7e /*{b-bup-shadow-color}*/;
+    background-image: -webkit-gradient(linear, left top, left bottom, from( #5f9cc5 /*{b-bup-background-start}*/), to( #396b9e /*{b-bup-background-end}*/)); /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient( #5f9cc5 /*{b-bup-background-start}*/, #396b9e /*{b-bup-background-end}*/); /* Chrome 10+, Saf5.1+ */
+    background-image:    -moz-linear-gradient( #5f9cc5 /*{b-bup-background-start}*/, #396b9e /*{b-bup-background-end}*/); /* FF3.6 */
+    background-image:     -ms-linear-gradient( #5f9cc5 /*{b-bup-background-start}*/, #396b9e /*{b-bup-background-end}*/); /* IE10 */
+    background-image:      -o-linear-gradient( #5f9cc5 /*{b-bup-background-start}*/, #396b9e /*{b-bup-background-end}*/); /* Opera 11.10+ */
+    background-image:         linear-gradient( #5f9cc5 /*{b-bup-background-start}*/, #396b9e /*{b-bup-background-end}*/);
 }
 .ui-btn-up-b:visited,
 .ui-btn-up-b a.ui-link-inherit {
-	color: 					#fff /*{b-bup-color}*/;
+    color: 					#fff /*{b-bup-color}*/;
 }
 .ui-btn-hover-b {
-	border: 1px solid 		#00415e /*{b-bhover-border}*/;
-	background: 			#4b88b6 /*{b-bhover-background-color}*/;
-	font-weight: bold;
-	color: 					#fff /*{b-bhover-color}*/;
-	text-shadow: 0 /*{b-bhover-shadow-x}*/ 1px /*{b-bhover-shadow-y}*/ 0 /*{b-bhover-shadow-radius}*/ #194b7e /*{b-bhover-shadow-color}*/;
-	background-image: -webkit-gradient(linear, left top, left bottom, from( #6facd5 /*{b-bhover-background-start}*/), to( #4272a4 /*{b-bhover-background-end}*/)); /* Saf4+, Chrome */
-	background-image: -webkit-linear-gradient( #6facd5 /*{b-bhover-background-start}*/, #4272a4 /*{b-bhover-background-end}*/); /* Chrome 10+, Saf5.1+ */
-	background-image:    -moz-linear-gradient( #6facd5 /*{b-bhover-background-start}*/, #4272a4 /*{b-bhover-background-end}*/); /* FF3.6 */
-	background-image:     -ms-linear-gradient( #6facd5 /*{b-bhover-background-start}*/, #4272a4 /*{b-bhover-background-end}*/); /* IE10 */
-	background-image:      -o-linear-gradient( #6facd5 /*{b-bhover-background-start}*/, #4272a4 /*{b-bhover-background-end}*/); /* Opera 11.10+ */
-	background-image:         linear-gradient( #6facd5 /*{b-bhover-background-start}*/, #4272a4 /*{b-bhover-background-end}*/);
+    border: 1px solid 		#00415e /*{b-bhover-border}*/;
+    background: 			#4b88b6 /*{b-bhover-background-color}*/;
+    font-weight: bold;
+    color: 					#fff /*{b-bhover-color}*/;
+    text-shadow: 0 /*{b-bhover-shadow-x}*/ 1px /*{b-bhover-shadow-y}*/ 0 /*{b-bhover-shadow-radius}*/ #194b7e /*{b-bhover-shadow-color}*/;
+    background-image: -webkit-gradient(linear, left top, left bottom, from( #6facd5 /*{b-bhover-background-start}*/), to( #4272a4 /*{b-bhover-background-end}*/)); /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient( #6facd5 /*{b-bhover-background-start}*/, #4272a4 /*{b-bhover-background-end}*/); /* Chrome 10+, Saf5.1+ */
+    background-image:    -moz-linear-gradient( #6facd5 /*{b-bhover-background-start}*/, #4272a4 /*{b-bhover-background-end}*/); /* FF3.6 */
+    background-image:     -ms-linear-gradient( #6facd5 /*{b-bhover-background-start}*/, #4272a4 /*{b-bhover-background-end}*/); /* IE10 */
+    background-image:      -o-linear-gradient( #6facd5 /*{b-bhover-background-start}*/, #4272a4 /*{b-bhover-background-end}*/); /* Opera 11.10+ */
+    background-image:         linear-gradient( #6facd5 /*{b-bhover-background-start}*/, #4272a4 /*{b-bhover-background-end}*/);
 }
 .ui-btn-hover-b:visited,
 .ui-btn-hover-b:hover,
 .ui-btn-hover-b a.ui-link-inherit {
-	color: 					#fff /*{b-bhover-color}*/;
+    color: 					#fff /*{b-bhover-color}*/;
 }
 .ui-btn-down-b {
-	border: 1px solid 		#225377 /*{b-bdown-border}*/;
-	background: 			#4e89c5 /*{b-bdown-background-color}*/;
-	font-weight: bold;
-	color: 					#fff /*{b-bdown-color}*/;
-	text-shadow: 0 /*{b-bdown-shadow-x}*/ 1px /*{b-bdown-shadow-y}*/ 0 /*{b-bdown-shadow-radius}*/ #194b7e /*{b-bdown-shadow-color}*/;
-	background-image: -webkit-gradient(linear, left top, left bottom, from( #295b8e /*{b-bdown-background-start}*/), to( #3e79b5 /*{b-bdown-background-end}*/)); /* Saf4+, Chrome */
-	background-image: -webkit-linear-gradient( #295b8e /*{b-bdown-background-start}*/, #3e79b5 /*{b-bdown-background-end}*/); /* Chrome 10+, Saf5.1+ */
-	background-image:    -moz-linear-gradient( #295b8e /*{b-bdown-background-start}*/, #3e79b5 /*{b-bdown-background-end}*/); /* FF3.6 */
-	background-image:     -ms-linear-gradient( #295b8e /*{b-bdown-background-start}*/, #3e79b5 /*{b-bdown-background-end}*/); /* IE10 */
-	background-image:      -o-linear-gradient( #295b8e /*{b-bdown-background-start}*/, #3e79b5 /*{b-bdown-background-end}*/); /* Opera 11.10+ */
-	background-image:         linear-gradient( #295b8e /*{b-bdown-background-start}*/, #3e79b5 /*{b-bdown-background-end}*/);
+    border: 1px solid 		#225377 /*{b-bdown-border}*/;
+    background: 			#4e89c5 /*{b-bdown-background-color}*/;
+    font-weight: bold;
+    color: 					#fff /*{b-bdown-color}*/;
+    text-shadow: 0 /*{b-bdown-shadow-x}*/ 1px /*{b-bdown-shadow-y}*/ 0 /*{b-bdown-shadow-radius}*/ #194b7e /*{b-bdown-shadow-color}*/;
+    background-image: -webkit-gradient(linear, left top, left bottom, from( #295b8e /*{b-bdown-background-start}*/), to( #3e79b5 /*{b-bdown-background-end}*/)); /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient( #295b8e /*{b-bdown-background-start}*/, #3e79b5 /*{b-bdown-background-end}*/); /* Chrome 10+, Saf5.1+ */
+    background-image:    -moz-linear-gradient( #295b8e /*{b-bdown-background-start}*/, #3e79b5 /*{b-bdown-background-end}*/); /* FF3.6 */
+    background-image:     -ms-linear-gradient( #295b8e /*{b-bdown-background-start}*/, #3e79b5 /*{b-bdown-background-end}*/); /* IE10 */
+    background-image:      -o-linear-gradient( #295b8e /*{b-bdown-background-start}*/, #3e79b5 /*{b-bdown-background-end}*/); /* Opera 11.10+ */
+    background-image:         linear-gradient( #295b8e /*{b-bdown-background-start}*/, #3e79b5 /*{b-bdown-background-end}*/);
 }
 .ui-btn-down-b:visited,
 .ui-btn-down-b:hover,
 .ui-btn-down-b a.ui-link-inherit {
-	color: 					#fff /*{b-bdown-color}*/;
+    color: 					#fff /*{b-bdown-color}*/;
 }
 .ui-btn-up-b,
 .ui-btn-hover-b,
 .ui-btn-down-b {
-	font-family: Helvetica, Arial, sans-serif /*{global-font-family}*/;
-	text-decoration: none;
-}
-/* C
------------------------------------------------------------------------------------------------------------*/
+    font-family: Helvetica, Arial, sans-serif /*{global-font-family}*/;
+    text-decoration: none;
+}----------------------------------------------------------*/
 .ui-bar-c {
 	border: 1px solid 		#b3b3b3 /*{c-bar-border}*/;
 	background: 			#eee /*{c-bar-background-color}*/;
@@ -1698,11 +1698,11 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 	-webkit-backface-visibility: hidden;
 	-webkit-transform: translateX(0); /* Needed to work around an iOS 3.1 bug that causes listview thumbs to disappear when -webkit-visibility:hidden is used. */
 	-webkit-transform-origin: 0;
-	
+
 	-moz-backface-visibility: hidden;
 	-moz-transform: translateX(0);
 	-moz-transform-origin: 0;
-	
+
 	backface-visibility :hidden;
 	transform: translateX(0);
 	transform-origin: 0;
@@ -1725,7 +1725,7 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 	-moz-animation-duration: 250ms;
 	animation-name: flipintoright;
 	animation-duration: 250ms;
-	
+
 }
 .turn.out.reverse {
 	-webkit-transform: rotateY(90deg) scale(.9);
@@ -1792,17 +1792,17 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 .flow {
 	-webkit-transform-origin: 50% 30%;
 	-webkit-box-shadow: 0 0 20px rgba(0,0,0,.4);
-	-moz-transform-origin: 50% 30%;	
+	-moz-transform-origin: 50% 30%;
 	-moz-box-shadow: 0 0 20px rgba(0,0,0,.4);
-	transform-origin: 50% 30%;	
+	transform-origin: 50% 30%;
 	box-shadow: 0 0 20px rgba(0,0,0,.4);
 }
 .ui-dialog.flow {
 	-webkit-transform-origin: none;
 	-webkit-box-shadow: none;
-	-moz-transform-origin: none;	
+	-moz-transform-origin: none;
 	-moz-box-shadow: none;
-	transform-origin: none;	
+	transform-origin: none;
 	box-shadow: none;
 }
 .flow.out {
@@ -1930,13 +1930,13 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 .ui-grid-d .ui-block-a { clear: left; }
 /* preset breakpoint to switch to stacked grid styles below 35em (560px) */
 @media all and (max-width: 35em) {
-	.ui-responsive .ui-block-a, 
-	.ui-responsive .ui-block-b, 
+	.ui-responsive .ui-block-a,
+	.ui-responsive .ui-block-b,
 	.ui-responsive .ui-block-c,
 	.ui-responsive .ui-block-d,
-	.ui-responsive .ui-block-e { 
-		width: 100%; 
-		float:none; 
+	.ui-responsive .ui-block-e {
+		width: 100%;
+		float:none;
 	}
 }
 /* fixed page header & footer configuration */
@@ -1987,7 +1987,7 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 	left: -9999px;
 }
 .ui-header-fixed .ui-btn,
-.ui-footer-fixed .ui-btn { 
+.ui-footer-fixed .ui-btn {
 	z-index: 10;
 }
 /* workarounds for other widgets */
@@ -2073,7 +2073,7 @@ div.ui-btn-text { width: auto; }
 .ui-mini .ui-btn-icon-bottom .ui-btn-inner { padding-bottom: 30px; }
 /* Corner styling inheritance */
 .ui-btn-inner {
-	-webkit-border-radius: inherit;	
+	-webkit-border-radius: inherit;
 	border-radius: inherit;
 }
 /*btn icon positioning*/
@@ -2132,7 +2132,7 @@ label.ui-submit { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 .ui-collapsible-heading-status { position: absolute; top: -9999px; left: 0; }
 .ui-collapsible-content {
 	display: block;
-	margin: 0 -15px;	
+	margin: 0 -15px;
 	padding: 10px 15px;
 	border-left-width: 0;
 	border-right-width: 0;
@@ -2147,27 +2147,27 @@ label.ui-submit { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 }
 .ui-collapsible-heading,
 .ui-collapsible-heading > .ui-btn {
-	-webkit-border-radius: inherit;	
-	border-radius: inherit;	
+	-webkit-border-radius: inherit;
+	border-radius: inherit;
 }
 .ui-collapsible-set .ui-collapsible.ui-first-child {
-	-webkit-border-top-right-radius: inherit;	
+	-webkit-border-top-right-radius: inherit;
 	border-top-right-radius: inherit;
-	-webkit-border-top-left-radius: inherit;	
-	border-top-left-radius: inherit;		
+	-webkit-border-top-left-radius: inherit;
+	border-top-left-radius: inherit;
 }
 .ui-collapsible-content,
 .ui-collapsible-set .ui-collapsible.ui-last-child {
-	-webkit-border-bottom-right-radius: inherit;	
+	-webkit-border-bottom-right-radius: inherit;
 	border-bottom-right-radius: inherit;
-	-webkit-border-bottom-left-radius: inherit;	
-	border-bottom-left-radius: inherit;		
+	-webkit-border-bottom-left-radius: inherit;
+	border-bottom-left-radius: inherit;
 }
 .ui-collapsible-themed-content:not(.ui-collapsible-collapsed) > .ui-collapsible-heading {
-	-webkit-border-bottom-right-radius: 0;	
+	-webkit-border-bottom-right-radius: 0;
 	border-bottom-right-radius: 0;
-	-webkit-border-bottom-left-radius: 0;	
-	border-bottom-left-radius: 0;		
+	-webkit-border-bottom-left-radius: 0;
+	border-bottom-left-radius: 0;
 }
 .ui-collapsible-set { margin: .5em 0; }
 .ui-collapsible-set .ui-collapsible { margin: -1px 0 0; }
@@ -2248,10 +2248,10 @@ label.ui-submit { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 @media all and (min-width: 28em){
 	.ui-field-contain .ui-controlgroup-label { vertical-align: top; display: inline-block; width: 20%; margin: 0 2% 0 0; }
 	.ui-field-contain .ui-controlgroup-controls { width: 78%; display: inline-block; }
-	.ui-field-contain .ui-controlgroup .ui-select { width: 100%; display: block; } 
+	.ui-field-contain .ui-controlgroup .ui-select { width: 100%; display: block; }
 	.ui-field-contain .ui-controlgroup-horizontal .ui-select { width: auto; }
 	.ui-hide-label .ui-controlgroup-controls { width: 100%; }
-}	
+}
 .ui-dialog {
 	 background: none !important; /* this is to ensure that dialog theming does not apply (by default at least) on the page div */
 }
@@ -2263,26 +2263,26 @@ label.ui-submit { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 	position: relative;
 	top: -15px;
 }
-.ui-dialog-contain > .ui-header, 
-.ui-dialog-contain > .ui-content, 
-.ui-dialog-contain > .ui-footer { 
+.ui-dialog-contain > .ui-header,
+.ui-dialog-contain > .ui-content,
+.ui-dialog-contain > .ui-footer {
 	display: block;
-	position: relative; 
+	position: relative;
 	width: auto;
 	margin: 0;
 }
 .ui-dialog-contain > .ui-header {
 	border: none;
 	overflow: hidden;
-	z-index: 10; 
+	z-index: 10;
 	padding: 0;
 }
-.ui-dialog-contain > .ui-content { 
-	padding: 15px; 
+.ui-dialog-contain > .ui-content {
+	padding: 15px;
 }
 .ui-dialog-contain > .ui-footer {
-	z-index: 10; 
-	padding: 0 15px; 
+	z-index: 10;
+	padding: 0 15px;
 }
 .ui-popup-open .ui-header-fixed,
 .ui-popup-open .ui-footer-fixed {
@@ -2404,7 +2404,7 @@ label.ui-submit { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 }
 .ui-popup > .ui-btn-left,
 .ui-popup > .ui-btn-right {
-	position: absolute; 
+	position: absolute;
 	top: -9px;
 	margin: 0;
 	z-index: 1101;
@@ -2484,7 +2484,7 @@ label.ui-select { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 @media all and (min-width: 28em){
 	.ui-field-contain label.ui-select { vertical-align: top; display: inline-block; width: 20%; margin: 0 2% 0 0; }
 	.ui-field-contain .ui-select { width: 78%; display: inline-block; }
-	.ui-hide-label .ui-select { width: 100%; } 
+	.ui-hide-label .ui-select { width: 100%; }
 }
 /* when no placeholder is defined in a multiple select, the header height doesn't even extend past the close button.  this shim's content in there */
 .ui-selectmenu .ui-header h1:after { content: '.'; visibility: hidden; }
@@ -2650,12 +2650,12 @@ ol.ui-listview, ol.ui-listview .ui-li-divider { counter-reset: listnumbering; }
 ol.ui-listview .ui-link-inherit:before, ol.ui-listview .ui-li-static:before, .ui-li-dec { font-size: .8em; display: inline-block; padding-right: .3em; font-weight: normal; counter-increment: listnumbering; content: counter(listnumbering) ". "; }
 ol.ui-listview .ui-li-jsnumbering:before { content: "" !important; } /* to avoid chance of duplication */
 .ui-listview .ui-li > .ui-btn-text {
-	-webkit-border-radius: inherit;	
+	-webkit-border-radius: inherit;
 	border-radius: inherit;
 }
 .ui-listview > .ui-li.ui-first-child,
 .ui-listview .ui-btn.ui-first-child > .ui-li > .ui-btn-text > .ui-link-inherit {
-	-webkit-border-top-right-radius: inherit;	
+	-webkit-border-top-right-radius: inherit;
 	border-top-right-radius: inherit;
 	-webkit-border-top-left-radius: inherit;
 	border-top-left-radius: inherit;
@@ -2670,20 +2670,20 @@ ol.ui-listview .ui-li-jsnumbering:before { content: "" !important; } /* to avoid
 	border-bottom-left-radius: inherit;
 }
 .ui-listview > .ui-li.ui-first-child .ui-li-link-alt {
-	-webkit-border-top-right-radius: inherit;	
-	border-top-right-radius: inherit;	
+	-webkit-border-top-right-radius: inherit;
+	border-top-right-radius: inherit;
 }
 .ui-listview > .ui-li.ui-last-child .ui-li-link-alt {
 	-webkit-border-bottom-right-radius: inherit;
-	border-bottom-right-radius: inherit;	
+	border-bottom-right-radius: inherit;
 }
 .ui-listview > .ui-li.ui-first-child .ui-li-thumb:not(.ui-li-icon) {
 	-webkit-border-top-left-radius: inherit;
-	border-top-left-radius: inherit;	
+	border-top-left-radius: inherit;
 }
 .ui-listview > .ui-li.ui-last-child .ui-li-thumb:not(.ui-li-icon) {
 	-webkit-border-bottom-left-radius: inherit;
-	border-bottom-left-radius: inherit;	
+	border-bottom-left-radius: inherit;
 }
 .ui-li>.ui-btn-inner { display: block; position: relative; padding: 0; }
 .ui-li .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li { padding: .7em 15px; display: block; }
@@ -2702,7 +2702,7 @@ ol.ui-listview > .ui-li .ui-li-desc:not(.ui-li-aside) { text-indent: 1.55em; }
 .ui-li-aside { float: right; width: 50%; text-align: right; margin: .3em 0; }
 @media all and (min-width: 480px){
 	 .ui-li-aside { width: 45%; }
-}	 
+}
 .ui-li-divider { cursor: default; }
 .ui-li-has-alt .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-alt { padding-right: 53px; }
 .ui-li-has-alt.ui-li-has-count .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-alt.ui-li-has-count { padding-right: 88px; }
@@ -2926,7 +2926,7 @@ div.ui-slider-switch.ui-mini {
 	.ui-field-contain div.ui-slider-switch.ui-mini {
 		width: 5em;
 	}
-}	
+}
 .ui-table {
    border: 0;
    border-collapse: collapse;
@@ -3063,36 +3063,36 @@ div.ui-slider-switch.ui-mini {
  Styles for the table columntoggle mode
 */
 .ui-table-reflow td .ui-table-cell-label,
-.ui-table-reflow th .ui-table-cell-label { 
+.ui-table-reflow th .ui-table-cell-label {
 	display: none;
 }
-/* Mobile first styles: Begin with the stacked presentation at narrow widths */ 
+/* Mobile first styles: Begin with the stacked presentation at narrow widths */
 @media only all {
-	/* Hide the table headers */ 
-	.ui-table-reflow thead td, 
+	/* Hide the table headers */
+	.ui-table-reflow thead td,
 	.ui-table-reflow thead th {
 		display: none;
 	}
-	/* Show the table cells as a block level element */ 
+	/* Show the table cells as a block level element */
 	.ui-table-reflow td,
-	.ui-table-reflow th { 
+	.ui-table-reflow th {
 		text-align: left;
 		display: block;
 	}
-	/* Add a fair amount of top margin to visually separate each row when stacked */  
+	/* Add a fair amount of top margin to visually separate each row when stacked */
 	.ui-table-reflow tbody th {
 		margin-top: 3em;
 	}
-	/* Make the label elements a percentage width */ 
+	/* Make the label elements a percentage width */
 	.ui-table-reflow td .ui-table-cell-label,
-	.ui-table-reflow th .ui-table-cell-label { 
+	.ui-table-reflow th .ui-table-cell-label {
 		display: block;
-		padding: .4em; 
-		min-width: 30%; 
+		padding: .4em;
+		min-width: 30%;
 		display: inline-block;
 		margin: -.4em 1em -.4em -.4em;
 	}
-	/* For grouped headers, have a different style to visually separate the levels by classing the first label in each col group */ 
+	/* For grouped headers, have a different style to visually separate the levels by classing the first label in each col group */
 	.ui-table-reflow th .ui-table-cell-label-top,
 	.ui-table-reflow td .ui-table-cell-label-top {
 		display: block;
@@ -3103,13 +3103,13 @@ div.ui-slider-switch.ui-mini {
 		font-weight: normal;
 	}
 }
-/* Breakpoint to show as a standard table at 560px (35em x 16px) or wider */ 
+/* Breakpoint to show as a standard table at 560px (35em x 16px) or wider */
 @media ( min-width: 35em ) {
 	/* Fixes table rendering when switching between breakpoints in Safari <= 5. See https://github.com/jquery/jquery-mobile/issues/5380 */
 	.ui-table-reflow.ui-responsive {
 		display: table-row-group;
 	}
-	/* Show the table header rows */ 
+	/* Show the table header rows */
 	.ui-table-reflow.ui-responsive td,
 	.ui-table-reflow.ui-responsive th,
 	.ui-table-reflow.ui-responsive tbody th,
@@ -3119,14 +3119,14 @@ div.ui-slider-switch.ui-mini {
 		display: table-cell;
 		margin: 0;
 	}
-	/* Hide the labels in each cell */ 
+	/* Hide the labels in each cell */
 	.ui-table-reflow.ui-responsive td .ui-table-cell-label,
-	.ui-table-reflow.ui-responsive th .ui-table-cell-label { 
+	.ui-table-reflow.ui-responsive th .ui-table-cell-label {
 		display: none;
 	}
 }
-/* Hack to make IE9 and WP7.5 treat cells like block level elements, scoped to ui-responsive class */ 
-/* Applied in a max-width media query up to the table layout breakpoint so we don't need to negate this*/ 
+/* Hack to make IE9 and WP7.5 treat cells like block level elements, scoped to ui-responsive class */
+/* Applied in a max-width media query up to the table layout breakpoint so we don't need to negate this*/
 @media ( max-width: 35em ) {
 	.ui-table-reflow.ui-responsive td,
 	.ui-table-reflow.ui-responsive th {
@@ -3288,9 +3288,9 @@ div.ui-slider-switch.ui-mini {
 	right: 17em;
 }
 /* animated: panel right open (for reveal and push) */
-.ui-panel-animate.ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-reveal, 
+.ui-panel-animate.ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-reveal,
 .ui-panel-animate.ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-push,
-.ui-panel-animate.ui-panel-content-wrap-position-right.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal, 
+.ui-panel-animate.ui-panel-content-wrap-position-right.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal,
 .ui-panel-animate.ui-panel-content-wrap-position-right.ui-panel-content-wrap-open.ui-panel-content-wrap-display-push {
 	left: 0;
 	right: 0;
@@ -3358,9 +3358,9 @@ div.ui-slider-switch.ui-mini {
 	}
 	.ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-push,
 	.ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-reveal {
-		width: auto;	
+		width: auto;
 	}
 	.ui-responsive-panel .ui-panel-dismiss-display-push {
 		display: none;
-	}	
+	}
 }
