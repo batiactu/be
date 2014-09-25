@@ -50,7 +50,6 @@
     <script type="text/javascript" src="js/lib/jstorage.js" ></script>
     <script type="text/javascript" src="js/lib/waypoints.min.js" ></script>
     <script type="text/javascript" src="js/lib/waypoints-infinite.min.js" ></script>
-    <script type="text/javascript" src="js/lib/handlebars-v2.0.0.js" ></script>
     <!-- =============================    Fin LIB JS    ================================================== -->
 
 
@@ -83,6 +82,9 @@
         });
     </script>
 
+
+
+
     <!--script type="text/javascript" src="http://192.168.3.103/bem/js/cipallmin.js"></script-->
     <!-- =========================   Fin dans cipallmin.js : ===================================-->
 
@@ -97,15 +99,17 @@
     <!-- =============================    Fin LIB JS pour PhoneGap et Plugins    ================================================== -->
 
 
-<script type="application/javascript" >
-    /*$('#handlebars-template').load('http:/192.168.3.103/bem/template.html');*/
-    $.get('/bem/template.html', function(data){
-        $(data).appendTo("#handlebars-template");
-    });
+    <script type="application/javascript" >
+        /*$('#handlebars-template').load('http:/192.168.3.103/bem/template.html');*/
+        $.get('/bem/template.html', function(data){
+            //$(data).appendTo("#handlebars-template");
+            $("#handlebars-template").html(data);
+        });
 
 
-</script>
+    </script>
 
+    <script type="text/javascript" src="js/lib/handlebars-v2.0.0.js" ></script>
 
 
 </head>
@@ -642,19 +646,53 @@
 
 <div id="handlebars-template">
 
-
-    <script id="debug-qui-sert-a-rien-tpl" type="text/x-handlebars-template">
+    <script id="panelMenu-tpl" type="text/x-handlebars-template">
         {{#.}}
-        <li class="infinite-item">
-
-           Vide
-
-
-        </li>
+        vide
         {{/.}}
     </script>
 
+    <script id="nav-recherche-tpl" type="text/x-handlebars-template">
+        {{#.}}
+        vide
+        {{/.}}
+    </script>
+
+    <script id="nav-annonce-detail-tpl" type="text/x-handlebars-template">
+        {{#.}}
+        vide
+        {{/.}}
+    </script>
+
+    <script id="annonce-detail-tpl" type="text/x-handlebars-template">
+        {{#.}}
+        vide
+
+        {{/.}}
+    </script>
+
+    <script id="recherche-detail-tpl" type="text/x-handlebars-template">
+        {{#.}}
+        vide
+        {{/.}}
+    </script>
+
+    <script id="recherche-resultat-tpl" type="text/x-handlebars-template">
+        {{#.}}
+        vide
+        {{/.}}
+    </script>
+
+
+    <script id="mes-recherches-resultat-tpl" type="text/x-handlebars-template">
+        {{#.}}
+        vide
+        {{/.}}
+    </script>
+
+
 </div>
+
 
 
 
