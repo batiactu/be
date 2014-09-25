@@ -96,6 +96,18 @@
     <script type="text/javascript" src="js/lib/PushNotification.js"></script>
     <!-- =============================    Fin LIB JS pour PhoneGap et Plugins    ================================================== -->
 
+
+<script type="application/javascript" >
+    /*$('#handlebars-template').load('http:/192.168.3.103/bem/template.html');*/
+    $.get('/bem/template.html', function(data){
+        $(data).appendTo("#handlebars-template");
+    });
+
+
+</script>
+
+
+
 </head>
 
 <body >
@@ -606,6 +618,8 @@
 
     document.addEventListener("deviceready", onDeviceReady, true);
 
+
+
     function onDeviceReady() {
         is_device = 1;
         gaObj = window.plugins.gaPlugin;
@@ -613,7 +627,6 @@
 
         // gestion du push
         deviceIsReadyForPush();
-
     }
 
 
@@ -624,13 +637,14 @@
 
 <!-- template handlebar -->
 
-<script type="application/javascript">
-    $('handlebars-template').load('http:/192.168.3.103/bem/template.html');
-
-</script>
 
 
-<div id="handlebars-template" style="display: none"></div>
+
+<div id="handlebars-template">
+
+
+
+</div>
 
 
 
