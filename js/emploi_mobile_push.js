@@ -141,7 +141,7 @@ function deviceIsReadyForPush () {
     batiMP.unRegisterSuffix = false; // gestion d'un suffixe pour les callBack lors du desenregistrement
     batiMP.senderID = "211095738121"; // sender ID fourni par google
     batiMP.setDebug(true, "div[data-role=content]");
-    batiMP.log("applel devise ready", 'DEBUG');
+    batiMP.log("applel device ready", 'DEBUG');
 
     // info pour les webservices
     appliName = 'EmploiBatiactuMobile';
@@ -164,14 +164,12 @@ function deviceIsReadyForPush () {
         afficheNotifs(listePush);
     }
 
-    batiMP.log("register IOS", 'DEBUG IOS');
-
     majInfoPush() ;
     var pushToken = batiMP.getPushToken();
 
     batiMP.log(pushToken, 'DEBUG');
     // si le token est présent, la personne à demandé les push et on s'enregistre pour affecter les différentd callBack
-    if (pushToken != '' && pushToken != null) {
+    if (pushToken != null) {
         try {
             // les callbash seront suffixé par le nom de l'OS (ios / android)
             batiMP.registerDevice("successHandler", "errorHandler", "onNotification");
@@ -180,6 +178,12 @@ function deviceIsReadyForPush () {
             batiMP.log(err.message, 'ERROR');
         }
     }
+
+
+    batiMP.log('Fin device ready');
+
+
+
 }
 
 

@@ -173,6 +173,7 @@ batiactuMobilePush.prototype.unRegisterDevice = function (callBackSuccessHandler
 
 batiactuMobilePush.prototype.log = function (message, code_erreur) {
     if (this.genLog) {
-        $("#app-status-ul").append('<li>' + code_erreur + ' : ' + message + '</li>');
+        alert(code_erreur + ' : ' + message);
+        //$("#app-status-ul").append('<li>' + code_erreur + ' : ' + message + '</li>');
     }
 }

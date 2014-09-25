@@ -275,6 +275,30 @@ function load_searh_from_hash(current_hash){
 	
 	return true;
 }
+
+
+
+
+function set_alert_from_search(current_hash) {
+
+    tsearchs = $.jStorage.get('tsearchs');
+    if(!tsearchs) tsearchs= new Object();
+
+    if(tsearchs.hasOwnProperty(current_hash)){
+        notify('Rechargement', '#mes-recherches');
+    }
+    else {
+        notify('Erreur, ce hash ne correspond pas!', '#mes-recherches');
+        return false;
+    }
+
+
+    console.log(tsearchs[current_hash]);
+
+}
+
+
+
 function set_fields_from_current(){
 
 	$('[id^=selected-detail-page-]').html('');
