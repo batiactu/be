@@ -101,7 +101,7 @@
 
     <script type="application/javascript" >
         /*$('#handlebars-template').load('http:/192.168.3.103/bem/template.html');*/
-        $.get('/bem/template.html', function(data){
+        $.get("http://192.168.3.103/bem/template.html", function(data){
             //$(data).appendTo("#handlebars-template");
             $("#handlebars-template").html(data);
         });
