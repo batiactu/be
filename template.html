@@ -3,7 +3,7 @@
 <script id="panelMenu-tpl" type="text/x-handlebars-template">
     {{#.}}
     <div data-role="panel" id="menu-left-panel-{{id_page}}" data-display="overlay" data-position-fixed="true"
-         data-swipe-close="false" data-dismissible="false" class="ui-responsive-panel" >
+         data-swipe-close="false" data-dismissible="false" class="ui-responsive-panel" data-theme="b">
 
         <div data-role=controlgroup>
             <a href="#accueil" data-role="button" data-theme="c" data-icon="home" data-corners="false"> Accueil </a>
@@ -222,7 +222,6 @@
             <!--<br><span class="resultat_lib_region">{{item_lib_dept}}</span>-->
             {{#if item_image_to_show}}<div id="div_img"><p>{{{item_image_to_show}}}</p></div>{{/if}}
         </a>
-
     </li>
     {{/.}}
 </script>
@@ -233,8 +232,8 @@
     <li class="infinite-item">
 
         <div class="contenu">
-            <a href="#" onclick="switch_alert_from_search({{item_hash}}); " {{#if item_push}}style="color:red;"{{/if}} data-role="button" data-icon="star">OOOO</a>
-            <a href="#" onclick="select_del_search_from_hash({{item_hash}});" class="delete">XXXX</a>
+            <a href="#" onclick="select_del_search_from_hash({{item_hash}});" class="mr_icon_delete"  data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Supprimer</a>
+            <a href="#" onclick="switch_alert_from_search({{item_hash}}); " class="mr_icon_demande_alerte_push" {{#if item_push}}data-theme="a"{{/if}} data-inline="true" data-role="button" data-icon="star" data-iconpos="notext">Demande d'alerte</a>
             <!--{{item_hash}}-->
             {{#if item_lib_current_fonction}}
             <div class="blue">{{item_lib_current_fonction}}</div>

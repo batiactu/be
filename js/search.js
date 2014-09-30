@@ -267,10 +267,8 @@ function load_searh_from_hash(current_hash){
 	
 	reset_search();
 
-
     criteres_search_current_hash = tsearchs[current_hash];
-	
-	
+
 	$.each(criteres_search_current_hash,function(key, value) {
 		window[key]=value;
 	});	
@@ -314,7 +312,7 @@ function switch_alert_from_search(current_hash) {
             batiMP.log('Désactivation alerte hash :' + current_hash , 'DEBUG');
             registerPush(batiMP.getPushToken(), {'put':'supp_push_alert', 'local_hash':current_hash});
         }
-
+        $(this).buttonMarkup({theme: "d"});
     }
     else {
         // activation de l'alerte'
@@ -335,12 +333,11 @@ function switch_alert_from_search(current_hash) {
             batiMP.log('Activation alerte hash :' + current_hash , 'DEBUG');
             registerPush(batiMP.getPushToken(), {'put':'add_push_alert', 'local_hash':current_hash, 'alerte':alerte});
         }
+
+        $(this).buttonMarkup({theme: "a"});
     }
 
-    //    console.log(tsearchs[current_hash]);
-
     saved_object_search( tsearchs[current_hash]);
-
 
 }
 

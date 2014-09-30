@@ -230,12 +230,14 @@ function majInfoPush() {
     //batiMP.log(pushToken, 'TOKEN');
    // batiMP.log(typeof pushToken, 'TOKEN2');
 
-    if (pushToken != '' && pushToken != null) {
+   /* if (pushToken != '' && pushToken != null) {
         $('#idcheckPush').show();
     }
     else {
         $('#idcheckPush').hide();
-    }
+    }*/
+
+    maj_panel('');
 }
 
 /* ================================================================================================================= */

@@ -4,6 +4,8 @@
 	version = "1.1.0"
 	versionCode = "1">
 
+    <!-- Incrementer la version de versionCode pour Android, sinon lors de la soumission une erreur apparaitra -->
+
     <name>Batiactu Emploi</name>
     <description>Batiactu Emploi : 1er site de référence des annonces emploi du BTP</description>
     <author href="http://www.batiactugroupe.com" email="webmaster@batiactugroupe.com">Batiactu Groupe</author>

@@ -75,12 +75,18 @@
 			 	myList.show();
 			 	//myList.listview('refresh');
 
+
+
 			 	if(options.noLoading==null){ remove_notify('#mes-recherches');$.mobile.loading( 'hide' )};
 			 	
 			 	if(use_infinite){
 			 		$.waypoints();
 	    			$.waypoints('refresh');
 	    		}
+
+
+            $(".mr_icon_demande_alerte_push").buttonMarkup({ corners: true });
+            $(".mr_icon_delete").buttonMarkup({ corners: true });
 			 
 
     }
