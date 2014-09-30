@@ -15,14 +15,14 @@
             <!--<a href="#" onclick="javascript:window.open('http://mobile.batiactu.com/','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="gear" data-corners="false">BatiActu</a>-->
             <a href="#" onclick="javascript:window.open('http://www.batiactuemploi.com/?FROM_MOBILE','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a>
 
-{{#if is_device}}
-<a href="#" onclick="javascript:{{#if sendPush}}batiMP.registerDevice("successHandler", "errorHandler", "onNotification");{{/if}} {{#if noPush}}batiMP.unRegisterDevice("successHandlerUnRegister", "errorHandlerUnRegister");{{/if}} return false;" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">{{#if sendPush}}Recevoir des notifications sur vos recherches{{/if}} {{#if noPush}}Supprimer les notifications sur vos recherches{{/if}}</a>
-{{/if}}
-<!--<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" data-theme="a"
-   data-icon="arrow-r" data-corners="false">Application batiactu</a>	-->
-</div>
+            {{#if is_device}}
+            <a href="#" onclick="javascript:{{#if sendPush}}batiMP.registerDevice('successHandler', 'errorHandler', 'onNotification');{{/if}} {{#if noPush}}batiMP.unRegisterDevice('successHandlerUnRegister', 'errorHandlerUnRegister');{{/if}} return false;" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">{{#if sendPush}}Recevoir des notifications sur vos recherches{{/if}} {{#if noPush}}Supprimer les notifications sur vos recherches{{/if}}</a>
+            {{/if}}
 
-</div>
+            <!--<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" data-theme="a"
+               data-icon="arrow-r" data-corners="false">Application batiactu</a>	-->
+        </div>
+    </div>
 {{/.}}
 </script>
 
@@ -233,7 +233,7 @@
     <li class="infinite-item">
 
         <div class="contenu">
-            <a href="#" onclick="set_alert_from_search({{item_hash}});" data-icon="alert">&nbsp;ffff</a>
+            <a href="#" onclick="switch_alert_from_search({{item_hash}}); " {{#if item_push}}style="color:red;"{{/if}} data-role="button" data-icon="star">OOOO</a>
             <a href="#" onclick="select_del_search_from_hash({{item_hash}});" class="delete">XXXX</a>
             <!--{{item_hash}}-->
             {{#if item_lib_current_fonction}}

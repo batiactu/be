@@ -23,7 +23,7 @@ batiactuMobilePush.prototype.setDebug = function(debug, divLog) {
     }
 
     if (this.genLog && $(divLog).length == 0) {
-        alert("Attention, l'id : "  + divLog + " n'existe pas, dans le fichier html.");
+        console.log("Attention, l'id : "  + divLog + " n'existe pas, dans le fichier html.");
     }
     else if (this.genLog && $(divLog).length > 0) {
         this.divLog = divLog;
@@ -83,10 +83,10 @@ batiactuMobilePush.prototype.registerDeviceAndroid = function (callBackSuccessHa
     callBackErrorHandler = window[callBackErrorHandler];
 
     if (typeof callBackSuccessHandler != 'function') {
-        alert('callBackSuccessHandler pas une fonction ');
+        console.log('callBackSuccessHandler pas une fonction ');
     }
     if (typeof callBackErrorHandler != 'function') {
-        alert('callBackErrorHandler pas une fonction ');
+        console.log('callBackErrorHandler pas une fonction ');
     }
     if (this.genLog) {
         this.log('Plugin Register Android, senderID : ' +  this.senderID + ' appel function : ' + stringCallBackNotification ,'DEBUG');
@@ -173,7 +173,7 @@ batiactuMobilePush.prototype.unRegisterDevice = function (callBackSuccessHandler
 
 batiactuMobilePush.prototype.log = function (message, code_erreur) {
     if (this.genLog) {
-        alert(code_erreur + ' : ' + message);
-        //$("#app-status-ul").append('<li>' + code_erreur + ' : ' + message + '</li>');
+        console.log(code_erreur + ' : ' + message);
+        //$(this.divLog).append('<li>' + code_erreur + ' : ' + message + '</li>');
     }
 }

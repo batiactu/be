@@ -140,7 +140,7 @@ function deviceIsReadyForPush () {
     batiMP.registerSuffix = true; // gestion d'un suffixe pour les callBack lors de l'enregistrement
     batiMP.unRegisterSuffix = false; // gestion d'un suffixe pour les callBack lors du desenregistrement
     batiMP.senderID = "211095738121"; // sender ID fourni par google
-    batiMP.setDebug(true, "div[data-role=content]");
+    batiMP.setDebug(true, "ee");
     batiMP.log("applel device ready", 'DEBUG');
 
     // info pour les webservices
@@ -264,13 +264,17 @@ function errorHandlerUnRegister(result) {
 function onSuccess(data) {
     $("#app-status-ul").append(data);
     if (typeof data.success == 'undefined' || data.success == 'false') {
-        alert('Une erreur est survenu');
+        console.log('Une erreur est survenu');
     }
 }
 
-function onError(err){
+function onError(err, str1, str2){
     batiMP.log('Erreur Ajax', 'DEBUG');
+    console.log(err, "ERROR");
+    console.log(str1, "ERROR");
+    console.log(str2, "ERROR");
 }
+
 
 // gestion de la désactivation des notification (désabonnement + supp token)
 function unRegisterPush() {
@@ -278,7 +282,7 @@ function unRegisterPush() {
     if (token != null) {
         $.ajax({
             url: 'http://' + registerServeur + registerUrlInterface,
-            data: {'appli':appliName, 'ver': appliVersion, 'cmd':'unregister_push','token':token},
+            data: {'json':1, 'appli':appliName, 'ver': appliVersion, 'cmd':'unregister_push','token':token},
             dataType: 'json',
             crossDomain: true,
             type: "POST",
@@ -310,16 +314,16 @@ function merge_options(obj1,obj2){
  */
 function registerPush(token, data) {
     var device_uuid = device.uuid;
-    dataToSend = merge_options ({'appli': appliName, 'ver': appliVersion, 'mode': 'register_push', 'token': token, 'uuid':device_uuid}, data);
+    dataToSend = merge_options ({'json':1, 'appli': appliName, 'ver': appliVersion, 'put': 'register_push', 'token': token, 'uuid':device_uuid}, data);
 
     batiMP.log('http://' + registerServeur + registerUrlInterface, 'URL');
 
     $.ajax({
         url: 'http://' + registerServeur + registerUrlInterface,
         data: dataToSend,
-        type: "POST",
         dataType: 'json',
         crossDomain: true,
+        type: "POST",
         success: onSuccess,
         error: onError
     });
@@ -353,6 +357,9 @@ $(document).bind('pagecreate', function() {
             batiMP.log('Button register: demande d\'alerte' , 'DEBUG');
             registerPush(batiMP.getPushToken(), {'cmd':'add_push_alert', 'alerte_emploi':flux});
         }
+
+        $('#registerpush').trigger('create');
+
     });
 
     $('#unregisterpush').bind('tap', function(event, ui){

@@ -2,6 +2,11 @@
  * Created by david on 24/09/14.
  */
 
+
+var id_page_en_cours = '';
+
+
+
 function TrackEvent(category,action,label,value) {
     gaObj.trackEvent( function() {console.log('success');}, function() {console.log('failed');}, category, action, label, value);
 }
@@ -234,6 +239,7 @@ $('[data-role=page]').bind('pageshow',function(){
 
 $('[data-role=page]').on('pagebeforecreate', function(){
 
+    console.log('');
     var acceptedPush = 0;
 
     if (is_device) {
@@ -258,7 +264,49 @@ $('[data-role=page]').on('pagebeforecreate', function(){
     Tab = new Array({'id_page':$(this).attr('id'), 'is_device': is_device, 'sendPush': !acceptedPush, 'noPush': acceptedPush });
     $('#' +$(this).attr('id') + ' div[data-role=header]').before(template(Tab));
 
+    id_page_en_cours = $(this).attr('id');
+
 });
+
+
+
+
+function maj_panel () {
+
+    console.log('update LAYOUT 11111');
+
+    var acceptedPush = 0;
+
+    if (is_device) {
+
+        var testToken = batiMP.getPushToken();
+        alert(testToken);
+        if (testToken != null) {
+            //alert(acceptedPush);
+            acceptedPush = 1;
+        }
+    }
+
+    var defaults = {
+        template:'#panelMenu-tpl'
+        ,url:'fill-url-source'
+        ,data:{  }
+    };
+
+    var options = $.extend(defaults, options);
+    var template = Handlebars.compile($(options.template).html());
+
+    console.log(id_page_en_cours);
+
+    Tab = new Array({'id_page':id_page_en_cours, 'is_device': is_device, 'sendPush': !acceptedPush, 'noPush': acceptedPush });
+    $('#menu-left-panel-' + id_page_en_cours).remove();
+    $('#' + id_page_en_cours + ' div[data-role=header]').before(template(Tab));
+    console.log('#menu-left-panel-' + id_page_en_cours);
+    console.log(template(Tab));
+
+
+}
+
 
 $('#actu').on('pageinit', function(){
 
@@ -668,28 +716,6 @@ $(document).on("pageshow", "#annonce", function() {
 
     });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

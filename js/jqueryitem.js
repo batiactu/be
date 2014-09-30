@@ -51,6 +51,11 @@
 			 			 	if(row[k]=='')item["item_lib_"+k] = row[k];
 			 			 	else item["item_lib_"+k] = Tcontrats[row[k]];
 			 			 	break
+
+                          case 'push':
+                              item["item_"+k] = row[k];
+                          break
+
 			 			 	
 			 			 	default:
 
