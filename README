@@ -1,0 +1,50 @@
+Environnement pour develloper plus facillement.
+ne pas commiter les fichiers
+
+index.html version utilisable en preprod / prod
+
+Afin de faciliter le dev et le debug des différentes parties.
+
+index-dev.html contient
+- les appels aux scripts js et css en mode non minifié ou et/ou non aggrégé
+- l'appel au fichier debug.js qui est le contenu de la zone script du fichier index.html
+- l'appel au fichier template.html qui contient les template handlebars
+
+les appel se font à un serveur de dev dont l'adresse est définie par son IP.
+
+Pour le debug :
+
+utiliser chrome / chromium + un device Android 4.4 minimum et un cordon usb
+
+Dans le config XML de phonegap, ajouter le plugin :
+    <gap:plugin name="com.jamiestarke.webviewdebug" version="1.0.8" />
+
+qui crée une webview permettant à chrome de debugger directement sur le device
+
+
+Sous linux, ajouter une rule pour les devices, afin que chrome le trouve bien :
+
+sudo vi /etc/udev/rules.d/99-android.rules
+
+#Nexus
+SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4e42", MODE="0666", OWNER="david"    # MTP mode with USB debug on
+
+avec
+18d1 de ATTR{idVendor} => 4 premiers caractères de l'ID (voir commande lsusb ci-dessous)
+4e42 de ATTR{idProduct} => 4 deniers caractères de l'ID (voir commande lsusb ci-dessous)
+ OWNER="david" => compte utilisateur linux
+
+
+ david@david:~$ lsusb
+....
+ Bus 001 Device 007: ID 18d1:4e42 Google Inc. Nexus 7 (debug)
+....
+
+et relancer le service udev
+sudo service udev restart
+
+Le répertoire Tools contient les outils pour minifier et aggréger les js / css
+
+minify.sh
+
+
