@@ -291,7 +291,7 @@ function saved_object_search(obj){
 }
 
 
-function switch_alert_from_search(current_hash) {
+function switch_alert_from_search(that, current_hash) {
 
     tsearchs = $.jStorage.get('tsearchs');
     if(!tsearchs) tsearchs= new Object();
@@ -312,7 +312,7 @@ function switch_alert_from_search(current_hash) {
             batiMP.log('Désactivation alerte hash :' + current_hash , 'DEBUG');
             registerPush(batiMP.getPushToken(), {'put':'supp_push_alert', 'local_hash':current_hash});
         }
-        $(this).buttonMarkup({theme: "d"});
+        $(that).buttonMarkup({theme: "d"});
     }
     else {
         // activation de l'alerte'
@@ -334,7 +334,7 @@ function switch_alert_from_search(current_hash) {
             registerPush(batiMP.getPushToken(), {'put':'add_push_alert', 'local_hash':current_hash, 'alerte':alerte});
         }
 
-        $(this).buttonMarkup({theme: "a"});
+        $(that).buttonMarkup({theme: "a"});
     }
 
     saved_object_search( tsearchs[current_hash]);

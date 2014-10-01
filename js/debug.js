@@ -2,7 +2,6 @@
  * Created by david on 24/09/14.
  */
 
-
 var id_page_en_cours = '';
 
 
@@ -147,39 +146,6 @@ $(document).bind( "pagechange", function( e, data ) {
         default:
             wrp_cpt_mobile(tagpageUrl);
     }
-
-    /*
-     * gestion du menu sur le cote gauche
-     * permet de l'afficher ouvert
-     * permet de l'avoir sous le header
-     */
-/*
-    // recup du panel de la page active
-    var panelObject =  data.toPage[0].firstElementChild;
-
-    // recup du header de la page active
-    var header = $(data.toPage[0]).find("div[data-role=header]");
-
-    // on le place sous le header
-    var header_height = $(header).outerHeight();
-    var panel_height = $('.ui-panel').height();
-
-    var newPanelHeight = panel_height - header_height;
-
-    $('.ui-panel').css({
-        'top': header_height,
-        'min-height': newPanelHeight
-    });
-
-    if (window.matchMedia("(min-width: 640px)").matches) {
-        // 640 et plus
-        $(panelObject).panel("open");
-    } else {
-        //moins de 640
-        $(panelObject).panel("close");
-    }
-*/
-    /* Fin gestion menu */
 });
 
 
@@ -210,22 +176,21 @@ $("[data-role=page][id=annonce]").bind( "pageshow", function( e, data ) {
 });
 
 $('[data-role=page]').bind('pageshow',function(){
-   /* $( ".popupPanel" ).on({
-        popupbeforeposition: function() {
-            var h = $( window ).height();
-            $( ".popupPanel" ).css( "height", h );
-        }
-    });
-    $( "#fonctionrequired" ).on({
-        popupafteropen: function(e) {
-            autoclosing = setTimeout( function(){$('#fonctionrequired').popup('close');}, 3000 );
-        },
-        popupafterclose: function(e) {
-            clearTimeout(autoclosing);
-        }
-    });*/
 
-    console.log( "maj hauteur : ", $(this).attr('id'));
+     $( ".popupPanel" ).on({
+         popupbeforeposition: function() {
+             var h = $( window ).height();
+             $( ".popupPanel" ).css( "height", h );
+         }
+     });
+     $( "#fonctionrequired" ).on({
+         popupafteropen: function(e) {
+             autoclosing = setTimeout( function(){$('#fonctionrequired').popup('close');}, 3000 );
+         },
+         popupafterclose: function(e) {
+             clearTimeout(autoclosing);
+         }
+     });
 
     // recup du header de la page active
     var header = $(this).find('div[data-role=header]');
@@ -240,43 +205,36 @@ $('[data-role=page]').bind('pageshow',function(){
         'top': header_height,
         'min-height': newPanelHeight
     });
-});
 
-$('[data-role=page]').on('pagebeforeshow', function(){
+    var init = $('#menu-left-panel-' + id_page_en_cours).hasClass("fromInit");
 
-    id_page_en_cours = $(this).attr('id');
+    if (init === false) {
+        // on réouvre le panel
+        $('#menu-left-panel-' + id_page_en_cours).panel('open');
+    }
+    else {
+        console.log('640 :', window.matchMedia("(min-width: 640px)").matches);
+        if (window.matchMedia("(min-width: 640px)").matches) {
+            // 640 et plus
+            $('#menu-left-panel-' + id_page_en_cours).panel("open");
+            console.log('on open');
 
-    maj_panel('init');
-
-    /*
-    var acceptedPush = 0;
-
-    if (is_device) {
-        var testToken = batiMP.getPushToken();
-        if (testToken != null) {
-            alert(acceptedPush);
-            acceptedPush = 1;
+        } else {
+            //moins de 640
+            $('#menu-left-panel-' + id_page_en_cours).panel("close");
+            console.log('on close');
         }
     }
 
-    var defaults = {
-        template:'#panelMenu-tpl'
-        ,url:'fill-url-source'
-        ,data:{  }
-    };
+});
 
-    var options = $.extend(defaults, options);
-    var template = Handlebars.compile($(options.template).html());
-
-    Tab = new Array({'id_page':$(this).attr('id'), 'is_device': is_device, 'sendPush': !acceptedPush, 'noPush': acceptedPush });
-    $('#' +$(this).attr('id') + ' div[data-role=header]').before(template(Tab));
-*/
+$('[data-role=page]').on('pagebeforeshow', function(){
+    id_page_en_cours = $(this).attr('id');
+    maj_panel('init');
 });
 
 
 function maj_panel (mode) {
-
-    console.log("Debut maj_panel");
     var acceptedPush = 0;
 
     if (is_device) {
@@ -309,43 +267,15 @@ function maj_panel (mode) {
     $('#menu-left-panel-' + id_page_en_cours).panel();
     $('#menu-left-panel-' + id_page_en_cours).find('div[data-role=controlgroup]').controlgroup({ defaults: true });
 
-    // recup du header de la page active
-    var header = $('#' + id_page_en_cours + ' div[data-role=header]');
 
-    // on le place sous le header
-    var header_height = $(header).outerHeight();
-    var panel_height = $('.ui-panel').height();
-
-    var newPanelHeight = panel_height - header_height;
-
-    $('.ui-panel').css({
-        'top': header_height,
-        'min-height': newPanelHeight
-    });
-
-    if (mode != 'init') {
-        $('#menu-left-panel-' + id_page_en_cours).panel('open');
+    if (mode == 'init') {
+        // permet de definir si l'on vient de l'init ou de l'abonnement/desabonnement push
+        $('#menu-left-panel-' + id_page_en_cours).addClass("fromInit");
     }
-    else {
-        console.log('640 :', window.matchMedia("(min-width: 640px)").matches);
-        if (window.matchMedia("(min-width: 640px)").matches) {
-            // 640 et plus
-            $('#menu-left-panel-' + id_page_en_cours).panel("open");
-            console.log('on open');
-
-        } else {
-            //moins de 640
-            $('#menu-left-panel-' + id_page_en_cours).panel("close");
-            console.log('on close');
-        }
-    }
-
-    console.log("FIN maj_panel");
 
 }
 
 $('#actu').on('pageinit', function() {
-
     $( "#actu" ).bind( "click", function() {
         initActu();
     });
@@ -373,11 +303,9 @@ $(document).bind('pageinit', function(event){
             setTimeout( function(){$('#mes-recherches').trigger('pagebeforeshow'); }, 400 );
         }).resolve();
     }
-
 });
 
 $('#recherche-detail-page-zonegeo').on('pagebeforeshow', function(){
-
     var template = Handlebars.compile($('#recherche-detail-tpl').html());
     $('#recherche-detail-zonegeo').html(template(Tregions_search)).trigger('create');
     $('#recherche-detail-page-zonegeo .check_cac').off('click').on('click', function() {
@@ -440,7 +368,6 @@ $("#recherche #select-page").on('change', function(event, ui){
 
 $('#recherche').on('pagebeforeshow', function(){
     //$.mobile.urlHistory.clearForward();
-
 
     if(use_infinite)$('#recherche #pagin-prev').hide();
     if(use_infinite)$('#recherche #pagin-next').hide();
@@ -509,9 +436,6 @@ $('#recherche').on('pagebeforeshow', function(){
 
         });
     }
-
-
-
 });
 
 $('#recherche').on('pageshow', function(){
@@ -540,7 +464,6 @@ $('#recherche').on('pageshow', function(){
         }
 
     }
-
 });
 
 $('#annonce').on( "pagebeforeshow", function() {
@@ -618,7 +541,6 @@ $('#mentions-legales').bind('pageshow', function(){
 });
 
 $(document).bind( "pagebeforechange", function( e, data ) {
-
     var u = $.mobile.path.parseUrl( data.toPage );
     set_fields_from_current();
     if ( typeof data.toPage === "string" ) {
@@ -634,7 +556,6 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 
             e.preventDefault();
         }
-
 
         // annonce.
         var re = /^#annonce/;
@@ -654,8 +575,6 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 
             e.preventDefault();
         }
-
-
     }
 });
 
@@ -666,10 +585,8 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 
  }); */
 $('#accueil').on('pagebeforecreate', function(){
-
     //var footer = $('#template-page div[data-role="footer"]');
     //$('div[id!="annonce"][id!="recherche"][data-role="page"]').append(footer);
-
 });
 
 $('#accueil').on('pagebeforeshow', function(){
@@ -696,7 +613,6 @@ $('#accueil').on('pagebeforeshow', function(){
  });	*/
 
 $(document).on("pageshow", "#annonce", function() {
-
     $("#formpopup_Postuler").validate({
 
         rules: {
@@ -756,7 +672,7 @@ $(document).on("pageshow", "#annonce", function() {
 
 
 
-
+/*=========================  DEBUG  ====================================*/
 
 function echo() {
     //  discuss at: http://phpjs.org/functions/echo/
