@@ -62,7 +62,7 @@ done
 # aggregation des CSS
 echo "====== AGREGATION des CSS"
 
-outputFile=css/aggreg.min.css
+outputFile=css/lib/aggreg.min.css
 echo ""  >$outputFile
 for fichier in $aggregerCSS; do
     echo "Aggrégation de : $fichier dans $outputFile"
@@ -83,7 +83,7 @@ done
 #aggregation des JS
 echo "====== AGREGATION des JS"
 
-outputFile=js/aggreg.min.js
+outputFile=js/lib/aggreg.min.js
 echo ""  >$outputFile
 for fichier in $aggregerJS; do
     echo "Aggrégation de : $fichier dans $outputFile"
