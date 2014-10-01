@@ -296,9 +296,6 @@ function switch_alert_from_search(that, current_hash) {
     tsearchs = $.jStorage.get('tsearchs');
     if(!tsearchs) tsearchs= new Object();
 
-
-    console.log (current_hash, tsearchs, tsearchs.hasOwnProperty(current_hash));
-
     if(! tsearchs.hasOwnProperty(current_hash)){
         notify('Erreur, ce hash ne correspond pas!', '#mes-recherches');
         return false;
@@ -319,15 +316,11 @@ function switch_alert_from_search(that, current_hash) {
         tsearchs[current_hash]['push'] = true;
         // on envoi l'info d'activation
 
-        console.log('on envoi une demande :');
-
         var alerte = {};
 
         alerte.fonction = tsearchs[current_hash]['current_fonction'];
         alerte.zonegeo = tsearchs[current_hash]['current_zonegeo'];
         alerte.motclef = tsearchs[current_hash]['current_motclef'];
-
-        console.log(alerte);
 
         if ( is_device ) {
             batiMP.log('Activation alerte hash :' + current_hash , 'DEBUG');
@@ -682,7 +675,6 @@ function load_experiences(){
 	});
 }
 function launchSearch(advanceMode,gotopage_n) {
-
 	search_list_id = new Array;
 	
 	if(advanceMode==null)advanceMode=false;
@@ -785,9 +777,7 @@ function execute_search(urlObj, options){
 
     $.mobile.changePage( $page, options );
     
-     if(options.noLoading==null) $.mobile.loading( 'show' );
-    
-	
+    if(options.noLoading==null) $.mobile.loading( 'show' );
 }
 
 function check_params(){
@@ -817,8 +807,9 @@ function go_url_recherche(){
 	$('#recherche #next').addClass('displaynone');
 
 	//l'url est créée dynamiquement
-	newurl = '#recherche' + '?zone=' + current_zonegeo.join('-')+'&fct='+  current_experience.join('-')+  current_contrat.join('-')+  current_fonction.join('-')+'&motclef='+ current_motclef;
-    
+
+    newurl = '#recherche' + '?zone=' + current_zonegeo.join('-')+'&fct='+  current_experience.join('-')+  current_contrat.join('-')+  current_fonction.join('-')+'&motclef='+ current_motclef;
+
 	$.mobile.changePage( newurl);
   	
 	return true; 

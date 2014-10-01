@@ -347,7 +347,9 @@ div[data-role=content] {
 .mr_icon_demande_alerte_push {
     margin-right: 20px;
 }
-
+div[data-role=footer] {
+    z-index: 2000;
+}
 @media (max-width: 640px) {
     div[data-role=content] {
         margin-left: 0px;

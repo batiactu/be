@@ -8,21 +8,7 @@
 
     <title>[Batiactu] Emploi</title>
 
-    <!--link rel="stylesheet" href="css/jquerymobile131.css" /-->
-
-    <!-- non utilisés :
-    <link rel="stylesheet" href="roller/themes/emploi.css" />
-    <link rel="stylesheet" href="css/jqmdoc.css" />
-    fin non utilisés! -->
-
-    <!--link rel="stylesheet" href="css/add.css?v1" /-->
-
-    <!-- non utilisés :
-    <link rel="stylesheet" href="css/test.min.css" />
-    fin non utilisés! -->
-
     <!-- dans allpluginsmin.js :
-
     <script type="text/javascript" src="js/jquery191min.js"></script>
     <script type="text/javascript" src="js/jqueryvalidatemin.js"></script>
     <script type="text/javascript" src="js/jstoragemin.js"></script>
@@ -47,7 +33,6 @@
     <link rel="apple-touch-icon" href="images/icon.png"/>
     <link rel="apple-touch-startup-image" href="images/splash.png"/>
 
-
     <!-- =============================    LIB JS    ================================================== -->
     <script type="text/javascript" src="js/lib/jquery-2.1.1.min.js"></script>
 
@@ -60,21 +45,10 @@
     <script type="text/javascript" src="js/lib/handlebars-v2.0.0.js"></script>
     <!-- =============================    Fin LIB JS    ================================================== -->
 
-
     <!-- =============================    LIB JS Batiactu    ================================================== -->
     <script type="text/javascript" src="http://192.168.3.103/bem/js/module_batiactu_push.js"></script>
     <script type="text/javascript" src="http://192.168.3.103/bem/js/emploi_mobile_push.js"></script>
     <!-- =============================    Fin LIB JS Batiactu    ================================================== -->
-
-    <!-- MIG script type="text/javascript" src="js/old_js/allpluginsmin.js"></script-->
-    <!-- fin dans allpluginsmin.js :-->
-
-    <!-- non utilisés : -->
-    <!--<script type="text/javascript" src="js/jqmdoc.js"></script>-->
-    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQWPWT2V_AQAtuFcQYZY3hDZtugpazXIU&sensor=true"></script>-->
-    <!--<script type="text/javascript" src="js/geolocalisation.js"></script>-->
-    <!--<script type="text/javascript" src="js/actu.js"></script>-->
-    <!-- fin non utilisés! -->
 
     <!-- =========================   dans cipallmin.js : ===================================-->
 
@@ -89,7 +63,6 @@
         });
     </script>
 
-
     <!--script type="text/javascript" src="http://192.168.3.103/bem/js/cipallmin.js"></script-->
     <!-- =========================   Fin dans cipallmin.js : ===================================-->
 
@@ -103,17 +76,11 @@
     <script type="text/javascript" src="js/lib/PushNotification.js"></script>
     <!-- =============================    Fin LIB JS pour PhoneGap et Plugins    ================================================== -->
 
-
     <script type="application/javascript">
         $.get("http://192.168.3.103/bem/template.html", function (data) {
             $("#handlebars-template").html(data);
         });
-
-
     </script>
-
-    <!--script type="text/javascript" src="js/lib/handlebars-v2.0.0.js" ></script-->
-
 
 </head>
 
@@ -399,6 +366,86 @@
     </div>
 </div>
 
+
+<!-- Recherche -->
+<div id="recherche" data-role="page" data-transition="none" data-theme="b">
+    <div data-role="header" data-position="fixed" data-theme="b">
+
+
+        <a href="#recherche-detail" data-transition="none" data-icon="arrow-l" data-position-to="window"
+           data-role="button" data-theme="b">Retour</a>
+        <a href="#menu-left-panel-recherche" data-icon="bars" data-iconpos="notext" data-shadow="false"
+           data-iconshadow="false">Menu</a>
+
+        <h1><img src="./images/logo.png" class="logotitle" width="90" alt="Batiactu Emploi" title="Batiactu Emploi">
+        </h1>
+
+    </div>
+    <div id="panel">
+    </div>
+    <div class="notifications-wrapper">
+        <div class="notifications"></div>
+    </div>
+    <div data-role="content" class="content">
+        <div id="nb_results"><br></div>
+        <!--
+        <fieldset class="btn_display1 ui-grid-solo " style="display:none;">
+            <div class="ui-block-a"><a data-inline="true" data-theme="c" data-role="button" href="#recherche-detail" data-icon="search" data-mini="true">Modifier la recherche</a></div>
+        </fieldset>
+        -->
+        <p class="btn_display1" align="center">
+            <a data-inline="true" data-theme="c" data-role="button" href="#recherche-detail" data-icon="search"
+               data-mini="true">Modifier la recherche</a>
+        </p>
+        <br>
+
+        <ul id="resultat-recherche" style="display:none;" data-role="listview">
+        </ul>
+        <br>
+        <!--
+        <fieldset class="btn_display2 ui-grid-solo " style="display:none;">
+            <div class="ui-block-a"><a data-inline="true" data-theme="c" data-role="button" href="#recherche-detail" data-icon="search" data-mini="true">Modifier la recherche</a></div>
+        </fieldset>
+        -->
+        <p class="btn_display2" align="center">
+            <a data-inline="true" data-theme="c" data-role="button" href="#recherche-detail" data-icon="search"
+               data-mini="true">Modifier la recherche</a>
+        </p>
+
+        <p align="center">
+            <a id="pagin-prev" data-inline="true" data-iconpos="notext" data-theme="b" data-role="button"
+               data-icon="arrow-l"></a>
+            <select data-theme="b" data-inline="true" data-mini="true" name="select-page" id="select-page"
+                    data-iconpos="right" data-icon="arrow-d"></select>
+            <span id="pagin-pages" class="blue"></span>
+            <a id="pagin-next" data-inline="true" data-iconpos="notext" data-theme="b" data-role="button"
+               data-icon="arrow-r"></a>
+
+            <a id="next" data-inline="true" data-theme="b" data-role="button" data-next="0" class="infinite-more-link"
+               data-mini="true">Plus de résultats...</a>
+        </p>
+    </div>
+    <div class="pad10 ui-corner-all" data-history="false" id="popupSaveSearch" data-role="popup" data-overlay-theme="a"
+         data-theme="c" data-dismissible="true">
+        <div style="padding: 10px 20px;">
+            <h3>Votre recherche a été sauvegardée avec succès</h3>
+            <a data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Fermer</a>
+        </div>
+    </div>
+    <div class="pad10 ui-corner-all" data-history="false" id="popupAlreadyExistsSaveSearch" data-role="popup"
+         data-overlay-theme="a" data-theme="c" data-dismissible="true">
+        <div style="padding: 10px 20px;">
+            <h3>Cette recherche a déjà été sauvegardée</h3>
+            <a data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Fermer</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
 <!-- Partie script javascript --------------------------------------------------------->
 <script type="text/javascript">
 
@@ -448,6 +495,13 @@
 </script>
 
 <script type="text/javascript" src="http://192.168.3.103/bem/js/debug.js"></script>
+
+
+
+
+
+
+
 
 
 <!-- template handlebar -->
@@ -605,7 +659,7 @@
 
         <ul style="display:none">
             <li id="item-actu-blank"><a href="javascript:showArticle('item_link')">
-                <img src="itemimage#"/>
+                <!-- img src="itemimage#"/-->
 
                 <h2>item_title</h2>
 
@@ -676,79 +730,7 @@
 </div>
 
 
-<!-- Recherche -->
-<div id="recherche" data-role="page" data-transition="none" data-theme="b">
-    <div data-role="header" data-position="fixed" data-theme="b">
 
-
-        <a href="#recherche-detail" data-transition="none" data-icon="arrow-l" data-position-to="window"
-           data-role="button" data-theme="b">Retour</a>
-        <a href="#menu-left-panel-recherche" data-icon="bars" data-iconpos="notext" data-shadow="false"
-           data-iconshadow="false">Menu</a>
-
-        <h1><img src="./images/logo.png" class="logotitle" width="90" alt="Batiactu Emploi" title="Batiactu Emploi">
-        </h1>
-
-    </div>
-    <div id="panel">
-    </div>
-    <div class="notifications-wrapper">
-        <div class="notifications"></div>
-    </div>
-    <div data-role="content" class="content">
-        <div id="nb_results"><br></div>
-        <!--
-        <fieldset class="btn_display1 ui-grid-solo " style="display:none;">
-            <div class="ui-block-a"><a data-inline="true" data-theme="c" data-role="button" href="#recherche-detail" data-icon="search" data-mini="true">Modifier la recherche</a></div>
-        </fieldset>
-        -->
-        <p class="btn_display1" align="center">
-            <a data-inline="true" data-theme="c" data-role="button" href="#recherche-detail" data-icon="search"
-               data-mini="true">Modifier la recherche</a>
-        </p>
-        <br>
-
-        <ul id="resultat-recherche" style="display:none;" data-role="listview">
-        </ul>
-        <br>
-        <!--
-        <fieldset class="btn_display2 ui-grid-solo " style="display:none;">
-            <div class="ui-block-a"><a data-inline="true" data-theme="c" data-role="button" href="#recherche-detail" data-icon="search" data-mini="true">Modifier la recherche</a></div>
-        </fieldset>
-        -->
-        <p class="btn_display2" align="center">
-            <a data-inline="true" data-theme="c" data-role="button" href="#recherche-detail" data-icon="search"
-               data-mini="true">Modifier la recherche</a>
-        </p>
-
-        <p align="center">
-            <a id="pagin-prev" data-inline="true" data-iconpos="notext" data-theme="b" data-role="button"
-               data-icon="arrow-l"></a>
-            <select data-theme="b" data-inline="true" data-mini="true" name="select-page" id="select-page"
-                    data-iconpos="right" data-icon="arrow-d"></select>
-            <span id="pagin-pages" class="blue"></span>
-            <a id="pagin-next" data-inline="true" data-iconpos="notext" data-theme="b" data-role="button"
-               data-icon="arrow-r"></a>
-
-            <a id="next" data-inline="true" data-theme="b" data-role="button" data-next="0" class="infinite-more-link"
-               data-mini="true">Plus de résultats...</a>
-        </p>
-    </div>
-    <div class="pad10 ui-corner-all" data-history="false" id="popupSaveSearch" data-role="popup" data-overlay-theme="a"
-         data-theme="c" data-dismissible="true">
-        <div style="padding: 10px 20px;">
-            <h3>Votre recherche a été sauvegardée avec succès</h3>
-            <a data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Fermer</a>
-        </div>
-    </div>
-    <div class="pad10 ui-corner-all" data-history="false" id="popupAlreadyExistsSaveSearch" data-role="popup"
-         data-overlay-theme="a" data-theme="c" data-dismissible="true">
-        <div style="padding: 10px 20px;">
-            <h3>Cette recherche a déjà été sauvegardée</h3>
-            <a data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Fermer</a>
-        </div>
-    </div>
-</div>
 
 
 </body>
