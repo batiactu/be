@@ -177,7 +177,7 @@ $("[data-role=page][id=annonce]").bind( "pageshow", function( e, data ) {
 
 $('[data-role=page]').bind('pageshow',function(){
 
-     $( ".popupPanel" ).on({
+    /* $( ".popupPanel" ).on({
          popupbeforeposition: function() {
              var h = $( window ).height();
              $( ".popupPanel" ).css( "height", h );
@@ -190,15 +190,14 @@ $('[data-role=page]').bind('pageshow',function(){
          popupafterclose: function(e) {
              clearTimeout(autoclosing);
          }
-     });
+     });*/
 
     // recup du header de la page active
     var header = $(this).find('div[data-role=header]');
 
-    // on le place sous le header
+    // on le place sous le header et audessus du footer
     var header_height = $(header).outerHeight();
     var panel_height = $('.ui-panel').height();
-
     var newPanelHeight = panel_height - header_height;
 
     $('.ui-panel').css({
@@ -222,14 +221,12 @@ $('[data-role=page]').bind('pageshow',function(){
             $('#menu-left-panel-' + id_page_en_cours).panel("close");
         }
     }
-
 });
 
 $('[data-role=page]').on('pagebeforeshow', function(){
     id_page_en_cours = $(this).attr('id');
     maj_panel('init');
 });
-
 
 function maj_panel (mode) {
     var acceptedPush = 0;
@@ -258,7 +255,8 @@ function maj_panel (mode) {
     }
 
     // on créé le panel
-    $('#' + id_page_en_cours + ' div[data-role=header]').before(template(Tab));
+    //$('#' + id_page_en_cours + ' div[data-role=header]').before(template(Tab));
+    $('#' + id_page_en_cours).append(template(Tab));
 
     // on met à jout les objet jQery mobile
     $('#menu-left-panel-' + id_page_en_cours).panel();
@@ -357,6 +355,7 @@ $('#recherche').on('pagecreate', function(){
     TabComplete=new Array;
     TabComplete.push(Tab);
     $('#recherche').append(template2(TabComplete)).trigger('create');
+
 });
 
 $("#recherche #select-page").on('change', function(event, ui){
@@ -462,11 +461,11 @@ $('#recherche').on('pageshow', function(){
 
     }
 });
-
+/*
 $('#annonce').on( "pagebeforeshow", function() {
     $('#annonce :jqmData(class="content_annonce")').remove();
 });
-
+*/
 $('#annonce').on( "pageshow", function() {
     $('.ui-page-active').trigger('create');
     $( '#popupPostuler' ).on({
@@ -549,7 +548,11 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 
             wrp_cpt_mobile('recherche',get_current_search_wreport(1));
 
+            console.log("execute_search");
+
             execute_search( u, data.options );
+
+            console.log("FIN execute_search");
 
             e.preventDefault();
         }
@@ -575,12 +578,12 @@ $(document).bind( "pagebeforechange", function( e, data ) {
     }
 });
 
-/*$('#annonce').on('pagecreate', function(){
+$('#annonce').on('pagecreate', function(){
 
  var footer = $('#template-page div[data-role=footer]');
  $('div[data-role=page]').append(footer);
 
- }); */
+ });
 $('#accueil').on('pagebeforecreate', function(){
     //var footer = $('#template-page div[data-role="footer"]');
     //$('div[id!="annonce"][id!="recherche"][data-role="page"]').append(footer);
