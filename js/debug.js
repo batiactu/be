@@ -213,16 +213,13 @@ $('[data-role=page]').bind('pageshow',function(){
         $('#menu-left-panel-' + id_page_en_cours).panel('open');
     }
     else {
-        console.log('640 :', window.matchMedia("(min-width: 640px)").matches);
         if (window.matchMedia("(min-width: 640px)").matches) {
             // 640 et plus
             $('#menu-left-panel-' + id_page_en_cours).panel("open");
-            console.log('on open');
 
         } else {
             //moins de 640
             $('#menu-left-panel-' + id_page_en_cours).panel("close");
-            console.log('on close');
         }
     }
 

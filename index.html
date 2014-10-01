@@ -8,21 +8,7 @@
 
     <title>[Batiactu] Emploi</title>
 
-    <!--link rel="stylesheet" href="css/jquerymobile131.css" /-->
-
-    <!-- non utilisés :
-    <link rel="stylesheet" href="roller/themes/emploi.css" />
-    <link rel="stylesheet" href="css/jqmdoc.css" />
-    fin non utilisés! -->
-
-    <!--link rel="stylesheet" href="css/add.css?v1" /-->
-
-    <!-- non utilisés :
-    <link rel="stylesheet" href="css/test.min.css" />
-    fin non utilisés! -->
-
     <!-- dans allpluginsmin.js :
-
     <script type="text/javascript" src="js/jquery191min.js"></script>
     <script type="text/javascript" src="js/jqueryvalidatemin.js"></script>
     <script type="text/javascript" src="js/jstoragemin.js"></script>
@@ -47,7 +33,6 @@
     <link rel="apple-touch-icon" href="images/icon.png"/>
     <link rel="apple-touch-startup-image" href="images/splash.png"/>
 
-
     <!-- =============================    LIB JS    ================================================== -->
     <script type="text/javascript" src="js/lib/jquery-2.1.1.min.js"></script>
 
@@ -60,21 +45,10 @@
     <script type="text/javascript" src="js/lib/handlebars-v2.0.0.js"></script>
     <!-- =============================    Fin LIB JS    ================================================== -->
 
-
     <!-- =============================    LIB JS Batiactu    ================================================== -->
     <script type="text/javascript" src="http://192.168.3.103/bem/js/module_batiactu_push.js"></script>
     <script type="text/javascript" src="http://192.168.3.103/bem/js/emploi_mobile_push.js"></script>
     <!-- =============================    Fin LIB JS Batiactu    ================================================== -->
-
-    <!-- MIG script type="text/javascript" src="js/old_js/allpluginsmin.js"></script-->
-    <!-- fin dans allpluginsmin.js :-->
-
-    <!-- non utilisés : -->
-    <!--<script type="text/javascript" src="js/jqmdoc.js"></script>-->
-    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQWPWT2V_AQAtuFcQYZY3hDZtugpazXIU&sensor=true"></script>-->
-    <!--<script type="text/javascript" src="js/geolocalisation.js"></script>-->
-    <!--<script type="text/javascript" src="js/actu.js"></script>-->
-    <!-- fin non utilisés! -->
 
     <!-- =========================   dans cipallmin.js : ===================================-->
 
@@ -89,7 +63,6 @@
         });
     </script>
 
-
     <!--script type="text/javascript" src="http://192.168.3.103/bem/js/cipallmin.js"></script-->
     <!-- =========================   Fin dans cipallmin.js : ===================================-->
 
@@ -103,17 +76,11 @@
     <script type="text/javascript" src="js/lib/PushNotification.js"></script>
     <!-- =============================    Fin LIB JS pour PhoneGap et Plugins    ================================================== -->
 
-
     <script type="application/javascript">
         $.get("http://192.168.3.103/bem/template.html", function (data) {
             $("#handlebars-template").html(data);
         });
-
-
     </script>
-
-    <!--script type="text/javascript" src="js/lib/handlebars-v2.0.0.js" ></script-->
-
 
 </head>
 
@@ -605,7 +572,7 @@
 
         <ul style="display:none">
             <li id="item-actu-blank"><a href="javascript:showArticle('item_link')">
-                <img src="itemimage#"/>
+                <!-- img src="itemimage#"/-->
 
                 <h2>item_title</h2>
 

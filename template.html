@@ -205,8 +205,7 @@
 
 <script id="recherche-detail-tpl" type="text/x-handlebars-template">
     {{#.}}
-    <label for="T{{item_libelle}}_{{item_index}}">{{item_label}}</label>
-    <input data-mini="true" cac_type="{{type}}" class="check{{type}} check_cac" type="checkbox" value="{{item_value}}" id="T{{item_libelle}}_{{item_index}}">
+    <label><input data-mini="true" cac_type="{{type}}" class="check{{type}} check_cac" type="checkbox" value="{{item_value}}" id="T{{item_libelle}}_{{item_index}}"> {{item_label}}</label>
     {{/.}}
 </script>
 
@@ -223,6 +222,7 @@
             <!--<br><span class="resultat_lib_region">{{item_lib_dept}}</span>-->
             {{#if item_image_to_show}}<div id="div_img"><p>{{{item_image_to_show}}}</p></div>{{/if}}
         </a>
+
     </li>
     {{/.}}
 </script>
