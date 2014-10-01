@@ -7,7 +7,7 @@ Afin de faciliter le dev et le debug des différentes parties.
 
 index-dev.html contient
 - les appels aux scripts js et css en mode non minifié ou et/ou non aggrégé
-- l'appel au fichier debug.js qui est le contenu de la zone script du fichier index.html
+- l'appel au fichier contenu_appli.js qui est le contenu de la zone script du fichier index.html
 - l'appel au fichier template.html qui contient les template handlebars
 
 les appel se font à un serveur de dev dont l'adresse est définie par son IP.

@@ -25,10 +25,12 @@ js/jqueryitem.js \
 js/search.js \
 js/annonce.js \
 js/wreport.js \
-js/lib/PushNotification.js
+js/lib/PushNotification.js \
+js/contenu_appli.js
 "
 
 # les espaces en fin de ligne (avant le \) sont importants
+# ne pas aggreger le fichier js/contenu_appli.js qui est à placer dans le index.html
 aggregerJS="\
 js/lib/jquery-2.1.1.min.js \
 js/lib/jquery.mobile-1.4.4.min.js \
@@ -65,6 +67,8 @@ echo ""  >$outputFile
 for fichier in $aggregerCSS; do
     echo "Aggrégation de : $fichier dans $outputFile"
     cat $fichier >> $outputFile
+    # pour eviter des concaténation sur des commentaires !!?? (fichiers déjà minifiés)
+    echo "\n" >> $outputFile
 done
 
 # minification des JS
@@ -84,4 +88,7 @@ echo ""  >$outputFile
 for fichier in $aggregerJS; do
     echo "Aggrégation de : $fichier dans $outputFile"
     cat $fichier >> $outputFile
+    # pour eviter des concaténation sur des commentaires !!?? (fichiers déjà minifiés)
+    echo "
+    " >> $outputFile
 done
