@@ -342,7 +342,11 @@ function registerPush(token, data) {
         error: onError
     });
     batiMP.setPushToken(token);
-    majInfoPush();
+
+    if (dataToSend['put'] == 'register_push') {
+        majInfoPush();
+    }
+
 }
 
 // lors de la création de la page on met les évenement sur les boutons
