@@ -10,6 +10,12 @@
     <description>Batiactu Emploi : 1er site de référence des annonces emploi du BTP</description>
     <author href="http://www.batiactugroupe.com" email="webmaster@batiactugroupe.com">Batiactu Groupe</author>
 
+
+    <!-- Seulement ces deux plateforme ? -->
+    <gap:platform name="android" />
+    <gap:platform name="ios" />
+
+
     <icon src="images/icon.png" />
 
     <gap:splash src="images/splash/ios/Default320x480.png" gap:platform="ios" width="320" height="480" />
