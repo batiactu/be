@@ -3,6 +3,9 @@ var DIRSCRIPTS = 'http://bo.v2.batiactuemploi.com/scripts/';
 //var DIRHTTP = 'http://local.www2012.batiactuemploi.com/';
 //var DIRSCRIPTS = 'http://local.back2012.batiactuemploi.com/scripts/';
 
+DIRSCRIPTS = 'http://192.168.3.103/backoffice/scripts/';
+
+
 var pageinit = false;
 
 var back_popup_hash = "";
@@ -296,6 +299,7 @@ function switch_alert_from_search(that, current_hash) {
     tsearchs = $.jStorage.get('tsearchs');
     if(!tsearchs) tsearchs= new Object();
 
+    console.log('eerer');
     if(! tsearchs.hasOwnProperty(current_hash)){
         notify('Erreur, ce hash ne correspond pas!', '#mes-recherches');
         return false;
@@ -309,7 +313,7 @@ function switch_alert_from_search(that, current_hash) {
             batiMP.log('Désactivation alerte hash :' + current_hash , 'DEBUG');
             registerPush(batiMP.getPushToken(), {'put':'supp_push_alert', 'local_hash':current_hash});
         }
-        $(that).buttonMarkup({theme: "d"});
+        $(that).buttonMarkup({icon: "forbidden"});
     }
     else {
         // activation de l'alerte'
@@ -327,7 +331,7 @@ function switch_alert_from_search(that, current_hash) {
             registerPush(batiMP.getPushToken(), {'put':'add_push_alert', 'local_hash':current_hash, 'alerte':alerte});
         }
 
-        $(that).buttonMarkup({theme: "a"});
+        $(that).buttonMarkup({icon: "star"});
     }
 
     saved_object_search( tsearchs[current_hash]);
