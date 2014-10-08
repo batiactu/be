@@ -64,18 +64,35 @@
 			 		}
 			 		item["item_hash"]=i;
 
-			 		
+
+			 		if (batiMP !== null && batiMP.getAllNotifications() != []) {
+                        console.log(batiMP.getAllNotifications());
+                        var listeNotif = batiMP.getAllNotifications();
+
+                        var lgTab = listeNotif.length;
+
+                        item["nbAlerte"] = 0;
+
+                        // recheche du hash dans les notifs reçues + affectation du nb d'alerte trouvé
+                        for (g=0;g<lgTab;g++) {
+                            if (listeNotif[g].data["idAlerte"] == i) {
+                                //on prend le premier push qui correspond
+                                item["nbAlerte"] += parseInt(listeNotif[g].data["nbAlerte"]);
+                                break;
+                            }
+                        }
+                    }
+
+                    console.log("ITEM : ", item);
+
+                    //item["nbAlerte"] = 4;
 			 		Tab.push(item);
-			 		
 			 	});
 			 	
 			 	myList.html(template(Tab));
-			 				 								
 
 			 	myList.show();
 			 	//myList.listview('refresh');
-
-
 
 			 	if(options.noLoading==null){ remove_notify('#mes-recherches');$.mobile.loading( 'hide' )};
 			 	
@@ -84,11 +101,10 @@
 	    			$.waypoints('refresh');
 	    		}
 
+            $(".mr_icon_demande_alerte_push").buttonMarkup();
 
-            $(".mr_icon_demande_alerte_push").buttonMarkup({ corners: true });
-            $(".mr_icon_delete").buttonMarkup({ corners: true });
-			 
-
+            $(".mr_nb_alerte_push").buttonMarkup();
+            $(".mr_icon_delete").buttonMarkup();
     }
     
     ,completeListItem: function(options) {            

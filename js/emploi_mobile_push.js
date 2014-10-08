@@ -1,18 +1,20 @@
 
 // nom de l'application
-var appliName = '';
+var appliName =  'EmploiBatiactuMobile';
 
 // version de l'application
-var appliVersion = '';
+var appliVersion = '1.1.0';
 
 // serveur d'enregistrement
-var registerServeur ='';
+//var registerServeur = DIRSCRIPTS;
+var registerServeur = '192.168.3.103/backoffice/scripts/';  // ------------------ DEV DEV DEV
 
 // url d'enregistrement
-var registerUrlInterface ='';
+var registerUrlInterface = 'interface-mobile.php';
 
 // module batiMobilePush, à initialiser seulement dans la fonction deviceReady ou deviceIsReady
 var batiMP = null;
+
 
 /* ===============================================================================================================*/
 /***
@@ -58,7 +60,7 @@ function createPushItemFromIOS(payload) {
 
     var alerte = '';
     if (typeof payload.alerte != 'undefined') {
-        alerte = payload.alerte;
+        alerte = payload.idAlerte;
     }
 
     var message = '';
@@ -66,7 +68,13 @@ function createPushItemFromIOS(payload) {
         message = payload.alert;
     }
 
-    var data = {"alerte" : alerte};
+    var data = [];
+    if (typeof payload.idAlerte != 'undefined') {
+        data["idAlerte"] = payload.idAlerte;
+    }
+    if (typeof payload.idAlerte != 'undefined') {
+        data["nbAlerte"] = payload.nbAlerte;
+    }
 
     createPushItem(title, message, data);
 }
@@ -92,7 +100,12 @@ function onNotificationAndroid(e) {
             }
             break;
         case 'message':
+            //console.log(e);
             createPushItemFromAndroid(e.payload);
+
+            //console.log(e);
+
+
             break;
         case 'error':
             batiMP.log(e.msg, 'ERROR');
@@ -105,14 +118,18 @@ function onNotificationAndroid(e) {
 // Gestion des message reçu par GCM
 function createPushItemFromAndroid(payload) {
 
+    console.log(payload);
     var title = "Reception notification :";
     if (typeof payload.title != 'undefined') {
         title = payload.title;
     }
 
-    var data = '';
-    if (typeof payload.data != 'undefined') {
-        data = payload.data;
+    var data = [];
+    if (typeof payload.idAlerte != 'undefined') {
+        data["idAlerte"] = payload.idAlerte;
+    }
+    if (typeof payload.idAlerte != 'undefined') {
+        data["nbAlerte"] = payload.nbAlerte;
     }
 
     var message = '';
@@ -143,17 +160,6 @@ function deviceIsReadyForPush () {
     batiMP.setDebug(true, "ee");
     batiMP.log("applel device ready", 'DEBUG');
 
-    // info pour les webservices
-    appliName = 'EmploiBatiactuMobile';
-    appliVersion = '1.1.0';
-
-    //dev
-    registerServeur = '192.168.3.103';
-    registerUrlInterface = '/backoffice/scripts/interface.php';
-
-    // prod
-    //registerServeur = 'recherche.batiactu.com';
-    //registerUrlInterface = '/push/scripts/interface.php';
 
     is_ios = batiMP.is_ios();
     is_android = batiMP.is_android();
@@ -198,7 +204,9 @@ function deviceIsReadyForPush () {
 
 // création, stockage et affichage d'une notification pour l'appli
 function createPushItem(title, message, data) {
-    var newPush = {"titre": title, "message": message};
+    var newPush = {"titre": title, "message": message, "data": data };
+
+    alert('alerte reçu, merci de vérifier dans "mes alertes" ');
 
     batiMP.addNotification(newPush);
 
@@ -280,11 +288,13 @@ function onError(err, str1, str2){
 
 // gestion de la désactivation des notification (désabonnement + supp token)
 function unRegisterPush() {
+
+    console.log("----------------------------------- UNREGISTER");
     var token = batiMP.getPushToken();
     if (token != null) {
         $.ajax({
             url: 'http://' + registerServeur + registerUrlInterface,
-            data: {'json':1, 'appli':appliName, 'ver': appliVersion, 'cmd':'unregister_push','token':token},
+            data: {'json':1, 'appli':appliName, 'ver': appliVersion, 'put':'unregister_push', 'token':token},
             dataType: 'json',
             crossDomain: true,
             type: "POST",
@@ -316,6 +326,8 @@ function merge_options(obj1,obj2){
  */
 function registerPush(token, data) {
     var device_uuid = device.uuid;
+    console.log("----------------------------------- REGISTER");
+
     dataToSend = merge_options ({'json':1, 'appli': appliName, 'ver': appliVersion, 'put': 'register_push', 'token': token, 'uuid':device_uuid}, data);
 
     batiMP.log('http://' + registerServeur + registerUrlInterface, 'URL');

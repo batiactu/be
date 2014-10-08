@@ -340,12 +340,23 @@ div[data-role=content] {
     /*width: 100%;*/
 }
 
-.mr_icon_delete, .mr_icon_demande_alerte_push {
+.mr_icon_delete, .mr_icon_demande_alerte_push, .mr_nb_alerte_push {
     float: right;
 }
 
-.mr_icon_demande_alerte_push {
+span.mr_nb_alerte_push {
+    background:red ! important;
+    border-radius: 2em ! important;
+    border-color: transparent ! important;
+    box-shadow: none ! important;
+    padding: 0.2em 0.5em ! important;
+    cursor: default;
     margin-right: 20px;
+
+}
+
+.mr_icon_demande_alerte_push {
+    margin-right: 10px;
 }
 div[data-role=footer] {
     z-index: 2000;
