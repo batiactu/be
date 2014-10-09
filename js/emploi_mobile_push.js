@@ -6,8 +6,7 @@ var appliName =  'EmploiBatiactuMobile';
 var appliVersion = '1.1.0';
 
 // serveur d'enregistrement
-//var registerServeur = DIRSCRIPTS;
-var registerServeur = '192.168.3.103/backoffice/scripts/';  // ------------------ DEV DEV DEV
+var registerServeur = DIRSCRIPTS;
 
 // url d'enregistrement
 var registerUrlInterface = 'interface-mobile.php';
@@ -101,11 +100,8 @@ function onNotificationAndroid(e) {
             break;
         case 'message':
             //console.log(e);
+
             createPushItemFromAndroid(e.payload);
-
-            //console.log(e);
-
-
             break;
         case 'error':
             batiMP.log(e.msg, 'ERROR');
@@ -136,6 +132,12 @@ function createPushItemFromAndroid(payload) {
     if (typeof payload.message != 'undefined') {
         message = payload.message;
     }
+
+   /* if (typeof payload.sound != 'undefined') {
+        // Media not found
+        var snd = new Media(payload.sound);
+        snd.play();
+    }*/
 
     createPushItem(title, message, data);
 }
@@ -276,7 +278,7 @@ function onSuccess(data) {
     if (typeof data.success == 'undefined' || data.success == 'false') {
         console.log('Une erreur est survenu');
     }
-}
+ }
 
 function onError(err, str1, str2){
     batiMP.log('Erreur Ajax', 'DEBUG');
@@ -285,7 +287,6 @@ function onError(err, str1, str2){
     console.log(str2, "ERROR");
 }
 
-
 // gestion de la désactivation des notification (désabonnement + supp token)
 function unRegisterPush() {
 
@@ -293,7 +294,7 @@ function unRegisterPush() {
     var token = batiMP.getPushToken();
     if (token != null) {
         $.ajax({
-            url: 'http://' + registerServeur + registerUrlInterface,
+            url: registerServeur + registerUrlInterface,
             data: {'json':1, 'appli':appliName, 'ver': appliVersion, 'put':'unregister_push', 'token':token},
             dataType: 'json',
             crossDomain: true,
@@ -330,10 +331,10 @@ function registerPush(token, data) {
 
     dataToSend = merge_options ({'json':1, 'appli': appliName, 'ver': appliVersion, 'put': 'register_push', 'token': token, 'uuid':device_uuid}, data);
 
-    batiMP.log('http://' + registerServeur + registerUrlInterface, 'URL');
+    batiMP.log(registerServeur + registerUrlInterface, 'URL');
 
     $.ajax({
-        url: 'http://' + registerServeur + registerUrlInterface,
+        url: registerServeur + registerUrlInterface,
         data: dataToSend,
         dataType: 'json',
         crossDomain: true,
@@ -346,7 +347,6 @@ function registerPush(token, data) {
     if (dataToSend['put'] == 'register_push') {
         majInfoPush();
     }
-
 }
 
 // lors de la création de la page on met les évenement sur les boutons
