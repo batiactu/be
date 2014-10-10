@@ -528,6 +528,17 @@ $('#mes-recherches').on('pagebeforeshow', function(){
     view_list_mes_recherches();
     $('#mes-recherches #resultat-mesrecherches').show();
     $('#mes-recherches').page();
+    $('.push-flip-switch').flipswitch({corners: true});
+    $('.push-flip-switch').change(function(){
+
+        // recupération du hash
+        var current_hash = $(this).data('hash');
+
+        var newValue = switch_alert_from_search(this, current_hash);
+
+    });
+
+
 });
 
 $('#mentions-legales').bind('pageshow', function(){

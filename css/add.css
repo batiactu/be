@@ -358,6 +358,15 @@ span.mr_nb_alerte_push {
 .mr_icon_demande_alerte_push {
     margin-right: 10px;
 }
+
+div.flip-push-contener {
+    float: right;
+    margin-right: 20px;
+}
+
+
+
+
 div[data-role=footer] {
     z-index: 2000;
 }

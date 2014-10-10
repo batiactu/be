@@ -296,10 +296,12 @@ function saved_object_search(obj){
 
 function switch_alert_from_search(that, current_hash) {
 
+    var valToReturn = '';
     tsearchs = $.jStorage.get('tsearchs');
     if(!tsearchs) tsearchs= new Object();
 
     console.log('eerer');
+
     if(! tsearchs.hasOwnProperty(current_hash)){
         notify('Erreur, ce hash ne correspond pas!', '#mes-recherches');
         return false;
@@ -313,7 +315,7 @@ function switch_alert_from_search(that, current_hash) {
             batiMP.log('Désactivation alerte hash :' + current_hash , 'DEBUG');
             registerPush(batiMP.getPushToken(), {'put':'supp_push_alert', 'local_hash':current_hash});
         }
-        $(that).buttonMarkup({icon: "forbidden"});
+        valToReturn = 'off';
     }
     else {
         // activation de l'alerte'
@@ -330,12 +332,12 @@ function switch_alert_from_search(that, current_hash) {
             batiMP.log('Activation alerte hash :' + current_hash , 'DEBUG');
             registerPush(batiMP.getPushToken(), {'put':'add_push_alert', 'local_hash':current_hash, 'alerte':alerte});
         }
-
-        $(that).buttonMarkup({icon: "star"});
+        valToReturn = 'onn';
     }
 
     saved_object_search( tsearchs[current_hash]);
 
+    return valToReturn;
 }
 
 
