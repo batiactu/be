@@ -479,40 +479,95 @@ function load_last_searh(){
 	set_fields_from_current();
 	
 }
+
+/**
+ * Permet de mettre a jour les données pour : Fonction
+ * @param data
+ */
+function majTfonction(data) {
+    Tfonctions_search = new Array;
+    Tfonctions = [];
+    var k=0;
+    for(item in data) {
+
+        //for(fonction in data[parent]["fonction"]) {
+        for(fonction in data[item]["fonction"]) {
+
+            label = data[item]["fonction"][fonction];
+            Tfonctions_search.push({
+                'item_value': fonction
+                ,'item_label':label
+                ,'item_index':k
+                ,'type':'fonction'
+            });
+            Tfonctions[fonction]=label;
+            k++;
+        }
+    }
+}
+
+/**
+ * Permet de mettre a jour les données pour : Zone-geo
+ * @param data
+ */
+function majTregion(data) {
+
+    /*
+     * Init zone geo détail
+     */
+    Tregions_search = new Array;
+
+    var k=0;
+    for(code in data) {
+
+        label = data[code];
+
+        Tregions_search.push({
+            'item_value': code
+            ,'item_label':label
+            ,'item_index':k
+            ,'type':'zonegeo'
+        });
+        Tregions[code]=label;
+
+
+        k++;
+    }
+}
+
 function init_global(){
 	
 	$.ajax({
 		url:DIRSCRIPTS+'interface-mobile.php'
 		,data: {
 			jsonp : 1
-			,get:'zone-geo'
+			,get:'zone-geoc'
 		}
 		,dataType:'jsonp'
 		,async :false
 		,cache :false
-	}).done(function(data) {		
-		/*
-		 * Init zone geo détail
-		 */		
-		Tregions_search = new Array;
-		
-		var k=0;
-		for(code in data) {
-     			
-     			label = data[code];
-     			
-     			Tregions_search.push({
-     					'item_value': code
-     					,'item_label':label
-     					,'item_index':k
-     					,'type':'zonegeo'
-     				});
-     			Tregions[code]=label;	
+	}).done(function(data) {
 
-     			
-     		k++;		
-     	}	
-	});
+        majTregion(data);
+
+        // mise en cache
+        console.log("mise en cache region");
+        localStorage.setItem("tregion_data", JSON.stringify(data));
+
+	}).fail(function() {
+        // as t'on des données en cache ?
+        console.log("erreur recup data fonction check in cache");
+        var treg_data = localStorage.getItem("tregion_data");
+
+        if (treg_data === null || treg_data === '') {
+            console.log("une erreur lors de la récupération de donnée FONCTION SEARCH est survenue, merci de relancer l'application");
+        }
+
+        var data = JSON.parse(treg_data);
+
+        majTregion(data);
+    });
+
     $.ajax({
 		url:DIRSCRIPTS+'interface-mobile.php'
 		,data: {
@@ -530,6 +585,7 @@ function init_global(){
 		,error:function(ret) {						
 			}
 	});
+
 	$.ajax({
 		url:DIRSCRIPTS+'interface-mobile.php'
 		,data: {
@@ -539,30 +595,33 @@ function init_global(){
 		,dataType:'jsonp'
 		,async :false
 		,cache :false
-	}).done(function(data) {
-		
-		Tfonctions_search = new Array;
-		Tfonctions = new Array;
-		var k=0;
-		for(item in data) {
-     			
-     			//for(fonction in data[parent]["fonction"]) {
-     			for(fonction in data[item]["fonction"]) {
-		
-	     			label = data[item]["fonction"][fonction];	     
-     				Tfonctions_search.push({
-     					'item_value': fonction
-     					,'item_label':label
-     					,'item_index':k
-     					,'type':'fonction'
-     				});
-     				Tfonctions[fonction]=label;
-	         		k++;		
-     			}
-     			
-     	}
+        , success : function(data) {
+
+            majTfonction(data);
+            // mise en cache
+            console.log("mise en cache fonction");
+            localStorage.setItem("tfonction_data", JSON.stringify(data));
+
+        },
+        error : function () {
+            // as t'on des données en cache ?
+            console.log("erreur recup data fonction check in cache");
+            var tfct_data = localStorage.getItem("tfonction_data");
+
+            if (tfct_data === null || tfct_data === '') {
+                console.log("une erreur lors de la récupération de donnée FONCTION SEARCH est survenue, merci de relancer l'application");
+            }
+
+            var data = JSON.parse(tfct_data);
+
+            majTfonction(data);
+
+        }
 	});
-	
+
+	/*
+	// Pas besoin pour l'instant
+
 	$.ajax({
 		url:DIRSCRIPTS+'interface-mobile.php'
 		,data: {
@@ -573,10 +632,8 @@ function init_global(){
 		,async :false
 		,cache :false
 	}).done(function(data) {
-		/*
-		 * Init zone geo détail
-		 */
-		
+		//Init zone geo détail
+
 		Tdepts = new Array;
 		
 		var k=0;
@@ -594,7 +651,7 @@ function init_global(){
     load_contrats();
 
 	load_experiences();
-
+*/
     initSearch();
 
 	return true;

@@ -24,6 +24,13 @@
     <link rel="apple-touch-icon" href="images/icon.png"/>
     <link rel="apple-touch-startup-image" href="images/splash.png"/>
 
+
+    <!-- =============================    LIB JS pour PhoneGap et Plugins    ================================================== -->
+    <!-- PhoneGap en a besoin derrière pour pouvoir utiliser ses fonctions natives -->
+    <script src="phonegap.js"></script>
+    <script src="GAPlugin.js"></script>
+    <!-- =============================    Fin LIB JS pour PhoneGap et Plugins    ================================================== -->
+
     <!-- =============================    LIB JS    ===================== -->
     <script type="text/javascript" src="js/lib/jquery-2.1.1.min.js"></script>
 
@@ -50,24 +57,14 @@
     <script type="text/javascript" src="http://192.168.3.103/bem/js/emploi_mobile_push.js"></script>
     <!-- =============================    Fin LIB JS Batiactu     ===================== -->
 
-
-
-
     <script type="text/javascript">
         $(document).bind("mobileinit", function () {
             $.mobile.defaultPageTransition = 'fade';
         });
     </script>
 
-
     <!-- @TODO : remettre www.capinfoproreport.com -->
     <!--script type="text/javascript" src="http://www.capinfoproreport.com/cap_pub/scripts/rotate2-js.php?e=B_IP_HOME,TOP_IP&support=B.IP"></script-->
-
-    <!-- =============================    LIB JS pour PhoneGap et Plugins    ================================================== -->
-    <!-- PhoneGap en a besoin derrière pour pouvoir utiliser ses fonctions natives -->
-    <script src="phonegap.js"></script>
-    <script src="GAPlugin.js"></script>
-    <!-- =============================    Fin LIB JS pour PhoneGap et Plugins    ================================================== -->
 
     <script type="application/javascript">
         $.get("http://192.168.3.103/bem/template.html", function (data) {
