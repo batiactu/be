@@ -102,8 +102,7 @@
 
         <p align="center">
             <a href="#recherche-detail" data-role="button" data-inline="true" data-mini="true">Lancer une recherche</a>
-            <a href="#popupDialog" data-rel="popup" data-position-to="window"
-               data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-b">test dialog</a>
+            <a href="#standard" data-rel="dialog">Standard Page as Dialog</a>
 
         </p>
     </div>
@@ -454,22 +453,15 @@
 
 
 
-<div data-dialog="true" data-role="page" id="popupDialog" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
-    <div data-role="header" data-theme="a">
-        <h1>c'st le H1 </h1>
+<!-- Standard page -->
+<div data-role="page" id="standard" data-add-back-btn="true">
+    <div data-role="header">
+        <h1>Standard page</h1>
     </div>
-    <div role="main" class="ui-content">
-        <h3 class="ui-title">Push reçu</h3>
-        <p>Vous avez recu un nouveau push</p>
-        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" data-transition="flow">Retour</a>
-        <a href="#mes-recherches" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="" data-transition="flow">Allez aux recherches</a>
+    <div data-role="content">
+        <p>I'm a regular page, and can be served just like any other page. Also, you can put a data-rel="dialog" attribute on your link and open me in a dialog!</p>
     </div>
 </div>
-
-
-
-
-
 
 
 
