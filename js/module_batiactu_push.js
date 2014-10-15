@@ -173,6 +173,9 @@ batiactuMobilePush.prototype.unRegisterDevice = function (callBackSuccessHandler
 
 batiactuMobilePush.prototype.log = function (message, code_erreur) {
     if (this.genLog) {
+        if (typeof code_erreur == 'undefined') {
+            code_erreur = 'DEBUG';
+        }
         console.log(code_erreur + ' : ' + message);
         //alert(code_erreur + ' : ' + message);
         //$(this.divLog).append('<li>' + code_erreur + ' : ' + message + '</li>');

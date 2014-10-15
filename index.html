@@ -15,6 +15,13 @@
     <link rel="apple-touch-icon" href="images/icon.png"/>
     <link rel="apple-touch-startup-image" href="images/splash.png"/>
 
+
+    <!-- =============================    LIB JS pour PhoneGap et Plugins    ================================================== -->
+    <!-- PhoneGap en a besoin derrière pour pouvoir utiliser ses fonctions natives -->
+    <!-- Il appelle automatiquement les js des plugins  -->
+    <script src="phonegap.js"></script>
+    <!-- =============================    Fin LIB JS pour PhoneGap et Plugins    ================================================== -->
+
     <!-- =============================    LIB JS    =========================== -->
     <script type="text/javascript" src="js/lib/aggreg.min.js"></script>
     <!-- =============================    FINLIB JS    ======================== -->
@@ -26,17 +33,8 @@
         });
     </script>
 
-
     <!-- @TODO : remettre www.capinfoproreport.com -->
     <!--script type="text/javascript" src="http://www.capinfoproreport.com/cap_pub/scripts/rotate2-js.php?e=B_IP_HOME,TOP_IP&support=B.IP"></script-->
-
-    <!-- =============================    LIB JS pour PhoneGap et Plugins    ================================================== -->
-    <!-- PhoneGap en a besoin derrière pour pouvoir utiliser ses fonctions natives -->
-    <script src="phonegap.js"></script>
-    <script src="GAPlugin.js"></script>
-    <!-- =============================    Fin LIB JS pour PhoneGap et Plugins    ================================================== -->
-
-
 
 </head>
 
@@ -65,6 +63,8 @@
 
         <p align="center">
             <a href="#recherche-detail" data-role="button" data-inline="true" data-mini="true">Lancer une recherche</a>
+            <!--a href="#dialog-push-received" data-rel="dialog">Standard Page as Dialog</a-->
+
         </p>
     </div>
 </div>
@@ -394,7 +394,7 @@
 
 
     <div class="pad10 ui-corner-all" data-history="false" id="popupSaveSearch" data-role="popup" data-overlay-theme="a"
-        data-dismissible="true">
+         data-dismissible="true">
         <div style="padding: 10px 20px;">
             <h3>Votre recherche a été sauvegardée avec succès</h3>
             <a data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Fermer</a>
@@ -412,8 +412,21 @@
     </div>
 </div>
 
+<!--gestion des dialog -->
+<div data-role="page" id="dialog-push-received" data-add-back-btn="true">
+    <div data-role="header">
+        <h1>Standard page</h1>
+    </div>
+    <div data-role="content">
+        <p>Vous venez de recevoir une notification sur une de vos alertes. </p>
+        <p>Vous pouvez clicker sur le bouton "Aller sur mes recherches" pour voir quelles alertes ont remonté de nouvelles annonces d'emploi selon vos critères.</p>
+        <p>Ou vous pouvez cliquez sur la croix de fermeture pour retourner sur la page précédante.</p>
 
+        <a href="#mes-recherches" data-role="button" data-theme="c">Aller sur mes recherches</a>
 
+    </div>
+
+</div>
 
 
 
@@ -462,15 +475,14 @@
         deviceIsReadyForPush();
     }
 
-    var id_page_en_cours="";function TrackEvent(b,d,a,c){gaObj.trackEvent(function(){console.log("success")},function(){console.log("failed")},b,d,a,c)}function TrackPageView(a){gaObj.trackPage(function(){console.log("success")},function(){console.log("failed")},a)}appFireTracker=function(){try{hash=location.hash;if(hash){pageUrl=hash.substr(1)}else{pageUrl=location.pathname}TrackPageView(pageUrl)}catch(a){}};var app=document.URL.indexOf("http://")===-1&&document.URL.indexOf("https://")===-1;if(app){$($(document).on("pageshow",appFireTracker))}else{$($(document).on("pageshow",fireTracker))}function wrp_cpt_mobile(d,g){if(typeof(g)=="undefined"||g==null||g==undefined){g=""}if(typeof(d)!="undefined"&&d!=null&&d!=undefined){switch(d){case"form-envoi-annonce-ami":d="form-envoi-annonce-ami";break;case"form-envoi-annonce-ami-success":d="form-envoi-annonce-ami-success";break;case"form-envoi-annonce-ami-error":d="form-envoi-annonce-ami-error";break;case"form-auto-transfert":d="form-auto-transfert";break;case"form-auto-transfert-success":d="form-auto-transfert-success";break;case"form-auto-transfert-error":d="form-auto-transfert-error";break;case"recherche":d="page-resultats-recherche";break;case"recherche-detail":d="page-formulaire-recherche";break;case"recherche-detail-page-fonction":d="page-liste-fonctions";break;case"recherche-detail-page-zonegeo":d="page-liste-localisations";break;case"recherche-detail-page-experience":d="page-liste-experiences";break;case"recherche-detail-page-contrat":d="page-liste-contrats";break;case"recherche":d="page-resultats-recherche";break;case"annonce":d="pages-annonces-emploi";break;case"recrutement":d="acces-recruteurs";break;case"mentions-legales":d="mention-legales";break;case"mes-recherches":d="mes-recherches";break;case"accueil":d="accueil";break;default:d="divers"}var a=436070;if(app){var k="Mobile emploi"}else{var k="Mobile emploi WEB"}var c=d;var j=a;var i=k;var h=g;var f="";var e;var b=new wreport_counter(k,c,a,e,f,j,i);b.add_content(h);b.count()}}$(document).bind("pagechange",function(b,a){hash=location.hash;if(hash){tagpageUrl=hash.substr(1)}else{tagpageUrl=location.pathname.split("/").pop()}if(tagpageUrl=="/"||tagpageUrl==""||tagpageUrl=="index.html"){tagpageUrl="accueil"}switch(tagpageUrl){case"annonce":case"recherche":break;default:wrp_cpt_mobile(tagpageUrl)}});$("[data-role=page][id=annonce]").bind("pageshow",function(b,a){if(!app){var c=null;if(c){if($("div.ui-header a.ui-btn-left[data-rel=none]").attr("data-rel")!="back"){setTimeout(function(){var d=$("div.ui-header a.ui-btn-left[data-rel=none]");d.attr("data-rel","back");d.find("span.ui-btn-text").text("Retour");d.attr("href","javascript:void(0);")},200)}}else{setTimeout(function(){$("div.ui-header a.ui-btn-left[data-rel=back]").find("span.ui-btn-text").text("Accueil");$("div.ui-header a.ui-btn-left[data-rel=back]").attr("href","#accueil");$("div.ui-header a.ui-btn-left[data-rel=back]").attr("data-rel","none")},200)}}});$("[data-role=page]").bind("pageshow",function(){var e=$(this).find("div[data-role=header]");var b=$(e).outerHeight();var d=$(".ui-panel").height();var a=d-b;$(".ui-panel").css({top:b,"min-height":a});var c=$("#menu-left-panel-"+id_page_en_cours).hasClass("fromInit");if(c===false){$("#menu-left-panel-"+id_page_en_cours).panel("open")}else{if(window.matchMedia("(min-width: 640px)").matches){$("#menu-left-panel-"+id_page_en_cours).panel("open")}else{$("#menu-left-panel-"+id_page_en_cours).panel("close")}}});$("[data-role=page]").on("pagebeforeshow",function(){id_page_en_cours=$(this).attr("id");maj_panel("init")});function maj_panel(e){var f=0;if(is_device){var c=batiMP.getPushToken();if(c!=null){f=1}}var d={template:"#panelMenu-tpl",url:"fill-url-source",data:{}};var a=$.extend(d,a);var b=Handlebars.compile($(a.template).html());Tab=new Array({id_page:id_page_en_cours,is_device:is_device,sendPush:!f,noPush:f});if($("#menu-left-panel-"+id_page_en_cours).length>0){$("#menu-left-panel-"+id_page_en_cours).remove()}$("#"+id_page_en_cours).append(b(Tab));$("#menu-left-panel-"+id_page_en_cours).panel();$("#menu-left-panel-"+id_page_en_cours).find("div[data-role=controlgroup]").controlgroup({defaults:true});if(e=="init"){$("#menu-left-panel-"+id_page_en_cours).addClass("fromInit")}}$("#actu").on("pageinit",function(){$("#actu").bind("click",function(){initActu()})});$("#offre").on("pageinit",function(){$("#offre").bind("click",function(){$("li").bind("swiperight",function(a){$(this).remove()})})});$(document).bind("pageinit",function(b){if(!pageinit){pageinit=true;var a=$.Deferred();a.done(init_global).done(function(c){setTimeout(function(){$("#recherche-detail-page-fonction").trigger("pagebeforeshow")},100);setTimeout(function(){$("#recherche-detail-page-zonegeo").trigger("pagebeforeshow")},100);setTimeout(function(){$("#mes-recherches").trigger("pagebeforeshow")},400)}).resolve()}});$("#recherche-detail-page-zonegeo").on("pagebeforeshow",function(){var a=Handlebars.compile($("#recherche-detail-tpl").html());$("#recherche-detail-zonegeo").html(a(Tregions_search)).trigger("create");$("#recherche-detail-page-zonegeo .check_cac").off("click").on("click",function(){uncheck_cac($(this).attr("cac_type"),$(this));$.mobile.changePage("#recherche-detail",{transition:"none"})});$("#recherche-detail-page-zonegeo").page();set_fields_from_current()});$("#recherche-detail-page-fonction").on("pagebeforeshow",function(){var a=Handlebars.compile($("#recherche-detail-tpl").html());$("#recherche-detail-fonction").html(a(Tfonctions_search)).trigger("create");$("#recherche-detail-page-fonction .check_cac").off("click").on("click",function(){uncheck_cac($(this).attr("cac_type"),$(this));$.mobile.changePage("#recherche-detail",{transition:"none"})});$("#recherche-detail-page-fonction").page();set_fields_from_current()});$("#recherche-detail-page-experience").on("pagebeforeshow",function(){set_fields_from_current()});$("#recherche-detail-page-contrat").on("pagebeforeshow",function(){set_fields_from_current()});$("#recherche-detail").on("pagebeforeshow",function(){var a=nb_annonce+" offre";if(nb_annonce>1){a+="s"}$("#nbannonce_header").text(a);if(current_fonction.length>0){$("[href=#recherche-detail-page-fonction] > h2").removeClass("border_red")}if(criteres_last_search){$("#recherche-detail #last_search").show()}if(Object.keys(tsearchs).length>0){$("#recherche-detail #link_mine_search").show()}else{$("#recherche-detail #link_mine_search").hide()}set_fields_from_current()});$("#recherche-detail").on("pageshow",function(){$("#recherche #next").attr("data-next",0)});$("#recherche").on("pagecreate",function(){$("#nav-recherche").remove();var a=Handlebars.compile($("#nav-recherche-tpl").html());Tab=new Array;Tab.nav=[{SAVE:"Sauvegarder",NEW:"Nouvelle recherche"}];TabComplete=new Array;TabComplete.push(Tab);$("#recherche").append(a(TabComplete)).trigger("create")});$("#recherche #select-page").on("change",function(a,b){launchSearch(1,$(this).val())});$("#recherche").on("pagebeforeshow",function(){if(use_infinite){$("#recherche #pagin-prev").hide()}if(use_infinite){$("#recherche #pagin-next").hide()}if(use_infinite){$("#recherche #select-page").hide()}if(use_infinite){$("#recherche #pagin-pages").hide()}if(use_infinite){$("#select-page").remove()}$("#select-page").parents(".ui-select").css("display","none");if(use_infinite){$("#recherche .content").waypoint("destroy")}if(!use_infinite){$("#recherche #pagin-prev").unbind();$("#recherche #pagin-prev").bind("click",function(a){current=parseInt($("#recherche #next").attr("data-next"));if(current>nb_results_by_page){current=current-(2*nb_results_by_page);$("#recherche #next").attr("data-next",current);a.preventDefault();launchSearch(1);$("#resultat-recherche").listview().listview("refresh");$("#recherche").trigger("pagecreate")}$.mobile.silentScroll(0)});$("#recherche #pagin-next").unbind();$("#recherche #pagin-next").bind("click",function(a){current=parseInt($("#recherche #next").attr("data-next"));if(current<=current_nb_annonce){a.preventDefault();launchSearch(1);$("#resultat-recherche").listview().listview("refresh");$("#recherche").trigger("pagecreate")}$.mobile.silentScroll(0)});$("#recherche #next").addClass("displaynone")}if(use_infinite){$("#recherche #next").unbind();$("#recherche #next").bind("click",function(a){current=parseInt($("#recherche #next").attr("data-next"));if(current<=current_nb_annonce){a.preventDefault();launchSearch(1);$("#resultat-recherche").listview().listview("refresh");$("#recherche .content").waypoint("disable");$("#recherche .content").waypoint("enable");$("#recherche").trigger("pagecreate")}current=parseInt($("#recherche #next").attr("data-next"))})}});$("#recherche").on("pageshow",function(){if(use_infinite){$("#select-page").remove()}if(use_infinite){$("#select-page").parents(".ui-select").css("display","none")}if(!use_infinite){var a=Math.ceil(current_nb_annonce/nb_results_by_page);if(a>1){$("#recherche #select-page").selectmenu().selectmenu("refresh",true);$("#recherche .ui-select").css("display","inline");$("#recherche #pagin-pages").css("display","inline")}}if(use_infinite){current=parseInt($("#recherche #next").attr("data-next"));if(current_nb_annonce>=current){$("#recherche .content").waypoint(function(b){if(b==="down"){$("#recherche #next").trigger("click")}},{offset:"bottom-in-view"})}}});$("#annonce").on("pageshow",function(){$(".ui-page-active").trigger("create");$("#popupPostuler").on({popupafteropen:function(a,b){$("#btn_postuler").unbind();$("#btn_postuler").bind("click",function(c){setTimeout(function(){$("#waiting_send").popup("open",{history:false})},200)})}});$("#popupTransfertAmi").on({popupafteropen:function(a,b){$("#btn_transfert_ami").unbind();$("#btn_transfert_ami").bind("click",function(c){setTimeout(function(){$("#waiting_send").popup("open",{history:false})},200)})}});$("#confirm_send").on({popupafteropen:function(a,b){$("#back_to_results").unbind();$("#back_to_results").bind("click",function(c){$.mobile.changePage("#recherche")});$("#back_new_search").unbind();$("#back_new_search").bind("click",function(c){setTimeout(function(){$("#confirm_send").popup("close");reset_search(1)},300)})}});$("#confirm_send_ami").on({popupafteropen:function(a,b){$("#back_to_results_ami").unbind();$("#back_to_results_ami").bind("click",function(c){$.mobile.changePage("#recherche")});$("#back_new_search_ami").unbind();$("#back_new_search_ami").bind("click",function(c){setTimeout(function(){$("#confirm_send_ami").popup("close");reset_search(1)},300)})}})});$("#mes-recherches").on("pagecreate",function(){$("#confirm_delete_searh").bind("click",function(){del_searh_from_hash(hash_search_selected_to_del)});$("#cancel_delete_searh").bind("click",function(){candel_del_search()})});$("#mes-recherches").on("pagebeforechange",function(){$("#mes-recherches #resultat-mesrecherches").hide()});$("#mes-recherches").on("pagebeforeshow",function(){$("#recherche #next").attr("data-next",0);view_list_mes_recherches();$("#mes-recherches #resultat-mesrecherches").show();$("#mes-recherches").page()});$("#mentions-legales").bind("pageshow",function(){if(is_device){$("#mentions-legales div[data-role=content] .ui-body ").addClass("bg_is_device")}});$(document).bind("pagebeforechange",function(f,d){var b=$.mobile.path.parseUrl(d.toPage);set_fields_from_current();if(typeof d.toPage==="string"){var c=/^#recherche\?/;var a=/^#recherche-\?/;if(b.hash.search(c)!==-1&&b.hash.search(a)===-1){wrp_cpt_mobile("recherche",get_current_search_wreport(1));console.log("execute_search");execute_search(b,d.options);console.log("FIN execute_search");f.preventDefault()}var c=/^#annonce/;if(b.hash.search(c)!==-1){var c=/(?:.*id={1})+(\d+)(.*)/g;c.exec(d.toPage);if(RegExp.$1!=""){var g=RegExp.$1}wrp_cpt_mobile("annonce",g);back_popup_hash=b.hash;showAnnonce(b,d.options);f.preventDefault()}}});$("#annonce").on("pagecreate",function(){var a=$("#template-page div[data-role=footer]");$("div[data-role=page]").append(a)});$("#accueil").on("pagebeforecreate",function(){});$("#accueil").on("pagebeforeshow",function(){$("#nbannonce_cent_inf").text(nb_annonce_cent_inf)});$(document).on("pageshow","#annonce",function(){$("#formpopup_Postuler").validate({rules:{email:{required:true,email:true}},messages:{required:"Le champ adresse e-mail est obligatoire.",email:"Veuillez saisir une adresse e-mail valide."},errorPlacement:function(a,b){var c=b.attr("id");switch(c){case"email":a.insertAfter("#formpopup_Postuler .email_label");break;default:a.insertBefore(b)}}});$("#formpopup_TransfertAmi").validate({rules:{email:{required:true,email:true}},messages:{required:"Le champ adresse e-mail est obligatoire.",email:"Veuillez saisir une adresse e-mail valide."},errorPlacement:function(a,b){var c=b.attr("id");switch(c){case"email":a.insertAfter("#formpopup_TransfertAmi .email_label");break;default:a.insertBefore(b)}}})});
+    var id_page_en_cours="";function TrackEvent(b,d,a,c){gaObj.trackEvent(function(){console.log("success")},function(){console.log("failed")},b,d,a,c)}function TrackPageView(a){gaObj.trackPage(function(){console.log("success")},function(){console.log("failed")},a)}appFireTracker=function(){try{hash=location.hash;if(hash){pageUrl=hash.substr(1)}else{pageUrl=location.pathname}TrackPageView(pageUrl)}catch(a){}};var app=document.URL.indexOf("http://")===-1&&document.URL.indexOf("https://")===-1;if(app){$($(document).on("pageshow",appFireTracker))}else{$($(document).on("pageshow",fireTracker))}function wrp_cpt_mobile(d,g){if(typeof(g)=="undefined"||g==null||g==undefined){g=""}if(typeof(d)!="undefined"&&d!=null&&d!=undefined){switch(d){case"form-envoi-annonce-ami":d="form-envoi-annonce-ami";break;case"form-envoi-annonce-ami-success":d="form-envoi-annonce-ami-success";break;case"form-envoi-annonce-ami-error":d="form-envoi-annonce-ami-error";break;case"form-auto-transfert":d="form-auto-transfert";break;case"form-auto-transfert-success":d="form-auto-transfert-success";break;case"form-auto-transfert-error":d="form-auto-transfert-error";break;case"recherche":d="page-resultats-recherche";break;case"recherche-detail":d="page-formulaire-recherche";break;case"recherche-detail-page-fonction":d="page-liste-fonctions";break;case"recherche-detail-page-zonegeo":d="page-liste-localisations";break;case"recherche-detail-page-experience":d="page-liste-experiences";break;case"recherche-detail-page-contrat":d="page-liste-contrats";break;case"recherche":d="page-resultats-recherche";break;case"annonce":d="pages-annonces-emploi";break;case"recrutement":d="acces-recruteurs";break;case"mentions-legales":d="mention-legales";break;case"mes-recherches":d="mes-recherches";break;case"accueil":d="accueil";break;default:d="divers"}var a=436070;if(app){var k="Mobile emploi"}else{var k="Mobile emploi WEB"}var c=d;var j=a;var i=k;var h=g;var f="";var e;var b=new wreport_counter(k,c,a,e,f,j,i);b.add_content(h);b.count()}}$(document).bind("pagechange",function(b,a){hash=location.hash;if(hash){tagpageUrl=hash.substr(1)}else{tagpageUrl=location.pathname.split("/").pop()}if(tagpageUrl=="/"||tagpageUrl==""||tagpageUrl=="index.html"){tagpageUrl="accueil"}switch(tagpageUrl){case"annonce":case"recherche":break;default:wrp_cpt_mobile(tagpageUrl)}});$("[data-role=page][id=annonce]").bind("pageshow",function(b,a){if(!app){var c=null;if(c){if($("div.ui-header a.ui-btn-left[data-rel=none]").attr("data-rel")!="back"){setTimeout(function(){var d=$("div.ui-header a.ui-btn-left[data-rel=none]");d.attr("data-rel","back");d.find("span.ui-btn-text").text("Retour");d.attr("href","javascript:void(0);")},200)}}else{setTimeout(function(){$("div.ui-header a.ui-btn-left[data-rel=back]").find("span.ui-btn-text").text("Accueil");$("div.ui-header a.ui-btn-left[data-rel=back]").attr("href","#accueil");$("div.ui-header a.ui-btn-left[data-rel=back]").attr("data-rel","none")},200)}}});$("[data-role=page]").bind("pageshow",function(){var e=$(this).find("div[data-role=header]");var b=$(e).outerHeight();var d=$(".ui-panel").height();var a=d-b;$(".ui-panel").css({top:b,"min-height":a});var c=$("#menu-left-panel-"+id_page_en_cours).hasClass("fromInit");if(c===false){$("#menu-left-panel-"+id_page_en_cours).panel("open")}else{if(window.matchMedia("(min-width: 640px)").matches){$("#menu-left-panel-"+id_page_en_cours).panel("open")}else{$("#menu-left-panel-"+id_page_en_cours).panel("close")}}});$("[data-role=page]").on("pagebeforeshow",function(){id_page_en_cours=$(this).attr("id");maj_panel("init")});function maj_panel(e){var f=0;if(id_page_en_cours!=""&&id_page_en_cours.substr(0,6)=="dialog"){return}if(is_device){var c=batiMP.getPushToken();if(c!=null){f=1}}var d={template:"#panelMenu-tpl",url:"fill-url-source",data:{}};var a=$.extend(d,a);var b=Handlebars.compile($(a.template).html());Tab=new Array({id_page:id_page_en_cours,is_device:is_device,sendPush:!f,noPush:f});if($("#menu-left-panel-"+id_page_en_cours).length>0){$("#menu-left-panel-"+id_page_en_cours).remove()}$("#"+id_page_en_cours).append(b(Tab));$("#menu-left-panel-"+id_page_en_cours).panel();$("#menu-left-panel-"+id_page_en_cours).find("div[data-role=controlgroup]").controlgroup({defaults:true});if(e=="init"){$("#menu-left-panel-"+id_page_en_cours).addClass("fromInit")}}$("#actu").on("pageinit",function(){$("#actu").bind("click",function(){initActu()})});$("#offre").on("pageinit",function(){$("#offre").bind("click",function(){$("li").bind("swiperight",function(a){$(this).remove()})})});$(document).bind("pageinit",function(b){if(!pageinit){pageinit=true;var a=$.Deferred();a.done(init_global).done(function(c){setTimeout(function(){$("#recherche-detail-page-fonction").trigger("pagebeforeshow")},100);setTimeout(function(){$("#recherche-detail-page-zonegeo").trigger("pagebeforeshow")},100);setTimeout(function(){$("#mes-recherches").trigger("pagebeforeshow")},400)}).resolve()}});$("#recherche-detail-page-zonegeo").on("pagebeforeshow",function(){var a=Handlebars.compile($("#recherche-detail-tpl").html());$("#recherche-detail-zonegeo").html(a(Tregions_search)).trigger("create");$("#recherche-detail-page-zonegeo .check_cac").off("click").on("click",function(){uncheck_cac($(this).attr("cac_type"),$(this));$.mobile.changePage("#recherche-detail",{transition:"none"})});$("#recherche-detail-page-zonegeo").page();set_fields_from_current()});$("#recherche-detail-page-fonction").on("pagebeforeshow",function(){var a=Handlebars.compile($("#recherche-detail-tpl").html());$("#recherche-detail-fonction").html(a(Tfonctions_search)).trigger("create");$("#recherche-detail-page-fonction .check_cac").off("click").on("click",function(){uncheck_cac($(this).attr("cac_type"),$(this));$.mobile.changePage("#recherche-detail",{transition:"none"})});$("#recherche-detail-page-fonction").page();set_fields_from_current()});$("#recherche-detail-page-experience").on("pagebeforeshow",function(){set_fields_from_current()});$("#recherche-detail-page-contrat").on("pagebeforeshow",function(){set_fields_from_current()});$("#recherche-detail").on("pagebeforeshow",function(){var a=nb_annonce+" offre";if(nb_annonce>1){a+="s"}$("#nbannonce_header").text(a);if(current_fonction.length>0){$("[href=#recherche-detail-page-fonction] > h2").removeClass("border_red")}if(criteres_last_search){$("#recherche-detail #last_search").show()}if(Object.keys(tsearchs).length>0){$("#recherche-detail #link_mine_search").show()}else{$("#recherche-detail #link_mine_search").hide()}set_fields_from_current()});$("#recherche-detail").on("pageshow",function(){$("#recherche #next").attr("data-next",0)});$("#recherche").on("pagecreate",function(){$("#nav-recherche").remove();var a=Handlebars.compile($("#nav-recherche-tpl").html());Tab=new Array;Tab.nav=[{SAVE:"Sauvegarder",NEW:"Nouvelle recherche"}];TabComplete=new Array;TabComplete.push(Tab);$("#recherche").append(a(TabComplete)).trigger("create")});$("#recherche #select-page").on("change",function(a,b){launchSearch(1,$(this).val())});$("#recherche").on("pagebeforeshow",function(){if(use_infinite){$("#recherche #pagin-prev").hide()}if(use_infinite){$("#recherche #pagin-next").hide()}if(use_infinite){$("#recherche #select-page").hide()}if(use_infinite){$("#recherche #pagin-pages").hide()}if(use_infinite){$("#select-page").remove()}$("#select-page").parents(".ui-select").css("display","none");if(use_infinite){$("#recherche .content").waypoint("destroy")}if(!use_infinite){$("#recherche #pagin-prev").unbind();$("#recherche #pagin-prev").bind("click",function(a){current=parseInt($("#recherche #next").attr("data-next"));if(current>nb_results_by_page){current=current-(2*nb_results_by_page);$("#recherche #next").attr("data-next",current);a.preventDefault();launchSearch(1);$("#resultat-recherche").listview().listview("refresh");$("#recherche").trigger("pagecreate")}$.mobile.silentScroll(0)});$("#recherche #pagin-next").unbind();$("#recherche #pagin-next").bind("click",function(a){current=parseInt($("#recherche #next").attr("data-next"));if(current<=current_nb_annonce){a.preventDefault();launchSearch(1);$("#resultat-recherche").listview().listview("refresh");$("#recherche").trigger("pagecreate")}$.mobile.silentScroll(0)});$("#recherche #next").addClass("displaynone")}if(use_infinite){$("#recherche #next").unbind();$("#recherche #next").bind("click",function(a){current=parseInt($("#recherche #next").attr("data-next"));if(current<=current_nb_annonce){a.preventDefault();launchSearch(1);$("#resultat-recherche").listview().listview("refresh");$("#recherche .content").waypoint("disable");$("#recherche .content").waypoint("enable");$("#recherche").trigger("pagecreate")}current=parseInt($("#recherche #next").attr("data-next"))})}});$("#recherche").on("pageshow",function(){if(use_infinite){$("#select-page").remove()}if(use_infinite){$("#select-page").parents(".ui-select").css("display","none")}if(!use_infinite){var a=Math.ceil(current_nb_annonce/nb_results_by_page);if(a>1){$("#recherche #select-page").selectmenu().selectmenu("refresh",true);$("#recherche .ui-select").css("display","inline");$("#recherche #pagin-pages").css("display","inline")}}if(use_infinite){current=parseInt($("#recherche #next").attr("data-next"));if(current_nb_annonce>=current){$("#recherche .content").waypoint(function(b){if(b==="down"){$("#recherche #next").trigger("click")}},{offset:"bottom-in-view"})}}});$("#annonce").on("pageshow",function(){$(".ui-page-active").trigger("create");$("#popupPostuler").on({popupafteropen:function(a,b){$("#btn_postuler").unbind();$("#btn_postuler").bind("click",function(c){setTimeout(function(){$("#waiting_send").popup("open",{history:false})},200)})}});$("#popupTransfertAmi").on({popupafteropen:function(a,b){$("#btn_transfert_ami").unbind();$("#btn_transfert_ami").bind("click",function(c){setTimeout(function(){$("#waiting_send").popup("open",{history:false})},200)})}});$("#confirm_send").on({popupafteropen:function(a,b){$("#back_to_results").unbind();$("#back_to_results").bind("click",function(c){$.mobile.changePage("#recherche")});$("#back_new_search").unbind();$("#back_new_search").bind("click",function(c){setTimeout(function(){$("#confirm_send").popup("close");reset_search(1)},300)})}});$("#confirm_send_ami").on({popupafteropen:function(a,b){$("#back_to_results_ami").unbind();$("#back_to_results_ami").bind("click",function(c){$.mobile.changePage("#recherche")});$("#back_new_search_ami").unbind();$("#back_new_search_ami").bind("click",function(c){setTimeout(function(){$("#confirm_send_ami").popup("close");reset_search(1)},300)})}})});$("#mes-recherches").on("pagecreate",function(){$("#confirm_delete_searh").bind("click",function(){del_searh_from_hash(hash_search_selected_to_del)});$("#cancel_delete_searh").bind("click",function(){candel_del_search()})});$("#mes-recherches").on("pagebeforechange",function(){$("#mes-recherches #resultat-mesrecherches").hide()});$("#mes-recherches").on("pagebeforeshow",function(){$("#recherche #next").attr("data-next",0);view_list_mes_recherches();$("#mes-recherches #resultat-mesrecherches").show();$("#mes-recherches").page();$(".mr_icon_delete").buttonMarkup();$(".mes-recherches-lance > a").buttonMarkup();$(".push-flip-switch").flipswitch({corners:true});$(".push-flip-switch").change(function(){var b=$(this).data("hash");var a=switch_alert_from_search(this,b)})});$("#mentions-legales").bind("pageshow",function(){if(is_device){$("#mentions-legales div[data-role=content] .ui-body ").addClass("bg_is_device")}});$(document).bind("pagebeforechange",function(f,d){var b=$.mobile.path.parseUrl(d.toPage);set_fields_from_current();if(typeof d.toPage==="string"){var c=/^#recherche\?/;var a=/^#recherche-\?/;if(b.hash.search(c)!==-1&&b.hash.search(a)===-1){wrp_cpt_mobile("recherche",get_current_search_wreport(1));execute_search(b,d.options);f.preventDefault()}var c=/^#annonce/;if(b.hash.search(c)!==-1){var c=/(?:.*id={1})+(\d+)(.*)/g;c.exec(d.toPage);if(RegExp.$1!=""){var g=RegExp.$1}wrp_cpt_mobile("annonce",g);back_popup_hash=b.hash;showAnnonce(b,d.options);f.preventDefault()}}});$("#annonce").on("pagecreate",function(){var a=$("#template-page div[data-role=footer]");$("div[data-role=page]").append(a)});$("#accueil").on("pagebeforecreate",function(){});$("#accueil").on("pagebeforeshow",function(){$("#nbannonce_cent_inf").text(nb_annonce_cent_inf)});$(document).on("pageshow","#annonce",function(){$("#formpopup_Postuler").validate({rules:{email:{required:true,email:true}},messages:{required:"Le champ adresse e-mail est obligatoire.",email:"Veuillez saisir une adresse e-mail valide."},errorPlacement:function(a,b){var c=b.attr("id");switch(c){case"email":a.insertAfter("#formpopup_Postuler .email_label");break;default:a.insertBefore(b)}}});$("#formpopup_TransfertAmi").validate({rules:{email:{required:true,email:true}},messages:{required:"Le champ adresse e-mail est obligatoire.",email:"Veuillez saisir une adresse e-mail valide."},errorPlacement:function(a,b){var c=b.attr("id");switch(c){case"email":a.insertAfter("#formpopup_TransfertAmi .email_label");break;default:a.insertBefore(b)}}})});
 
 </script>
 
 
 
-<!-- template handlebar -->
+<!-- DIV template handlebar -->
 <div id="handlebars-template">
-
 
 <!-- menu panel -->
 <script id="panelMenu-tpl" type="text/x-handlebars-template">
@@ -496,6 +508,7 @@
                data-icon="arrow-r" data-corners="false">Application batiactu</a>	-->
         </div>
     </div>
+
     {{/.}}
 </script>
 
@@ -706,46 +719,52 @@
     {{#.}}
     <li class="infinite-item">
 
-        <div class="contenu">
-            <a href="#" onclick="select_del_search_from_hash({{item_hash}});" class="mr_icon_delete"  data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Supprimer</a>
+        <div class="contenu contenu-mes-recherches">
+            <div class="mes-recherches-action">
+                <a href="#" onclick="select_del_search_from_hash({{item_hash}});" class="mr_icon_delete"  data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Supprimer</a>
 
-            {{#if nbAlerte}}<span class="mr_nb_alerte_push">{{nbAlerte}}</span>{{/if}}
+                {{#if nbAlerte}}<span class="mr_nb_alerte_push">{{nbAlerte}}</span>{{/if}}
 
-            <a href="#" onclick="switch_alert_from_search(this, {{item_hash}}); " {{#if item_push}}data-icon="star"{{else}}data-icon="forbidden"{{/if}} class="mr_icon_demande_alerte_push " data-inline="true" data-role="button" data-iconpos="notext">Demande d'alerte</a>
+                <div class="flip-push-contener" style="">
+                    <label for="flip-checkbox-{{item_hash}}" class="ui-hidden-accessible">Réception d'alerte sur cette recherche</label>
+                    <input data-hash="{{item_hash}}" data-role="flipswitch" class="push-flip-switch"
+                           name="flip-checkbox-{{item_hash}}" id="flip-checkbox-{{item_hash}}"   data-on-text="Oui" data-off-text="Non"
+                    {{#if item_push}}checked="checked"{{/if}} type="checkbox">
+                </div>
+            </div>
 
-            <!--{{item_hash}}-->
-            {{#if item_lib_current_fonction}}
-            <div class="blue">{{item_lib_current_fonction}}</div>
-            {{/if}}
-            {{#if item_lib_current_zonegeo}}
-            <div class="blue">{{item_lib_current_zonegeo}}</div>
-            {{/if}}
-            {{#if item_lib_current_experience}}
-            <div class="blue">{{item_lib_current_experience}}</div>
-            {{/if}}
-            {{#if item_lib_current_contrat}}
-            <div class="blue">{{item_lib_current_contrat}}</div>
-            {{/if}}
-            {{#if item_current_motclef}}
-            <div class="motclef">{{item_current_motclef}}</div>
-            {{/if}}
-            {{#if item_no_criteres}}
-            <div class="">{{item_no_criteres}}</div>
-            {{/if}}
-            <!--href="#ma-recherche?hsh={{item_hash}}"-->
-
-            <br>
+            <div class="mes-recherches-liste">
+                <!--{{item_hash}}-->
+                {{#if item_lib_current_fonction}}
+                <div class="blue">{{item_lib_current_fonction}}</div>
+                {{/if}}
+                {{#if item_lib_current_zonegeo}}
+                <div class="blue">{{item_lib_current_zonegeo}}</div>
+                {{/if}}
+                {{#if item_lib_current_experience}}
+                <div class="blue">{{item_lib_current_experience}}</div>
+                {{/if}}
+                {{#if item_lib_current_contrat}}
+                <div class="blue">{{item_lib_current_contrat}}</div>
+                {{/if}}
+                {{#if item_current_motclef}}
+                <div class="motclef">{{item_current_motclef}}</div>
+                {{/if}}
+                {{#if item_no_criteres}}
+                <div class="">{{item_no_criteres}}</div>
+                {{/if}}
+                <!--href="#ma-recherche?hsh={{item_hash}}"-->
+            </div>
         </div>
-        <a href="#" onclick="gotosearch({{item_hash}});"><h2>Lancer la recherche</h2></a>
-
+        <div class="mes-recherches-lance">
+            <a href="#" data-icon="search" data-inline="false" data-theme="a" data-mini="true" data-role="button" onclick="gotosearch({{item_hash}});"><h2>Lancer la recherche</h2></a>
+        </div>
 
     </li>
     {{/.}}
 </script>
 
 <!-- /template handlebar -->
-
-
 
 </div>
 

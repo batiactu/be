@@ -66,7 +66,6 @@
 
 
 			 		if (batiMP !== null && batiMP.getAllNotifications() != []) {
-                        console.log(batiMP.getAllNotifications());
                         var listeNotif = batiMP.getAllNotifications();
 
                         var lgTab = listeNotif.length;
@@ -74,7 +73,8 @@
                         item["nbAlerte"] = 0;
 
                         // recheche du hash dans les notifs reçues + affectation du nb d'alerte trouvé
-                        for (g=0;g<lgTab;g++) {
+                        // on part des push les plus recents
+                        for (g=lgTab-1;g>=0;g--) {
                             if (listeNotif[g].data["idAlerte"] == i) {
                                 //on prend le premier push qui correspond
                                 item["nbAlerte"] += parseInt(listeNotif[g].data["nbAlerte"]);
@@ -82,8 +82,6 @@
                             }
                         }
                     }
-
-                    console.log("ITEM : ", item);
 
                     //item["nbAlerte"] = 4;
 			 		Tab.push(item);
@@ -100,11 +98,6 @@
 			 		$.waypoints();
 	    			$.waypoints('refresh');
 	    		}
-
-            $(".mr_icon_demande_alerte_push").buttonMarkup();
-
-            $(".mr_nb_alerte_push").buttonMarkup();
-            $(".mr_icon_delete").buttonMarkup();
     }
     
     ,completeListItem: function(options) {            

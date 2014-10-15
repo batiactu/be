@@ -99,8 +99,6 @@ function onNotificationAndroid(e) {
             }
             break;
         case 'message':
-            //console.log(e);
-
             createPushItemFromAndroid(e.payload);
             break;
         case 'error':
@@ -114,7 +112,6 @@ function onNotificationAndroid(e) {
 // Gestion des message reçu par GCM
 function createPushItemFromAndroid(payload) {
 
-    console.log(payload);
     var title = "Reception notification :";
     if (typeof payload.title != 'undefined') {
         title = payload.title;
@@ -208,8 +205,6 @@ function deviceIsReadyForPush () {
 function createPushItem(title, message, data) {
     var newPush = {"titre": title, "message": message, "data": data };
 
-    alert('alerte reçu, merci de vérifier dans "mes alertes" ');
-
     batiMP.addNotification(newPush);
 
     effaceNotifs();
@@ -217,15 +212,20 @@ function createPushItem(title, message, data) {
 }
 
 function afficheNotifs(listeNotifs) {
-    var i = 0;
-    // la derniere notif en haut
-    for (i=listeNotifs.length-1; i>= 0; i--) {
-        $('#notifPush').append('<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-b"><h3>' + listeNotifs[i].titre + '</h3></div><div class="ui-body ui-body-b"><p>' + listeNotifs[i].message + '</p></div></div>');
-    }
+
+    alertNotif();
+
+    $('#resultat-mes-recherches').trigger('pagebeforeshow');//.trigger('pageshow');
+}
+
+function alertNotif() {
+    //alert('Vous avez reçu une notification sur une de vos alertes dans "Mes Recherches".');
+    $( ":mobile-pagecontainer" ).pagecontainer( "change", "#dialog-push-received", { role: "dialog" } );
+
 }
 
 function effaceNotifs() {
-    $('#notifPush').html('');
+
 }
 
 /**
@@ -262,6 +262,7 @@ function successHandlerUnRegister(result) {
 }
 
 function errorHandlerUnRegister(result) {
+
 }
 
 /* ================================================================================================================= */
@@ -282,15 +283,12 @@ function onSuccess(data) {
 
 function onError(err, str1, str2){
     batiMP.log('Erreur Ajax', 'DEBUG');
-    console.log(err, "ERROR");
-    console.log(str1, "ERROR");
-    console.log(str2, "ERROR");
+
 }
 
 // gestion de la désactivation des notification (désabonnement + supp token)
 function unRegisterPush() {
 
-    console.log("----------------------------------- UNREGISTER");
     var token = batiMP.getPushToken();
     if (token != null) {
         $.ajax({
@@ -327,7 +325,6 @@ function merge_options(obj1,obj2){
  */
 function registerPush(token, data) {
     var device_uuid = device.uuid;
-    console.log("----------------------------------- REGISTER");
 
     dataToSend = merge_options ({'json':1, 'appli': appliName, 'ver': appliVersion, 'put': 'register_push', 'token': token, 'uuid':device_uuid}, data);
 

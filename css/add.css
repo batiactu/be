@@ -353,17 +353,33 @@ span.mr_nb_alerte_push {
     cursor: default;
     margin-right: 20px;
 
+    color:#FFF ;
+    font-weight: bold;
 }
 
 .mr_icon_demande_alerte_push {
     margin-right: 10px;
 }
+
+div.flip-push-contener {
+    float: right;
+    margin-right: 20px;
+}
+
+.contenu-mes-recherches {
+    border: solid 1px #333;
+    border-radius: 0.6em;
+}
+
 div[data-role=footer] {
     z-index: 2000;
 }
 @media (max-width: 640px) {
     div[data-role=content] {
         margin-left: 0px;
+    }
+    .ui-header .ui-title {
+        margin:0;
     }
 }
 
