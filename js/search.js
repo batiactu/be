@@ -300,8 +300,6 @@ function switch_alert_from_search(that, current_hash) {
     tsearchs = $.jStorage.get('tsearchs');
     if(!tsearchs) tsearchs= new Object();
 
-    console.log('eerer');
-
     if(! tsearchs.hasOwnProperty(current_hash)){
         notify('Erreur, ce hash ne correspond pas!', '#mes-recherches');
         return false;
@@ -536,7 +534,7 @@ function majTregion(data) {
 }
 
 function init_global(){
-	
+
 	$.ajax({
 		url:DIRSCRIPTS+'interface-mobile.php'
 		,data: {
@@ -551,12 +549,10 @@ function init_global(){
         majTregion(data);
 
         // mise en cache
-        console.log("mise en cache region");
         localStorage.setItem("tregion_data", JSON.stringify(data));
 
 	}).fail(function() {
         // as t'on des données en cache ?
-        console.log("erreur recup data fonction check in cache");
         var treg_data = localStorage.getItem("tregion_data");
 
         if (treg_data === null || treg_data === '') {
@@ -599,13 +595,11 @@ function init_global(){
 
             majTfonction(data);
             // mise en cache
-            console.log("mise en cache fonction");
             localStorage.setItem("tfonction_data", JSON.stringify(data));
 
         },
         error : function () {
             // as t'on des données en cache ?
-            console.log("erreur recup data fonction check in cache");
             var tfct_data = localStorage.getItem("tfonction_data");
 
             if (tfct_data === null || tfct_data === '') {
