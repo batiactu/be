@@ -102,6 +102,9 @@
 
         <p align="center">
             <a href="#recherche-detail" data-role="button" data-inline="true" data-mini="true">Lancer une recherche</a>
+            <a href="#popupDialog" data-rel="popup" data-position-to="window"
+               data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-b">test dialog</a>
+
         </p>
     </div>
 </div>
@@ -451,16 +454,21 @@
 
 
 
-<div data-role="popup" id="popupDialog" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
+<div data-dialog="true" data-role="page" id="popupDialog" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
     <div data-role="header" data-theme="a">
-        <h1>Delete Page?</h1>
+        <h1>c'st le H1 </h1>
     </div>
     <div role="main" class="ui-content">
         <h3 class="ui-title">Push reçu</h3>
         <p>Vous avez recu un nouveau push</p>
-        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" data-transition="flow">OK</a>
+        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" data-transition="flow">Retour</a>
+        <a href="#mes-recherches" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="" data-transition="flow">Allez aux recherches</a>
     </div>
 </div>
+
+
+
+
 
 
 
