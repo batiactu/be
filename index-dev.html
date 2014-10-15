@@ -24,6 +24,17 @@
     <link rel="apple-touch-icon" href="images/icon.png"/>
     <link rel="apple-touch-startup-image" href="images/splash.png"/>
 
+
+    <!-- =============================    LIB JS pour PhoneGap et Plugins    ================================================== -->
+    <!-- PhoneGap en a besoin derrière pour pouvoir utiliser ses fonctions natives -->
+    <script type="text/javascript" src="phonegap.js"></script>
+
+    <!-- Les deux scripts suivant sont ajouté automatiquement par phonegap.js -->
+    <!--script type="text/javascript" src="GAPlugin.js"></script>
+    <script type="text/javascript" src="js/lib/PushNotification.js"></script-->
+
+    <!-- =============================    Fin LIB JS pour PhoneGap et Plugins    ================================================== -->
+
     <!-- =============================    LIB JS    ===================== -->
     <script type="text/javascript" src="js/lib/jquery-2.1.1.min.js"></script>
 
@@ -36,7 +47,6 @@
     <script type="text/javascript" src="js/lib/handlebars-v2.0.0.js"></script>
     <!-- =============================    Fin LIB JS     ===================== -->
 
-    <script type="text/javascript" src="js/lib/PushNotification.js"></script>
 
 
     <script type="text/javascript" src="http://192.168.3.103/bem/js/jqueryitem.js"></script>
@@ -50,24 +60,14 @@
     <script type="text/javascript" src="http://192.168.3.103/bem/js/emploi_mobile_push.js"></script>
     <!-- =============================    Fin LIB JS Batiactu     ===================== -->
 
-
-
-
     <script type="text/javascript">
         $(document).bind("mobileinit", function () {
             $.mobile.defaultPageTransition = 'fade';
         });
     </script>
 
-
     <!-- @TODO : remettre www.capinfoproreport.com -->
     <!--script type="text/javascript" src="http://www.capinfoproreport.com/cap_pub/scripts/rotate2-js.php?e=B_IP_HOME,TOP_IP&support=B.IP"></script-->
-
-    <!-- =============================    LIB JS pour PhoneGap et Plugins    ================================================== -->
-    <!-- PhoneGap en a besoin derrière pour pouvoir utiliser ses fonctions natives -->
-    <script src="phonegap.js"></script>
-    <script src="GAPlugin.js"></script>
-    <!-- =============================    Fin LIB JS pour PhoneGap et Plugins    ================================================== -->
 
     <script type="application/javascript">
         $.get("http://192.168.3.103/bem/template.html", function (data) {
@@ -102,6 +102,8 @@
 
         <p align="center">
             <a href="#recherche-detail" data-role="button" data-inline="true" data-mini="true">Lancer une recherche</a>
+            <!--a href="#dialog-push-received" data-rel="dialog">Standard Page as Dialog</a-->
+
         </p>
     </div>
 </div>
@@ -236,7 +238,10 @@
     <div data-role="header" data-theme="b" data-position="fixed">
         <a href="#menu-left-panel-recherche-detail-page-fonction" data-icon="bars" data-iconpos="notext" data-shadow="false"
            data-iconshadow="false">Menu</a>
+
         <h1>Fonctions</h1>
+
+        <a href="#recherche-detail" data-transition="none" data-icon="arrow-l" data-position-to="window" data-role="button" data-theme="b" >Retour</a>
     </div>
 
     <div data-role="content">
@@ -253,6 +258,8 @@
            data-iconshadow="false">Menu</a>
 
         <h1>Régions</h1>
+
+        <a href="#recherche-detail" data-transition="none" data-icon="arrow-l" data-position-to="window" data-role="button" data-theme="b" >Retour</a>
     </div>
     <div data-role="content">
         <fieldset data-role="controlgroup"  data-theme="c" id="recherche-detail-zonegeo">
@@ -444,9 +451,21 @@
     </div>
 </div>
 
+<!--gestion des dialog -->
+<div data-role="page" id="dialog-push-received" data-add-back-btn="true">
+    <div data-role="header">
+        <h1>Standard page</h1>
+    </div>
+    <div data-role="content">
+        <p>Vous venez de recevoir une notification sur une de vos alertes. </p>
+        <p>Vous pouvez clicker sur le bouton "Aller sur mes recherches" pour voir quelles alertes ont remonté de nouvelles annonces d'emploi selon vos critères.</p>
+        <p>Ou vous pouvez cliquez sur la croix de fermeture pour retourner sur la page précédante.</p>
 
+        <a href="#mes-recherches" data-role="button" data-theme="c">Aller sur mes recherches</a>
 
+    </div>
 
+</div>
 
 
 

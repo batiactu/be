@@ -23,6 +23,7 @@
                data-icon="arrow-r" data-corners="false">Application batiactu</a>	-->
         </div>
     </div>
+
 {{/.}}
 </script>
 
@@ -233,7 +234,7 @@
     {{#.}}
     <li class="infinite-item">
 
-        <div class="contenu">
+        <div class="contenu contenu-mes-recherches">
             <div class="mes-recherches-action">
                 <a href="#" onclick="select_del_search_from_hash({{item_hash}});" class="mr_icon_delete"  data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Supprimer</a>
 
@@ -246,34 +247,33 @@
                     {{#if item_push}}checked="checked"{{/if}} type="checkbox">
                 </div>
             </div>
-            <!--a href="#" onclick="switch_alert_from_search(this, {{item_hash}}); " {{#if item_push}}data-icon="star"{{else}}data-icon="forbidden"{{/if}} class="mr_icon_demande_alerte_push " data-inline="true" data-role="button" data-iconpos="notext">Demande d'alerte</a-->
 
-            <div class="mes-recherches-action">
+            <div class="mes-recherches-liste">
                 <!--{{item_hash}}-->
                 {{#if item_lib_current_fonction}}
-                <div class="blue">{{item_lib_current_fonction}}</div>
+                    <div class="blue">{{item_lib_current_fonction}}</div>
                 {{/if}}
                 {{#if item_lib_current_zonegeo}}
-                <div class="blue">{{item_lib_current_zonegeo}}</div>
+                    <div class="blue">{{item_lib_current_zonegeo}}</div>
                 {{/if}}
                 {{#if item_lib_current_experience}}
-                <div class="blue">{{item_lib_current_experience}}</div>
+                    <div class="blue">{{item_lib_current_experience}}</div>
                 {{/if}}
                 {{#if item_lib_current_contrat}}
-                <div class="blue">{{item_lib_current_contrat}}</div>
+                    <div class="blue">{{item_lib_current_contrat}}</div>
                 {{/if}}
                 {{#if item_current_motclef}}
-                <div class="motclef">{{item_current_motclef}}</div>
+                    <div class="motclef">{{item_current_motclef}}</div>
                 {{/if}}
                 {{#if item_no_criteres}}
-                <div class="">{{item_no_criteres}}</div>
+                    <div class="">{{item_no_criteres}}</div>
                 {{/if}}
                 <!--href="#ma-recherche?hsh={{item_hash}}"-->
-            <div class="mes-recherches-action">
-            <br>
+            </div>
         </div>
-        <a href="#" onclick="gotosearch({{item_hash}});"><h2>Lancer la recherche</h2></a>
-
+        <div class="mes-recherches-lance">
+            <a href="#" data-icon="search" data-inline="false" data-theme="a" data-mini="true" data-role="button" onclick="gotosearch({{item_hash}});"><h2>Lancer la recherche</h2></a>
+        </div>
 
     </li>
     {{/.}}

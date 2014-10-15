@@ -225,11 +225,19 @@ $('[data-role=page]').bind('pageshow',function(){
 
 $('[data-role=page]').on('pagebeforeshow', function(){
     id_page_en_cours = $(this).attr('id');
+    //console.log(id_page_en_cours);
     maj_panel('init');
 });
 
 function maj_panel (mode) {
     var acceptedPush = 0;
+
+
+
+    if (id_page_en_cours != "" && id_page_en_cours.substr(0,6) == 'dialog') {
+            return;
+    }
+
 
     if (is_device) {
         var testToken = batiMP.getPushToken();
@@ -526,8 +534,13 @@ $('#mes-recherches').on('pagebeforechange', function(){
 $('#mes-recherches').on('pagebeforeshow', function(){
     $('#recherche #next').attr('data-next',0);
     view_list_mes_recherches();
+
     $('#mes-recherches #resultat-mesrecherches').show();
     $('#mes-recherches').page();
+
+    $(".mr_icon_delete").buttonMarkup();
+    $('.mes-recherches-lance > a').buttonMarkup();
+
     $('.push-flip-switch').flipswitch({corners: true});
     $('.push-flip-switch').change(function(){
 
@@ -559,11 +572,7 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 
             wrp_cpt_mobile('recherche',get_current_search_wreport(1));
 
-            console.log("execute_search");
-
             execute_search( u, data.options );
-
-            console.log("FIN execute_search");
 
             e.preventDefault();
         }
