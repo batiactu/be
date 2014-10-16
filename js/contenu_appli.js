@@ -313,7 +313,8 @@ $('#recherche-detail-page-zonegeo').on('pagebeforeshow', function(){
     $('#recherche-detail-zonegeo').html(template(Tregions_search)).trigger('create');
     $('#recherche-detail-page-zonegeo .check_cac').off('click').on('click', function() {
         uncheck_cac($(this).attr('cac_type'),$(this));
-        $.mobile.changePage( "#recherche-detail", { transition: "none"} );
+        // on change de page direct
+       // $.mobile.changePage( "#recherche-detail", { transition: "none"} );
     });
     $('#recherche-detail-page-zonegeo').page();
     set_fields_from_current();
@@ -324,7 +325,8 @@ $('#recherche-detail-page-fonction').on('pagebeforeshow', function(){
     $('#recherche-detail-fonction').html(template(Tfonctions_search)).trigger('create');
     $('#recherche-detail-page-fonction .check_cac').off('click').on('click', function() {
         uncheck_cac($(this).attr('cac_type'),$(this));
-        $.mobile.changePage( "#recherche-detail", { transition: "none"} );
+        // on change de page direct
+        //$.mobile.changePage( "#recherche-detail", { transition: "none"} );
     });
     $('#recherche-detail-page-fonction').page();
     set_fields_from_current();

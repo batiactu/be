@@ -1,4 +1,3 @@
-
 <!-- menu panel -->
 <script id="panelMenu-tpl" type="text/x-handlebars-template">
     {{#.}}
@@ -7,16 +6,26 @@
 
         <div data-role=controlgroup>
             <a href="#accueil" data-role="button" data-theme="c" data-icon="home" data-corners="false"> Accueil </a>
-            <a href="#" onClick="reset_search(1);" data-role="button" data-theme="c" data-icon="search" data-corners="false">Nouvelle recherche</a>
-            <a href="#mes-recherches" data-role="button" data-theme="c" data-icon="grid" data-corners="false">Mes recherches</a>
+            <a href="#" onClick="reset_search(1);" data-role="button" data-theme="c" data-icon="search"
+               data-corners="false">Nouvelle recherche</a>
+            <a href="#mes-recherches" data-role="button" data-theme="c" data-icon="grid" data-corners="false">Mes
+                recherches</a>
             <!--<a href="#offre" data-role="button" data-theme="e" data-icon="alert" data-corners="false"> Créez une alerte e-mail</a>-->
-            <a href="#recrutement" data-role="button" data-theme="c" data-icon="star" data-corners="false">Accès recruteurs</a>
-            <a href="#mentions-legales" data-role="button" data-theme="c" data-icon="gear" data-corners="false">Mentions légales</a>
+            <a href="#recrutement" data-role="button" data-theme="c" data-icon="star" data-corners="false">Accès
+                recruteurs</a>
+            <a href="#mentions-legales" data-role="button" data-theme="c" data-icon="gear" data-corners="false">Mentions
+                légales</a>
             <!--<a href="#" onclick="javascript:window.open('http://mobile.batiactu.com/','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="gear" data-corners="false">BatiActu</a>-->
-            <a href="#" onclick="javascript:window.open('http://www.batiactuemploi.com/?FROM_MOBILE','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a>
+            <a href="#"
+               onclick="javascript:window.open('http://www.batiactuemploi.com/?FROM_MOBILE','_blank','location=yes');return false;"
+               data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a>
 
             {{#if is_device}}
-            <a href="#" onclick="javascript:{{#if sendPush}}batiMP.registerDevice('successHandler', 'errorHandler', 'onNotification');{{/if}} {{#if noPush}}batiMP.unRegisterDevice('successHandlerUnRegister', 'errorHandlerUnRegister');{{/if}} return false;" data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">{{#if sendPush}}Recevoir des notifications sur vos recherches{{/if}} {{#if noPush}}Supprimer les notifications sur vos recherches{{/if}}</a>
+            <a href="#"
+               onclick="javascript:{{#if sendPush}}batiMP.registerDevice('successHandler', 'errorHandler', 'onNotification');{{/if}} {{#if noPush}}batiMP.unRegisterDevice('successHandlerUnRegister', 'errorHandlerUnRegister');{{/if}} return false;"
+               data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">{{#if sendPush}}Recevoir des
+                notifications sur vos recherches{{/if}} {{#if noPush}}Supprimer les notifications sur vos
+                recherches{{/if}}</a>
             {{/if}}
 
             <!--<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" data-theme="a"
@@ -24,26 +33,28 @@
         </div>
     </div>
 
-{{/.}}
+    {{/.}}
 </script>
 
 <!-- footer pour action liste annnonce-->
 <script id="nav-recherche-tpl" type="text/x-handlebars-template">
-{{#.}}
-<div id="nav-recherche" data-role="footer" style="overflow:hidden;" data-id="footer2" data-position="fixed">
-<div align="center">
-{{#each nav}}
-{{#if SAVE}}
-<a style="float:left;" onClick="saved_search();" id="Save_search" data-role="button" data-mini="true" data-theme="b" data-inline="true">{{SAVE}}</a>
-{{/if}}
+    {{#.}}
+    <div id="nav-recherche" data-role="footer" style="overflow:hidden;" data-id="footer2" data-position="fixed">
+        <div align="center">
+            {{#each nav}}
+            {{#if SAVE}}
+            <a style="float:left;" onClick="saved_search();" id="Save_search" data-role="button" data-mini="true"
+               data-theme="b" data-inline="true">{{SAVE}}</a>
+            {{/if}}
 
-{{#if NEW}}
-<a style="float:right;" onClick="reset_search(1);" data-role="button" data-theme="b" data-mini="true" data-inline="true">{{NEW}}</a>
-{{/if}}
-{{/each}}
-</div>
-</div>
-{{/.}}
+            {{#if NEW}}
+            <a style="float:right;" onClick="reset_search(1);" data-role="button" data-theme="b" data-mini="true"
+               data-inline="true">{{NEW}}</a>
+            {{/if}}
+            {{/each}}
+        </div>
+    </div>
+    {{/.}}
 </script>
 
 <script id="nav-annonce-detail-tpl" type="text/x-handlebars-template">
@@ -52,13 +63,15 @@
         <div align="center">
             {{#each nav}}
             {{#if PREVIOUS}}
-            <a style="float:left;" href="#annonce?id={{PREVIOUS}}" data-role="button" data-mini="true" data-theme="b" data-inline="true">&lt;</a>
+            <a style="float:left;" href="#annonce?id={{PREVIOUS}}" data-role="button" data-mini="true" data-theme="b"
+               data-inline="true">&lt;</a>
             {{/if}}
             <!--
             <a href="#popupPostuler" data-history="false" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Postuler</a>
             -->
             {{#if NEXT}}
-            <a style="float:right;" href="#annonce?id={{NEXT}}" data-role="button" data-mini="true" data-theme="b" data-inline="true">&gt;</a>
+            <a style="float:right;" href="#annonce?id={{NEXT}}" data-role="button" data-mini="true" data-theme="b"
+               data-inline="true">&gt;</a>
             {{/if}}
             {{/each}}
         </div>
@@ -73,6 +86,7 @@
         <div class="entete">
             <h1>{{LIBELLE}}</h1>
             <br>
+
             <div class="datas">
                 {{{IMG}}}
                 <span class="grey">Entreprise : </span>{{{LIB_RECRUTEUR}}}
@@ -99,27 +113,37 @@
         </div>
         <div class="centre">
             <p class="description">{{{DESCRIPTION_ENTREPRISE}}}</p>
+
             <p class="description">{{{DESCRIPTION}}}</p>
 
 
         </div>
 
         <input type="hidden" value="{{ID_ANNONCE}}" id="id_annonce">
+
         <p align="center">
-            <a href="#popupPostuler" data-history="false" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Postuler</a>
+            <a href="#popupPostuler" data-history="false" data-role="button" data-icon="check" data-position-to="window"
+               data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Postuler</a>
         </p>
+
         <p align="center">
-            <a href="#popupTransfertAmi" data-history="false" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Envoyer à un ami</a>
+            <a href="#popupTransfertAmi" data-history="false" data-role="button" data-icon="check"
+               data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Envoyer
+                à un ami</a>
         </p>
-        <div class="pad10 ui-corner-all" data-history="false" id="popupPostuler" data-role="popup" data-overlay-theme="a" data-theme="c" data-dismissible="false">
+
+        <div class="pad10 ui-corner-all" data-history="false" id="popupPostuler" data-role="popup"
+             data-overlay-theme="a" data-theme="c" data-dismissible="false">
 
             <form id="formpopup_Postuler">
-                <div style="padding: 10px;" class="ui-corner-all ui-content" data-role="content" class="content_popup" data-theme="d">
+                <div style="padding: 10px;" class="ui-corner-all ui-content" data-role="content" class="content_popup"
+                     data-theme="d">
                     <h3>Recevoir l'offre d'emploi pour postuler depuis votre ordinateur</h3><br>
                     <label class="email_label" class="bold" for="email"><b>Mon Adresse email*</b></label>
                     <input name="email" id="email" type="text" placeholder="Adresse email*" value="" data-theme="b">
                     <br>
                     <label class="bold" for="subject">Objet Email</label>
+
                     <p>Postuler à l’annonce : {{LIBELLE}} {{#if REFERENCE}}(Réf. {{REFERENCE}}){{/if}}</p>
 
                     <!--
@@ -130,73 +154,92 @@
                     <input type="hidden" value="{{ID_ANNONCE}}" id="id_annonce">
 
                     <br>
-                    <a  id="btn_postuler" onClick="postuler('popupPostuler','formpopup_Postuler')" href="#" data-role="button" data-icon="" data-theme="b">M'envoyer l'offre d'emploi</button>
-                        <a  data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Annuler</a>
+                    <a id="btn_postuler" onClick="postuler('popupPostuler','formpopup_Postuler')" href="#"
+                       data-role="button" data-icon="" data-theme="b">M'envoyer l'offre d'emploi</button>
+                        <a data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Annuler</a>
                 </div>
             </form>
         </div>
-        <div class="pad10 ui-corner-all" data-history="false" id="popupTransfertAmi" data-role="popup" data-overlay-theme="a" data-theme="c" data-dismissible="false">
+        <div class="pad10 ui-corner-all" data-history="false" id="popupTransfertAmi" data-role="popup"
+             data-overlay-theme="a" data-theme="c" data-dismissible="false">
 
             <form id="formpopup_TransfertAmi">
-                <div style="padding: 10px;" class="ui-corner-all ui-content" data-role="content" class="content_popup" data-theme="d">
+                <div style="padding: 10px;" class="ui-corner-all ui-content" data-role="content" class="content_popup"
+                     data-theme="d">
                     <h3>Transférez l'offre d'emploi à un ami</h3><br>
                     <label class="email_label" class="bold" for="email"><b>Son Adresse email*</b></label>
                     <input name="email" id="email" type="text" placeholder="Adresse email*" value="" data-theme="b">
                     <br>
                     <label class="bold" for="subject">Objet Email</label>
+
                     <p>Offre Batiactu Emploi : {{LIBELLE}} {{#if REFERENCE}}(Réf. {{REFERENCE}}){{/if}}</p>
                     <br>
                     <label class="bold" for="message">Votre message</label>
-                    <textarea name="message" id="message" placeholder="Votre message" value="" data-theme="b"></textarea>
+                    <textarea name="message" id="message" placeholder="Votre message" value=""
+                              data-theme="b"></textarea>
 
                     <input type="hidden" value="{{ID_ANNONCE}}" id="id_annonce">
 
                     <br>
-                    <a  id="btn_transfert_ami" onClick="transfert_ami('popupTransfertAmi','formpopup_TransfertAmi')" href="#" data-role="button" data-icon="" data-theme="b">Envoyer l'offre d'emploi</button>
-                        <a  data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Annuler</a>
+                    <a id="btn_transfert_ami" onClick="transfert_ami('popupTransfertAmi','formpopup_TransfertAmi')"
+                       href="#" data-role="button" data-icon="" data-theme="b">Envoyer l'offre d'emploi</button>
+                        <a data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Annuler</a>
                 </div>
             </form>
         </div>
 
 
-
     </div>
-    <div class="pad10 ui-corner-all" data-history="false" id="waiting_send" data-role="popup" data-overlay-theme="a" data-theme="c" data-dismissible="false">
+    <div class="pad10 ui-corner-all" data-history="false" id="waiting_send" data-role="popup" data-overlay-theme="a"
+         data-theme="c" data-dismissible="false">
         <div style="padding: 10px 20px;">
             <h3>Envoi en cours...patientez</h3>
         </div>
 
     </div>
-    <div class="pad10 ui-corner-all" data-history="false" id="confirm_send" data-role="popup" data-overlay-theme="a" data-theme="c">
+    <div class="pad10 ui-corner-all" data-history="false" id="confirm_send" data-role="popup" data-overlay-theme="a"
+         data-theme="c">
 
         <div style="padding: 10px 20px;">
             <h3>L'offre d'emploi a bien été transmise.</h3>
+
             <p align="center">
-                <a  href="#" id="back_to_results" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour aux résultats</a>
-                <a  href="#" id="back_new_search" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle recherche</a>
+                <a href="#" id="back_to_results" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour
+                    aux résultats</a>
+                <a href="#" id="back_new_search" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle
+                    recherche</a>
             </p>
         </div>
 
     </div>
-    <div class="pad10 ui-corner-all" data-history="false" id="confirm_send_ami" data-role="popup" data-overlay-theme="a" data-theme="c">
+    <div class="pad10 ui-corner-all" data-history="false" id="confirm_send_ami" data-role="popup" data-overlay-theme="a"
+         data-theme="c">
 
         <div style="padding: 10px 20px;">
             <h3>L'offre d'emploi a bien été transmise.</h3>
+
             <p align="center">
-                <a  href="#" id="back_to_results_ami" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour aux résultats</a>
-                <a  href="#" id="back_new_search_ami" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle recherche</a>
+                <a href="#" id="back_to_results_ami" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour
+                    aux résultats</a>
+                <a href="#" id="back_new_search_ami" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle
+                    recherche</a>
             </p>
         </div>
 
     </div>
-    <div class="pad10 ui-corner-all" data-history="false" id="error_send" data-role="popup" data-overlay-theme="a" data-theme="c">
+    <div class="pad10 ui-corner-all" data-history="false" id="error_send" data-role="popup" data-overlay-theme="a"
+         data-theme="c">
 
         <div style="padding: 10px 20px;">
             <h3>Une erreur c'est provoqué. L'offre d'emploi n'a pu être transmise par email.</h3>
+
             <p align="center">
-                <a  data-rel="back" href="#" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour à l'annonce</a>
-                <a  href="#recherche" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour aux résultats</a>
-                <a  href="#" onClick="reset_search(1);" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle recherche</a>
+                <a data-rel="back" href="#" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour à
+                    l'annonce</a>
+                <a href="#recherche" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour aux
+                    résultats</a>
+                <a href="#" onClick="reset_search(1);" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle
+                    recherche</a>
             </p>
         </div>
 
@@ -207,7 +250,8 @@
 
 <script id="recherche-detail-tpl" type="text/x-handlebars-template">
     {{#.}}
-    <label><input data-mini="true" cac_type="{{type}}" class="check{{type}} check_cac" type="checkbox" value="{{item_value}}" id="T{{item_libelle}}_{{item_index}}"> {{item_label}}</label>
+    <label><input data-mini="true" cac_type="{{type}}" class="check{{type}} check_cac" type="checkbox"
+                  value="{{item_value}}" id="T{{item_libelle}}_{{item_index}}"> {{item_label}}</label>
     {{/.}}
 </script>
 
@@ -222,7 +266,9 @@
             <span class="resultat_lib_recruteur">{{item_lib_recruteur}}</span><br>
             <span class="resultat_lib_region">{{item_lib_region}}</span>
             <!--<br><span class="resultat_lib_region">{{item_lib_dept}}</span>-->
-            {{#if item_image_to_show}}<div id="div_img"><p>{{{item_image_to_show}}}</p></div>{{/if}}
+            {{#if item_image_to_show}}
+            <div id="div_img"><p>{{{item_image_to_show}}}</p></div>
+            {{/if}}
         </a>
 
     </li>
@@ -236,43 +282,46 @@
 
         <div class="contenu contenu-mes-recherches">
             <div class="mes-recherches-action">
-                <a href="#" onclick="select_del_search_from_hash({{item_hash}});" class="mr_icon_delete"  data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Supprimer</a>
+                <a href="#" onclick="select_del_search_from_hash({{item_hash}});" class="mr_icon_delete"
+                   data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Supprimer</a>
 
                 {{#if nbAlerte}}<span class="mr_nb_alerte_push">{{nbAlerte}}</span>{{/if}}
 
                 <div class="flip-push-contener" style="">
-                    <label for="flip-checkbox-{{item_hash}}" class="ui-hidden-accessible">Réception d'alerte sur cette recherche</label>
-                    <input data-hash="{{item_hash}}" data-role="flipswitch" class="push-flip-switch"
-                           name="flip-checkbox-{{item_hash}}" id="flip-checkbox-{{item_hash}}"   data-on-text="Oui" data-off-text="Non"
-                    {{#if item_push}}checked="checked"{{/if}} type="checkbox">
+                    <label for="flip-checkbox-{{item_hash}}" class="ui-hidden-accessible">Réception d'alerte sur cette
+                        recherche</label>
+                    <input data-hash="{{item_hash}}" data-theme="e" data-role="flipswitch" class="push-flip-switch"
+                           name="flip-checkbox-{{item_hash}}" id="flip-checkbox-{{item_hash}}" data-on-text="Oui"
+                           data-off-text="Non" {{#if item_push}}checked="checked"{{/if}} type="checkbox">
                 </div>
             </div>
 
             <div class="mes-recherches-liste">
                 <!--{{item_hash}}-->
                 {{#if item_lib_current_fonction}}
-                    <div class="blue">{{item_lib_current_fonction}}</div>
+                <div class="blue">{{item_lib_current_fonction}}</div>
                 {{/if}}
                 {{#if item_lib_current_zonegeo}}
-                    <div class="blue">{{item_lib_current_zonegeo}}</div>
+                <div class="blue">{{item_lib_current_zonegeo}}</div>
                 {{/if}}
                 {{#if item_lib_current_experience}}
-                    <div class="blue">{{item_lib_current_experience}}</div>
+                <div class="blue">{{item_lib_current_experience}}</div>
                 {{/if}}
                 {{#if item_lib_current_contrat}}
-                    <div class="blue">{{item_lib_current_contrat}}</div>
+                <div class="blue">{{item_lib_current_contrat}}</div>
                 {{/if}}
                 {{#if item_current_motclef}}
-                    <div class="motclef">{{item_current_motclef}}</div>
+                <div class="motclef">{{item_current_motclef}}</div>
                 {{/if}}
                 {{#if item_no_criteres}}
-                    <div class="">{{item_no_criteres}}</div>
+                <div class="">{{item_no_criteres}}</div>
                 {{/if}}
                 <!--href="#ma-recherche?hsh={{item_hash}}"-->
             </div>
         </div>
         <div class="mes-recherches-lance">
-            <a href="#" data-icon="search" data-inline="false" data-theme="a" data-mini="true" data-role="button" onclick="gotosearch({{item_hash}});"><h2>Lancer la recherche</h2></a>
+            <a href="#" data-icon="search" data-inline="false" data-theme="a" data-mini="true" data-role="button"
+               onclick="gotosearch({{item_hash}});"><h2>Lancer la recherche</h2></a>
         </div>
 
     </li>
