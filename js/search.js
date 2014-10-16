@@ -539,7 +539,7 @@ function init_global(){
 		url:DIRSCRIPTS+'interface-mobile.php'
 		,data: {
 			jsonp : 1
-			,get:'zone-geoc'
+			,get:'zone-geo'
 		}
 		,dataType:'jsonp'
 		,async :false
