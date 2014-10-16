@@ -374,6 +374,7 @@ div.flip-push-contener {
 div[data-role=footer] {
     z-index: 2000;
 }
+
 @media (max-width: 640px) {
     div[data-role=content] {
         margin-left: 0px;
@@ -381,5 +382,6 @@ div[data-role=footer] {
     .ui-header .ui-title {
         margin:0;
     }
+
 }
 
