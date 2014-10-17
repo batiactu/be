@@ -281,6 +281,29 @@
     <li class="infinite-item">
 
         <div class="contenu contenu-mes-recherches">
+
+            <div class="mes-recherches-liste">
+                <!--{{item_hash}}-->
+                {{#if item_lib_current_fonction}}
+                <div class="blue"><span class="title">Fonctions dans la recherche : </span>{{{item_lib_current_fonction}}}</div>
+                {{/if}}
+                {{#if item_lib_current_zonegeo}}
+                <div class="blue"><span class="title">R&eacute;gions  dans la recherche : </span>{{{item_lib_current_zonegeo}}}</div>
+                {{/if}}
+                {{#if item_lib_current_experience}}
+                <div class="blue">{{{item_lib_current_experience}}}</div>
+                {{/if}}
+                {{#if item_lib_current_contrat}}
+                <div class="blue">{{{item_lib_current_contrat}}}</div>
+                {{/if}}
+                {{#if item_current_motclef}}
+                <div class="motclef">{{{item_current_motclef}}}</div>
+                {{/if}}
+                {{#if item_no_criteres}}
+                <div class="">{{{item_no_criteres}}}</div>
+                {{/if}}
+            </div>
+
             <div class="mes-recherches-action">
                 <a href="#" onclick="select_del_search_from_hash({{item_hash}});" class="mr_icon_delete"
                    data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Supprimer</a>
@@ -291,33 +314,11 @@
                     <label for="flip-checkbox-{{item_hash}}" class="ui-hidden-accessible">Réception d'alerte sur cette
                         recherche</label>
                     <input data-hash="{{item_hash}}" data-theme="e" data-role="flipswitch" class="push-flip-switch"
-                           name="flip-checkbox-{{item_hash}}" id="flip-checkbox-{{item_hash}}" data-on-text="Oui"
-                           data-off-text="Non" {{#if item_push}}checked="checked"{{/if}} type="checkbox">
+                           name="flip-checkbox-{{item_hash}}" id="flip-checkbox-{{item_hash}}" data-on-text="On"
+                           data-off-text="Off" {{#if item_push}}checked="checked"{{/if}} type="checkbox">
                 </div>
             </div>
 
-            <div class="mes-recherches-liste">
-                <!--{{item_hash}}-->
-                {{#if item_lib_current_fonction}}
-                <div class="blue">{{item_lib_current_fonction}}</div>
-                {{/if}}
-                {{#if item_lib_current_zonegeo}}
-                <div class="blue">{{item_lib_current_zonegeo}}</div>
-                {{/if}}
-                {{#if item_lib_current_experience}}
-                <div class="blue">{{item_lib_current_experience}}</div>
-                {{/if}}
-                {{#if item_lib_current_contrat}}
-                <div class="blue">{{item_lib_current_contrat}}</div>
-                {{/if}}
-                {{#if item_current_motclef}}
-                <div class="motclef">{{item_current_motclef}}</div>
-                {{/if}}
-                {{#if item_no_criteres}}
-                <div class="">{{item_no_criteres}}</div>
-                {{/if}}
-                <!--href="#ma-recherche?hsh={{item_hash}}"-->
-            </div>
         </div>
         <div class="mes-recherches-lance">
             <a href="#" data-icon="search" data-inline="false" data-theme="a" data-mini="true" data-role="button"
