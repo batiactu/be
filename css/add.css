@@ -340,6 +340,28 @@ div[data-role=content] {
     /*width: 100%;*/
 }
 
+
+/*
+   Zonne mes recherche
+*/
+
+
+/* div conteant les region + fonction et les icone d'action*/
+.contenu-mes-recherches {
+    border: solid 1px #333;
+    border-radius: 0.6em;
+    witdh:100%;
+}
+
+
+/* icone delete + switch on / off + nb d'annocne */
+.mes-recherches-action {
+    /*float:right;*/
+    display: block;
+    width: 39%;
+    margin: auto !important;
+}
+
 .mr_icon_delete, .mr_icon_demande_alerte_push, .mr_nb_alerte_push {
     float: right;
 }
@@ -366,13 +388,41 @@ div.flip-push-contener {
     margin-right: 20px;
 }
 
-.contenu-mes-recherches {
-    border: solid 1px #333;
-    border-radius: 0.6em;
+
+/* zone liste des regions */
+.mes-recherches-liste {
+    float:left;
+    width: 100%;
 }
 
+.mes-recherches-liste .title  {
+    float: left;
+    width: 100%;
+    font-weight: bold;
+}
+
+.mes-recherches-liste .region, .mes-recherches-liste .fonction  {
+    float:left;
+    width: 100%;
+    padding-left:10px;
+}
+
+.mes-recherches-liste .blue  {
+    display: table;
+    height: 100%;
+    margin-bottom: 5px;
+}
+
+/* zone footer audessus du menu */
 div[data-role=footer] {
     z-index: 2000;
+}
+
+@media (max-width: 520px) {
+    .mes-recherches-action {
+        margin: auto !important;
+        width: 50%;
+    }
 }
 
 @media (max-width: 640px) {

@@ -27,19 +27,45 @@
 		 		$.each(tsearchs,function(i, row) {
 		 	       
 			 		var item = new Array;
-			 							                  
+                    console.log("liste des row");
+			 				console.log(row);
+
 					item["item_no_criteres"] = 'Recherche globale (sans critère)';
-			 		for (k in row) {
+
+
+
+                    for (k in row) {
+                        item["item_lib_"+k] = "";
 			 			if(row[k]!= '')item["item_no_criteres"]=null;
-						  switch(k){
-			 			 	case 'current_zonegeo':			 			 	
-			 			 	if(row[k]=='')item["item_lib_"+k] = row[k];
-			 			 	else item["item_lib_"+k] = Tregions[row[k]];
+
+                        switch(k){
+
+			 			 	case 'current_zonegeo':
+                                // on peut avoir plusieurs zones
+                                if(row[k]=='') {
+                                    item["item_lib_"+k] = row[k];
+                                }
+                                else {
+                                    if (typeof row[k] ==  'object') {
+                                        $.each(row[k], function(i, val) {
+                                           item["item_lib_"+k] += '<span class="region">' + Tregions[val] + '</span>';
+                                        });
+                                    }
+                                }
 			 			 	break;
 			 			 	
 			 			 	case 'current_fonction':
-			 			 	if(row[k]=='')item["item_lib_"+k] = row[k];
-			 			 	else item["item_lib_"+k] = Tfonctions[row[k]];
+                                // on peut avoir plusieurs zones
+                                if(row[k]=='') {
+                                    item["item_lib_"+k] = row[k];
+                                }
+                                else {
+                                    if (typeof row[k] ==  'object') {
+                                        $.each(row[k], function(i, val) {
+                                            item["item_lib_"+k] += '<span class="fonction">' + Tfonctions[val] + '</span>';
+                                        });
+                                    }
+                                }
 			 			 	break;
 			 			 	
 			 			 	case 'current_experience':
@@ -86,7 +112,7 @@
                     //item["nbAlerte"] = 4;
 			 		Tab.push(item);
 			 	});
-			 	
+
 			 	myList.html(template(Tab));
 
 			 	myList.show();
