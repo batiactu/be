@@ -443,46 +443,53 @@ function switch_alert_from_search(that, current_hash) {
 function set_fields_from_current(){
 
 	$('[id^=selected-detail-page-]').html('');
-	
-	
+
+    var lib = '';
 	$.each(current_zonegeo,function(i) {
 		value = current_zonegeo[i];
 		var type = 'zonegeo';
 		$('[cac_type='+type+'][value='+value+']').attr('id');     
 		$('[cac_type='+type+'][value='+value+']').prop('checked', true);
 		$('[cac_type='+type+'][value='+value+']').checkboxradio().checkboxradio("refresh");
-		var lib = get_value_by_key(Tregions,value);
+		lib += get_value_by_key(Tregions,value);
 		$('#selected-detail-page-'+type).html(lib);
-	});	
-	
+        lib += '<br>';
+	});
+
+    lib = '';
 	$.each(current_fonction,function(i) {
 		value = current_fonction[i];
 		var type = 'fonction';                                             
 		$('[cac_type='+type+'][value='+value+']').attr('id');     		
 		$('[cac_type='+type+'][value='+value+']').prop('checked', true);
 		$('[cac_type='+type+'][value='+value+']').checkboxradio().checkboxradio("refresh");
-		var lib = get_value_by_key(Tfonctions,value);
+		lib += get_value_by_key(Tfonctions,value);
 		$('#selected-detail-page-'+type).html(lib);
-	});		
-	
+        lib += '<br>';
+	});
+
+    lib = '';
 	$.each(current_contrat,function(i) {
 		value = current_contrat[i];
 		var type = 'contrat';         
 		$('[cac_type='+type+'][value='+value+']').attr('id');     		
 		$('[cac_type='+type+'][value='+value+']').prop('checked', true);
 		$('[cac_type='+type+'][value='+value+']').checkboxradio().checkboxradio("refresh");
-		var lib = get_value_by_key(Tcontrats,value);
+		lib += get_value_by_key(Tcontrats,value);
 		$('#selected-detail-page-'+type).html(lib);
-	});	
-	
+        lib += '<br>';
+	});
+
+    lib = '';
 	$.each(current_experience,function(i) {
 		value = current_experience[i];
 		var type = 'experience';
 		$('[cac_type='+type+'][value='+value+']').attr('id');     		
 		$('[cac_type='+type+'][value='+value+']').prop('checked', true);
 		$('[cac_type='+type+'][value='+value+']').checkboxradio().checkboxradio("refresh");
-		var lib = get_value_by_key(Texperiences,value);
+		lib += get_value_by_key(Texperiences,value);
 		$('#selected-detail-page-'+type).html(lib);
+        lib += '<br>';
 	});	
 
 	$('#recherche-detail-mot-clef').val(current_motclef);
