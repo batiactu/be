@@ -418,6 +418,10 @@ div[data-role=footer] {
     z-index: 2000;
 }
 
+.header-cent {
+    height: auto;
+}
+
 @media (max-width: 520px) {
     .mes-recherches-action {
         margin: auto !important;
@@ -432,6 +436,12 @@ div[data-role=footer] {
     .ui-header .ui-title {
         margin:0;
     }
+
+    .header-cent {
+        height: 100px;
+    }
+
+
 
 }
 
