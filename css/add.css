@@ -433,5 +433,11 @@ div[data-role=footer] {
         margin:0;
     }
 
+    .header-100 {
+        height: 100px;
+    }
+
+
+
 }
 
