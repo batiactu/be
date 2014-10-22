@@ -377,6 +377,7 @@ span.mr_nb_alerte_push {
 
     color:#FFF ;
     font-weight: bold;
+    text-shadow: none;
 }
 
 .mr_icon_demande_alerte_push {
@@ -388,6 +389,9 @@ div.flip-push-contener {
     margin-right: 20px;
 }
 
+.ui-flipswitch-off {
+    text-shadow: none;
+}
 
 /* zone liste des regions */
 .mes-recherches-liste {
