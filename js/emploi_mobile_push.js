@@ -14,6 +14,13 @@ var registerUrlInterface = 'interface-mobile.php';
 // module batiMobilePush, à initialiser seulement dans la fonction deviceReady ou deviceIsReady
 var batiMP = null;
 
+// flags pour affichage de l'alerte la premiere fois (pb de l'alerte qui s'ahhiche et repart aussitot
+// ceci est du a une alerte qui arrive alors que l'accueil est en cours de génération (démarage appli suite au click
+// d'une notification
+var affiche_alert = false;
+var new_alerte = false;
+
+
 
 /* ===============================================================================================================*/
 /***
@@ -220,8 +227,16 @@ function afficheNotifs(listeNotifs) {
 
 function alertNotif() {
     //alert('Vous avez reçu une notification sur une de vos alertes dans "Mes Recherches".');
-    $( ":mobile-pagecontainer" ).pagecontainer( "change", "#dialog-push-received", { role: "dialog" } );
+    var i = 0
 
+    // si l'accueil n'est pas encore affiché (lancement appli) on indique que l'on a reçu une alerte
+    // sinon on l'affiche
+    if (affiche_alert == false) {
+       new_alerte = true;
+    }
+    else {
+        $( ":mobile-pagecontainer" ).pagecontainer( "change", "#dialog-push-received", { role: "dialog" } );
+    }
 }
 
 function effaceNotifs() {
