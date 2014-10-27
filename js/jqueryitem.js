@@ -27,12 +27,8 @@
 		 		$.each(tsearchs,function(i, row) {
 		 	       
 			 		var item = new Array;
-                    console.log("liste des row");
-			 				console.log(row);
 
 					item["item_no_criteres"] = 'Recherche globale (sans critère)';
-
-
 
                     for (k in row) {
                         item["item_lib_"+k] = "";

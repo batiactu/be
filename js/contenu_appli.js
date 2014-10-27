@@ -615,6 +615,27 @@ $('#accueil').on('pagebeforeshow', function(){
     $("#nbannonce_cent_inf").text(nb_annonce_cent_inf);
 });
 
+
+$('#accueil').on('pageshow', function(){
+
+    // on peut afficher les alertes automatiquement maintenant
+    affiche_alert = true;
+
+    // si on a reçu une alerte avant lancement appli : on l'affiche
+    if (new_alerte == true) {
+        // on a recu une alerte pendant la génération de la page
+        // on l'affiche
+
+        new_alerte = false;
+
+        $(":mobile-pagecontainer").pagecontainer("change", "#dialog-push-received", {role: "dialog"});
+    }
+
+
+});
+
+
+
 // à voir pour ajouter en dynamique le footer
 /*
  $(document).ready(function()
@@ -633,6 +654,7 @@ $('#accueil').on('pagebeforeshow', function(){
  console.log( $.mobile.urlHistory.stack );
  console.log(window.history);
  });	*/
+
 
 $(document).on("pageshow", "#annonce", function() {
     $("#formpopup_Postuler").validate({
