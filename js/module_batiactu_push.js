@@ -30,6 +30,10 @@ batiactuMobilePush.prototype.setDebug = function(debug, divLog) {
     }
 };
 
+batiactuMobilePush.prototype.onDebug = function() {
+    return this.genLog;
+}
+
 // retourne la liste des "notifications", c'est simplement une liste d'objet
 batiactuMobilePush.prototype.getAllNotifications = function() {
     return this.listePush;
@@ -176,8 +180,19 @@ batiactuMobilePush.prototype.log = function (message, code_erreur) {
         if (typeof code_erreur == 'undefined') {
             code_erreur = 'DEBUG';
         }
-        console.log(code_erreur + ' : ' + message);
-        //alert(code_erreur + ' : ' + message);
-        //$(this.divLog).append('<li>' + code_erreur + ' : ' + message + '</li>');
+
+        if (typeof message == 'string') {
+            console.log(code_erreur + ' : ' + message);
+            //alert(code_erreur + ' : ' + message);
+            $(this.divLog).append('<li>' + code_erreur + ' : ' + message + '</li>');
+        }
+        else {
+            var randomnumber = Math.ceil(Math.random()*100);
+            var time = new Date().getTime();
+            $(this.divLog).append('<li>' + code_erreur + ' : ' + 'OBJET(' + time + randomnumber + ') : Voir console' + '</li>');
+            console.log(code_erreur + '(' + time + randomnumber + ')');
+            console.log(message);
+        }
+
     }
 }

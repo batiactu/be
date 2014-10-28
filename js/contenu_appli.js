@@ -127,6 +127,10 @@ function wrp_cpt_mobile(libelle,content){
 
 $(document).bind( "pagechange", function( e, data ) {
 
+    console.log('$(document).bind( "pagechange"');
+    console.log(e);
+    console.log(data);
+
     hash = location.hash;
     if (hash) {
         tagpageUrl = hash.substr(1);
@@ -150,6 +154,10 @@ $(document).bind( "pagechange", function( e, data ) {
 
 
 $("[data-role=page][id=annonce]").bind( "pageshow", function( e, data ) {
+
+    Batilog.log('$("[data-role=page][id=annonce]").bind( "pageshow"');
+    Batilog.log(e);
+    Batilog.log(data);
 
     if(!app){
         var historyPrev = null;
@@ -176,6 +184,8 @@ $("[data-role=page][id=annonce]").bind( "pageshow", function( e, data ) {
 });
 
 $('[data-role=page]').bind('pageshow',function(){
+
+    Batilog.log('$("[data-role=page]").bind("pageshow"');
 
     /* $( ".popupPanel" ).on({
          popupbeforeposition: function() {
@@ -224,6 +234,11 @@ $('[data-role=page]').bind('pageshow',function(){
 });
 
 $('[data-role=page]').on('pagebeforeshow', function(){
+
+    Batilog.log("$('[data-role=page]').on('pagebeforeshow'");
+
+
+
     id_page_en_cours = $(this).attr('id');
     //console.log(id_page_en_cours);
     maj_panel('init');
@@ -232,12 +247,14 @@ $('[data-role=page]').on('pagebeforeshow', function(){
 function maj_panel (mode) {
     var acceptedPush = 0;
 
+    var is_debug = 0;
 
 
     if (id_page_en_cours != "" && id_page_en_cours.substr(0,6) == 'dialog') {
             return;
     }
 
+    is_debug =  Batilog.onDebug();
 
     if (is_device) {
         var testToken = batiMP.getPushToken();
@@ -255,7 +272,7 @@ function maj_panel (mode) {
     var options = $.extend(defaults, options);
     var template = Handlebars.compile($(options.template).html());
 
-    Tab = new Array({'id_page':id_page_en_cours, 'is_device': is_device, 'sendPush': !acceptedPush, 'noPush': acceptedPush });
+    Tab = new Array({'id_page':id_page_en_cours, 'is_device': is_device, 'sendPush': !acceptedPush, 'noPush': acceptedPush, 'is_debug': is_debug });
 
     // existe t'il ?
     if ( $('#menu-left-panel-' + id_page_en_cours).length > 0) {
@@ -279,12 +296,16 @@ function maj_panel (mode) {
 }
 
 $('#actu').on('pageinit', function() {
+    Batilog.log("('#actu').on('pageinit'");
+
     $( "#actu" ).bind( "click", function() {
         initActu();
     });
 });
 
 $('#offre').on('pageinit', function(){
+    Batilog.log("$('#offre').on('pageinit'");
+
 // Fonction pour supprimer les recherches perso par swippe (glissement)
     $( "#offre" ).bind( "click", function() {
         //suppression par glisse vers la droite
@@ -296,6 +317,10 @@ $('#offre').on('pageinit', function(){
 });
 
 $(document).bind('pageinit', function(event){
+
+    Batilog.log("$(document).bind('pageinit'");
+    Batilog.log(event);
+
     //$.each(event,function(i){alert(i+":"+event[i]);});
     if(!pageinit){
         pageinit=true;
@@ -309,6 +334,8 @@ $(document).bind('pageinit', function(event){
 });
 
 $('#recherche-detail-page-zonegeo').on('pagebeforeshow', function(){
+    Batilog.log("$('#recherche-detail-page-zonegeo').on('pagebeforeshow'");
+
     var template = Handlebars.compile($('#recherche-detail-tpl').html());
     $('#recherche-detail-zonegeo').html(template(Tregions_search)).trigger('create');
     $('#recherche-detail-page-zonegeo .check_cac').off('click').on('click', function() {
@@ -321,6 +348,8 @@ $('#recherche-detail-page-zonegeo').on('pagebeforeshow', function(){
 });
 
 $('#recherche-detail-page-fonction').on('pagebeforeshow', function(){
+    Batilog.log("$('#recherche-detail-page-fonction').on('pagebeforeshow'");
+
     var template = Handlebars.compile($('#recherche-detail-tpl').html());
     $('#recherche-detail-fonction').html(template(Tfonctions_search)).trigger('create');
     $('#recherche-detail-page-fonction .check_cac').off('click').on('click', function() {
@@ -333,14 +362,22 @@ $('#recherche-detail-page-fonction').on('pagebeforeshow', function(){
 });
 
 $('#recherche-detail-page-experience').on('pagebeforeshow', function(){
+    Batilog.log("$('#recherche-detail-page-experience').on('pagebeforeshow'");
+    Batilog.log(e);
+    Batilog.log(data);
+
     set_fields_from_current();
 });
 
 $('#recherche-detail-page-contrat').on('pagebeforeshow', function(){
+    Batilog.log("$('#recherche-detail-page-contrat').on('pagebeforeshow'");
+
     set_fields_from_current();
 });
 
 $('#recherche-detail').on('pagebeforeshow', function(){
+    Batilog.log("$('#recherche-detail').on('pagebeforeshow'");
+
     var nb_offres = nb_annonce +' offre';
     if(nb_annonce>1)nb_offres+='s';
 
@@ -354,10 +391,14 @@ $('#recherche-detail').on('pagebeforeshow', function(){
 });
 
 $('#recherche-detail').on('pageshow', function(){
+    Batilog.log("$('#recherche-detail').on('pageshow'");
+
     $('#recherche #next').attr('data-next',0);
 });
 
 $('#recherche').on('pagecreate', function(){
+    Batilog.log("$('#recherche').on('pagecreate'");
+
     $('#nav-recherche').remove();
     var template2 = Handlebars.compile($("#nav-recherche-tpl").html());
     Tab=new Array;
@@ -369,10 +410,15 @@ $('#recherche').on('pagecreate', function(){
 });
 
 $("#recherche #select-page").on('change', function(event, ui){
+    Batilog.log("$('#recherche #select-page').on('change'");
+    Batilog.log(event);
+    Batilog.log(ui);
     launchSearch(1,$(this).val());
 });
 
 $('#recherche').on('pagebeforeshow', function(){
+    Batilog.log("$('#recherche').on('pagebeforeshow'");
+
     //$.mobile.urlHistory.clearForward();
 
     if(use_infinite)$('#recherche #pagin-prev').hide();
@@ -445,6 +491,8 @@ $('#recherche').on('pagebeforeshow', function(){
 });
 
 $('#recherche').on('pageshow', function(){
+    Batilog.log("$('#recherche').on('pageshow'");
+
     if(use_infinite)$( "#select-page" ).remove();
     if(use_infinite)$( "#select-page" ).parents('.ui-select').css('display', 'none');
     if(!use_infinite){
@@ -476,7 +524,9 @@ $('#annonce').on( "pagebeforeshow", function() {
     $('#annonce :jqmData(class="content_annonce")').remove();
 });
 */
-$('#annonce').on( "pageshow", function() {
+$('#annonce').on( 'pageshow', function() {
+    Batilog.log("$('#annonce').on( 'pageshow'");
+
     $('.ui-page-active').trigger('create');
     $( '#popupPostuler' ).on({
         popupafteropen: function(event, ui) {
@@ -521,6 +571,9 @@ $('#annonce').on( "pageshow", function() {
 });
 
 $('#mes-recherches').on('pagecreate', function(){
+    Batilog.log("$('#mes-recherches').on('pagecreate'");
+
+
     $('#confirm_delete_searh').bind('click',function(){
         del_searh_from_hash(hash_search_selected_to_del);
     });
@@ -530,10 +583,15 @@ $('#mes-recherches').on('pagecreate', function(){
 });
 
 $('#mes-recherches').on('pagebeforechange', function(){
+    Batilog.log("$('#mes-recherches').on('pagebeforechange'");
+
     $('#mes-recherches #resultat-mesrecherches').hide();
 });
 
 $('#mes-recherches').on('pagebeforeshow', function(){
+    Batilog.log("$('#mes-recherches').on('pagebeforeshow'");
+
+
     $('#recherche #next').attr('data-next',0);
     view_list_mes_recherches();
 
@@ -557,12 +615,19 @@ $('#mes-recherches').on('pagebeforeshow', function(){
 });
 
 $('#mentions-legales').bind('pageshow', function(){
+    Batilog.log("$('#mentions-legales').bind('pageshow'");
+
     if(is_device){
         $('#mentions-legales div[data-role=content] .ui-body ').addClass('bg_is_device');
     }
 });
 
 $(document).bind( "pagebeforechange", function( e, data ) {
+
+    Batilog.log('$(document).bind( "pagebeforechange"');
+    Batilog.log(e);
+    Batilog.log(data);
+
     var u = $.mobile.path.parseUrl( data.toPage );
     set_fields_from_current();
     if ( typeof data.toPage === "string" ) {
@@ -601,22 +666,33 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 });
 
 $('#annonce').on('pagecreate', function(){
+    Batilog.log("$('#annonce').on('pagecreate'");
+
 
  var footer = $('#template-page div[data-role=footer]');
  $('div[data-role=page]').append(footer);
 
  });
-$('#accueil').on('pagebeforecreate', function(){
+
+$('#accueil').on('pagebeforecreate', function(i, event){
+    Batilog.log("$('#accueil').on('pagebeforecreate'");
+    Batilog.log(i);
+    Batilog.log(event);
     //var footer = $('#template-page div[data-role="footer"]');
     //$('div[id!="annonce"][id!="recherche"][data-role="page"]').append(footer);
+
 });
 
 $('#accueil').on('pagebeforeshow', function(){
+    Batilog.log("$('#accueil').on('pagebeforeshow'");
+
     $("#nbannonce_cent_inf").text(nb_annonce_cent_inf);
 });
 
 
 $('#accueil').on('pageshow', function(){
+    Batilog.log("$('#accueil').on('pageshow'");
+
 
     // on peut afficher les alertes automatiquement maintenant
     affiche_alert = true;
@@ -630,7 +706,6 @@ $('#accueil').on('pageshow', function(){
 
         $(":mobile-pagecontainer").pagecontainer("change", "#dialog-push-received", {role: "dialog"});
     }
-
 
 });
 
@@ -657,6 +732,8 @@ $('#accueil').on('pageshow', function(){
 
 
 $(document).on("pageshow", "#annonce", function() {
+    Batilog.log('$(document).on("pageshow"');
+
     $("#formpopup_Postuler").validate({
 
         rules: {
