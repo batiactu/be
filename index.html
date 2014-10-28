@@ -38,7 +38,7 @@
     <!-- =============================    LIB JS    ===================== -->
     <script type="text/javascript" src="js/lib/jquery-2.1.1.min.js"></script>
 
-    <script src="http://192.168.3.103/bem/js/lib/jquery.mobile-1.4.4.min.js"></script>
+    <script src="js/lib/jquery.mobile-1.4.4.min.js"></script>
 
     <script type="text/javascript" src="js/lib/jquery.validate.min.js"></script>
     <script type="text/javascript" src="js/lib/jstorage.js"></script>
@@ -56,6 +56,7 @@
 
     <!-- =============================    LIB JS Batiactu     ===================== -->
 
+    <script type="text/javascript" src="http://192.168.3.103/bem/js/module_batiactu_log.js"></script>
     <script type="text/javascript" src="http://192.168.3.103/bem/js/module_batiactu_push.js"></script>
     <script type="text/javascript" src="http://192.168.3.103/bem/js/emploi_mobile_push.js"></script>
     <!-- =============================    Fin LIB JS Batiactu     ===================== -->
@@ -479,9 +480,9 @@
             <ul id="debugPush"></ul>
         </div>
     </div>
-    <div data-role="footer" data-position="fixed" data-theme="b" data-position="fixed">
+    <!--div data-role="footer" data-position="fixed" data-theme="b" data-position="fixed">
 
-    </div>
+    </div-->
 </div>
 
 
@@ -512,6 +513,12 @@
         catch (err) {
         }
     }
+
+
+    var Batilog = new batiactuLog();
+    Batilog.setDebug(true);
+
+
 
     var is_device = 0;
     var gaObj;
@@ -761,10 +768,6 @@
     <!-- onclick="javascript:changeLink();"  -->
 
 </div>
-
-
-
-
 
 </body>
 
