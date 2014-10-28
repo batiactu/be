@@ -27,9 +27,10 @@ batiactuLog.prototype.setDebug = function(debug, divLog) {
 batiactuLog.prototype.onDebug = function() {
     return this.genLog;
 }
-
-
 batiactuLog.prototype.log = function (message, code_erreur) {
+}
+
+batiactuLog.prototype.log2 = function (message, code_erreur) {
     if (this.genLog) {
         if (typeof code_erreur == 'undefined') {
             code_erreur = 'DEBUG';

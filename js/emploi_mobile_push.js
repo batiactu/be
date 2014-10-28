@@ -21,7 +21,6 @@ var affiche_alert = false;
 var new_alerte = false;
 
 
-
 /* ===============================================================================================================*/
 /***
  *
@@ -235,6 +234,7 @@ function alertNotif() {
        new_alerte = true;
     }
     else {
+        Batilog.log2("C'sst icic qu'on lmance", 'XXXXXXXXX');
         $( ":mobile-pagecontainer" ).pagecontainer( "change", "#dialog-push-received", { role: "dialog" } );
     }
 }
