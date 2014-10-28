@@ -31,6 +31,7 @@ js/wreport.js \
 js/contenu_appli.js \
 js/module_batiactu_push.js \
 js/emploi_mobile_push.js \
+js/module_batiactu_log.js
 "
 
 # liste des fichiers pour AGREGATION des CSS
@@ -50,6 +51,7 @@ js/search.min.js \
 js/annonce.min.js \
 js/wreport.min.js \
 js/module_batiactu_push.min.js \
+js/module_batiactu_log.js \
 js/emploi_mobile_push.min.js \
 "
 

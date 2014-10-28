@@ -32,9 +32,6 @@
         });
     </script>
 
-    <script type="text/javascript" src="http://www.capinfoproreport.com/cap_pub/scripts/rotate2-js.php?e=B_IP_HOME,TOP_IP&support=B.IP"></script>
-
-
 </head>
 
 <body>
@@ -43,6 +40,7 @@
 <script type="text/javascript">
     $.mobile.urlHistory = $.mobile.navigate.urlHistory;
 </script>
+
 
 <!-- Accueil -->
 
@@ -425,6 +423,23 @@
 
 </div>
 
+<!-- Page de debug  -->
+<div id="page-debug" data-role="page" data-add-back-btn="true" data-theme="b">
+    <div data-role="header" data-position="fixed" data-theme="b" data-position="fixed">
+        <a href="#menu-left-panel-page-debug" data-icon="bars" data-iconpos="notext" data-shadow="false"
+           data-iconshadow="false">Menu</a>
+
+        <h1>Page de debug</h1>
+    </div>
+    <div data-role="content">
+        <div class="debug">
+            <ul id="debugPush"></ul>
+        </div>
+    </div>
+    <!--div data-role="footer" data-position="fixed" data-theme="b" data-position="fixed">
+
+    </div-->
+</div>
 
 
 
@@ -454,6 +469,9 @@
         catch (err) {
         }
     }
+
+    var Batilog = new batiactuLog();
+    Batilog.setDebug(true);
 
     var is_device = 0;
     var gaObj;
@@ -508,6 +526,10 @@
                data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">{{#if sendPush}}Recevoir des
                 notifications sur vos recherches{{/if}} {{#if noPush}}Supprimer les notifications sur vos
                 recherches{{/if}}</a>
+            {{/if}}
+
+            {{#if is_debug}}
+            <a href="#page-debug" data-role="button" data-theme="c" data-icon="alert" data-corners="false">Page de debug</a>
             {{/if}}
 
             <!--<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" data-theme="a"
@@ -814,6 +836,7 @@
 <!-- /template handlebar -->
 
 
+
 </div>
 
 
@@ -990,10 +1013,6 @@
     <!-- onclick="javascript:changeLink();"  -->
 
 </div>
-
-
-
-
 
 </body>
 
