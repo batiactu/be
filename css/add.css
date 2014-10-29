@@ -334,6 +334,11 @@ div[data-role=panel] {
     width: 272px;
 }
 
+/* pour les popup */
+div[data-role="popup"] > div[data-role=content] {
+    margin-left: 0px;
+}
+
 div[data-role=content] {
     /*float:right;*/
     margin-left: 272px;
@@ -344,7 +349,6 @@ div[data-role=content] {
 /*
    Zonne mes recherche
 */
-
 
 /* div conteant les region + fonction et les icone d'action*/
 .contenu-mes-recherches {
