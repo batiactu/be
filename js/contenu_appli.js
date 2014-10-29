@@ -4,6 +4,9 @@
 
 var id_page_en_cours = '';
 
+// supp debug
+Batilog.setDebug(false);
+
 
 
 function TrackEvent(category,action,label,value) {
@@ -755,30 +758,6 @@ $('#accueil').on('pagebeforeshow', function(){
 });
 
 
-$('#accueil').on('pageshow', function(){
-
-    if (Batilog.onDebug()) {
-        Batilog.log("$('#accueil').on('pageshow'");
-    }
-
-    // on peut afficher les alertes automatiquement maintenant
-    affiche_alert = true;
-
-    // si on a reçu une alerte avant lancement appli : on l'affiche
-    if (new_alerte == true) {
-        // on a recu une alerte pendant la génération de la page
-        // on l'affiche
-
-        new_alerte = false;
-
-        setTimeout(function () {
-            $(":mobile-pagecontainer").pagecontainer("change", "#dialog-push-received", {role: "dialog"});
-        }, 1000);
-    }
-});
-
-
-
 // à voir pour ajouter en dynamique le footer
 /*
  $(document).ready(function()
@@ -797,7 +776,6 @@ $('#accueil').on('pageshow', function(){
  console.log( $.mobile.urlHistory.stack );
  console.log(window.history);
  });	*/
-
 
 $(document).on("pageshow", "#annonce", function() {
 

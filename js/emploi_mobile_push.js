@@ -34,7 +34,7 @@ var new_alerte = false;
 // callback lors de l'enregistrement du client IOS, reçoit le token à transférer au serveur de push
 function successHandlerIOS(result) {
 
-    batiMP.log(typeof result, 'DEBUG');
+   // batiMP.log(typeof result, 'DEBUG');
 
 
     if (typeof result == 'string') {
@@ -52,7 +52,7 @@ function errorHandlerIOS(error) {
 
 // callback lors de la reception de notifications
 function onNotificationIOS(e) {
-    batiMP.log('onNotificationIOS', 'DEBUG');
+    //batiMP.log('onNotificationIOS', 'DEBUG');
     createPushItemFromIOS(e);
 }
 
@@ -87,7 +87,7 @@ function createPushItemFromIOS(payload) {
 /******    ANDROID     *******/
 // callback success sur enregistrement client android
 function successHandlerAndroid(result) {
-    batiMP.log('successHandlerAndroid', 'DEBUG');
+    //batiMP.log('successHandlerAndroid', 'DEBUG');
 }
 // callback error sur enregistrement client android
 function errorHandlerAndroid(error) {
@@ -96,7 +96,7 @@ function errorHandlerAndroid(error) {
 // callback les des notification par GCM notifications, on recoit les messages et le token par cette fonction
 function onNotificationAndroid(e) {
 
-    batiMP.log('Evenement : ' + e.event, 'DEBUG');
+    //batiMP.log('Evenement : ' + e.event, 'DEBUG');
 
     switch (e.event) {
         case 'registered':
@@ -163,7 +163,7 @@ function deviceIsReadyForPush () {
     batiMP.unRegisterSuffix = false; // gestion d'un suffixe pour les callBack lors du desenregistrement
     batiMP.senderID = "211095738121"; // sender ID fourni par google
     batiMP.setDebug(true, '#debugPush'); // par defaut s'affiche dans #debugPush mais peut être redefini ici
-    batiMP.log("applel device ready", 'DEBUG');
+    //batiMP.log("applel device ready", 'DEBUG');
 
 
     is_ios = batiMP.is_ios();
@@ -178,7 +178,7 @@ function deviceIsReadyForPush () {
     majInfoPush() ;
     var pushToken = batiMP.getPushToken();
 
-    batiMP.log(pushToken, 'DEBUG');
+    //batiMP.log(pushToken, 'DEBUG');
     // si le token est présent, la personne à demandé les push et on s'enregistre pour affecter les différentd callBack
     if (pushToken != null) {
         try {
@@ -191,7 +191,7 @@ function deviceIsReadyForPush () {
     }
 
 
-    batiMP.log('Fin device ready');
+    //batiMP.log('Fin device ready');
 
 
 
@@ -218,25 +218,13 @@ function createPushItem(title, message, data) {
 }
 
 function afficheNotifs(listeNotifs) {
-
+    //$('#resultat-mes-recherches').trigger('pagebeforeshow');//.trigger('pageshow');
+    $('#resultat-mes-recherches').trigger('pagebeforeshow');//.trigger('pagebeforeshow');
     alertNotif();
-
-    $('#resultat-mes-recherches').trigger('pagebeforeshow');//.trigger('pageshow');
 }
 
 function alertNotif() {
-    //alert('Vous avez reçu une notification sur une de vos alertes dans "Mes Recherches".');
-    var i = 0
-
-    // si l'accueil n'est pas encore affiché (lancement appli) on indique que l'on a reçu une alerte
-    // sinon on l'affiche
-    if (affiche_alert == false) {
-       new_alerte = true;
-    }
-    else {
-        Batilog.log2("C'sst icic qu'on lmance", 'XXXXXXXXX');
-        $( ":mobile-pagecontainer" ).pagecontainer( "change", "#dialog-push-received", { role: "dialog" } );
-    }
+    $( ":mobile-pagecontainer" ).pagecontainer( "change", "#dialog-push-received", { role: "dialog" } );
 }
 
 function effaceNotifs() {
@@ -343,7 +331,7 @@ function registerPush(token, data) {
 
     dataToSend = merge_options ({'json':1, 'appli': appliName, 'ver': appliVersion, 'put': 'register_push', 'token': token, 'uuid':device_uuid}, data);
 
-    batiMP.log(registerServeur + registerUrlInterface, 'URL');
+    //batiMP.log(registerServeur + registerUrlInterface, 'URL');
 
     $.ajax({
         url: registerServeur + registerUrlInterface,
@@ -378,13 +366,13 @@ $(document).bind('pagecreate', function() {
         }
 
         if (is_device && (batiMP.getPushToken() == null)) {
-            batiMP.log('Button register: demande de register', 'DEBUG');
+            //batiMP.log('Button register: demande de register', 'DEBUG');
             batiMP.registerDevice("successHandler", "errorHandler", "onNotification");
         }
 
         var flux = $('#flux_rss').val();
         if ( is_device && flux != '') {
-            batiMP.log('Button register: demande d\'alerte' , 'DEBUG');
+            //batiMP.log('Button register: demande d\'alerte' , 'DEBUG');
             registerPush(batiMP.getPushToken(), {'cmd':'add_push_alert', 'alerte_emploi':flux});
         }
 
