@@ -51,7 +51,7 @@ js/search.min.js \
 js/annonce.min.js \
 js/wreport.min.js \
 js/module_batiactu_push.min.js \
-js/module_batiactu_log.js \
+js/module_batiactu_log.min.js \
 js/emploi_mobile_push.min.js \
 "
 
