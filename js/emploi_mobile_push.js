@@ -224,7 +224,14 @@ function afficheNotifs(listeNotifs) {
 }
 
 function alertNotif() {
-    $( ":mobile-pagecontainer" ).pagecontainer( "change", "#dialog-push-received", { role: "dialog" } );
+
+    // iphone 5 : apparait puis disparait
+    // $( ":mobile-pagecontainer" ).pagecontainer( "change", "#dialog-push-received", { role: "dialog" } );
+
+    // on passe en notif sur l'accueil
+    $("#notif-push-alerte").show();
+    $( ":mobile-pagecontainer" ).pagecontainer( "change", "#accueil");
+
 }
 
 function effaceNotifs() {
