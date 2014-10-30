@@ -430,6 +430,21 @@ div[data-role=footer] {
     height: auto;
 }
 
+#notif-push-alerte {
+    max-width: 400px;
+    margin: auto auto 50px auto;
+    padding: 5px 20px 20px 20px;
+    border-radius: 1.2em;
+}
+
+#notif-push-alerte h1 {
+    margin: 0px;
+}
+
+#notif-push-alerte h1 p {
+    margin: 0px;
+}
+
 @media (max-width: 520px) {
     .mes-recherches-action {
         margin: auto !important;
