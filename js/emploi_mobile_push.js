@@ -172,7 +172,7 @@ function deviceIsReadyForPush () {
     // on affiche les push si présents (on peut créer des pseudo push d'info en static)
     listePush = batiMP.getAllNotifications();
     if (listePush.length > 0 ) {
-        afficheNotifs(listePush);
+        afficheNotifs(listePush, null);
     }
 
     majInfoPush() ;
@@ -214,21 +214,35 @@ function createPushItem(title, message, data) {
     batiMP.addNotification(newPush);
 
     effaceNotifs();
-    afficheNotifs(batiMP.getAllNotifications());
+    afficheNotifs(batiMP.getAllNotifications(), newPush);
 }
 
-function afficheNotifs(listeNotifs) {
-    //$('#resultat-mes-recherches').trigger('pagebeforeshow');//.trigger('pageshow');
+function afficheNotifs(listeNotifs, lastNotif) {
     $('#resultat-mes-recherches').trigger('pagebeforeshow');//.trigger('pagebeforeshow');
-    alertNotif();
+    var nombre = 0;
+
+    if (typeof lastNotif != 'undefined' && lastNotif != null) {
+        nombre = lastNotif.data["nbAlerte"];
+    }
+
+    alertNotif(nombre);
 }
 
-function alertNotif() {
+function alertNotif(nombre) {
 
     // iphone 5 : apparait puis disparait
     // $( ":mobile-pagecontainer" ).pagecontainer( "change", "#dialog-push-received", { role: "dialog" } );
 
     // on passe en notif sur l'accueil
+
+    if (nombre > 0) {
+        $('span.aa_nb_alerte_push').html(nombre);
+        $('span.aa_nb_alerte_push').show();
+    }
+    else {
+        $('span.aa_nb_alerte_push').hide();
+    }
+
     $("#notif-push-alerte").show();
     $( ":mobile-pagecontainer" ).pagecontainer( "change", "#accueil");
 
@@ -356,6 +370,7 @@ function registerPush(token, data) {
     }
 }
 
+
 // lors de la création de la page on met les évenement sur les boutons
 $(document).bind('pagecreate', function() {
 
@@ -407,6 +422,7 @@ $(document).bind('pagecreate', function() {
     });
 
 });
+
 
 <!-- FIN Gestion notification -->
 
