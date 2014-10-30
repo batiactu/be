@@ -370,7 +370,7 @@ div[data-role=content] {
     float: right;
 }
 
-span.mr_nb_alerte_push {
+span.mr_nb_alerte_push, span.aa_nb_alerte_push {
     background:red ! important;
     border-radius: 2em ! important;
     border-color: transparent ! important;
@@ -382,6 +382,11 @@ span.mr_nb_alerte_push {
     color:#FFF ;
     font-weight: bold;
     text-shadow: none;
+}
+
+span.aa_nb_alerte_push {
+    margin-left: 20px;
+    font-size: 0.6em;
 }
 
 .mr_icon_demande_alerte_push {
@@ -435,6 +440,9 @@ div[data-role=footer] {
     margin: auto auto 50px auto;
     padding: 5px 20px 20px 20px;
     border-radius: 1.2em;
+
+    background-color: #8e8e8e;
+    text-shadow: 0 1px 0 #000000;
 }
 
 #notif-push-alerte h1 {
