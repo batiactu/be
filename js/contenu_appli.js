@@ -6,7 +6,7 @@ var id_page_en_cours = '';
 
 // supp debug
 Batilog.setDebug(false);
-
+$("#notif-push-alerte").hide();
 
 
 function TrackEvent(category,action,label,value) {
@@ -225,6 +225,11 @@ $('[data-role=page]').bind('pageshow',function(){
     });
 
     var init = $('#menu-left-panel-' + id_page_en_cours).hasClass("fromInit");
+
+
+    if (id_page_en_cours != 'accueil') {
+        $('#notif-push-alerte').hide();
+    }
 
     if (init === false) {
         // on réouvre le panel
