@@ -280,7 +280,7 @@
                 $content.find( ".btn_display1" ).css('display','block');
                 if(nbTotal>nb_results_by_page)$content.find( ".btn_display2" ).css('display','block');
                 
-                if(use_infinite){	
+                if(use_infinite && nbTotal >= Limit_Annonce){
 					$('#recherche #next').trigger('create');
 					$('#recherche #next').button();	
 					if((current+nb_results_by_page)<=current_nb_annonce){		
