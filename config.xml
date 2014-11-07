@@ -58,7 +58,7 @@
     <icon src="images/icon29.png" gap:platform="webos" /> <!-- 29 pixels -->
     <icon src="images/icon15.png" gap:platform="webos" gap:role="mini" /> <!-- 15 pixels -->
 
-    <preference name="phonegap-version" value="3.6.3" />
+    <preference name="phonegap-version" value="3.5.0" />
 
     <!-- orientation with possible values default (both), landscape, or portrait -->
     <preference name="orientation" value="default" />
@@ -79,7 +79,7 @@
     <preference name="auto-hide-splash-screen" value="true" /> <!-- if set to false, the splash screen must be hidden using a JavaScript API -->
 
     <gap:config-file platform="ios" parent="CFBundleShortVersionString">
-        <string>110.2</string>
+        <string>110.1</string>
     </gap:config-file>
 
     <gap:config-file platform="ios" parent="UIStatusBarHidden">
