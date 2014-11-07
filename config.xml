@@ -79,7 +79,7 @@
     <preference name="auto-hide-splash-screen" value="true" /> <!-- if set to false, the splash screen must be hidden using a JavaScript API -->
 
     <gap:config-file platform="ios" parent="CFBundleShortVersionString">
-        <string>110.1</string>
+        <string>110.2</string>
     </gap:config-file>
 
     <gap:config-file platform="ios" parent="UIStatusBarHidden">
