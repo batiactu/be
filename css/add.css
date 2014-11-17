@@ -335,15 +335,13 @@ div[data-role=panel] {
 }
 
 /* pour les popup */
-div[data-role="popup"] > div[data-role=content] {
+/*div[data-role="popup"] > div[data-role=content] {
     margin-left: 0px;
-}
+}*/
 
-div[data-role=content] {
-    /*float:right;*/
+/*div[data-role=content] {
     margin-left: 272px;
-    /*width: 100%;*/
-}
+}*/
 
 
 /*

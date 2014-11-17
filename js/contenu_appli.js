@@ -233,12 +233,12 @@ $('[data-role=page]').bind('pageshow',function(){
 
     if (init === false) {
         // on réouvre le panel
-        $('#menu-left-panel-' + id_page_en_cours).panel('open');
+        $('#menu-left-panel-' + id_page_en_cours).panel('close');
     }
     else {
         if (window.matchMedia("(min-width: 640px)").matches) {
             // 640 et plus
-            $('#menu-left-panel-' + id_page_en_cours).panel("open");
+            $('#menu-left-panel-' + id_page_en_cours).panel("close");
 
         } else {
             //moins de 640
