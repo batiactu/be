@@ -63,7 +63,7 @@
 
 	
 
-    <preference name="phonegap-version" value="3.5.0" />
+    <preference name="phonegap-version" value="3.6.3" />
 
 	<!-- orientation with possible values default (both), landscape, or portrait -->
     <preference name="orientation" value="default" />
