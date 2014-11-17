@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns = "http://www.w3.org/ns/widgets" xmlns:gap = "http://phonegap.com/ns/1.0" 
-	id = "batiactu" 
+	id = "batiactu"
+	version = "1.1.0"
+	versionCode = "3">
 
-	version = "1.0.1"
-	versionCode = "2">
-
+    <!-- Incrementer la version de versionCode pour Android, sinon lors de la soumission une erreur apparaitra -->
 
     <name>Batiactu Emploi</name>
     <description>Batiactu Emploi : 1er site de référence des annonces emploi du BTP</description>
-
     <author href="http://www.batiactugroupe.com" email="webmaster@batiactugroupe.com">Batiactu Groupe</author>
 
+
+    <!-- Seulement ces deux plateforme ? -->
+    <gap:platform name="android" />
+    <gap:platform name="ios" />
+
+
     <icon src="images/icon.png" />
-
-
 
     <gap:splash src="images/splash/ios/Default320x480.png" gap:platform="ios" width="320" height="480" />
     <gap:splash src="images/splash/ios/Default480x320.png" gap:platform="ios" width="480" height="320" />
@@ -61,20 +64,14 @@
     <icon src="images/icon29.png" gap:platform="webos" /> <!-- 29 pixels -->
     <icon src="images/icon15.png" gap:platform="webos" gap:role="mini" /> <!-- 15 pixels -->
 
-	
-
     <preference name="phonegap-version" value="3.6.3" />
 
-	<!-- orientation with possible values default (both), landscape, or portrait -->
+    <!-- orientation with possible values default (both), landscape, or portrait -->
     <preference name="orientation" value="default" />
 
     <preference name="target-device" value="universal" />
 
-
     <preference name="fullscreen" value="true" /> <!-- remove the upper bar on iOS and Android -->
-
-
-
 
     <!-- iOS PREFERENCES -->
         
@@ -88,10 +85,16 @@
     <preference name="auto-hide-splash-screen" value="true" /> <!-- if set to false, the splash screen must be hidden using a JavaScript API -->
 
     <gap:config-file platform="ios" parent="CFBundleShortVersionString">
-        <string>101.2</string>
+        <string>110.4</string>
     </gap:config-file>
 
+    <gap:config-file platform="ios" parent="UIStatusBarHidden">
+        <true/>
+    </gap:config-file>
 
+    <gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance">
+        <false/>
+    </gap:config-file>
     <!-- ANDROID PREFERENCES -->
         
     <preference name="android-minSdkVersion" value="7" /> <!-- minimum Android 2.1 -->
@@ -103,11 +106,17 @@
     <!-- BLACKBERRY PREFERENCES -->
         
     <preference name="disable-cursor" value="false" />
-        
+
     <!-- PHONEGAP API FEATURES PREFERENCES -->
         
     <preference name="permissions" value="none"/>
 
-    <gap:plugin name="com.adobe.plugins.gaplugin" />
-	
+    <gap:plugin name="org.apache.cordova.device" version="0.2.12" />
+    <gap:plugin name="com.adobe.plugins.gaplugin" version="2.3.1" />
+    <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.1.1" />
+    <gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
+
+    <!-- pour le debug avec chrome -->
+    <!--gap:plugin name="com.jamiestarke.webviewdebug" version="1.0.8" /-->
+
 </widget>

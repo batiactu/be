@@ -27,19 +27,41 @@
 		 		$.each(tsearchs,function(i, row) {
 		 	       
 			 		var item = new Array;
-			 							                  
+
 					item["item_no_criteres"] = 'Recherche globale (sans critère)';
-			 		for (k in row) {
+
+                    for (k in row) {
+                        item["item_lib_"+k] = "";
 			 			if(row[k]!= '')item["item_no_criteres"]=null;
-						  switch(k){
-			 			 	case 'current_zonegeo':			 			 	
-			 			 	if(row[k]=='')item["item_lib_"+k] = row[k];
-			 			 	else item["item_lib_"+k] = Tregions[row[k]];
+
+                        switch(k){
+
+			 			 	case 'current_zonegeo':
+                                // on peut avoir plusieurs zones
+                                if(row[k]=='') {
+                                    item["item_lib_"+k] = row[k];
+                                }
+                                else {
+                                    if (typeof row[k] ==  'object') {
+                                        $.each(row[k], function(i, val) {
+                                           item["item_lib_"+k] += '<span class="region">' + Tregions[val] + '</span>';
+                                        });
+                                    }
+                                }
 			 			 	break;
 			 			 	
 			 			 	case 'current_fonction':
-			 			 	if(row[k]=='')item["item_lib_"+k] = row[k];
-			 			 	else item["item_lib_"+k] = Tfonctions[row[k]];
+                                // on peut avoir plusieurs zones
+                                if(row[k]=='') {
+                                    item["item_lib_"+k] = row[k];
+                                }
+                                else {
+                                    if (typeof row[k] ==  'object') {
+                                        $.each(row[k], function(i, val) {
+                                            item["item_lib_"+k] += '<span class="fonction">' + Tfonctions[val] + '</span>';
+                                        });
+                                    }
+                                }
 			 			 	break;
 			 			 	
 			 			 	case 'current_experience':
@@ -51,6 +73,11 @@
 			 			 	if(row[k]=='')item["item_lib_"+k] = row[k];
 			 			 	else item["item_lib_"+k] = Tcontrats[row[k]];
 			 			 	break
+
+                          case 'push':
+                              item["item_"+k] = row[k];
+                          break
+
 			 			 	
 			 			 	default:
 
@@ -59,13 +86,31 @@
 			 		}
 			 		item["item_hash"]=i;
 
-			 		
+
+			 		if (batiMP !== null && batiMP.getAllNotifications() != []) {
+                        var listeNotif = batiMP.getAllNotifications();
+
+                        var lgTab = listeNotif.length;
+
+                        item["nbAlerte"] = 0;
+
+                        // recheche du hash dans les notifs reçues + affectation du nb d'alerte trouvé
+                        // on part des push les plus recents
+                        for (g=lgTab-1;g>=0;g--) {
+                            if (listeNotif[g].data["idAlerte"] == i) {
+                                //on prend le premier push qui correspond
+                                item["nbAlerte"] += parseInt(listeNotif[g].data["nbAlerte"]);
+                                break;
+                            }
+                        }
+                    }
+
+                    //item["nbAlerte"] = 4;
+					item["isDevice"] = is_device;
 			 		Tab.push(item);
-			 		
 			 	});
-			 	
+
 			 	myList.html(template(Tab));
-			 				 								
 
 			 	myList.show();
 			 	//myList.listview('refresh');
@@ -76,8 +121,6 @@
 			 		$.waypoints();
 	    			$.waypoints('refresh');
 	    		}
-			 
-
     }
     
     ,completeListItem: function(options) {            
@@ -238,7 +281,7 @@
                 $content.find( ".btn_display1" ).css('display','block');
                 if(nbTotal>nb_results_by_page)$content.find( ".btn_display2" ).css('display','block');
                 
-                if(use_infinite){	
+                if(use_infinite && nbTotal >= Limit_Annonce){
 					$('#recherche #next').trigger('create');
 					$('#recherche #next').button();	
 					if((current+nb_results_by_page)<=current_nb_annonce){		
