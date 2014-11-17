@@ -106,6 +106,7 @@
                     }
 
                     //item["nbAlerte"] = 4;
+					item["isDevice"] = is_device;
 			 		Tab.push(item);
 			 	});
 

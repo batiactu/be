@@ -823,15 +823,17 @@
                 <a href="#" onclick="select_del_search_from_hash({{item_hash}});" class="mr_icon_delete"
                    data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Supprimer</a>
 
-                {{#if nbAlerte}}<span class="mr_nb_alerte_push">{{nbAlerte}}</span>{{/if}}
+                {{#if isDevice}}
+                    {{#if nbAlerte}}<span class="mr_nb_alerte_push">{{nbAlerte}}</span>{{/if}}
 
-                <div class="flip-push-contener" style="">
-                    <label for="flip-checkbox-{{item_hash}}" class="ui-hidden-accessible">Réception d'alerte sur cette
-                        recherche</label>
-                    <input data-hash="{{item_hash}}" data-theme="e" data-role="flipswitch" class="push-flip-switch"
-                           name="flip-checkbox-{{item_hash}}" id="flip-checkbox-{{item_hash}}" data-on-text="On"
-                           data-off-text="Off" {{#if item_push}}checked="checked"{{/if}} type="checkbox">
-                </div>
+                    <div class="flip-push-contener" style="">
+                        <label for="flip-checkbox-{{item_hash}}" class="ui-hidden-accessible">Réception d'alerte sur cette
+                            recherche</label>
+                        <input data-hash="{{item_hash}}" data-theme="e" data-role="flipswitch" class="push-flip-switch"
+                               name="flip-checkbox-{{item_hash}}" id="flip-checkbox-{{item_hash}}" data-on-text="On"
+                               data-off-text="Off" {{#if item_push}}checked="checked"{{/if}} type="checkbox">
+                    </div>
+                {{/if}}
             </div>
 
         </div>
