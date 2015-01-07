@@ -96,6 +96,16 @@
     </div>
 
     <div data-role="content" class="content">
+
+        <div id="notif-push-alerte" class="ui-page-theme-a" style="display:none;" >
+            <h1><p align="center">Vos alertes<span class="aa_nb_alerte_push"></span></p></h1>
+            <p>De nouvelles annonces correspondent à votre recherche! </p>
+            <p>Cliquez sur le bouton ci-dessous pour les consulter, sinon vous pouvez les retrouver
+                plus tard dans "Mes recherches".</p>
+
+            <a href="#mes-recherches" data-role="button" data-theme="c">Aller sur mes recherches</a>
+        </div>
+
         <p align="center">
             Batiactu Emploi, 1er site d'offres d'emploi dans le BTP, la construction et l'immobilier<br/>
             <strong>Plus de <span id="nbannonce_cent_inf"></span> offres d'emploi disponibles !</strong>
@@ -537,7 +547,6 @@
         // gestion du push
         deviceIsReadyForPush();
     }
-
 
 </script>
 
