@@ -447,6 +447,12 @@ $('#recherche').on('pagecreate', function(){
     TabComplete.push(Tab);
     $('#recherche').append(template2(TabComplete)).trigger('create');
 
+    $('.create-alert').unbind();
+    $('.create-alert').on('click', function() {
+        createAlert();
+    });
+
+
 });
 
 $("#recherche #select-page").on('change', function(event, ui){
@@ -507,6 +513,7 @@ $('#recherche').on('pagebeforeshow', function(){
                 launchSearch(1);
 
                 $('#resultat-recherche').listview().listview('refresh');
+
                 $('#recherche').trigger('pagecreate');
             }
 
@@ -566,7 +573,6 @@ $('#recherche').on('pageshow', function(){
                 }
             }, { offset: 'bottom-in-view' } );
         }
-
     }
 });
 /*
@@ -842,5 +848,8 @@ $(document).on("pageshow", "#annonce", function() {
         }
 
     });
+
+
+
 });
 

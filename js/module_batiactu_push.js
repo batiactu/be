@@ -32,7 +32,7 @@ batiactuMobilePush.prototype.setDebug = function(debug, divLog) {
 
 batiactuMobilePush.prototype.onDebug = function() {
     return this.genLog;
-}
+};
 
 // retourne la liste des "notifications", c'est simplement une liste d'objet
 batiactuMobilePush.prototype.getAllNotifications = function() {
@@ -68,7 +68,7 @@ batiactuMobilePush.prototype.setPushToken = function (token) {
         this.log('Store token','DEBUG');
     }
     localStorage.setItem("pushToken", token);
-}
+};
 
 batiactuMobilePush.prototype.getPushToken = function () {
     var token = localStorage.getItem("pushToken");
@@ -77,7 +77,7 @@ batiactuMobilePush.prototype.getPushToken = function () {
         return null;
     }
     return token;
-}
+};
 
 /**
  * permet d'enregister le device Android et associer la fonction aux evenements recus
@@ -100,7 +100,7 @@ batiactuMobilePush.prototype.registerDeviceAndroid = function (callBackSuccessHa
         "senderID": this.senderID, // id projet android
         "ecb": stringCallBackNotification
     });
-}
+};
 
 /**
  * permet d'enregister le device IOS et associer la fonction aux evenements recus
@@ -117,7 +117,7 @@ batiactuMobilePush.prototype.registerDeviceIos = function (callBackSuccessHandle
         "alert": "true",
         "ecb": stringCallBackNotification
     });
-}
+};
 
 batiactuMobilePush.prototype.registerDevice = function (callBackSuccessHandler, callBackErrorHandler, callBackNotification) {
     if (this.is_android()) {
@@ -145,7 +145,7 @@ batiactuMobilePush.prototype.registerDevice = function (callBackSuccessHandler, 
         }
         this.registerDeviceIos(callBackSuccessHandler, callBackErrorHandler, callBackNotification);
     }
-}
+};
 
 batiactuMobilePush.prototype.unRegisterDevice = function (callBackSuccessHandlerUnRegister, callBackErrorHandlerUnRegister) {
     if (this.is_android()) {
@@ -173,7 +173,7 @@ batiactuMobilePush.prototype.unRegisterDevice = function (callBackSuccessHandler
         }
         this.pushNotification.unregister(callBackSuccessHandlerUnRegister, callBackErrorHandlerUnRegister);
     }
-}
+};
 
 batiactuMobilePush.prototype.log = function (message, code_erreur) {
     if (this.genLog) {
@@ -195,4 +195,4 @@ batiactuMobilePush.prototype.log = function (message, code_erreur) {
         }
 
     }
-}
+};

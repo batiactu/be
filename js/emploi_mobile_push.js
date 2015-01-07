@@ -182,13 +182,19 @@ function deviceIsReadyForPush () {
     // si le token est présent, la personne à demandé les push et on s'enregistre pour affecter les différentd callBack
     if (pushToken != null) {
         try {
-            // les callbash seront suffixé par le nom de l'OS (ios / android)
+            // les callback seront suffixé par le nom de l'OS (ios / android)
             batiMP.registerDevice("successHandler", "errorHandler", "onNotification");
         }
         catch (err) {
             batiMP.log(err.message, 'ERROR');
         }
     }
+
+
+    // mise a jour etat du push et des alertes
+    setEtatPush();
+
+
 
 
     //batiMP.log('Fin device ready');

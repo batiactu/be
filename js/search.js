@@ -217,14 +217,27 @@ function saved_last_search(){
 }
 
 /**
- * saved_search
+ * Creation d'une alerte
+ * en fonction de la recherche
  */
-function saved_search(){
-	
+function createAlert() {
+	var local_current_hash = 0;
+
+	if ((local_current_hash = save_search()) != false) {
+		// activation de l'alerte
+		switch_alert_from_search('', local_current_hash);
+		$('#popupCreateAlert').popup('open');
+	}
+	else {
+		$('#popupAlreadyExistsAlert').popup('open');
+	}
+}
+
+function save_search() {
 	tsearchs = $.jStorage.get('tsearchs');
 	if(!tsearchs) tsearchs= new Object();
-	
-	var current_search = new Object(); 
+
+	var current_search = new Object();
 
 	current_search['current_zonegeo'] = current_zonegeo;
 
@@ -233,19 +246,30 @@ function saved_search(){
 	current_search['current_experience'] = current_experience;
 
 	current_search['current_contrat'] = current_contrat;
-	
+
 	current_search['current_motclef'] = current_motclef;
-	
+
 	var current_hash = convert_array_to_hash(current_search);
-	
+
 	if(tsearchs.hasOwnProperty(current_hash)){
-		//notify('Cette recherche existe déjà dans vos sauvegardes!', '#recherche');
-		$('#popupAlreadyExistsSaveSearch').popup('open');
-	}else{
-		tsearchs[current_hash]=current_search;
-		$.jStorage.set('tsearchs',tsearchs);
-		//notify('Cette recherche a été sauvegardée avec succès', '#recherche');
+		return false;
+	}
+
+	tsearchs[current_hash]=current_search;
+	$.jStorage.set('tsearchs',tsearchs);
+
+	return current_hash;
+}
+
+/**
+ * saved_search
+ */
+function saved_search(){
+	if (save_search() != false) {
 		$('#popupSaveSearch').popup('open');
+	}
+	else {
+		$('#popupAlreadyExistsSaveSearch').popup('open');
 	}
 }
 
@@ -304,8 +328,10 @@ function gotosearch(hash){
  * @param hsh
  */
 function select_del_search_from_hash(hsh){
+
+
 	hash_search_selected_to_del = hsh;
-	$('#confirmDeleteSearch').popup();
+	//$('#confirmDeleteSearch').popup();
 	$('#confirmDeleteSearch').popup('open', {history: false});
 }
 
@@ -322,6 +348,7 @@ function candel_del_search(){
  * @returns {boolean}
  */
 function del_searh_from_hash(current_hash){
+
 	tsearchs = $.jStorage.get('tsearchs');
 	if(!tsearchs) tsearchs= new Object();
 	
@@ -332,7 +359,7 @@ function del_searh_from_hash(current_hash){
     	$('#mes-recherches #resultat-mesrecherches').hide();
 		view_list_mes_recherches();
 		$('#mes-recherches #resultat-mesrecherches').show();
-	    $('#mes-recherches').trigger('create');	    
+	    $('#mes-recherches').trigger('create');
 		return true;
 	}else{		
 		notify('Erreur, ce hash ne correspond pas!', '#mes-recherches');
@@ -395,6 +422,7 @@ function saved_object_search(obj){
 function switch_alert_from_search(that, current_hash) {
 
     var valToReturn = '';
+
     tsearchs = $.jStorage.get('tsearchs');
     if(!tsearchs) tsearchs= new Object();
 
@@ -404,7 +432,7 @@ function switch_alert_from_search(that, current_hash) {
     }
 
     if (typeof tsearchs[current_hash]['push'] != 'undefined' && tsearchs[current_hash]['push'] == true) {
-        // desactivation de l'alerte
+		// desactivation de l'alerte
         tsearchs[current_hash]['push'] = false;
         // on envoi l'info de desactivation
         if ( is_device ) {
@@ -426,7 +454,15 @@ function switch_alert_from_search(that, current_hash) {
 
         if ( is_device ) {
             batiMP.log('Activation alerte hash :' + current_hash , 'DEBUG');
-            registerPush(batiMP.getPushToken(), {'put':'add_push_alert', 'local_hash':current_hash, 'alerte':alerte});
+
+			// modif pour activer le device (si pas déjà fait) si on active une alerte
+			var localToken = batiMP.getPushToken();
+			if (localToken == null) {
+				// un register device est à faire avant
+				batiMP.registerDevice('successHandler', 'errorHandler', 'onNotification');
+			}
+
+			registerPush(batiMP.getPushToken(), {'put':'add_push_alert', 'local_hash':current_hash, 'alerte':alerte});
         }
         valToReturn = 'onn';
     }
@@ -434,6 +470,34 @@ function switch_alert_from_search(that, current_hash) {
     saved_object_search( tsearchs[current_hash]);
 
     return valToReturn;
+}
+
+/**
+ * Desactive toutes les alertes
+ *
+ * @returns {boolean}
+ */
+function desactivateAlert() {
+
+	var valToReturn = '';
+	tsearchs = $.jStorage.get('tsearchs');
+	if(!tsearchs) {
+		// rien a faire
+		return false;
+	}
+
+	$.each(tsearchs, function(idx, val) {
+		if (typeof tsearchs[idx]['push'] != 'undefined' && tsearchs[idx]['push'] == true) {
+			// desactivation de l'alerte
+			tsearchs[idx]['push'] = false;
+			// on envoi l'info de desactivation
+			if ( is_device ) {
+				batiMP.log('Désactivation alerte hash :' + idx , 'DEBUG');
+				registerPush(batiMP.getPushToken(), {'put':'supp_push_alert', 'local_hash':idx});
+			}
+		}
+	});
+
 }
 
 

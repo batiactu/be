@@ -9,7 +9,7 @@
             <a href="#" onClick="reset_search(1);" data-role="button" data-theme="c" data-icon="search"
                data-corners="false">Nouvelle recherche</a>
             <a href="#mes-recherches" data-role="button" data-theme="c" data-icon="grid" data-corners="false">Mes
-                recherches</a>
+                recherches <br>et alertes</a>
             <!--<a href="#offre" data-role="button" data-theme="e" data-icon="alert" data-corners="false"> Créez une alerte e-mail</a>-->
             <a href="#recrutement" data-role="button" data-theme="c" data-icon="star" data-corners="false">Accès
                 recruteurs</a>
@@ -22,10 +22,8 @@
 
             {{#if is_device}}
             <a href="#"
-               onclick="javascript:{{#if sendPush}}batiMP.registerDevice('successHandler', 'errorHandler', 'onNotification');{{/if}} {{#if noPush}}batiMP.unRegisterDevice('successHandlerUnRegister', 'errorHandlerUnRegister');{{/if}} return false;"
-               data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">{{#if sendPush}}Recevoir des
-                notifications sur vos recherches{{/if}} {{#if noPush}}Supprimer les notifications sur vos
-                recherches{{/if}}</a>
+               onclick="javascript:{{#if sendPush}}batiMP.registerDevice('successHandler', 'errorHandler', 'onNotification');{{/if}} {{#if noPush}}batiMP.unRegisterDevice('successHandlerUnRegister', 'errorHandlerUnRegister'); desactiavteAlert();{{/if}} return false;"
+               data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">{{#if sendPush}}Activer les alertes{{/if}} {{#if noPush}}D&eacute;sactiver les alertes{{/if}}</a>
             {{/if}}
 
             {{#if is_debug}}
@@ -286,6 +284,9 @@
 
         <div class="contenu contenu-mes-recherches">
 
+            <a href="#" onclick="select_del_search_from_hash({{item_hash}});" class="mr_icon_delete end-box"
+               data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Supprimer</a>
+
             <div class="mes-recherches-liste">
                 <!--{{item_hash}}-->
                 {{#if item_lib_current_fonction}}
@@ -309,17 +310,16 @@
             </div>
 
             <div class="mes-recherches-action">
-                <a href="#" onclick="select_del_search_from_hash({{item_hash}});" class="mr_icon_delete"
-                   data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Supprimer</a>
+
 
                 {{#if nbAlerte}}<span class="mr_nb_alerte_push">{{nbAlerte}}</span>{{/if}}
 
                 <div class="flip-push-contener" style="">
-                    <label for="flip-checkbox-{{item_hash}}" class="ui-hidden-accessible">Réception d'alerte sur cette
-                        recherche</label>
+                    <label for="flip-checkbox-{{item_hash}}" class="">Alerte activ&eacute;e?</label>
                     <input data-hash="{{item_hash}}" data-theme="e" data-role="flipswitch" class="push-flip-switch"
-                           name="flip-checkbox-{{item_hash}}" id="flip-checkbox-{{item_hash}}" data-on-text="On"
-                           data-off-text="Off" {{#if item_push}}checked="checked"{{/if}} type="checkbox">
+                           name="flip-checkbox-{{item_hash}}" id="flip-checkbox-{{item_hash}}" data-on-text="Oui"
+                           data-off-text="Non" {{#if item_push}}checked="checked"{{/if}} type="checkbox">
+
                 </div>
             </div>
 
