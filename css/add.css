@@ -355,7 +355,6 @@ div[data-role=panel] {
     witdh:100%;
 }
 
-
 /* icone delete + switch on / off + nb d'annocne */
 .mes-recherches-action {
     /*float:right;*/
@@ -393,7 +392,17 @@ span.aa_nb_alerte_push {
 
 div.flip-push-contener {
     float: right;
-    margin-right: 20px;
+    /*margin-right: 20px;*/
+}
+
+div.flip-push-contener label {
+    float: left;
+    margin-right: 10px;
+    margin-top: 7px;
+}
+
+.end-box {
+    float: right;
 }
 
 .ui-flipswitch-off {
