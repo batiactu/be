@@ -3,7 +3,7 @@ var DIRSCRIPTS = 'http://bo.v2.batiactuemploi.com/scripts/';
 //var DIRHTTP = 'http://local.www2012.batiactuemploi.com/';
 //var DIRSCRIPTS = 'http://local.back2012.batiactuemploi.com/scripts/';
 
-//DIRSCRIPTS = 'http://192.168.3.103/backoffice/scripts/';
+DIRSCRIPTS = 'http://192.168.3.103/backoffice/scripts/';
 
 
 var pageinit = false;
@@ -472,13 +472,31 @@ function switch_alert_from_search(that, current_hash) {
     return valToReturn;
 }
 
+function getInfoAlerte () {
+	var valToReturn = [];
+	tsearchs = $.jStorage.get('tsearchs');
+	if(!tsearchs) {
+		// rien a faire
+		return false;
+	}
+
+	$.each(tsearchs, function(idx, val) {
+		console.log(idx);
+		if (typeof tsearchs[idx]['push'] != 'undefined' && tsearchs[idx]['push'] == true) {
+			valToReturn.push(idx);
+			console.log(idx, 'actif');
+		}
+	});
+
+	return valToReturn;
+}
+
 /**
  * Desactive toutes les alertes
  *
  * @returns {boolean}
  */
 function desactivateAlert() {
-
 	var valToReturn = '';
 	tsearchs = $.jStorage.get('tsearchs');
 	if(!tsearchs) {
@@ -487,7 +505,9 @@ function desactivateAlert() {
 	}
 
 	$.each(tsearchs, function(idx, val) {
+		console.log(idx);
 		if (typeof tsearchs[idx]['push'] != 'undefined' && tsearchs[idx]['push'] == true) {
+			console.log(idx);
 			// desactivation de l'alerte
 			tsearchs[idx]['push'] = false;
 			// on envoi l'info de desactivation
@@ -498,6 +518,8 @@ function desactivateAlert() {
 		}
 	});
 
+
+	refreshPage('#mes-recherches');
 }
 
 

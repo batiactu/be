@@ -363,7 +363,7 @@ div[data-role=panel] {
     margin: auto !important;
 }
 
-.mr_icon_delete, .mr_icon_demande_alerte_push, .mr_nb_alerte_push {
+.mr_icon_delete, .mr_icon_demande_alerte_push {
     float: right;
 }
 
