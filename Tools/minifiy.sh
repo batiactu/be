@@ -27,7 +27,6 @@ js/lib/jstorage.js \
 js/jqueryitem.js \
 js/search.js \
 js/annonce.js \
-js/wreport.js \
 js/contenu_appli.js \
 js/module_batiactu_push.js \
 js/emploi_mobile_push.js \
@@ -49,7 +48,6 @@ js/lib/handlebars-v2.0.0.min.js \
 js/jqueryitem.min.js \
 js/search.min.js \
 js/annonce.min.js \
-js/wreport.min.js \
 js/module_batiactu_push.min.js \
 js/module_batiactu_log.min.js \
 js/emploi_mobile_push.min.js \

@@ -22,7 +22,7 @@
 
             {{#if is_device}}
             <a href="#"
-               onclick="javascript:{{#if sendPush}}batiMP.registerDevice('successHandler', 'errorHandler', 'onNotification');{{/if}} {{#if noPush}}batiMP.unRegisterDevice('successHandlerUnRegister', 'errorHandlerUnRegister'); desactiavteAlert();{{/if}} return false;"
+               onclick="javascript:{{#if sendPush}}batiMP.registerDevice('successHandler', 'errorHandler', 'onNotification');{{/if}} {{#if noPush}}batiMP.unRegisterDevice('successHandlerUnRegister', 'errorHandlerUnRegister'); desactivateAlert();{{/if}} return false;"
                data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">{{#if sendPush}}Activer les alertes{{/if}} {{#if noPush}}D&eacute;sactiver les alertes{{/if}}</a>
             {{/if}}
 
@@ -312,13 +312,14 @@
             <div class="mes-recherches-action">
 
 
-                {{#if nbAlerte}}<span class="mr_nb_alerte_push">{{nbAlerte}}</span>{{/if}}
+
 
                 <div class="flip-push-contener" style="">
-                    <label for="flip-checkbox-{{item_hash}}" class="">Alerte activ&eacute;e?</label>
+                    <label class="">Alerte activ&eacute;e?</label>
                     <input data-hash="{{item_hash}}" data-theme="e" data-role="flipswitch" class="push-flip-switch"
                            name="flip-checkbox-{{item_hash}}" id="flip-checkbox-{{item_hash}}" data-on-text="Oui"
                            data-off-text="Non" {{#if item_push}}checked="checked"{{/if}} type="checkbox">
+                    {{#if nbAlerte}}<span class="mr_nb_alerte_push">{{nbAlerte}}</span>{{/if}}
 
                 </div>
             </div>
