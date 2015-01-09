@@ -42,10 +42,21 @@ if ( app ) {
 }
 
 
+function refreshPage($url)
+{
+    jQuery.mobile.changePage($url, {
+        allowSamePageTransition: true,
+        transition: 'none'
+    });
+}
+
 /**
  *  Fonction pour ajouter à wreport un tag
  **/
 function wrp_cpt_mobile(libelle,content){
+
+    return;
+
     if(typeof(content)=='undefined' || content==null || content==undefined){
         content = '';
     }

@@ -3,7 +3,7 @@
 var appliName =  'EmploiBatiactuMobile';
 
 // version de l'application
-var appliVersion = '1.1.0';
+var appliVersion = '1.2.0';
 
 // serveur d'enregistrement
 var registerServeur = DIRSCRIPTS;
@@ -235,23 +235,7 @@ function afficheNotifs(listeNotifs, lastNotif) {
 }
 
 function alertNotif(nombre) {
-
-    // iphone 5 : apparait puis disparait
-    // $( ":mobile-pagecontainer" ).pagecontainer( "change", "#dialog-push-received", { role: "dialog" } );
-
-    // on passe en notif sur l'accueil
-
-    if (nombre > 0) {
-        $('span.aa_nb_alerte_push').html(nombre);
-        $('span.aa_nb_alerte_push').show();
-    }
-    else {
-        $('span.aa_nb_alerte_push').hide();
-    }
-
-    $("#notif-push-alerte").show();
-    $( ":mobile-pagecontainer" ).pagecontainer( "change", "#accueil");
-
+     refreshPage('#mes-recherches');
 }
 
 function effaceNotifs() {
@@ -315,6 +299,35 @@ function onError(err, str1, str2){
     batiMP.log('Erreur Ajax', 'DEBUG');
 
 }
+
+
+function setEtatPush() {
+    var token = batiMP.getPushToken();
+    var device_uuid = device.uuid;
+    var info = "";
+    var data = {};
+
+    if (token == null) {
+        info = "nopush";
+    }
+    else {
+        info = "acceptpush";
+       data = getInfoAlerte();
+
+    }
+
+    $.ajax({
+        url: registerServeur + registerUrlInterface,
+        data: {json:1, appli:appliName, ver: appliVersion, put:'etat_push', token:token, uuid:device_uuid, info:info, data: data},
+        dataType: 'json',
+        crossDomain: true,
+        type: "POST",
+        success: onSuccess,
+        error: onError
+    });
+}
+
+
 
 // gestion de la désactivation des notification (désabonnement + supp token)
 function unRegisterPush() {
