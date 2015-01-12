@@ -354,6 +354,13 @@ function del_searh_from_hash(current_hash){
 	
 	if(tsearchs.hasOwnProperty(current_hash)){
 		notify('Suppression...', '#mes-recherches');
+
+		// on envoi l'info de desactivation
+		if ( is_device ) {
+			batiMP.log('Désactivation alerte hash :' + current_hash , 'DEBUG');
+			registerPush(batiMP.getPushToken(), {'put':'supp_push_alert', 'local_hash':current_hash});
+		}
+
 		delete tsearchs[current_hash];
 		$.jStorage.set('tsearchs',tsearchs);
     	$('#mes-recherches #resultat-mesrecherches').hide();
