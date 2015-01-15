@@ -499,6 +499,33 @@ function getInfoAlerte () {
 }
 
 /**
+ * active toutes les alertes
+ *
+ * @returns {boolean}
+ */
+function activateAlert() {
+	var valToReturn = '';
+	tsearchs = $.jStorage.get('tsearchs');
+	if(!tsearchs) {
+		// rien a faire
+		return false;
+	}
+
+	$.each(tsearchs, function(idx, val) {
+		if (typeof tsearchs[idx]['push'] == 'undefined' || tsearchs[idx]['push'] == false) {
+			// activation de l'alerte
+			tsearchs[idx]['push'] = true;
+			// on envoi l'info de desactivation
+			if ( is_device ) {
+				batiMP.log('Activation alerte hash :' + idx , 'DEBUG');
+				registerPush(batiMP.getPushToken(), {'put':'add_push_alert', 'local_hash':idx});
+			}
+		}
+	});
+	refreshPage('#mes-recherches');
+}
+
+/**
  * Desactive toutes les alertes
  *
  * @returns {boolean}
