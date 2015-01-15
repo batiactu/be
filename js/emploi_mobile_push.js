@@ -162,8 +162,7 @@ function deviceIsReadyForPush () {
     batiMP.registerSuffix = true; // gestion d'un suffixe pour les callBack lors de l'enregistrement
     batiMP.unRegisterSuffix = false; // gestion d'un suffixe pour les callBack lors du desenregistrement
     batiMP.senderID = "211095738121"; // sender ID fourni par google
-    batiMP.setDebug(true, '#debugPush'); // par defaut s'affiche dans #debugPush mais peut être redefini ici
-    //batiMP.log("applel device ready", 'DEBUG');
+   // batiMP.setDebug(true, '#debugPush'); // par defaut s'affiche dans #debugPush mais peut être redefini ici
 
 
     is_ios = batiMP.is_ios();
@@ -296,7 +295,7 @@ function onSuccess(data) {
  }
 
 function onError(err, str1, str2){
-    batiMP.log('Erreur Ajax', 'DEBUG');
+    batiMP.log('Erreur Ajax', 'ERROR');
 
 }
 

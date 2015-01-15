@@ -32,7 +32,7 @@
 
                     for (k in row) {
                         item["item_lib_"+k] = "";
-			 			if(row[k]!= '')item["item_no_criteres"]=null;
+			 			if(row[k] != '' && k != 'push' && row[k] != []) item["item_no_criteres"]=null;
 
                         switch(k){
 
@@ -105,7 +105,6 @@
                         }
                     }
 
-                    //item["nbAlerte"] = 4;
 					item["isDevice"] = is_device;
 			 		Tab.push(item);
 			 	});
@@ -282,14 +281,14 @@
                 if(nbTotal>nb_results_by_page)$content.find( ".btn_display2" ).css('display','block');
                 
                 if(use_infinite && nbTotal >= Limit_Annonce){
-					$('#recherche #next').trigger('create');
-					$('#recherche #next').button();	
+					//$('#recherche #next').trigger('create');
+					//$('#recherche #next').button();
 					if((current+nb_results_by_page)<=current_nb_annonce){		
 			 			$('#recherche #next').removeClass('displaynone');
 					}else{
 						$('#recherche #next').addClass('displaynone');
 					}
-					$('#recherche #next').trigger('create');
+					//$('#recherche #next').trigger('create');
 
 			    }
 

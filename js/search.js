@@ -357,7 +357,7 @@ function del_searh_from_hash(current_hash){
 
 		// on envoi l'info de desactivation
 		if ( is_device ) {
-			batiMP.log('Désactivation alerte hash :' + current_hash , 'DEBUG');
+			//batiMP.log('Désactivation alerte hash :' + current_hash , 'DEBUG');
 			registerPush(batiMP.getPushToken(), {'put':'supp_push_alert', 'local_hash':current_hash});
 		}
 
@@ -443,7 +443,7 @@ function switch_alert_from_search(that, current_hash) {
         tsearchs[current_hash]['push'] = false;
         // on envoi l'info de desactivation
         if ( is_device ) {
-            batiMP.log('Désactivation alerte hash :' + current_hash , 'DEBUG');
+            //batiMP.log('Désactivation alerte hash :' + current_hash , 'DEBUG');
             registerPush(batiMP.getPushToken(), {'put':'supp_push_alert', 'local_hash':current_hash});
         }
         valToReturn = 'off';
@@ -460,7 +460,7 @@ function switch_alert_from_search(that, current_hash) {
         alerte.motclef = tsearchs[current_hash]['current_motclef'];
 
         if ( is_device ) {
-            batiMP.log('Activation alerte hash :' + current_hash , 'DEBUG');
+            //batiMP.log('Activation alerte hash :' + current_hash , 'DEBUG');
 
 			// modif pour activer le device (si pas déjà fait) si on active une alerte
 			var localToken = batiMP.getPushToken();
@@ -488,10 +488,8 @@ function getInfoAlerte () {
 	}
 
 	$.each(tsearchs, function(idx, val) {
-		console.log(idx);
 		if (typeof tsearchs[idx]['push'] != 'undefined' && tsearchs[idx]['push'] == true) {
 			valToReturn.push(idx);
-			console.log(idx, 'actif');
 		}
 	});
 
@@ -517,7 +515,7 @@ function activateAlert() {
 			tsearchs[idx]['push'] = true;
 			// on envoi l'info de desactivation
 			if ( is_device ) {
-				batiMP.log('Activation alerte hash :' + idx , 'DEBUG');
+				//batiMP.log('Activation alerte hash :' + idx , 'DEBUG');
 				registerPush(batiMP.getPushToken(), {'put':'add_push_alert', 'local_hash':idx});
 			}
 		}
@@ -539,19 +537,16 @@ function desactivateAlert() {
 	}
 
 	$.each(tsearchs, function(idx, val) {
-		console.log(idx);
 		if (typeof tsearchs[idx]['push'] != 'undefined' && tsearchs[idx]['push'] == true) {
-			console.log(idx);
 			// desactivation de l'alerte
 			tsearchs[idx]['push'] = false;
 			// on envoi l'info de desactivation
 			if ( is_device ) {
-				batiMP.log('Désactivation alerte hash :' + idx , 'DEBUG');
+				//batiMP.log('Désactivation alerte hash :' + idx , 'DEBUG');
 				registerPush(batiMP.getPushToken(), {'put':'supp_push_alert', 'local_hash':idx});
 			}
 		}
 	});
-
 
 	refreshPage('#mes-recherches');
 }
@@ -784,6 +779,7 @@ function init_global(){
 
         if (treg_data === null || treg_data === '') {
             console.log("une erreur lors de la récupération de donnée FONCTION SEARCH est survenue, merci de relancer l'application");
+			return;
         }
 
         var data = JSON.parse(treg_data);
@@ -831,6 +827,7 @@ function init_global(){
 
             if (tfct_data === null || tfct_data === '') {
                 console.log("une erreur lors de la récupération de donnée FONCTION SEARCH est survenue, merci de relancer l'application");
+				return;
             }
 
             var data = JSON.parse(tfct_data);

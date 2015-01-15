@@ -521,13 +521,8 @@
 </script>
 
 
-
 <!-- template handlebar -->
 <div id="handlebars-template">
-
-
-
-
 <!-- menu panel -->
 <script id="panelMenu-tpl" type="text/x-handlebars-template">
     {{#.}}
@@ -552,7 +547,7 @@
 
             {{#if is_device}}
             <a href="#"
-               onclick="javascript:{{#if sendPush}}batiMP.registerDevice('successHandler', 'errorHandler', 'onNotification');{{/if}} {{#if noPush}}batiMP.unRegisterDevice('successHandlerUnRegister', 'errorHandlerUnRegister'); desactivateAlert();{{/if}} return false;"
+               onclick="javascript:{{#if sendPush}}batiMP.registerDevice('successHandler', 'errorHandler', 'onNotification');activateAlert();{{/if}} {{#if noPush}}batiMP.unRegisterDevice('successHandlerUnRegister', 'errorHandlerUnRegister'); desactivateAlert();{{/if}} return false;"
                data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">{{#if sendPush}}Activer les alertes{{/if}} {{#if noPush}}D&eacute;sactiver les alertes{{/if}}</a>
             {{/if}}
 
@@ -835,7 +830,7 @@
                 <div class="motclef">{{{item_current_motclef}}}</div>
                 {{/if}}
                 {{#if item_no_criteres}}
-                <div class="">{{{item_no_criteres}}}</div>
+                <div class="blue"><span class="title">{{{item_no_criteres}}}</span></div>
                 {{/if}}
             </div>
 
