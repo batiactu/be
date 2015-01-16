@@ -97,15 +97,6 @@
 
     <div data-role="content" class="content">
 
-        <div id="notif-push-alerte" class="ui-page-theme-a" style="display:none;" >
-            <h1><p align="center">Vos alertes<span class="aa_nb_alerte_push"></span></p></h1>
-            <p>De nouvelles annonces correspondent à votre recherche! </p>
-            <p>Cliquez sur le bouton ci-dessous pour les consulter, sinon vous pouvez les retrouver
-                plus tard dans "Mes recherches".</p>
-
-            <a href="#mes-recherches" data-role="button" data-theme="c">Aller sur mes recherches</a>
-        </div>
-
         <p align="center">
             Batiactu Emploi, 1er site d'offres d'emploi dans le BTP, la construction et l'immobilier<br/>
             <strong>Plus de <span id="nbannonce_cent_inf"></span> offres d'emploi disponibles !</strong>
@@ -114,11 +105,9 @@
         <p align="center">
             <a href="#recherche-detail" data-role="button" data-inline="true" data-mini="true">Lancer une recherche</a>
             <!--a href="#dialog-push-received" data-rel="dialog">Standard Page as Dialog</a-->
-
         </p>
     </div>
 </div>
-
 
 <!-- ================================================================================================= -->
 
@@ -351,9 +340,6 @@
             </li>
         </ul>
 
-
-
-
         <div id="fonctionrequired" data-icon="info" data-history=false data-rel="back" data-role="popup" data-theme="d"
              data-overlay-theme="a" class="ui-content">
 
@@ -413,6 +399,11 @@
             <a data-inline="true" data-theme="c" data-role="button" href="#recherche-detail" data-icon="search"
                data-mini="true">Modifier la recherche</a>
         </p>
+        <p class="btn_display1" align="center">
+            <button class="create-alert" data-inline="true" data-theme="c" data-icon="star"
+               data-mini="true" >Creer une alerte</button>
+
+        </p>
         <br>
 
         <ul id="resultat-recherche" style="display:none;" data-role="listview" data-theme="c">
@@ -451,6 +442,13 @@
         </div>
     </div>
 
+    <div class="pad10 ui-corner-all" data-history="false" id="popupCreateAlert" data-role="popup" data-overlay-theme="a"
+         data-dismissible="true">
+        <div style="padding: 10px 20px;">
+            <h3>Votre alerte a été créée avec succès</h3>
+            <a href="#mes-recherches" data-role="button" data-icon="" data-theme="a">Fermer</a>
+        </div>
+    </div>
 
 
     <div class="pad10 ui-corner-all" data-history="false" id="popupAlreadyExistsSaveSearch" data-role="popup"
@@ -460,7 +458,12 @@
             <a data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Fermer</a>
         </div>
     </div>
-</div>
+    <div class="pad10 ui-corner-all" data-history="false" id="popupAlreadyExistsAlert" data-role="popup"
+         data-overlay-theme="a" data-theme="c" data-dismissible="true">
+        <div style="padding: 10px 20px;">
+            <h3>Cette alerte a déjà été sauvegardée</h3>
+            <a href="#mes-recherches" data-role="button" data-icon="" data-theme="a">Fermer</a>
+        </div>
 
 <!--gestion des dialog -->
 <div data-role="page" id="dialog-push-received" data-add-back-btn="true">
@@ -477,6 +480,8 @@
 
 </div>
 
+
+
 <!-- Page de debug  -->
 <div id="page-debug" data-role="page" data-add-back-btn="true" data-theme="b">
     <div data-role="header" data-position="fixed" data-theme="b" data-position="fixed">
@@ -490,11 +495,8 @@
             <ul id="debugPush"></ul>
         </div>
     </div>
-    <!--div data-role="footer" data-position="fixed" data-theme="b" data-position="fixed">
 
-    </div-->
 </div>
-
 
 
 <!-- Partie script javascript --------------------------------------------------------->
@@ -600,11 +602,27 @@
         {{/.}}
     </script>
 
+<!-- /template handlebar -->
+
+
 
 </div>
 
 
+
+
+
+
+
 <!-- =============================== PAGES NON UTILISEES ========================================================= -->
+
+
+
+
+
+
+
+
 
 
 <!-- Recherche détaillé type contrat -->

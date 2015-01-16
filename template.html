@@ -309,22 +309,20 @@
                 {{/if}}
             </div>
 
-            <div class="mes-recherches-action">
-
-
-
-
-                <div class="flip-push-contener" style="">
-                    <label class="">Alerte activ&eacute;e?</label>
-                    <input data-hash="{{item_hash}}" data-theme="e" data-role="flipswitch" class="push-flip-switch"
-                           name="flip-checkbox-{{item_hash}}" id="flip-checkbox-{{item_hash}}" data-on-text="Oui"
-                           data-off-text="Non" {{#if item_push}}checked="checked"{{/if}} type="checkbox">
-                    {{#if nbAlerte}}<span class="mr_nb_alerte_push">{{nbAlerte}}</span>{{/if}}
-
+            {{#if is_device}}
+                <div class="mes-recherches-action">
+                    <div class="flip-push-contener" style="">
+                        <label class="">Alerte activ&eacute;e?</label>
+                        <input data-hash="{{item_hash}}" data-theme="e" data-role="flipswitch" class="push-flip-switch"
+                               name="flip-checkbox-{{item_hash}}" id="flip-checkbox-{{item_hash}}" data-on-text="Oui"
+                               data-off-text="Non" {{#if item_push}}checked="checked"{{/if}} type="checkbox">
+                        {{#if nbAlerte}}<span class="mr_nb_alerte_push">{{nbAlerte}}</span>{{/if}}
+                    </div>
                 </div>
-            </div>
-
+            {{/if}}
         </div>
+
+
         <div class="mes-recherches-lance">
             <a href="#" data-icon="search" data-inline="false" data-theme="a" data-mini="true" data-role="button"
                onclick="gotosearch({{item_hash}});"><h2>Lancer la recherche</h2></a>
