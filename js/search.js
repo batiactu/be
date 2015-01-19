@@ -45,6 +45,8 @@ var nb_annonce_cent_inf = (nb_annonce - nb_annonce%100);
 
 tsearchs = new Object();
 
+
+
 /**
  * Gestion de notification sur une page
  * @param message
@@ -318,7 +320,7 @@ function gotosearch(hash){
 		return false;		
 	}
 	else{
-		alert('erreur');
+		console.log('erreur sur recherche de l\'alerte');
 		return false;
 	}
 }
@@ -1049,8 +1051,8 @@ function execute_search(urlObj, options){
     var pageSelector = urlObj.hash.replace( /\?.*$/, "" );
 
     var $page = $( pageSelector );
-    
-    if(!use_infinite)launchSearch(1,1);
+
+	if(!use_infinite)launchSearch(1,1);
    
 	$page.page();
 
@@ -1074,11 +1076,10 @@ function check_params(){
 }
 
 function go_url_recherche(){
-	
 	var $content = $('#recherche').children( ":jqmData(role=content)" );
 	$content.find( "#resultat-recherche").html("");
-		
-	$content.find( "#nb_results" ).html("<br />");	
+
+	$content.find( "#nb_results" ).html("<br />");
 	$content.find( "#pagin-prev" ).css('display','none');
 	$content.find( "#pagin-next" ).css('display','none');
 	$content.find( "#pagin-pages" ).css('display','none');	
@@ -1087,12 +1088,13 @@ function go_url_recherche(){
 	$content.find( ".btn_display2" ).css('display','none'); 
 	$('#recherche #next').addClass('displaynone');
 
+
 	//l'url est créée dynamiquement
 
     newurl = '#recherche' + '?zone=' + current_zonegeo.join('-')+'&fct='+  current_experience.join('-')+  current_contrat.join('-')+  current_fonction.join('-')+'&motclef='+ current_motclef;
 
 	$.mobile.changePage( newurl);
-  	
+
 	return true; 
 }
 

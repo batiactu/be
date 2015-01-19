@@ -19,6 +19,7 @@ var batiMP = null;
 // d'une notification
 var affiche_alert = false;
 var new_alerte = false;
+var receptFisrtPush = false;
 
 
 /* ===============================================================================================================*/
@@ -188,27 +189,18 @@ function deviceIsReadyForPush () {
             batiMP.log(err.message, 'ERROR');
         }
     }
-
-
     // mise a jour etat du push et des alertes
     setEtatPush();
 
 
-
-
-    //batiMP.log('Fin device ready');
-
-
+    refreshPage('#accueil');
 
 }
-
 
 /* ================================================================================================================= */
 /****
  *
  * Création des notifications à afficher
- *
- *
  *
  */
 
@@ -218,8 +210,31 @@ function createPushItem(title, message, data) {
 
     batiMP.addNotification(newPush);
 
-    effaceNotifs();
-    afficheNotifs(batiMP.getAllNotifications(), newPush);
+    //effaceNotifs();
+    //afficheNotifs(batiMP.getAllNotifications(), newPush);
+
+
+    if (receptFisrtPush == true) {
+        $.mobile.changePage("#mes-recherches");
+    }
+
+    // affichage page liste annonces
+    if (data["idAlerte"] != 'undefined') {
+        gotosearch(data["idAlerte"]);
+    }
+
+    // mors de la reception le loading peut rester
+    // donc on le vire au bout de quelques sec
+    setTimeout(function() {
+        $.mobile.loading( 'hide' );
+        console.log("hide loading");
+
+    }, 5000);
+
+
+    receptFisrtPush = true;
+
+
 }
 
 function afficheNotifs(listeNotifs, lastNotif) {
@@ -234,6 +249,7 @@ function afficheNotifs(listeNotifs, lastNotif) {
 }
 
 function alertNotif(nombre) {
+
      refreshPage('#mes-recherches');
 }
 
