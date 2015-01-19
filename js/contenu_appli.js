@@ -44,10 +44,7 @@ if ( app ) {
 
 function refreshPage($url)
 {
-    jQuery.mobile.changePage($url, {
-        allowSamePageTransition: true,
-        transition: 'none'
-    });
+    $.mobile.changePage($url);
 }
 
 /**
@@ -55,7 +52,7 @@ function refreshPage($url)
  **/
 function wrp_cpt_mobile(libelle,content){
 
-    return;
+    return; // desactivation
 
     if(typeof(content)=='undefined' || content==null || content==undefined){
         content = '';
@@ -267,6 +264,8 @@ $('[data-role=page]').on('pagebeforeshow', function(){
     id_page_en_cours = $(this).attr('id');
     //console.log(id_page_en_cours);
     maj_panel('init');
+
+
 });
 
 function maj_panel (mode) {
@@ -450,7 +449,7 @@ $('#recherche').on('pagecreate', function(){
         Batilog.log("$('#recherche').on('pagecreate'");
     }
 
-    $('#nav-recherche').remove();
+    $('div[data-id=footer2]').remove();
     var template2 = Handlebars.compile($("#nav-recherche-tpl").html());
     Tab=new Array;
     Tab['nav']=[{'SAVE':'Sauvegarder','NEW':'Nouvelle recherche'}];
@@ -478,7 +477,6 @@ $("#recherche #select-page").on('change', function(event, ui){
 });
 
 $('#recherche').on('pagebeforeshow', function(){
-
     if (Batilog.onDebug()) {
         Batilog.log("$('#recherche').on('pagebeforeshow'");
     }
@@ -572,7 +570,7 @@ $('#recherche').on('pageshow', function(){
         }
     }
 
-    if(use_infinite){
+    if (use_infinite) {
         current = parseInt($('#recherche #next').attr('data-next'));
 
         if(current_nb_annonce >= current){
@@ -722,7 +720,6 @@ $(document).bind( "pagebeforechange", function( e, data ) {
             wrp_cpt_mobile('recherche',get_current_search_wreport(1));
 
             execute_search( u, data.options );
-
             e.preventDefault();
         }
 
