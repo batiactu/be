@@ -506,23 +506,34 @@ function getInfoAlerte () {
 function activateAlert() {
 	var valToReturn = '';
 	tsearchs = $.jStorage.get('tsearchs');
-	if(!tsearchs) {
+	if (!tsearchs) {
 		// rien a faire
 		return false;
 	}
 
-	$.each(tsearchs, function(idx, val) {
+	$.each(tsearchs, function (idx, val) {
 		if (typeof tsearchs[idx]['push'] == 'undefined' || tsearchs[idx]['push'] == false) {
 			// activation de l'alerte
 			tsearchs[idx]['push'] = true;
 			// on envoi l'info de desactivation
-			if ( is_device ) {
+			if (is_device) {
+
+				var alerte = {};
+
+				alerte.fonction = tsearchs[idx]['current_fonction'];
+				alerte.zonegeo = tsearchs[idx]['current_zonegeo'];
+				alerte.motclef = tsearchs[idx]['current_motclef'];
+
+
 				//batiMP.log('Activation alerte hash :' + idx , 'DEBUG');
-				registerPush(batiMP.getPushToken(), {'put':'add_push_alert', 'local_hash':idx});
+				registerPush(batiMP.getPushToken(), {'put': 'add_push_alert', 'local_hash': idx, 'alerte':alerte});
 			}
 		}
 	});
-	refreshPage('#mes-recherches');
+
+	$.mobile.changePage('#mes-recherches', {allowSamePageTransition: true,
+		transition: 'none',
+		reload:true});
 }
 
 /**
@@ -550,7 +561,9 @@ function desactivateAlert() {
 		}
 	});
 
-	refreshPage('#mes-recherches');
+	$.mobile.changePage('#mes-recherches', {allowSamePageTransition: true,
+		transition: 'none',
+		reload:true});
 }
 
 
