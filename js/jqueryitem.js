@@ -23,8 +23,8 @@
 				myList.html('');
 
 				var Tab=new Array;
-			 		
-		 		$.each(tsearchs,function(i, row) {
+
+				$.each(tsearchs,function(i, row) {
 		 	       
 			 		var item = new Array;
 
@@ -85,7 +85,6 @@
 						 item["item_"+k] = row[k];						 			
 			 		}
 			 		item["item_hash"]=i;
-
 
 			 		if (batiMP !== null && batiMP.getAllNotifications() != []) {
                         var listeNotif = batiMP.getAllNotifications();
@@ -151,8 +150,8 @@
 				nbTotal = dataSearch['nb'];
 				//myList.html('');
 
+				 var Tab=new Array;
 
-				var Tab=new Array;
 				/*
 				 * A revoir
 				 */
@@ -180,10 +179,7 @@
 						 			ligne = ligne.replace(myRegexp, v);
 						 				
 							});
-					
-						
-					 		
-					 		
+
 					 		
 					 		newItem.html(ligne);
 					 		newItem.show();
@@ -242,7 +238,10 @@
 				 	});
 				 	
 			 	}
-			 	
+
+
+
+
 			 	current_nb_annonce = nbTotal;
 
 			 	if(!use_infinite){
