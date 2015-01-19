@@ -192,8 +192,9 @@ function deviceIsReadyForPush () {
     // mise a jour etat du push et des alertes
     setEtatPush();
 
-
-    refreshPage('#accueil');
+    $.mobile.changePage('#accueil', {allowSamePageTransition: true,
+        transition: 'none',
+        reload:true});
 
 }
 
