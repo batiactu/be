@@ -3,6 +3,9 @@
 DIRSCRIPT=`dirname $0`
 ROOTDIR="${DIRSCRIPT}/.."
 
+red="\033[0;31m"
+NC="\033[0m"
+
 # liste des fichiers pour MINIFICATION des CSS
 # les espaces en fin de ligne (avant le \) sont importants
 minifierCSS="\
@@ -27,7 +30,6 @@ js/lib/jstorage.js \
 js/jqueryitem.js \
 js/search.js \
 js/annonce.js \
-js/contenu_appli.js \
 js/module_batiactu_push.js \
 js/emploi_mobile_push.js \
 js/module_batiactu_log.js
@@ -84,6 +86,12 @@ for fichier in $minifierJS; do
     echo "Minification de : $fichier en $outputFile"
     yui-compressor --type js -o $outputFile  $fichier
 done
+
+# minification spécifique pour contenu appli qui est intégré dans le fichier index.html
+# max 3000 car par ligne
+echo -e "====== MINIFICATION de contenu_appli ${red}---> a integrer manuellement dans index.html${NC}"
+yui-compressor --type js --line-break 3000 -o js/contenu_appli.min.js  js/contenu_appli.js
+echo -e " -- ok"
 
 #aggregation des JS
 echo "====== AGREGATION des JS"
