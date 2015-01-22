@@ -239,9 +239,6 @@
 				 	
 			 	}
 
-
-
-
 			 	current_nb_annonce = nbTotal;
 
 			 	if(!use_infinite){
@@ -271,7 +268,8 @@
 						res = nbTotal+' offres d\'emploi';										
 				}
 					
-				
+
+
 			 	myList.show();
 			 	myList.listview().listview('refresh');
 	
@@ -279,16 +277,15 @@
                 $content.find( ".btn_display1" ).css('display','block');
                 if(nbTotal>nb_results_by_page)$content.find( ".btn_display2" ).css('display','block');
                 
-                if(use_infinite && nbTotal >= Limit_Annonce){
+                if(use_infinite && nbTotal >= nb_results_by_page){
 					//$('#recherche #next').trigger('create');
 					//$('#recherche #next').button();
-					if((current+nb_results_by_page)<=current_nb_annonce){		
+					if(current<=current_nb_annonce){
 			 			$('#recherche #next').removeClass('displaynone');
 					}else{
 						$('#recherche #next').addClass('displaynone');
 					}
 					//$('#recherche #next').trigger('create');
-
 			    }
 
 			 	if(options.noLoading==null){ remove_notify('#recherche');$.mobile.loading( 'hide' )};
