@@ -460,6 +460,10 @@ div[data-role=footer] {
     margin: 0px;
 }
 
+p.type_validate {
+    display: block;
+}
+
 @media (max-width: 520px) {
     .mes-recherches-action {
         margin: auto !important;
