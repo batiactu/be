@@ -9,69 +9,27 @@
     <title>[Batiactu] Emploi</title>
 
     <!-- =============================    CSS    =============================== -->
-    <!-- structure -->
-    <link rel="stylesheet" href="http://192.168.3.103/bem/css/lib/jquery.mobile.structure-1.4.4.min.css"/>
-    <!-- theme spécifique -->
-    <link rel="stylesheet" href="http://192.168.3.103/bem/css/lib/themes/emploi_mobile_1.4.3.css" />
-    <!-- icones minifié gzip -->
-    <link rel="stylesheet" href="http://192.168.3.103/bem/css/lib/themes/jquery.mobile.icons.min.css" />
-
-    <!-- Spécifique appli-->
-    <link rel="stylesheet" href="http://192.168.3.103/bem/css/add.css"/>
-    <!-- =============================    Fin CSS    =================================== -->
-
+    <link rel="stylesheet" href="css/lib/aggreg.min.css"/>
+    <!-- =============================    Fin CSS    =========================== -->
 
     <link rel="apple-touch-icon" href="images/icon.png"/>
     <link rel="apple-touch-startup-image" href="images/splash.png"/>
 
-
-    <!-- =============================    LIB JS pour PhoneGap et Plugins    ================================================== -->
+    <!-- =============================    LIB JS pour PhoneGap et Plugins    ========================= -->
     <!-- PhoneGap en a besoin derrière pour pouvoir utiliser ses fonctions natives -->
-    <script type="text/javascript" src="phonegap.js"></script>
+    <!-- Il appelle automatiquement les js des plugins  -->
+    <script src="phonegap.js"></script>
+    <!-- =============================    Fin LIB JS pour PhoneGap et Plugins    =========================== -->
 
-    <!-- Les deux scripts suivant sont ajouté automatiquement par phonegap.js -->
-    <!--script type="text/javascript" src="GAPlugin.js"></script>
-    <script type="text/javascript" src="js/lib/PushNotification.js"></script-->
-
-    <!-- =============================    Fin LIB JS pour PhoneGap et Plugins    ================================================== -->
-
-    <!-- =============================    LIB JS    ===================== -->
-    <script type="text/javascript" src="js/lib/jquery-2.1.1.min.js"></script>
-
-    <script src="js/lib/jquery.mobile-1.4.4.min.js"></script>
-
-    <script type="text/javascript" src="js/lib/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="js/lib/jstorage.js"></script>
-    <script type="text/javascript" src="js/lib/waypoints.min.js"></script>
-    <script type="text/javascript" src="js/lib/waypoints-infinite.min.js"></script>
-    <script type="text/javascript" src="js/lib/handlebars-v2.0.0.js"></script>
-    <!-- =============================    Fin LIB JS     ===================== -->
-
-
-
-    <script type="text/javascript" src="http://192.168.3.103/bem/js/jqueryitem.js"></script>
-    <script type="text/javascript" src="http://192.168.3.103/bem/js/search.js"></script>
-    <script type="text/javascript" src="http://192.168.3.103/bem/js/annonce.js"></script>
-
-    <!-- =============================    LIB JS Batiactu     ===================== -->
-
-    <script type="text/javascript" src="http://192.168.3.103/bem/js/module_batiactu_log.js"></script>
-    <script type="text/javascript" src="http://192.168.3.103/bem/js/module_batiactu_push.js"></script>
-    <script type="text/javascript" src="http://192.168.3.103/bem/js/emploi_mobile_push.js"></script>
-    <!-- =============================    Fin LIB JS Batiactu     ===================== -->
+    <!-- =============================    LIB JS    =========================== -->
+    <script type="text/javascript" src="js/lib/aggreg.min.js"></script>
+    <!-- =============================    FINLIB JS    ======================== -->
 
     <script type="text/javascript">
         $(document).bind("mobileinit", function () {
             $.mobile.defaultPageTransition = 'fade';
         });
     </script>
-
-    <script type="application/javascript">
-        $.get("http://192.168.3.103/bem/template.html", function (data) {
-            $("#handlebars-template").html(data);
-        });
-    </script>
-
 
 </head>
 
@@ -82,7 +40,9 @@
     $.mobile.urlHistory = $.mobile.navigate.urlHistory;
 </script>
 
+
 <!-- Accueil -->
+
 <div id="accueil" data-role="page" data-theme="b">
     <div data-role="header" data-position="fixed" class="header-cent">
         <h1><img src="./images/logo.png" width="183" alt="Batiactu Emploi" title="Batiactu Emploi"></h1>
@@ -105,6 +65,7 @@
 </div>
 
 <!-- ================================================================================================= -->
+
 
 <!-- recrutement -->
 <div id="recrutement" data-role="page" data-add-back-btn="true" data-theme="b">
@@ -239,20 +200,8 @@
     </div>
 
     <div data-role="content">
-
-        <p class="type_validate" align="center">
-            <a href="#recherche-detail" data-mini="true" data-inline="true" onclick="validate_cac('fonction')" data-theme="c" data-role="button"
-               data-icon="check">Valider</a>
-        </p>
-
         <div id="recherche-detail-fonction" class=" ui-corner-all"  data-role="controlgroup" data-theme="c"  >
         </div>
-
-        <p class="type_validate" align="center">
-            <a href="#recherche-detail" data-mini="true" data-inline="true" onclick="validate_cac('fonction')" data-theme="c" data-role="button"
-               data-icon="check">Valider</a>
-        </p>
-
     </div>
 </div>
 
@@ -268,20 +217,8 @@
         <a href="#recherche-detail" data-transition="none" data-icon="arrow-l" data-position-to="window" data-role="button" data-theme="b" >Retour</a>
     </div>
     <div data-role="content">
-
-        <p class="type_validate" align="center">
-            <a href="#recherche-detail" data-mini="true" data-inline="true" onclick="validate_cac('zonegeo')" data-theme="c" data-role="button"
-               data-icon="check">Valider</a>
-        </p>
-
         <fieldset  data-role="controlgroup" data-theme="c" id="recherche-detail-zonegeo">
         </fieldset>
-
-        <p class="type_validate" align="center">
-            <a href="#recherche-detail" data-mini="true" data-inline="true" onclick="validate_cac('zonegeo')" data-theme="c" data-role="button"
-               data-icon="check">Valider</a>
-        </p>
-        
     </div>
 
 </div>
@@ -548,8 +485,11 @@
         }
     }
 
+
     var Batilog = new batiactuLog();
-    Batilog.setDebug(true);
+    Batilog.setDebug(false);
+
+
 
     var is_device = 0;
     var gaObj;
@@ -568,61 +508,357 @@
         // gestion du push
         deviceIsReadyForPush();
     }
+    var id_page_en_cours="";Batilog.setDebug(false);$("#notif-push-alerte").hide();function TrackEvent(b,d,a,c){gaObj.trackEvent(function(){console.log("success")},function(){console.log("failed")},b,d,a,c)}function TrackPageView(a){gaObj.trackPage(function(){console.log("success")},function(){console.log("failed")},a)}appFireTracker=function(){try{hash=location.hash;if(hash){pageUrl=hash.substr(1)}else{pageUrl=location.pathname}TrackPageView(pageUrl)}catch(a){}};var app=document.URL.indexOf("http://")===-1&&document.URL.indexOf("https://")===-1;if(app){$($(document).on("pageshow",appFireTracker))}else{$($(document).on("pageshow",fireTracker))}function refreshPage(a){$.mobile.changePage(a)}function wrp_cpt_mobile(d,h){return;if(typeof(h)=="undefined"||h==null||h==undefined){h=""}if(typeof(d)!="undefined"&&d!=null&&d!=undefined){switch(d){case"form-envoi-annonce-ami":d="form-envoi-annonce-ami";break;case"form-envoi-annonce-ami-success":d="form-envoi-annonce-ami-success";break;case"form-envoi-annonce-ami-error":d="form-envoi-annonce-ami-error";break;case"form-auto-transfert":d="form-auto-transfert";break;case"form-auto-transfert-success":d="form-auto-transfert-success";break;case"form-auto-transfert-error":d="form-auto-transfert-error";break;case"recherche":d="page-resultats-recherche";break;case"recherche-detail":d="page-formulaire-recherche";break;case"recherche-detail-page-fonction":d="page-liste-fonctions";break;case"recherche-detail-page-zonegeo":d="page-liste-localisations";break;case"recherche-detail-page-experience":d="page-liste-experiences";break;case"recherche-detail-page-contrat":d="page-liste-contrats";break;case"recherche":d="page-resultats-recherche";break;case"annonce":d="pages-annonces-emploi";break;case"recrutement":d="acces-recruteurs";break;case"mentions-legales":d="mention-legales";break;case"mes-recherches":d="mes-recherches";break;case"accueil":d="accueil";break;default:d="divers"}var a=436070;if(app){var l="Mobile emploi"}else{var l="Mobile emploi WEB"}var c=d;var k=a;var j=l;var i=h;var g="";var f;var b=new wreport_counter(l,c,a,f,g,k,j);b.add_content(i);b.count()}}$(document).bind("pagechange",function(b,a){if(Batilog.onDebug()){Batilog.log('$(document).bind( "pagechange"');Batilog.log(b);Batilog.log(a)}hash=location.hash;if(hash){tagpageUrl=hash.substr(1)}else{tagpageUrl=location.pathname.split("/").pop()}if(tagpageUrl=="/"||tagpageUrl==""||tagpageUrl=="index.html"){tagpageUrl="accueil"}switch(tagpageUrl){case"annonce":case"recherche":break;default:wrp_cpt_mobile(tagpageUrl)}});$("[data-role=page][id=annonce]").bind("pageshow",function(b,a){if(Batilog.onDebug()){Batilog.log('$("[data-role=page][id=annonce]").bind( "pageshow"');Batilog.log(b);Batilog.log(a)}if(!app){var c=null;if(c){if($("div.ui-header a.ui-btn-left[data-rel=none]").attr("data-rel")!="back"){setTimeout(function(){var d=$("div.ui-header a.ui-btn-left[data-rel=none]");d.attr("data-rel","back");d.find("span.ui-btn-text").text("Retour");d.attr("href","javascript:void(0);")
+    },200)}}else{setTimeout(function(){$("div.ui-header a.ui-btn-left[data-rel=back]").find("span.ui-btn-text").text("Accueil");$("div.ui-header a.ui-btn-left[data-rel=back]").attr("href","#accueil");$("div.ui-header a.ui-btn-left[data-rel=back]").attr("data-rel","none")},200)}}});$("[data-role=page]").bind("pageshow",function(){if(Batilog.onDebug()){Batilog.log('$("[data-role=page]").bind("pageshow"')}var f=$(this).find("div[data-role=header]");var b=$(f).outerHeight();var d=$(".ui-panel").height();var a=d-b;$(".ui-panel").css({top:b,"min-height":a});var c=$("#menu-left-panel-"+id_page_en_cours).hasClass("fromInit");if(id_page_en_cours!="accueil"){$("#notif-push-alerte").hide()}if(c===false){$("#menu-left-panel-"+id_page_en_cours).panel("close")}else{if(window.matchMedia("(min-width: 640px)").matches){$("#menu-left-panel-"+id_page_en_cours).panel("close")}else{$("#menu-left-panel-"+id_page_en_cours).panel("close")}}});$("[data-role=page]").on("pagebeforeshow",function(){if(Batilog.onDebug()){Batilog.log("$('[data-role=page]').on('pagebeforeshow'")}id_page_en_cours=$(this).attr("id");maj_panel("init")});function maj_panel(g){var h=0;var f=0;if(id_page_en_cours!=""&&id_page_en_cours.substr(0,6)=="dialog"){return}f=Batilog.onDebug();if(is_device){var c=batiMP.getPushToken();if(c!=null){h=1}}var d={template:"#panelMenu-tpl",url:"fill-url-source",data:{}};var a=$.extend(d,a);var b=Handlebars.compile($(a.template).html());Tab=new Array({id_page:id_page_en_cours,is_device:is_device,sendPush:!h,noPush:h,is_debug:f});if($("#menu-left-panel-"+id_page_en_cours).length>0){$("#menu-left-panel-"+id_page_en_cours).remove()}$("#"+id_page_en_cours).append(b(Tab));$("#menu-left-panel-"+id_page_en_cours).panel();$("#menu-left-panel-"+id_page_en_cours).find("div[data-role=controlgroup]").controlgroup({defaults:true});if(g=="init"){$("#menu-left-panel-"+id_page_en_cours).addClass("fromInit")}}$("#actu").on("pageinit",function(){if(Batilog.onDebug()){Batilog.log("('#actu').on('pageinit'")}$("#actu").bind("click",function(){initActu()})});$("#offre").on("pageinit",function(){if(Batilog.onDebug()){Batilog.log("$('#offre').on('pageinit'")}$("#offre").bind("click",function(){$("li").bind("swiperight",function(a){$(this).remove()})})});$(document).bind("pageinit",function(b){if(Batilog.onDebug()){Batilog.log("$(document).bind('pageinit'");Batilog.log(b)}if(!pageinit){pageinit=true;var a=$.Deferred();a.done(init_global).done(function(c){setTimeout(function(){$("#recherche-detail-page-fonction").trigger("pagebeforeshow")},100);setTimeout(function(){$("#recherche-detail-page-zonegeo").trigger("pagebeforeshow")},100);setTimeout(function(){$("#mes-recherches").trigger("pagebeforeshow")},400)}).resolve()}});$("#recherche-detail-page-zonegeo").on("pagebeforeshow",function(){if(Batilog.onDebug()){Batilog.log("$('#recherche-detail-page-zonegeo').on('pagebeforeshow'")}var a=Handlebars.compile($("#recherche-detail-tpl").html());$("#recherche-detail-zonegeo").html(a(Tregions_search)).trigger("create");
+        $("#recherche-detail-page-zonegeo .check_cac").off("click").on("click",function(){uncheck_cac($(this).attr("cac_type"),$(this))});$("#recherche-detail-page-zonegeo").page();set_fields_from_current()});$("#recherche-detail-page-fonction").on("pagebeforeshow",function(){if(Batilog.onDebug()){Batilog.log("$('#recherche-detail-page-fonction').on('pagebeforeshow'")}var a=Handlebars.compile($("#recherche-detail-tpl").html());$("#recherche-detail-fonction").html(a(Tfonctions_search)).trigger("create");$("#recherche-detail-page-fonction .check_cac").off("click").on("click",function(){uncheck_cac($(this).attr("cac_type"),$(this))});$("#recherche-detail-page-fonction").page();set_fields_from_current()});$("#recherche-detail-page-experience").on("pagebeforeshow",function(){if(Batilog.onDebug()){Batilog.log("$('#recherche-detail-page-experience').on('pagebeforeshow'");Batilog.log(e);Batilog.log(data)}set_fields_from_current()});$("#recherche-detail-page-contrat").on("pagebeforeshow",function(){if(Batilog.onDebug()){Batilog.log("$('#recherche-detail-page-contrat').on('pagebeforeshow'")}set_fields_from_current()});$("#recherche-detail").on("pagebeforeshow",function(){if(Batilog.onDebug()){Batilog.log("$('#recherche-detail').on('pagebeforeshow'")}var a=nb_annonce+" offre";if(nb_annonce>1){a+="s"}$("#nbannonce_header").text(a);if(current_fonction.length>0){$("[href=#recherche-detail-page-fonction] > h2").removeClass("border_red")}if(criteres_last_search){$("#recherche-detail #last_search").show()}if(Object.keys(tsearchs).length>0){$("#recherche-detail #link_mine_search").show()}else{$("#recherche-detail #link_mine_search").hide()}set_fields_from_current()});$("#recherche-detail").on("pageshow",function(){if(Batilog.onDebug()){Batilog.log("$('#recherche-detail').on('pageshow'")}$("#recherche #next").attr("data-next",0)});$("#recherche").on("pagecreate",function(){if(Batilog.onDebug()){Batilog.log("$('#recherche').on('pagecreate'")}$("div[data-id=footer2]").remove();var a=Handlebars.compile($("#nav-recherche-tpl").html());Tab=new Array;Tab.nav=[{SAVE:"Sauvegarder",NEW:"Nouvelle recherche"}];TabComplete=new Array;TabComplete.push(Tab);$("#recherche").append(a(TabComplete)).trigger("create");$(".create-alert").unbind();$(".create-alert").on("click",function(){createAlert()})});$("#recherche #select-page").on("change",function(a,b){if(Batilog.onDebug()){Batilog.log("$('#recherche #select-page').on('change'");Batilog.log(a);Batilog.log(b)}launchSearch(1,$(this).val())});$("#recherche").on("pagebeforeshow",function(){if(Batilog.onDebug()){Batilog.log("$('#recherche').on('pagebeforeshow'")}if(use_infinite){$("#recherche #pagin-prev").hide()}if(use_infinite){$("#recherche #pagin-next").hide()}if(use_infinite){$("#recherche #select-page").hide()}if(use_infinite){$("#recherche #pagin-pages").hide()}if(use_infinite){$("#select-page").remove()}$("#select-page").parents(".ui-select").css("display","none");if(use_infinite){$("#recherche .content").waypoint("destroy")}if(!use_infinite){$("#recherche #pagin-prev").unbind();
+        $("#recherche #pagin-prev").bind("click",function(a){current=parseInt($("#recherche #next").attr("data-next"));if(current>nb_results_by_page){current=current-(2*nb_results_by_page);$("#recherche #next").attr("data-next",current);a.preventDefault();launchSearch(1);$("#resultat-recherche").listview().listview("refresh");$("#recherche").trigger("pagecreate")}$.mobile.silentScroll(0)});$("#recherche #pagin-next").unbind();$("#recherche #pagin-next").bind("click",function(a){current=parseInt($("#recherche #next").attr("data-next"));if(current<=current_nb_annonce){a.preventDefault();launchSearch(1);$("#resultat-recherche").listview().listview("refresh");$("#recherche").trigger("pagecreate")}$.mobile.silentScroll(0)});$("#recherche #next").addClass("displaynone")}if(use_infinite){$("#recherche #next").unbind();$("#recherche #next").bind("click",function(a){current=parseInt($("#recherche #next").attr("data-next"));if(current<=current_nb_annonce){a.preventDefault();launchSearch(1);$("#resultat-recherche").listview().listview("refresh");$("#recherche .content").waypoint("disable");$("#recherche .content").waypoint("enable");$("#recherche").trigger("pagecreate")}current=parseInt($("#recherche #next").attr("data-next"))})}});$("#recherche").on("pageshow",function(){if(Batilog.onDebug()){Batilog.log("$('#recherche').on('pageshow'")}if(use_infinite){$("#select-page").remove()}if(use_infinite){$("#select-page").parents(".ui-select").css("display","none")}if(!use_infinite){var a=Math.ceil(current_nb_annonce/nb_results_by_page);if(a>1){$("#recherche #select-page").selectmenu().selectmenu("refresh",true);$("#recherche .ui-select").css("display","inline");$("#recherche #pagin-pages").css("display","inline")}}if(use_infinite){current=parseInt($("#recherche #next").attr("data-next"));if(current_nb_annonce>=current){$("#recherche .content").waypoint(function(b){if(b==="down"){$("#recherche #next").trigger("click")}},{offset:"bottom-in-view"})}}});$("#annonce").on("pageshow",function(){if(Batilog.onDebug()){Batilog.log("$('#annonce').on( 'pageshow'")}$(".ui-page-active").trigger("create");$("#popupPostuler").on({popupafteropen:function(a,b){$("#btn_postuler").unbind();$("#btn_postuler").bind("click",function(c){setTimeout(function(){$("#waiting_send").popup("open",{history:false})},200)})}});$("#popupTransfertAmi").on({popupafteropen:function(a,b){$("#btn_transfert_ami").unbind();$("#btn_transfert_ami").bind("click",function(c){setTimeout(function(){$("#waiting_send").popup("open",{history:false})},200)})}});$("#confirm_send").on({popupafteropen:function(a,b){$("#back_to_results").unbind();$("#back_to_results").bind("click",function(c){$.mobile.changePage("#recherche")});$("#back_new_search").unbind();$("#back_new_search").bind("click",function(c){setTimeout(function(){$("#confirm_send").popup("close");reset_search(1)},300)})}});$("#confirm_send_ami").on({popupafteropen:function(a,b){$("#back_to_results_ami").unbind();$("#back_to_results_ami").bind("click",function(c){$.mobile.changePage("#recherche")
+    });$("#back_new_search_ami").unbind();$("#back_new_search_ami").bind("click",function(c){setTimeout(function(){$("#confirm_send_ami").popup("close");reset_search(1)},300)})}})});$("#mes-recherches").on("pagecreate",function(){if(Batilog.onDebug()){Batilog.log("$('#mes-recherches').on('pagecreate'")}$("#confirm_delete_searh").bind("click",function(){del_searh_from_hash(hash_search_selected_to_del)});$("#cancel_delete_searh").bind("click",function(){candel_del_search()})});$("#mes-recherches").on("pagebeforechange",function(){if(Batilog.onDebug()){Batilog.log("$('#mes-recherches').on('pagebeforechange'")}$("#mes-recherches #resultat-mesrecherches").hide()});$("#mes-recherches").on("pagebeforeshow",function(){if(Batilog.onDebug()){Batilog.log("$('#mes-recherches').on('pagebeforeshow'")}$("#recherche #next").attr("data-next",0);view_list_mes_recherches();$("#mes-recherches #resultat-mesrecherches").show();$("#mes-recherches").page();$(".mr_icon_delete").buttonMarkup();$(".mes-recherches-lance > a").buttonMarkup();$(".push-flip-switch").flipswitch({corners:true});$(".push-flip-switch").change(function(){var b=$(this).data("hash");var a=switch_alert_from_search(this,b)})});$("#mentions-legales").bind("pageshow",function(){if(Batilog.onDebug()){Batilog.log("$('#mentions-legales').bind('pageshow'")}if(is_device){$("#mentions-legales div[data-role=content] .ui-body ").addClass("bg_is_device")}});$(document).bind("pagebeforechange",function(f,d){if(Batilog.onDebug()){Batilog.log('$(document).bind( "pagebeforechange"');Batilog.log(f);Batilog.log(d)}var b=$.mobile.path.parseUrl(d.toPage);set_fields_from_current();if(typeof d.toPage==="string"){var c=/^#recherche\?/;var a=/^#recherche-\?/;if(b.hash.search(c)!==-1&&b.hash.search(a)===-1){wrp_cpt_mobile("recherche",get_current_search_wreport(1));execute_search(b,d.options);f.preventDefault()}var c=/^#annonce/;if(b.hash.search(c)!==-1){var c=/(?:.*id={1})+(\d+)(.*)/g;c.exec(d.toPage);if(RegExp.$1!=""){var g=RegExp.$1}wrp_cpt_mobile("annonce",g);back_popup_hash=b.hash;showAnnonce(b,d.options);f.preventDefault()}}});$("#annonce").on("pagecreate",function(){if(Batilog.onDebug()){Batilog.log("$('#annonce').on('pagecreate'")}var a=$("#template-page div[data-role=footer]");$("div[data-role=page]").append(a)});$("#accueil").on("pagebeforecreate",function(a,b){if(Batilog.onDebug()){Batilog.log("$('#accueil').on('pagebeforecreate'");Batilog.log(a);Batilog.log(b)}});$("#accueil").on("pagebeforeshow",function(){if(Batilog.onDebug()){Batilog.log("$('#accueil').on('pagebeforeshow'")}$("#nbannonce_cent_inf").text(nb_annonce_cent_inf)});$(document).on("pageshow","#annonce",function(){if(Batilog.onDebug()){Batilog.log('$(document).on("pageshow"')}$("#formpopup_Postuler").validate({rules:{email:{required:true,email:true}},messages:{required:"Le champ adresse e-mail est obligatoire.",email:"Veuillez saisir une adresse e-mail valide."},errorPlacement:function(a,b){var c=b.attr("id");switch(c){case"email":a.insertAfter("#formpopup_Postuler .email_label");
+        break;default:a.insertBefore(b)}}});$("#formpopup_TransfertAmi").validate({rules:{email:{required:true,email:true}},messages:{required:"Le champ adresse e-mail est obligatoire.",email:"Veuillez saisir une adresse e-mail valide."},errorPlacement:function(a,b){var c=b.attr("id");switch(c){case"email":a.insertAfter("#formpopup_TransfertAmi .email_label");break;default:a.insertBefore(b)}}})});
+
 
 </script>
-
-<script type="text/javascript" src="http://192.168.3.103/bem/js/contenu_appli.js"></script>
 
 
 <!-- template handlebar -->
 <div id="handlebars-template">
+<!-- menu panel -->
+<script id="panelMenu-tpl" type="text/x-handlebars-template">
+    {{#.}}
+    <div data-role="panel" id="menu-left-panel-{{id_page}}" data-display="overlay" data-position-fixed="true"
+         data-swipe-close="false" data-dismissible="false" class="ui-responsive-panel" data-theme="b">
 
-    <script id="panelMenu-tpl" type="text/x-handlebars-template">
-        {{#.}}
-        vide
-        {{/.}}
-    </script>
+        <div data-role=controlgroup>
+            <a href="#accueil" data-role="button" data-theme="c" data-icon="home" data-corners="false"> Accueil </a>
+            <a href="#" onClick="reset_search(1);" data-role="button" data-theme="c" data-icon="search"
+               data-corners="false">Nouvelle recherche</a>
+            <a href="#mes-recherches" data-role="button" data-theme="c" data-icon="grid" data-corners="false">Mes
+                recherches <br>et alertes</a>
+            <!--<a href="#offre" data-role="button" data-theme="e" data-icon="alert" data-corners="false"> Créez une alerte e-mail</a>-->
+            <a href="#recrutement" data-role="button" data-theme="c" data-icon="star" data-corners="false">Accès
+                recruteurs</a>
+            <a href="#mentions-legales" data-role="button" data-theme="c" data-icon="gear" data-corners="false">Mentions
+                légales</a>
+            <!--<a href="#" onclick="javascript:window.open('http://mobile.batiactu.com/','_blank','location=yes');return false;" data-role="button" data-theme="c" data-icon="gear" data-corners="false">BatiActu</a>-->
+            <a href="#"
+               onclick="javascript:window.open('http://www.batiactuemploi.com/?FROM_MOBILE','_blank','location=yes');return false;"
+               data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">Version web classique</a>
 
-    <script id="nav-recherche-tpl" type="text/x-handlebars-template">
-        {{#.}}
-        vide
-        {{/.}}
-    </script>
+            {{#if is_device}}
+            <a href="#"
+               onclick="javascript:{{#if sendPush}}batiMP.registerDevice('successHandler', 'errorHandler', 'onNotification');activateAlert();{{/if}} {{#if noPush}}batiMP.unRegisterDevice('successHandlerUnRegister', 'errorHandlerUnRegister'); desactivateAlert();{{/if}} return false;"
+               data-role="button" data-theme="c" data-icon="arrow-r" data-corners="false">{{#if sendPush}}Activer les alertes{{/if}} {{#if noPush}}D&eacute;sactiver les alertes{{/if}}</a>
+            {{/if}}
 
-    <script id="nav-annonce-detail-tpl" type="text/x-handlebars-template">
-        {{#.}}
-        vide
-        {{/.}}
-    </script>
+            {{#if is_debug}}
+            <a href="#page-debug" data-role="button" data-theme="c" data-icon="alert" data-corners="false">Page de debug</a>
+            {{/if}}
 
-    <script id="annonce-detail-tpl" type="text/x-handlebars-template">
-        {{#.}}
-        vide
+            <!--<a href="https://itunes.apple.com/fr/app/batiactu/id388961332?mt=8" data-role="button" data-theme="a"
+               data-icon="arrow-r" data-corners="false">Application batiactu</a>	-->
+        </div>
+    </div>
 
-        {{/.}}
-    </script>
+    {{/.}}
+</script>
 
-    <script id="recherche-detail-tpl" type="text/x-handlebars-template">
-        {{#.}}
-        vide
-        {{/.}}
-    </script>
+<!-- footer pour action liste annnonce-->
+<script id="nav-recherche-tpl" type="text/x-handlebars-template">
+    {{#.}}
+    <div id="nav-recherche" data-role="footer" style="overflow:hidden;" data-id="footer2" data-position="fixed">
+        <div align="center">
+            {{#each nav}}
+            {{#if SAVE}}
+            <a style="float:left;" onClick="saved_search();" id="Save_search" data-role="button" data-mini="true"
+               data-theme="b" data-inline="true">{{SAVE}}</a>
+            {{/if}}
 
-    <script id="recherche-resultat-tpl" type="text/x-handlebars-template">
-        {{#.}}
-        vide
-        {{/.}}
-    </script>
+            {{#if NEW}}
+            <a style="float:right;" onClick="reset_search(1);" data-role="button" data-theme="b" data-mini="true"
+               data-inline="true">{{NEW}}</a>
+            {{/if}}
+            {{/each}}
+        </div>
+    </div>
+    {{/.}}
+</script>
+
+<script id="nav-annonce-detail-tpl" type="text/x-handlebars-template">
+    {{#.}}
+    <div id="nav-annonce" data-role="footer" style="overflow:hidden;" data-id="footer3" data-position="fixed">
+        <div align="center">
+            {{#each nav}}
+            {{#if PREVIOUS}}
+            <a style="float:left;" href="#annonce?id={{PREVIOUS}}" data-role="button" data-mini="true" data-theme="b"
+               data-inline="true">&lt;</a>
+            {{/if}}
+            <!--
+            <a href="#popupPostuler" data-history="false" data-role="button" data-icon="check" data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Postuler</a>
+            -->
+            {{#if NEXT}}
+            <a style="float:right;" href="#annonce?id={{NEXT}}" data-role="button" data-mini="true" data-theme="b"
+               data-inline="true">&gt;</a>
+            {{/if}}
+            {{/each}}
+        </div>
+    </div>
+    {{/.}}
+</script>
+
+<script id="annonce-detail-tpl" type="text/x-handlebars-template">
+    {{#.}}
+    <div data-role="content" data-class="content_annonce">
+
+        <div class="entete">
+            <h1>{{LIBELLE}}</h1>
+            <br>
+
+            <div class="datas">
+                {{{IMG}}}
+                <span class="grey">Entreprise : </span>{{{LIB_RECRUTEUR}}}
 
 
-    <script id="mes-recherches-resultat-tpl" type="text/x-handlebars-template">
-        {{#.}}
-        vide
-        {{/.}}
-    </script>
+                {{#if LIEUX}}
+                <br><span class="grey">Lieu(x) : </span>{{{LIEUX}}}
+                {{/if}}
 
-    <!-- /template handlebar -->
+                {{#if CONTRAT}}
+                <br><span class="grey">Type : </span>{{{CONTRAT}}}
+                {{/if}}
 
+                {{#if REMUNERATION}}
+                <br><span class="grey">Rémunération : </span>{{{REMUNERATION}}}
+                {{/if}}
+            </div>
+
+            <div class="clear padtop10">
+                <span class="blue size12">{{DT_DEBVALID}}</span>
+                <span class="blue floatright size12" align="right">{{#if REFERENCE}}Réf. {{REFERENCE}}{{/if}}</span>
+            </div>
+            <div class="clear padtop10"></div>
+        </div>
+        <div class="centre">
+            <p class="description">{{{DESCRIPTION_ENTREPRISE}}}</p>
+
+            <p class="description">{{{DESCRIPTION}}}</p>
+
+
+        </div>
+
+        <input type="hidden" value="{{ID_ANNONCE}}" id="id_annonce">
+
+        <p align="center">
+            <a href="#popupPostuler" data-history="false" data-role="button" data-icon="check" data-position-to="window"
+               data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Postuler</a>
+        </p>
+
+        <p align="center">
+            <a href="#popupTransfertAmi" data-history="false" data-role="button" data-icon="check"
+               data-position-to="window" data-transition="pop" data-rel="popup" data-theme="b" data-inline="true">Envoyer
+                à un ami</a>
+        <div style="display:block;min-height:100px;">&nbsp;</div>
+        </p>
+
+        <div class="pad10 ui-corner-all" data-history="false" id="popupPostuler" data-role="popup"
+             data-overlay-theme="a" data-theme="c" data-dismissible="false">
+
+            <form id="formpopup_Postuler">
+                <div style="padding: 10px;" class="ui-corner-all ui-content" data-role="content" class="content_popup"
+                     data-theme="d">
+                    <h3>Recevoir l'offre d'emploi pour postuler depuis votre ordinateur</h3><br>
+                    <label class="email_label" class="bold" for="email"><b>Mon Adresse email*</b></label>
+                    <input name="email" id="email" type="text" placeholder="Adresse email*" value="" data-theme="b">
+                    <br>
+                    <label class="bold" for="subject">Objet Email</label>
+
+                    <p>Postuler à l’annonce : {{LIBELLE}} {{#if REFERENCE}}(Réf. {{REFERENCE}}){{/if}}</p>
+
+                    <!--
+                    <input name="subject" id="subject" type="text" placeholder="Objet Email" value="Offre Batiactu Emploi - {{LIBELLE}} {{#if REFERENCE}}(Réf. {{REFERENCE}}){{/if}}" data-theme="b">
+                    <label class="bold" for="message">Votre message</label>
+                    <textarea name="message" id="message" placeholder="Votre message" value="" data-theme="b"></textarea>
+                    -->
+                    <input type="hidden" value="{{ID_ANNONCE}}" id="id_annonce">
+
+                    <br>
+                    <a id="btn_postuler" onClick="postuler('popupPostuler','formpopup_Postuler')" href="#"
+                       data-role="button" data-icon="" data-theme="b">M'envoyer l'offre d'emploi</button>
+                        <a data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Annuler</a>
+                </div>
+            </form>
+        </div>
+        <div class="pad10 ui-corner-all" data-history="false" id="popupTransfertAmi" data-role="popup"
+             data-overlay-theme="a" data-theme="c" data-dismissible="false">
+
+            <form id="formpopup_TransfertAmi">
+                <div style="padding: 10px;" class="ui-corner-all ui-content" data-role="content" class="content_popup"
+                     data-theme="d">
+                    <h3>Transférez l'offre d'emploi à un ami</h3><br>
+                    <label class="email_label" class="bold" for="email"><b>Son Adresse email*</b></label>
+                    <input name="email" id="email" type="text" placeholder="Adresse email*" value="" data-theme="b">
+                    <br>
+                    <label class="bold" for="subject">Objet Email</label>
+
+                    <p>Offre Batiactu Emploi : {{LIBELLE}} {{#if REFERENCE}}(Réf. {{REFERENCE}}){{/if}}</p>
+                    <br>
+                    <label class="bold" for="message">Votre message</label>
+                    <textarea name="message" id="message" placeholder="Votre message" value=""
+                              data-theme="b"></textarea>
+
+                    <input type="hidden" value="{{ID_ANNONCE}}" id="id_annonce">
+
+                    <br>
+                    <a id="btn_transfert_ami" onClick="transfert_ami('popupTransfertAmi','formpopup_TransfertAmi')"
+                       href="#" data-role="button" data-icon="" data-theme="b">Envoyer l'offre d'emploi</button>
+                        <a data-rel="back" href="#" data-role="button" data-icon="" data-theme="a">Annuler</a>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+    <div class="pad10 ui-corner-all" data-history="false" id="waiting_send" data-role="popup" data-overlay-theme="a"
+         data-theme="c" data-dismissible="false">
+        <div style="padding: 10px 20px;">
+            <h3>Envoi en cours...patientez</h3>
+        </div>
+
+    </div>
+    <div class="pad10 ui-corner-all" data-history="false" id="confirm_send" data-role="popup" data-overlay-theme="a"
+         data-theme="c">
+
+        <div style="padding: 10px 20px;">
+            <h3>L'offre d'emploi a bien été transmise.</h3>
+
+            <p align="center">
+                <a href="#" id="back_to_results" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour
+                    aux résultats</a>
+                <a href="#" id="back_new_search" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle
+                    recherche</a>
+            </p>
+        </div>
+
+    </div>
+    <div class="pad10 ui-corner-all" data-history="false" id="confirm_send_ami" data-role="popup" data-overlay-theme="a"
+         data-theme="c">
+
+        <div style="padding: 10px 20px;">
+            <h3>L'offre d'emploi a bien été transmise.</h3>
+
+            <p align="center">
+                <a href="#" id="back_to_results_ami" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour
+                    aux résultats</a>
+                <a href="#" id="back_new_search_ami" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle
+                    recherche</a>
+            </p>
+        </div>
+
+    </div>
+    <div class="pad10 ui-corner-all" data-history="false" id="error_send" data-role="popup" data-overlay-theme="a"
+         data-theme="c">
+
+        <div style="padding: 10px 20px;">
+            <h3>Une erreur c'est provoqué. L'offre d'emploi n'a pu être transmise par email.</h3>
+
+            <p align="center">
+                <a data-rel="back" href="#" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour à
+                    l'annonce</a>
+                <a href="#recherche" data-role="button" data-mini="true" data-icon="" data-theme="b">Retour aux
+                    résultats</a>
+                <a href="#" onClick="reset_search(1);" data-mini="true" data-role="button" data-icon="" data-theme="c">Nouvelle
+                    recherche</a>
+            </p>
+        </div>
+
+    </div>
+
+    {{/.}}
+</script>
+
+<script id="recherche-detail-tpl" type="text/x-handlebars-template">
+    {{#.}}
+    <label><input data-mini="true" cac_type="{{type}}" class="check{{type}} check_cac" type="checkbox"
+                  value="{{item_value}}" id="T{{item_libelle}}_{{item_index}}"> {{item_label}}</label>
+    {{/.}}
+</script>
+
+<script id="recherche-resultat-tpl" type="text/x-handlebars-template">
+    {{#.}}
+    <li class="infinite-item">
+
+        <a href="#annonce?id={{item_origine}}">
+
+            <h2>{{item_libelle}}</h2>
+            {{#if item_contrat}}<span class="resultat_lib_contrat">({{{item_contrat}}})</span><br>{{/if}}
+            <span class="resultat_lib_recruteur">{{item_lib_recruteur}}</span><br>
+            <span class="resultat_lib_region">{{item_lib_region}}</span>
+            <!--<br><span class="resultat_lib_region">{{item_lib_dept}}</span>-->
+            {{#if item_image_to_show}}
+            <div id="div_img"><p>{{{item_image_to_show}}}</p></div>
+            {{/if}}
+        </a>
+
+    </li>
+    {{/.}}
+</script>
+
+
+<script id="mes-recherches-resultat-tpl" type="text/x-handlebars-template">
+    {{#.}}
+    <li class="infinite-item">
+
+        <div class="contenu contenu-mes-recherches">
+
+            <a href="#" onclick="select_del_search_from_hash({{item_hash}});" class="mr_icon_delete end-box"
+               data-inline="true" data-role="button" data-icon="delete" data-iconpos="notext">Supprimer</a>
+
+            <div class="mes-recherches-liste">
+                <!--{{item_hash}}-->
+                {{#if item_lib_current_fonction}}
+                <div class="blue"><span class="title">Fonctions dans la recherche : </span>{{{item_lib_current_fonction}}}</div>
+                {{/if}}
+                {{#if item_lib_current_zonegeo}}
+                <div class="blue"><span class="title">R&eacute;gions  dans la recherche : </span>{{{item_lib_current_zonegeo}}}</div>
+                {{/if}}
+                {{#if item_lib_current_experience}}
+                <div class="blue">{{{item_lib_current_experience}}}</div>
+                {{/if}}
+                {{#if item_lib_current_contrat}}
+                <div class="blue">{{{item_lib_current_contrat}}}</div>
+                {{/if}}
+                {{#if item_current_motclef}}
+                <div class="motclef">{{{item_current_motclef}}}</div>
+                {{/if}}
+                {{#if item_no_criteres}}
+                <div class="blue"><span class="title">{{{item_no_criteres}}}</span></div>
+                {{/if}}
+            </div>
+
+            <div class="mes-recherches-action">
+
+
+
+
+                <div class="flip-push-contener" style="">
+                    <label class="">Alerte activ&eacute;e?</label>
+                    <input data-hash="{{item_hash}}" data-theme="e" data-role="flipswitch" class="push-flip-switch"
+                           name="flip-checkbox-{{item_hash}}" id="flip-checkbox-{{item_hash}}" data-on-text="Oui"
+                           data-off-text="Non" {{#if item_push}}checked="checked"{{/if}} type="checkbox">
+                    {{#if nbAlerte}}<span class="mr_nb_alerte_push">{{nbAlerte}}</span>{{/if}}
+
+                </div>
+            </div>
+
+        </div>
+        <div class="mes-recherches-lance">
+            <a href="#" data-icon="search" data-inline="false" data-theme="a" data-mini="true" data-role="button"
+               onclick="gotosearch({{item_hash}});"><h2>Lancer la recherche</h2></a>
+        </div>
+
+    </li>
+    {{/.}}
+</script>
+
+<!-- /template handlebar -->
 
 
 </div>

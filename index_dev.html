@@ -82,9 +82,7 @@
     $.mobile.urlHistory = $.mobile.navigate.urlHistory;
 </script>
 
-
 <!-- Accueil -->
-
 <div id="accueil" data-role="page" data-theme="b">
     <div data-role="header" data-position="fixed" class="header-cent">
         <h1><img src="./images/logo.png" width="183" alt="Batiactu Emploi" title="Batiactu Emploi"></h1>
@@ -107,7 +105,6 @@
 </div>
 
 <!-- ================================================================================================= -->
-
 
 <!-- recrutement -->
 <div id="recrutement" data-role="page" data-add-back-btn="true" data-theme="b">
@@ -242,8 +239,20 @@
     </div>
 
     <div data-role="content">
+
+        <p class="type_validate" align="center">
+            <a href="#recherche-detail" data-mini="true" data-inline="true" onclick="validate_cac('fonction')" data-theme="c" data-role="button"
+               data-icon="check">Valider</a>
+        </p>
+
         <div id="recherche-detail-fonction" class=" ui-corner-all"  data-role="controlgroup" data-theme="c"  >
         </div>
+
+        <p class="type_validate" align="center">
+            <a href="#recherche-detail" data-mini="true" data-inline="true" onclick="validate_cac('fonction')" data-theme="c" data-role="button"
+               data-icon="check">Valider</a>
+        </p>
+
     </div>
 </div>
 
@@ -259,8 +268,20 @@
         <a href="#recherche-detail" data-transition="none" data-icon="arrow-l" data-position-to="window" data-role="button" data-theme="b" >Retour</a>
     </div>
     <div data-role="content">
+
+        <p class="type_validate" align="center">
+            <a href="#recherche-detail" data-mini="true" data-inline="true" onclick="validate_cac('zonegeo')" data-theme="c" data-role="button"
+               data-icon="check">Valider</a>
+        </p>
+
         <fieldset  data-role="controlgroup" data-theme="c" id="recherche-detail-zonegeo">
         </fieldset>
+
+        <p class="type_validate" align="center">
+            <a href="#recherche-detail" data-mini="true" data-inline="true" onclick="validate_cac('zonegeo')" data-theme="c" data-role="button"
+               data-icon="check">Valider</a>
+        </p>
+
     </div>
 
 </div>
@@ -527,11 +548,8 @@
         }
     }
 
-
     var Batilog = new batiactuLog();
     Batilog.setDebug(true);
-
-
 
     var is_device = 0;
     var gaObj;
