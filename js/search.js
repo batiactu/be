@@ -34,6 +34,16 @@ var current_experience = new Array;
 var current_contrat = new Array;
 var current_motclef = '';
 
+// version temporaire
+var current_zonegeo_tmp = new Array;
+var current_fonction_tmp = new Array;
+var current_metier_tmp = new Array;
+var current_experience_tmp = new Array;
+var current_contrat_tmp = new Array;
+
+
+
+
 var hash_searh_selected_to_del = '';
 
 var current_nb_annonce = 0;
@@ -146,23 +156,59 @@ function uncheck_cac(type,el){
 		$(this).checkboxradio().checkboxradio("refresh");
 	});*/
     // on stocke le choix et on désactive celui qui vient d'etre désactivé (s'il'a été)
+
+
+	var tabNameTmp =  'current_' + type + '_tmp';
+
 	if(el.prop('checked')) {
         // element selectionné
-        window['current_'+type].push(el.attr('value'));
+        window[tabNameTmp].push(el.attr('value'));
     }
     else {
         // element désélectionné
         newTab = new Array;
 
-        $(window['current_'+type]).each(function(idx, val) {
+        $(window[tabNameTmp]).each(function(idx, val) {
             if(val != el.attr('value')) {
                 newTab.push(val);
             }
         });
 
-        window['current_'+type] = newTab;
+        window[tabNameTmp] = newTab;
     }
+
 }
+
+/**
+ * Permet de valider le type de recherche
+ *
+ * @param type
+ */
+function validate_cac(type) {
+
+	var tabName = 'current_' + type;
+	var tabNameTmp = 'current_' + type + '_tmp';
+
+	var newTabType = new Array;
+	$(window[tabNameTmp]).each(function(idx, val) {
+		newTabType.push(val);
+	});
+
+	window[tabName] = newTabType;
+}
+
+function resetTmp_cac(type) {
+	var tabName = 'current_' + type;
+	var tabNameTmp = 'current_' + type + '_tmp';
+
+	var newTabType = new Array;
+	$(window[tabName]).each(function(idx, val) {
+		newTabType.push(val);
+	});
+
+	window[tabNameTmp] = newTabType;
+}
+
 
 /**
  * view_list_mes_recherches : gestion des infos affichées dans la page "mes recherche"
@@ -575,6 +621,8 @@ function set_fields_from_current(){
 	$('[id^=selected-detail-page-]').html('');
 
     var lib = '';
+
+	resetTmp_cac('zonegeo');
 	$.each(current_zonegeo,function(i) {
 		value = current_zonegeo[i];
 		var type = 'zonegeo';
@@ -587,6 +635,7 @@ function set_fields_from_current(){
 	});
 
     lib = '';
+	resetTmp_cac('fonction');
 	$.each(current_fonction,function(i) {
 		value = current_fonction[i];
 		var type = 'fonction';                                             
@@ -1114,32 +1163,35 @@ function go_url_recherche(){
 
 function save_current_criteres(){
 
-	if($('.checkzonegeo').lenght>0){
+	// fait dans check_cac et validate_cac
+	// ne pas refaire le current_<type> ici
+
+	/*if($('.checkzonegeo').lenght>0){
 		current_zonegeo = new Array;
 		$('.checkzonegeo').each(function(i) {
 				if($(this).prop('checked')){
 					current_zonegeo.push($(this).val());
 				}
 			});	
-	}
+	}*/
 	
-	if($('.checkfonction').lenght>0){	
+	/*if($('.checkfonction').lenght>0){
 	current_fonction = new Array;	
 	$('.checkfonction').each(function(i) {
 			if($(this).prop('checked')){
 				current_fonction.push($(this).val());
 			}
 		});	
-	}
+	}*/
 	
-	if($('.checkcontrat').lenght>0){	
+	/*if($('.checkcontrat').lenght>0){
 		current_contrat = new Array;	
 		$('.checkcontrat').each(function(i) {			
 			if($(this).prop('checked')){
 				current_contrat.push($(this).val());
 			}
 		});	
-	}	
+	}	*/
 	
 	//if($('.checkmetier').lenght>0){
 	//	$('.checkmetier').each(function(i) {
@@ -1150,15 +1202,17 @@ function save_current_criteres(){
 	//		}
 	//	});
 	//}
-	if($('.checkexperience').lenght>0){
+	/*if($('.checkexperience').lenght>0){
 		current_experience = new Array;		
 		$('.checkexperience').each(function(i) {
 			if($(this).prop('checked')){
 				current_experience.push($(this).val());
 			}
 		});
-	}	
-	
+	}	*/
+
+
+	// on garde que le mot clé
 	current_motclef=$('[id=recherche-detail-mot-clef]').val();
 			
 	return false;		
