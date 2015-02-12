@@ -82,6 +82,7 @@ function createPushItemFromIOS(payload) {
         data["nbAlerte"] = payload.nbAlerte;
     }
 
+    BatiMP.log("Appel de createPushItem");
     createPushItem(title, message, data);
 }
 
@@ -209,6 +210,7 @@ function deviceIsReadyForPush () {
 function createPushItem(title, message, data) {
     var newPush = {"titre": title, "message": message, "data": data };
 
+    batiMP.log("ADD NOTIF");
     batiMP.addNotification(newPush);
 
     //effaceNotifs();
@@ -219,11 +221,14 @@ function createPushItem(title, message, data) {
         $.mobile.changePage("#mes-recherches");
     }
 
+    batiMP.log("APRES CHANGE PAGE MES RECHERCHES");
+
     // affichage page liste annonces
     if (data["idAlerte"] != 'undefined') {
         gotosearch(data["idAlerte"]);
     }
-
+    batiMP.log("APRES GOTO SEARCH");
+    
     // lors de la reception le loading peut rester
     // donc on le vire au bout de quelques sec
     setTimeout(function() {
