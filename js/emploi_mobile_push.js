@@ -240,6 +240,13 @@ function createPushItem(title, message, data) {
     batiMP.log("APRES CHANGE PAGE MES RECHERCHES");
     batiMP.log("ID ALERTE = " + data["idAlerte"], "IDIDID");
 
+    setTimeout(function() {
+        if (data["idAlerte"] != 'undefined') {
+            gotosearch(data["idAlerte"]);
+        }
+    }, 2000);
+
+
     // affichage page liste annonces
     if (data["idAlerte"] != 'undefined') {
         gotosearch(data["idAlerte"]);
