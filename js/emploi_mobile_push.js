@@ -53,38 +53,26 @@ function errorHandlerIOS(error) {
 
 // callback lors de la reception de notifications
 function onNotificationIOS(e) {
-    batiMP.log('onNotificationIOS', 'DEBUG');
+    //batiMP.log('onNotificationIOS', 'DEBUG');
     createPushItemFromIOS(e);
 }
 
 // Gestion des messages reçu par APNs, création d'un item à afficher
 function createPushItemFromIOS(payload) {
     var title = "Reception notification :";
-
-
-    batiMP.log('DANS createPushItemFromIOS', 'OOOOO');
-    batiMP.log('DANS createPushItemFromIOS 2');
-
     if (typeof payload.title != 'undefined') {
         title = payload.title;
     }
 
-    batiMP.log('DANS createPushItemFromIOS : title ');
-    batiMP.log(title);
     var alerte = '';
     if (typeof payload.alerte != 'undefined') {
         alerte = payload.idAlerte;
     }
 
-    batiMP.log('DANS createPushItemFromIOS : alerte');
-    batiMP.log(alerte);
     var message = '';
     if (payload.alert) {
         message = payload.alert;
     }
-
-    batiMP.log('DANS createPushItemFromIOS : message');
-    batiMP.log(message);
 
     var data = [];
     if (typeof payload.idAlerte != 'undefined') {
@@ -94,7 +82,6 @@ function createPushItemFromIOS(payload) {
         data["nbAlerte"] = payload.nbAlerte;
     }
 
-    batiMP.log("Appel de createPushItem");
     createPushItem(title, message, data);
 }
 
@@ -176,7 +163,7 @@ function deviceIsReadyForPush () {
     batiMP.registerSuffix = true; // gestion d'un suffixe pour les callBack lors de l'enregistrement
     batiMP.unRegisterSuffix = false; // gestion d'un suffixe pour les callBack lors du desenregistrement
     batiMP.senderID = "211095738121"; // sender ID fourni par google
-   batiMP.setDebug(true, '#debugPush'); // par defaut s'affiche dans #debugPush mais peut être redefini ici
+   // batiMP.setDebug(true, '#debugPush'); // par defaut s'affiche dans #debugPush mais peut être redefini ici
 
 
     is_ios = batiMP.is_ios();
@@ -212,7 +199,6 @@ function deviceIsReadyForPush () {
             reload:true});
     }
 
-
 }
 
 /* ================================================================================================================= */
@@ -226,7 +212,6 @@ function deviceIsReadyForPush () {
 function createPushItem(title, message, data) {
     var newPush = {"titre": title, "message": message, "data": data };
 
-    batiMP.log("ADD NOTIF");
     batiMP.addNotification(newPush);
 
     //effaceNotifs();
@@ -234,21 +219,13 @@ function createPushItem(title, message, data) {
 
 
     if (receptFisrtPush == true) {
-        batiMP.log("receptFisrtPush est TRUE");
-     }
-
-    if (receptFisrtPush == true) {
         $.mobile.changePage("#mes-recherches");
-     }
-
-    batiMP.log("APRES CHANGE PAGE MES RECHERCHES");
-    batiMP.log("ID ALERTE = " + data["idAlerte"], "IDIDID");
+    }
 
     // affichage page liste annonces
     if (data["idAlerte"] != 'undefined') {
         gotosearch(data["idAlerte"]);
     }
-    batiMP.log("APRES GOTO SEARCH");
 
     // lors de la reception le loading peut rester
     // donc on le vire au bout de quelques sec
