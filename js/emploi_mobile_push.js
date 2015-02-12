@@ -229,11 +229,12 @@ function createPushItem(title, message, data) {
     //afficheNotifs(batiMP.getAllNotifications(), newPush);
 
 
-    if (receptFisrtPush == true) {
+   // if (receptFisrtPush == true) {
         $.mobile.changePage("#mes-recherches");
-    }
+  //  }
 
     batiMP.log("APRES CHANGE PAGE MES RECHERCHES");
+    batiMP.log("ID ALERTE = " + data["idAlerte"], "IDIDID");
 
     // affichage page liste annonces
     if (data["idAlerte"] != 'undefined') {
