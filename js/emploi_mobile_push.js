@@ -192,9 +192,11 @@ function deviceIsReadyForPush () {
     // mise a jour etat du push et des alertes
     setEtatPush();
 
-    $.mobile.changePage('#accueil', {allowSamePageTransition: true,
-        transition: 'none',
-        reload:true});
+    if (receptFisrtPush == false) {
+        $.mobile.changePage('#accueil', {allowSamePageTransition: true,
+            transition: 'none',
+            reload:true});
+    }
 
 }
 
@@ -224,7 +226,7 @@ function createPushItem(title, message, data) {
         gotosearch(data["idAlerte"]);
     }
 
-    // mors de la reception le loading peut rester
+    // lors de la reception le loading peut rester
     // donc on le vire au bout de quelques sec
     setTimeout(function() {
         $.mobile.loading( 'hide' );
