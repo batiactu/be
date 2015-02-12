@@ -53,7 +53,7 @@ function errorHandlerIOS(error) {
 
 // callback lors de la reception de notifications
 function onNotificationIOS(e) {
-    //batiMP.log('onNotificationIOS', 'DEBUG');
+    batiMP.log('onNotificationIOS', 'DEBUG');
     createPushItemFromIOS(e);
 }
 
@@ -163,7 +163,7 @@ function deviceIsReadyForPush () {
     batiMP.registerSuffix = true; // gestion d'un suffixe pour les callBack lors de l'enregistrement
     batiMP.unRegisterSuffix = false; // gestion d'un suffixe pour les callBack lors du desenregistrement
     batiMP.senderID = "211095738121"; // sender ID fourni par google
-   // batiMP.setDebug(true, '#debugPush'); // par defaut s'affiche dans #debugPush mais peut être redefini ici
+   batiMP.setDebug(true, '#debugPush'); // par defaut s'affiche dans #debugPush mais peut être redefini ici
 
 
     is_ios = batiMP.is_ios();
@@ -224,7 +224,7 @@ function createPushItem(title, message, data) {
         gotosearch(data["idAlerte"]);
     }
 
-    // mors de la reception le loading peut rester
+    // lors de la reception le loading peut rester
     // donc on le vire au bout de quelques sec
     setTimeout(function() {
         $.mobile.loading( 'hide' );
