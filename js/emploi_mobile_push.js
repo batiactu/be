@@ -237,9 +237,9 @@ function createPushItem(title, message, data) {
         batiMP.log("receptFisrtPush est TRUE");
      }
 
-    // if (receptFisrtPush == true) {
-    $.mobile.changePage("#mes-recherches");
-    //  }
+    if (receptFisrtPush == true) {
+        $.mobile.changePage("#mes-recherches");
+     }
 
     batiMP.log("APRES CHANGE PAGE MES RECHERCHES");
     batiMP.log("ID ALERTE = " + data["idAlerte"], "IDIDID");
