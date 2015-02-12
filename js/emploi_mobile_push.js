@@ -60,19 +60,31 @@ function onNotificationIOS(e) {
 // Gestion des messages reçu par APNs, création d'un item à afficher
 function createPushItemFromIOS(payload) {
     var title = "Reception notification :";
+
+
+    batiMP.log('DANS createPushItemFromIOS', 'OOOOO');
+    batiMP.log('DANS createPushItemFromIOS 2');
+
     if (typeof payload.title != 'undefined') {
         title = payload.title;
     }
 
+    batiMP.log('DANS createPushItemFromIOS : title ');
+    batiMP.log(title);
     var alerte = '';
     if (typeof payload.alerte != 'undefined') {
         alerte = payload.idAlerte;
     }
 
+    batiMP.log('DANS createPushItemFromIOS : alerte');
+    batiMP.log(alerte);
     var message = '';
     if (payload.alert) {
         message = payload.alert;
     }
+
+    batiMP.log('DANS createPushItemFromIOS : message');
+    batiMP.log(message);
 
     var data = [];
     if (typeof payload.idAlerte != 'undefined') {
@@ -228,7 +240,7 @@ function createPushItem(title, message, data) {
         gotosearch(data["idAlerte"]);
     }
     batiMP.log("APRES GOTO SEARCH");
-    
+
     // lors de la reception le loading peut rester
     // donc on le vire au bout de quelques sec
     setTimeout(function() {
