@@ -94,7 +94,7 @@ function createPushItemFromIOS(payload) {
         data["nbAlerte"] = payload.nbAlerte;
     }
 
-    BatiMP.log("Appel de createPushItem");
+    batiMP.log("Appel de createPushItem");
     createPushItem(title, message, data);
 }
 
