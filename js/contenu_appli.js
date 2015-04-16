@@ -699,9 +699,40 @@ $('#mentions-legales').bind('pageshow', function(){
         $('#mentions-legales div[data-role=content] .ui-body ').addClass('bg_is_device');
     }
 });
+function QueryStringToHash(query) {
 
-$(document).bind( "pagebeforechange", function( e, data ) {
+  if (query == '') return null;
 
+  var hash = {};
+
+  var vars = query.split("&");
+
+  for (var i = 0; i < vars.length; i++) {
+    var pair = vars[i].split("=");
+    var k = decodeURIComponent(pair[0]);
+    var v = decodeURIComponent(pair[1]);
+
+    // If it is the first entry with this name
+    if (typeof hash[k] === "undefined") {
+
+      if (k.substr(k.length-2) != '[]')  // not end with []. cannot use negative index as IE doesn't understand it
+        hash[k] = v;
+      else
+        hash[k] = [v];
+
+    // If subsequent entry with this name and not array
+    } else if (typeof hash[k] === "string") {
+      hash[k] = v;  // replace it
+
+    // If subsequent entry with this name and is array
+    } else {
+      hash[k].push(v);
+    }
+  } 
+  return hash;
+};
+$(document).bind( "pagebeforechange", function( e, data ) {    
+		
     if (Batilog.onDebug()) {
         Batilog.log('$(document).bind( "pagebeforechange"');
         Batilog.log(e);
@@ -711,7 +742,45 @@ $(document).bind( "pagebeforechange", function( e, data ) {
     var u = $.mobile.path.parseUrl( data.toPage );
     set_fields_from_current();
     if ( typeof data.toPage === "string" ) {
-
+       
+    		// recherche.
+        var re = /^#linksearch\?/;
+        
+        if ( u.hash.search(re) !== -1) {
+						
+						
+						reset_search(0);
+						var Tqs = [];
+            Tqs = QueryStringToHash(u.hash.substr(12));
+						
+						for(var k in Tqs){
+							switch(k){
+								case 'current_zonegeo':					
+								current_zonegeo.push(Tqs['current_zonegeo']);
+								break;
+								
+								case 'current_zonegeo[]':								
+								for(var i in Tqs['current_zonegeo[]']){						
+									current_zonegeo.push(Tqs['current_zonegeo[]'][i]);
+								}
+								break;
+								
+								case 'current_fonction':
+								current_fonction.push(Tqs['current_fonction']);
+								break;
+								
+								case 'current_fonction[]':
+								for(var i in Tqs['current_fonction[]']){								
+									current_fonction.push(Tqs['current_fonction[]'][i]);
+								}
+								break;
+							}
+						}						
+            wrp_cpt_mobile('linksearch',get_current_search_wreport(1));
+            go_url_recherche();
+            e.preventDefault();
+        }
+        
         // recherche.
         var re = /^#recherche\?/;
         var re2 = /^#recherche-\?/;
@@ -734,7 +803,6 @@ $(document).bind( "pagebeforechange", function( e, data ) {
             }
 
             wrp_cpt_mobile('annonce',id_annonce);
-
 
             back_popup_hash = u['hash'];
             showAnnonce( u, data.options );
