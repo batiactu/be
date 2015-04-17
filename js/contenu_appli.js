@@ -399,7 +399,7 @@ $('#recherche-detail-page-fonction').on('pagebeforeshow', function(){
     $('#recherche-detail-page-fonction').page();
     set_fields_from_current();
 });
-
+/*
 $('#recherche-detail-page-metier').on('pagebeforeshow', function(){
     if (Batilog.onDebug()) {
         Batilog.log("$('#recherche-detail-page-metier').on('pagebeforeshow'");
@@ -415,7 +415,7 @@ $('#recherche-detail-page-metier').on('pagebeforeshow', function(){
     $('#recherche-detail-page-metier').page();
     set_fields_from_current();
 });
-
+*/
 $('#recherche-detail-page-experience').on('pagebeforeshow', function(){
 
     if (Batilog.onDebug()) {
@@ -790,44 +790,45 @@ $(document).bind( "pagebeforechange", function( e, data ) {
             Tqs = QueryStringToHash(decodeURIComponent(u.hash.substr(12)));
 						
 						for(var k in Tqs){							
+							
 							switch(k){
 								case 'zonegeo':					
-								current_zonegeo.push(Tqs['zonegeo']);
+								if(Tqs['zonegeo']!='')current_zonegeo.push(Tqs['zonegeo']);
 								break;
 								
 								case 'zonegeo[]':								
-								for(var i in Tqs['zonegeo[]']){						
-									current_zonegeo.push(Tqs['zonegeo[]'][i]);
+								for(var i in Tqs['zonegeo[]']){	
+									if(Tqs['zonegeo[]'][i]!='')current_zonegeo.push(Tqs['zonegeo[]'][i]);
 								}
 								break;
 								
 								case 'dept':					
-								current_dept.push(Tqs['dept']);
+								if(Tqs['dept']!='')current_dept.push(Tqs['dept']);
 								break;
 								
 								case 'dept[]':								
 								for(var i in Tqs['dept[]']){						
-									current_dept.push(Tqs['dept[]'][i]);
+									if(Tqs['dept[]'][i]!='')current_dept.push(Tqs['dept[]'][i]);
 								}
 								break;
 								
 								case 'fonction':
-								current_fonction.push(Tqs['fonction']);
+								if(Tqs['fonction']!='')current_fonction.push(Tqs['fonction']);
 								break;
 								
 								case 'fonction[]':
 								for(var i in Tqs['fonction[]']){								
-									current_fonction.push(Tqs['fonction[]'][i]);
+									if(Tqs['fonction[]'][i]!='')current_fonction.push(Tqs['fonction[]'][i]);
 								}
 								break;
 								
 								case 'metier':
-								current_metier.push(Tqs['metier']);
+								if(Tqs['metier']!='')current_metier.push(Tqs['metier']);
 								break;
 								
 								case 'metier[]':
 								for(var i in Tqs['metier[]']){
-									current_metier.push(Tqs['metier[]'][i]);
+									if(Tqs['metier[]'][i]!='')current_metier.push(Tqs['metier[]'][i]);
 								}
 								break;
 							}

@@ -661,7 +661,7 @@ function set_fields_from_current(){
 		$('#selected-detail-page-'+type).html(lib);
         lib += '<br>';
 	});
-
+	/*
     lib = '';
 	resetTmp_cac('metier');
 	$.each(current_metier,function(i) {
@@ -674,7 +674,7 @@ function set_fields_from_current(){
 		$('#selected-detail-page-'+type).html(lib);
         lib += '<br>';
 	});
-
+	*/
 
     lib = '';
 	$.each(current_contrat,function(i) {
