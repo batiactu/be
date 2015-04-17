@@ -86,6 +86,9 @@ function wrp_cpt_mobile(libelle,content){
             case 'recherche-detail-page-fonction':
                 libelle='page-liste-fonctions';
                 break;
+            case 'recherche-detail-page-metier':
+                libelle='page-liste-metiers';
+                break;
             case 'recherche-detail-page-zonegeo':
                 libelle='page-liste-localisations';
                 break;
@@ -357,7 +360,8 @@ $(document).bind('pageinit', function(event){
         var dfd = $.Deferred();
         dfd.done(init_global).done(function(n){
             setTimeout( function(){ $('#recherche-detail-page-fonction').trigger('pagebeforeshow'); }, 100 );
-            setTimeout( function(){$('#recherche-detail-page-zonegeo').trigger('pagebeforeshow'); }, 100 );
+            setTimeout( function(){ $('#recherche-detail-page-metier').trigger('pagebeforeshow'); }, 100 );          
+						setTimeout( function(){$('#recherche-detail-page-zonegeo').trigger('pagebeforeshow'); }, 100 );
             setTimeout( function(){$('#mes-recherches').trigger('pagebeforeshow'); }, 400 );
         }).resolve();
     }
@@ -393,6 +397,22 @@ $('#recherche-detail-page-fonction').on('pagebeforeshow', function(){
         //$.mobile.changePage( "#recherche-detail", { transition: "none"} );
     });
     $('#recherche-detail-page-fonction').page();
+    set_fields_from_current();
+});
+
+$('#recherche-detail-page-metier').on('pagebeforeshow', function(){
+    if (Batilog.onDebug()) {
+        Batilog.log("$('#recherche-detail-page-metier').on('pagebeforeshow'");
+    }
+
+    var template = Handlebars.compile($('#recherche-detail-tpl').html());
+    $('#recherche-detail-metier').html(template(Tmetiers_search)).trigger('create');
+    $('#recherche-detail-page-metier .check_cac').off('click').on('click', function() {
+        uncheck_cac($(this).attr('cac_type'),$(this));
+        // on change de page direct
+        //$.mobile.changePage( "#recherche-detail", { transition: "none"} );
+    });
+    $('#recherche-detail-page-metier').page();
     set_fields_from_current();
 });
 
@@ -731,6 +751,14 @@ function QueryStringToHash(query) {
   } 
   return hash;
 };
+function getKeyByValue(Tab, value ) {
+    for( var prop in Tab ) {
+        if( Tab.hasOwnProperty( prop ) ) {
+             if( Tab[ prop ] === value )
+                 return prop;
+        }
+    }
+} 
 $(document).bind( "pagebeforechange", function( e, data ) {    
 		
     if (Batilog.onDebug()) {
@@ -738,49 +766,81 @@ $(document).bind( "pagebeforechange", function( e, data ) {
         Batilog.log(e);
         Batilog.log(data);
     }
-
+		/*for(var k in data){
+			alert(k + ':' + data[k]);
+			if ( typeof data[k] === "object" ) {
+				for(var j in data[k]){
+					alert(j + ':' + data[k][j]);
+				}
+			}
+		}  */
     var u = $.mobile.path.parseUrl( data.toPage );
-    set_fields_from_current();
-    if ( typeof data.toPage === "string" ) {
-       
+    
+		set_fields_from_current();
+    
+      if ( typeof data.toPage === "string" ) {  
+      
     		// recherche.
         var re = /^#linksearch\?/;
         
         if ( u.hash.search(re) !== -1) {
-						
-						
+												
 						reset_search(0);
 						var Tqs = [];
-            Tqs = QueryStringToHash(u.hash.substr(12));
+            Tqs = QueryStringToHash(decodeURIComponent(u.hash.substr(12)));
 						
-						for(var k in Tqs){
+						for(var k in Tqs){							
 							switch(k){
-								case 'current_zonegeo':					
-								current_zonegeo.push(Tqs['current_zonegeo']);
+								case 'zonegeo':					
+								current_zonegeo.push(Tqs['zonegeo']);
 								break;
 								
-								case 'current_zonegeo[]':								
-								for(var i in Tqs['current_zonegeo[]']){						
-									current_zonegeo.push(Tqs['current_zonegeo[]'][i]);
+								case 'zonegeo[]':								
+								for(var i in Tqs['zonegeo[]']){						
+									current_zonegeo.push(Tqs['zonegeo[]'][i]);
 								}
 								break;
 								
-								case 'current_fonction':
-								current_fonction.push(Tqs['current_fonction']);
+								case 'dept':					
+								current_dept.push(Tqs['dept']);
 								break;
 								
-								case 'current_fonction[]':
-								for(var i in Tqs['current_fonction[]']){								
-									current_fonction.push(Tqs['current_fonction[]'][i]);
+								case 'dept[]':								
+								for(var i in Tqs['dept[]']){						
+									current_dept.push(Tqs['dept[]'][i]);
+								}
+								break;
+								
+								case 'fonction':
+								current_fonction.push(Tqs['fonction']);
+								break;
+								
+								case 'fonction[]':
+								for(var i in Tqs['fonction[]']){								
+									current_fonction.push(Tqs['fonction[]'][i]);
+								}
+								break;
+								
+								case 'metier':
+								current_metier.push(Tqs['metier']);
+								break;
+								
+								case 'metier[]':
+								for(var i in Tqs['metier[]']){
+									current_metier.push(Tqs['metier[]'][i]);
 								}
 								break;
 							}
-						}						
-            wrp_cpt_mobile('linksearch',get_current_search_wreport(1));
-            go_url_recherche();
+						}
+						wrp_cpt_mobile('linksearch',get_current_search_wreport(1));
+						
+
+						go_url_recherche();
+            
             e.preventDefault();
         }
-        
+       
+       
         // recherche.
         var re = /^#recherche\?/;
         var re2 = /^#recherche-\?/;

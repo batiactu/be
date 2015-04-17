@@ -12,13 +12,17 @@ var back_popup_hash = "";
 var use_infinite = true;
 
 var Tfonctions_search = new Array;
+var Tmetiers_search = new Array;
 var Tregions_search = new Array;
+var Tdepts_search = new Array;
 var Texperiences_search = new Array;
 var Tcontrats_search = new Array;
 
 var Tregions = new Array;
 var Tdepts = new Array;
 var Tfonctions = new Array;
+var Tmetiers = new Array;
+var TmetiersCodeId = new Array;
 var Texperiences = new Array;
 var Tcontrats = new Array;
 
@@ -28,6 +32,7 @@ var Limit_Recherche = 50;
 var nb_results_by_page = 20;
 
 var current_zonegeo = new Array;
+var current_dept = new Array;
 var current_fonction = new Array;
 var current_metier = new Array;
 var current_experience = new Array;
@@ -36,6 +41,7 @@ var current_motclef = '';
 
 // version temporaire
 var current_zonegeo_tmp = new Array;
+var current_dept_tmp = new Array;
 var current_fonction_tmp = new Array;
 var current_metier_tmp = new Array;
 var current_experience_tmp = new Array;
@@ -225,6 +231,7 @@ function view_list_mes_recherches(){
 function reset_search(gotodetail){
 
 	current_zonegeo = new Array;
+	current_dept = new Array;
 	current_fonction = new Array;
 	current_metier = new Array;
 	current_experience = new Array;
@@ -252,8 +259,12 @@ function saved_last_search(){
 	criteres_last_search = new Object(); 
 
 	criteres_last_search['current_zonegeo'] = current_zonegeo;
+	
+	criteres_last_search['current_dept'] = current_dept;	
 
 	criteres_last_search['current_fonction'] = current_fonction;
+	
+	criteres_last_search['current_metier'] = current_metier;
 
 	criteres_last_search['current_experience'] = current_experience;
 
@@ -288,8 +299,12 @@ function save_search() {
 	var current_search = new Object();
 
 	current_search['current_zonegeo'] = current_zonegeo;
+	
+	current_search['current_dept'] = current_dept;
 
 	current_search['current_fonction'] = current_fonction;
+	
+	current_search['current_metier'] = current_metier;
 
 	current_search['current_experience'] = current_experience;
 
@@ -648,6 +663,20 @@ function set_fields_from_current(){
 	});
 
     lib = '';
+	resetTmp_cac('metier');
+	$.each(current_metier,function(i) {
+		value = current_metier[i];
+		var type = 'metier';                                             
+		$('[cac_type='+type+'][value='+value+']').attr('id');     		
+		$('[cac_type='+type+'][value='+value+']').prop('checked', true);
+		$('[cac_type='+type+'][value='+value+']').checkboxradio().checkboxradio("refresh");
+		lib += get_value_by_key(Tmetiers,value);
+		$('#selected-detail-page-'+type).html(lib);
+        lib += '<br>';
+	});
+
+
+    lib = '';
 	$.each(current_contrat,function(i) {
 		value = current_contrat[i];
 		var type = 'contrat';         
@@ -745,6 +774,37 @@ function get_current_search_wreport(lib){
 	content_criteres_lib_wrp += type + ' : ' + current_motclef + '\
 	';
 	
+	if(current_dept.length>0){
+		type = 'dept';
+		content_criteres_code_wrp+= type + ' : ' + current_dept.join(',') + '\
+		';		
+		content_criteres_lib_wrp += type + ' : ';
+		i = 0;
+		$.each(current_dept,function(j) {
+			value = current_dept[j];
+			if(i>0)content_criteres_lib_wrp +=',';
+			content_criteres_lib_wrp +=get_value_by_key(Tdepts,value);
+			i++;
+		});		
+	    content_criteres_lib_wrp += '\
+		';
+	}
+	
+	if(current_metier.length>0){
+		type = 'metier';
+		content_criteres_code_wrp+= type + ' : ' + current_metier.join(',') + '\
+		';		
+		content_criteres_lib_wrp += type + ' : ';
+		i = 0;
+		$.each(current_metier,function(j) {
+			value = current_metier[j];
+			if(i>0)content_criteres_lib_wrp +=',';
+			content_criteres_lib_wrp +=get_value_by_key(Tmetiers,value);
+			i++;
+		});		
+	    content_criteres_lib_wrp += '\
+		';
+	}
 	if(lib)return content_criteres_lib_wrp;
 	else return content_criteres_code_wrp; 
 }
@@ -785,6 +845,34 @@ function majTfonction(data) {
                 ,'type':'fonction'
             });
             Tfonctions[fonction]=label;
+            k++;
+        }
+    }
+}
+
+/**
+ * Permet de mettre a jour les données pour : Metier
+ * @param data
+ */
+function majTmetier(data) {
+    Tmetiers_search = new Array;
+    Tmetiers = [];
+    TmetiersCodeId = [];
+    var k=0;
+    for(item in data) {
+
+        //for(fonction in data[parent]["fonction"]) {
+        for(metier in data[item]["metier"]) {
+
+            label = data[item]["metier"][metier];
+            Tmetiers_search.push({
+                'item_value': metier
+                ,'item_label':label
+                ,'item_index':k
+                ,'type':'metier'
+            });
+            Tmetiers[metier]=label;
+            TmetiersCodeId[metier]=data[item]['id'];
             k++;
         }
     }
@@ -901,8 +989,38 @@ function init_global(){
         }
 	});
 
-	/*
-	// Pas besoin pour l'instant
+  $.ajax({
+		url:DIRSCRIPTS+'interface-mobile.php'
+		,data: {
+			jsonp : 1
+			,get:'metier'
+		}
+		,dataType:'jsonp'
+		,async :false
+		,cache :false
+        , success : function(data) {
+
+            majTmetier(data);
+            // mise en cache
+            localStorage.setItem("tmetier_data", JSON.stringify(data));
+
+        },
+        error : function () {
+            // as t'on des données en cache ?
+            var tfct_data = localStorage.getItem("tmetier_data");
+
+            if (tfct_data === null || tfct_data === '') {
+                console.log("une erreur lors de la récupération de donnée METIER SEARCH est survenue, merci de relancer l'application");
+				return;
+            }
+
+            var data = JSON.parse(tfct_data);
+
+            majTmetier(data);
+
+        }
+	});
+	
 
 	$.ajax({
 		url:DIRSCRIPTS+'interface-mobile.php'
@@ -929,7 +1047,9 @@ function init_global(){
      	}
 
 	});
-
+	/*
+	
+	// Pas besoin pour l'instant
     load_contrats();
 
 	load_experiences();
@@ -1032,6 +1152,7 @@ function launchSearch(advanceMode,gotopage_n) {
 	var experience = '';
 	var contrat = '';
 	var zonegeo = '';
+	var dept = '';
 	
 	if(advanceMode) {
 	
@@ -1039,13 +1160,22 @@ function launchSearch(advanceMode,gotopage_n) {
 		$.each(current_zonegeo,function(i) {
 			if(zonegeo!='')zonegeo+='|';
 			zonegeo+=this;
-		});	
+		});
+		
+		$.each(current_dept,function(i) {
+			if(dept!='')dept+='|';
+			dept+=this;
+		});
 		
 		$.each(current_fonction,function(i) {
 			if(fonction!='')fonction+='|';
 			fonction+=this;
 		});			
-			
+		
+		$.each(current_metier,function(i) {		
+			if(metier!='')metier+='|';
+			metier+=TmetiersCodeId[this];
+		});		
 	}
 	else {
 		var zonegeo = $('#accueil #zone-geo').val();
@@ -1094,6 +1224,7 @@ function launchSearch(advanceMode,gotopage_n) {
 			,jsonp:1
 			,mot:mot
 			,zonegeo:zonegeo
+			,dept:dept
 			,fonction:fonction
 			,metier:metier
 			,experience:experience
@@ -1138,6 +1269,7 @@ function check_params(){
 }
 
 function go_url_recherche(){
+
 	var $content = $('#recherche').children( ":jqmData(role=content)" );
 	$content.find( "#resultat-recherche").html("");
 
@@ -1153,8 +1285,9 @@ function go_url_recherche(){
 
 	//l'url est créée dynamiquement
 
-    newurl = '#recherche' + '?zone=' + current_zonegeo.join('-')+'&fct='+  current_experience.join('-')+  current_contrat.join('-')+  current_fonction.join('-')+'&motclef='+ current_motclef;
-
+  newurl = '#recherche' + '?zone=' + current_zonegeo.join('-')+'&dept='+  current_dept.join('-')+'&fct='+    current_fonction.join('-')+'&mtr='+    current_metier.join('-')+'&exp='+current_experience.join('-')+'&ctt='+  current_contrat.join('-')+'&motclef='+ current_motclef;
+	newurl += '&t='+Math.round(+new Date()/1000);
+	
 	$.mobile.changePage( newurl);
 
 	return true; 
