@@ -197,6 +197,14 @@ function validate_cac(type) {
 	window[tabName] = newTabType;
 }
 
+function resetTotalCurrent(type) {
+	var tabName = 'current_' + type;
+
+	var newTabType = new Array;
+	window[tabName] = newTabType;
+}
+
+
 function resetTmp_cac(type) {
 	var tabName = 'current_' + type;
 	var tabNameTmp = 'current_' + type + '_tmp';
@@ -1157,7 +1165,7 @@ function go_url_recherche(){
 
 	$.mobile.changePage( newurl);
 
-	return true; 
+	return true;
 }
 
 
