@@ -460,6 +460,9 @@ $('#recherche-detail').on('pageshow', function(){
         Batilog.log("$('#recherche-detail').on('pageshow'");
     }
 
+    resetTotalCurrent('dept');
+    resetTotalCurrent('metier');
+
     $('#recherche #next').attr('data-next',0);
 });
 
@@ -481,6 +484,8 @@ $('#recherche').on('pagecreate', function(){
     $('.create-alert').on('click', function() {
         createAlert();
     });
+
+
 
 
 });
@@ -777,8 +782,8 @@ $(document).bind( "pagebeforechange", function( e, data ) {
     var u = $.mobile.path.parseUrl( data.toPage );
     
 		set_fields_from_current();
-    
-      if ( typeof data.toPage === "string" ) {  
+
+    if ( typeof data.toPage === "string" ) {
       
     		// recherche.
         var re = /^#linksearch\?/;
@@ -840,6 +845,7 @@ $(document).bind( "pagebeforechange", function( e, data ) {
             
             e.preventDefault();
         }
+
        
        
         // recherche.
