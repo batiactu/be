@@ -64,7 +64,7 @@
     <icon src="images/icon29.png" gap:platform="webos" /> <!-- 29 pixels -->
     <icon src="images/icon15.png" gap:platform="webos" gap:role="mini" /> <!-- 15 pixels -->
 
-    <preference name="phonegap-version" value="3.6.3" />
+    <preference name="phonegap-version" value="3.7.0" />
 
     <!-- orientation with possible values default (both), landscape, or portrait -->
     <preference name="orientation" value="default" />
