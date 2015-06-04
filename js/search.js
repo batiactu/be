@@ -3,7 +3,7 @@ var DIRSCRIPTS = 'http://bo.v2.batiactuemploi.com/scripts/';
 //var DIRHTTP = 'http://local.www2012.batiactuemploi.com/';
 //var DIRSCRIPTS = 'http://local.back2012.batiactuemploi.com/scripts/';
 
-//DIRSCRIPTS = 'http://192.168.3.103/backoffice/scripts/';
+//DIRSCRIPTS = 'http://192.168.3.103/emploibatiactu/backoffice/scripts/';
 
 
 var pageinit = false;
@@ -422,7 +422,6 @@ function del_searh_from_hash(current_hash){
 
 	tsearchs = $.jStorage.get('tsearchs');
 	if(!tsearchs) tsearchs= new Object();
-	
 	if(tsearchs.hasOwnProperty(current_hash)){
 		notify('Suppression...', '#mes-recherches');
 
@@ -454,7 +453,8 @@ function load_searh_from_hash(current_hash){
 	
 	tsearchs = $.jStorage.get('tsearchs');
 	if(!tsearchs) tsearchs= new Object();
-	
+
+
 	if(tsearchs.hasOwnProperty(current_hash)){
 		notify('Rechargement', '#mes-recherches');
 	}else{		
@@ -484,6 +484,7 @@ function saved_object_search(obj){
     tsearchs = $.jStorage.get('tsearchs');
     if(!tsearchs) tsearchs= new Object();
 
+
     var current_hash = convert_array_to_hash(obj);
 
     tsearchs[current_hash] = obj;
@@ -503,6 +504,7 @@ function switch_alert_from_search(that, current_hash) {
 
     tsearchs = $.jStorage.get('tsearchs');
     if(!tsearchs) tsearchs= new Object();
+
 
     if(! tsearchs.hasOwnProperty(current_hash)){
         notify('Erreur, ce hash ne correspond pas!', '#mes-recherches');
@@ -555,9 +557,9 @@ function getInfoAlerte () {
 	tsearchs = $.jStorage.get('tsearchs');
 	if(!tsearchs) {
 		// rien a faire
+		tsearchs= new Object();
 		return false;
 	}
-
 	$.each(tsearchs, function(idx, val) {
 		if (typeof tsearchs[idx]['push'] != 'undefined' && tsearchs[idx]['push'] == true) {
 			valToReturn.push(idx);
@@ -577,6 +579,7 @@ function activateAlert() {
 	tsearchs = $.jStorage.get('tsearchs');
 	if (!tsearchs) {
 		// rien a faire
+		tsearchs= new Object();
 		return false;
 	}
 
@@ -615,6 +618,7 @@ function desactivateAlert() {
 	tsearchs = $.jStorage.get('tsearchs');
 	if(!tsearchs) {
 		// rien a faire
+		tsearchs= new Object();
 		return false;
 	}
 
@@ -1070,6 +1074,7 @@ function initSearch() {
 
 	tsearchs = $.jStorage.get('tsearchs');
 	if(!tsearchs) tsearchs = new Object();
+
 	search_list_id = new Array;
 	
 	criteres_last_search = $.jStorage.get('last_search');

@@ -231,7 +231,7 @@ function createPushItem(title, message, data) {
     // donc on le vire au bout de quelques sec
     setTimeout(function() {
         $.mobile.loading( 'hide' );
-        console.log("hide loading");
+        //console.log("hide loading");
 
     }, 5000);
 
@@ -332,7 +332,6 @@ function setEtatPush() {
     else {
         info = "acceptpush";
        data = getInfoAlerte();
-
     }
 
     $.ajax({
