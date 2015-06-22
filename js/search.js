@@ -876,6 +876,7 @@ function init_global(){
 				nb_annonce = ret['nb'];
 				nb_annonce_cent_inf = (nb_annonce - nb_annonce%100);
 				$("#nbannonce_cent_inf").text(nb_annonce_cent_inf);
+				$("#strong-nb-ann").show();
 			}
 		,error:function(ret) {						
 			}
