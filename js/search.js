@@ -3,7 +3,7 @@ var DIRSCRIPTS = 'http://bo.v2.batiactuemploi.com/scripts/';
 //var DIRHTTP = 'http://local.www2012.batiactuemploi.com/';
 //var DIRSCRIPTS = 'http://local.back2012.batiactuemploi.com/scripts/';
 
-//DIRSCRIPTS = 'http://192.168.3.103/emploibatiactu/backoffice/scripts/';
+DIRSCRIPTS = 'http://192.168.3.103/emploibatiactu/backoffice/scripts/';
 
 
 var pageinit = false;
